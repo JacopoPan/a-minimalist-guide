@@ -247,7 +247,7 @@ $ cp ~/.bash_profile ~/.bashrc
 Append a line to `.bashrc` to add the path towards CUDA to environmental variable `LD_LIBRARY_PATH`
 ```
 $ echo "export LD_LIBRARY_PATH=/pkgs/cuda-10.1/lib64:/pkgs/cudnn-10.1-v7.6.3.30/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}" >> ~/.bashrc
-$ source ~/.bashrc                    # in hindsight, this line is redundant
+$ source ~/.bashrc                    # edit: in hindsight, this line is redundant but harmless
 ```
 Start a `bash` shell in an interactive session (for up to 3 hours)
 ```
