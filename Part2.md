@@ -128,7 +128,7 @@ $ echo "octave" >> /tmp/packages        # to ask for the installation of "octave
 
 Note: the instructions below are for the MaRS location; they can be used on Vaughan/Vaughan2 replacing 
 - `m.[omitted domain]` with `v.[omitted domain]`
-- `gobi1` with `ssd001`
+- `gobi1` with `ssd001/home`
 
 Login via `ssh` and add the location of `conda3` binaries to environmental variable `PATH`
 ```
@@ -223,7 +223,7 @@ $ python
 >>> from rl.agents.cem import CEMAgent
 >>> import gym
 ```
-Repeat this procedure for `v.[omitted domain]`, using `ssd001` in place of  `gobi1`
+Repeat this procedure for `v.[omitted domain]`, using `ssd001/home` in place of  `gobi1`
 
 ## Debug in a shell using a `slurm` interactive session
 
