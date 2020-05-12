@@ -225,7 +225,7 @@ $ python
 ```
 Repeat this procedure for `v.[omitted domain]`, using `ssd001/home` in place of  `gobi1`
 
-## Debug in a shell using a `slurm` interactive session
+## Debug in shell using a `slurm` interactive session
 
 Remember: one is not supposed to run heavy workloads just by logging in through `ssh` 
 
