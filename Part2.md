@@ -281,20 +281,6 @@ Select `conda` environment `/scratch/gobi1/username/learning`
 ```
 $ source activate /scratch/gobi1/$USER/learning
 ```
-Export the path towards the latest CUDA shared libraries 
-```
-export LD_LIBRARY_PATH=/pkgs/cuda-10.1/lib64:/pkgs/cudnn-10.1-v7.6.3.30/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-```
-Verify that TensorFlow can see the GPU
-```
-$ python
-```
-In the interpreter, type
-```
->>> import tensorflow as tf
->>> physical_devices = tf.config.list_physical_devices('GPU') 
->>> print("Num GPUs:", len(physical_devices)) 
-```
 Verify that PyTorch can use CUDA
 ```
 $ python
@@ -304,7 +290,21 @@ In the interpreter, type
 >>> import torch
 >>> print(torch.cuda.is_available())
 ```
-Note: this second test might fail in an interactive session (e.g. if `nvidia-smi` reported a CUDA version != the one used to install PyTorch) but PyTorch with CUDA still work when you submit your job with `sbatch` (to a different partition)
+Note: this test might fail if `nvidia-smi` reported using CUDA 10.0 (instead of 10.1)
+
+Make sure that you are using a node consistent with your PyTorch installation (e.g. `gruppy1`)
+
+To verify that TensorFlow can see the GPU, export the path towards the latest CUDA shared libraries 
+```
+$ export LD_LIBRARY_PATH=/pkgs/cuda-10.1/lib64:/pkgs/cudnn-10.1-v7.6.3.30/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+$ python
+```
+In the interpreter, type
+```
+>>> import tensorflow as tf
+>>> physical_devices = tf.config.list_physical_devices('GPU') 
+>>> print("Num GPUs:", len(physical_devices)) 
+```
 
 ### Submit your script for execution using `slurm` batch sessions
 
