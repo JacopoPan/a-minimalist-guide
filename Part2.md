@@ -262,10 +262,10 @@ $ sinfo                               # for partitions; use "$ sinfo -leN" to se
 $ squeue                              # use "$ squeue -u username" to only see jobs belonging to user "username"
 ```
 Start a `bash` shell with
-- 4GB of memory
-- 2 CPUS
-- 1 GPU (to test support)
-- in an interactive session (for up to 3 hours) 
+- 4GB of memory (`--mem=4GB`)
+- 2 CPUS (`-c 2`)
+- 1 GPU (`--gres=gpu:1`)—to test support
+- in an interactive session (`-p interactive`)—for up to 3 hours
 ```
 $ srun --mem=4GB -c 2 --gres=gpu:1 -p interactive --pty /bin/bash
 ```
@@ -277,12 +277,12 @@ Verify the presence of a GPU and the version of CUDA
 ```
 $ nvidia-smi
 ```
-Export `conda` and activate environment `/scratch/gobi1/username/learning`
+Export your preferred `conda` and activate environment `/scratch/gobi1/username/learning`
 ```
 $ export PATH=/pkgs/anaconda3/bin:$PATH
 $ source activate /scratch/gobi1/$USER/learning
 ```
-Verify that PyTorch can use CUDA
+Verify that PyTorch can use CUDA, start Python
 ```
 $ python
 ```
@@ -298,9 +298,8 @@ Make sure that you are using a node consistent with your PyTorch installation (e
 To verify that TensorFlow can see the GPU, export the path towards the latest CUDA shared libraries 
 ```
 $ export LD_LIBRARY_PATH=/pkgs/cuda-10.1/lib64:/pkgs/cudnn-10.1-v7.6.3.30/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-$ python
 ```
-In the interpreter, type
+Start Python `$ python` and, in the interpreter, type
 ```
 >>> import tensorflow as tf
 >>> physical_devices = tf.config.list_physical_devices('GPU') 
@@ -350,7 +349,7 @@ echo $SLURM_JOB_PARTITION >> ~/test.log              # log the job partition
 
 export LD_LIBRARY_PATH=/pkgs/cuda-10.1/lib64:/pkgs/cudnn-10.1-v7.6.3.30/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}      # required for TensorFlow to see any GPU
 
-export PATH=/pkgs/anaconda3/bin:$PATH
+export PATH=/pkgs/anaconda3/bin:$PATH                # exporting the binaries of your preferred version of conda
 source activate /scratch/gobi1/$USER/learning/       # LINE 23 - NOTE: set the path to your conda environment
 echo $CONDA_PREFIX >> ~/test.log                     # log the active conda environment 
 
