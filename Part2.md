@@ -293,7 +293,7 @@ In the interpreter, type
 ```
 Note: this test might fail if `nvidia-smi` reported using CUDA 10.0 (instead of CUDA 10.1 used by the installed `torch`)
 
-Make sure that you are using a node consistent with your PyTorch installation (e.g. `gruppy1`)
+Make sure that you are using a node consistent with your PyTorch installation (e.g., for this writing, `gruppy1`)
 
 To verify that TensorFlow can see the GPU, export the path towards the latest CUDA shared libraries 
 ```
