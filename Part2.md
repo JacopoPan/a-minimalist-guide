@@ -396,7 +396,7 @@ To change the desired target partition of job with id `491956` to `gpu`
 ```
 $ scontrol update jobid=491956 partition=gpu
 ```
-Also check these `slurm` [cheatsheet](https://slurm.schedmd.com/pdfs/summary.pdf) and [tutorial](https://support.ceci-hpc.be/doc/_contents/QuickStart/SubmittingJobs/SlurmTutorial.html)
+Also check these `slurm` [cheatsheet](https://slurm.schedmd.com/pdfs/summary.pdf), [tutorial](https://support.ceci-hpc.be/doc/_contents/QuickStart/SubmittingJobs/SlurmTutorial.html), and [Wiki page](https://support.vectorinstitute.ai/UsingSlurm)
 
 ## Transferring data between a local computer and Vector's locations 
 
