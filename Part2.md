@@ -355,15 +355,13 @@ echo $CONDA_PREFIX >> ~/test.log                     # log the active conda envi
 
 python --version >> ~/test.log                       # log Python version
 
-python ~/test.py >> ~/test.log                       # the script above, with its standard output redirected to test.log
+python ~/test.py >> ~/test.log                       # the script above, with its standard output appended to test.log
 
 source deactivate
 ```
 Note: in lines 4, 5, and 23
 - Replace `YOURUSERNAME` with your username (required)
 - Replace `/scratch/gobi1/$USER/learning/` with your `conda` environment
-
-To also select a desired quality of service on Vaughan with `#SBATCH --qos=XYZ`refer to the [Wiki](https://support.vectorinstitute.ai/AboutVaughan2)
 
 Copy these two files to your home directory on one of Vector's locations
 ```
