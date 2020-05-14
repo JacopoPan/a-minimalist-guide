@@ -340,7 +340,7 @@ In your local machine's home directory (`$ cd ~`), save the following lines as `
 #SBATCH --mem=4G                                     # self-explanatory, set to your preference
 #SBATCH --gres=gpu:1                                 # NOTE: you need a GPU for CUDA support; self-explanatory, set to your preference 
 #SBATCH --nodes=1
-#SBATCH --qos=normal
+#SBATCH --qos=normal                                 # for "high" and "deadline" QoS, refer to https://support.vectorinstitute.ai/AboutVaughan2
 
 rm -f ~/test.log                                     # remove any previous copy of "test.log" which is used by "test.sh" to append its output
 
@@ -362,6 +362,8 @@ source deactivate
 Note: in lines 4, 5, and 23
 - Replace `YOURUSERNAME` with your username (required)
 - Replace `/scratch/gobi1/$USER/learning/` with your `conda` environment
+
+To also select a desired quality of service on Vaughan with `#SBATCH --qos=XYZ`refer to the [Wiki](https://support.vectorinstitute.ai/AboutVaughan2)
 
 Copy these two files to your home directory on one of Vector's locations
 ```
