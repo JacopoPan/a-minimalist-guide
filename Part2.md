@@ -83,7 +83,7 @@ Additional extreme Unix basics are on this [cheatsheet](https://files.fosswire.c
 
 ## File system differences across Vector's locations
 
-Note: there minor differences in the file system organization of your home `~` and `scratch` folders across Vector's location
+Note: there are minor differences in the file system organization of your home `~` and `scratch` folders across Vector's location
 
 MaRS (login using `q.[omitted domain]`, `m.[omitted domain]`)
 ```
