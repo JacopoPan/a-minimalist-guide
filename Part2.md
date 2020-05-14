@@ -480,7 +480,7 @@ The commit message will state the name of the machine where the commit originate
 
 As pointed out [here](https://support.vectorinstitute.ai/Computing/CronRsync), one can use `crontab` to periodically execute a script
 
-For example, to syncronize the content of folder `send` on MaRS to folder `deliver` on Vaughan every 15'
+For example, to synchronize the content of folder `send` on MaRS to folder `deliver` on Vaughan every 15'
 
 First setup `ssh` access via key from `m` to `v`
 
