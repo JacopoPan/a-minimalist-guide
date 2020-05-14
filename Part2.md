@@ -162,7 +162,7 @@ For example, for the newest `conda` 4.7.12 (with Python 3.6)
 ```
 $ export PATH=/pkgs/anaconda37/bin:$PATH
 ```
-(Note: there is also a `/pkgs/anaconda27/bin` installation using Python 3.7.3 but I was not able to run `conda` when exporting these binaries)
+(Note: there is also a `/pkgs/anaconda27/bin` installation but I was not able to run it when exporting these binaries)
 
 Verify `conda`'s version with `$ conda --version` 
 
