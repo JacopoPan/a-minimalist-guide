@@ -153,7 +153,7 @@ $ ssh username@m.[omitted domain]       # change "username" and server "m" as ap
 ```
 Choose your preferred version of `conda`
 
-This can be done by adding, to environmental variable `PATH`, the location of the binaries of the corresponding, preinstalled version of Anaconda
+This can be done by adding—to environmental variable `PATH`—the location of the binaries of the corresponding, preinstalled version of Anaconda
 - `/pkgs/anaconda2/bin` uses `conda` 4.4.10 and Python 2.7.15
 - `/pkgs/anaconda3/bin` uses `conda` 4.7.12 and Python 3.6.10
 - `/pkgs/anaconda37/bin` uses `conda` 4.5.11 and  Python 3.7.3
