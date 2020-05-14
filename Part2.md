@@ -483,9 +483,7 @@ As pointed out [here](https://support.vectorinstitute.ai/Computing/CronRsync), o
 
 For example, to synchronize the content of folder `send` on MaRS to folder `deliver` on Vaughan every 15'
 
-First setup `ssh` access via key from `m` to `v`
-
-On MaRS, create a private-public key pair
+First setup `ssh` access via key from `m` to `v`; on MaRS, create a private-public key pair
 ```
 $ ssh-keygen -t rsa
 ```
@@ -506,17 +504,13 @@ Make it executable and create directory `send` on MaRS
 $ chmod +x ~/repeat.sh
 $ mkdir ~/send
 ```
-Run `crontab -e` to edit `crontab`s tasks
-
-The first time, you will be asked for your favourite editor (`vim`)
+Run `crontab -e` to edit `crontab`s tasks: your first time, you will be asked for your favourite editor (`vim`)
 
 Append this line (and an empty one) to the file to run `repeat.sh` every 15'
 ```
 */15 * * * * ~/repeat.sh
 ```
-Save and close (`:wq`)
-
-See `crontab`'s tasks with `crontab -l`
+Save and close (`:wq`); check your `crontab`'s tasks with `crontab -l`
 
 The creation and removal of documents from `~/send` (on MaRS) will be reflected in `~/deliver` (on Vaughan) within 15'
 
