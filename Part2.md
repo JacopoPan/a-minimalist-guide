@@ -138,7 +138,7 @@ While this is technically possible it requires to modify
 - Your `~/.bash_profile` file (for `ssh` sessions)
 - Your `~/.bashrc` file (for `bash`, e.g., in `slurm` interactive and batch sessions)
 
-**THIS IS A BAD IDEA: relying on `.bashrc` and `.bash_profile` files makes your projects less portable/modular**
+**THIS IS A BAD IDEA: relying on your `.bashrc` and `.bash_profile` files makes your projects less portable and modular**
 
 Instead, you should stick to
 ```
