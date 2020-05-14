@@ -100,7 +100,7 @@ Vaughan/Vaughan2 (login using `vremote.[omitted domain]`, `vremote1.[omitted dom
 /h/$USER                                # your home directory
                                         # NOTE: "/h/username/" is another name for "/scratch/ssd001/home/username" 
 /scratch/ssd001/home/$USER              # your fast disk space; max 300GB; backed up
-/scratch/hdd001/home/$USER              # your large disk space; max 3TBl not backed up
+/scratch/hdd001/home/$USER              # your large disk space; max 3TB; not backed up
 /scratch/ssd001/datasets                # fast shared space for datasets
 /scratch/hdd001/datasets                # large shared space for datasets
 ```
