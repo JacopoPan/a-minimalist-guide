@@ -124,75 +124,80 @@ You can ask ops@vectorinstitute.ai to install new packages using the following c
 $ echo "octave" >> /tmp/packages        # to ask for the installation of "octave"
 ```
 
-## Create your `conda` environment and `pip` installs on Vector's locations
+## Create your environment on Vector's locations
 
 Note: the instructions below are for the MaRS location; they can be used on Vaughan/Vaughan2 replacing 
 - `m.[omitted domain]` with `v.[omitted domain]`
 - `gobi1` with `ssd001/home`
 
-Login via `ssh` and add the location of `conda3` binaries to environmental variable `PATH`
+If you are familiar with `conda` (or read `README.md` in this repository), you might want to enter and leave `conda` environments using `$ conda activate environmentname` and `$ conda deactivate`
+
+While this is technically possible it requires to modify
+- Your `~/.bash_profile` file (for `ssh` sessions)
+- Your `~/.bashrc` file (for `bash`, e.g., in `slurm` interactive and batch sessions)
+
+**THIS IS BAD PRACTICE: modifying your `.bashrc` and `.bash_profile` files makes it difficult to port your project from one location to the other and/or merging configurations across locations**
+
+Instead, you should stick to
+```
+$ source activate name-or-path-to-the-conda-environment
+$ source deactivate 
+```
+For certain `conda` versions, `source deactivate` might trigger a deprecation warning that one can ignore
+
+### Select your preferred version of Anaconda (and Python)
+
+Login via `ssh`
 ```
 $ ssh username@m.[omitted domain]       # change "username" and server "m" as appropriate
-$ export PATH=/pkgs/anaconda3/bin:$PATH
 ```
-Create a `conda` environment using Python 3.7 in your fast disk space (i.e. `/scratch/gobi1/username/`) 
+Choose your preferred version of `conda`
 
+This can be done by adding, to environmental variable `PATH`, the location of the binaries of the corresponding, preinstalled version of Anaconda
+- `/pkgs/anaconda2/bin` uses `conda` 4.4.10 and Python 2.7.15
+- `/pkgs/anaconda3/bin` uses `conda` 4.7.12 and Python 3.6.10
+- `/pkgs/anaconda37/bin` uses `conda` 4.5.11 and  Python 3.7.3
+For example, for the newest `conda` 4.7.12 (with Python 3.6)
+```
+$ export PATH=/pkgs/anaconda37/bin:$PATH
+```
+(Note: there is also a `/pkgs/anaconda27/bin` installation using Python 3.7.3 but I was not able to run `conda` when exporting these binaries)
+
+Verify `conda`'s version with `$ conda --version` 
+
+Running command `$ python` should start the corresponding version
+
+### Install Python, `pip`, and your project's packages
+
+Create a `conda` environment **with Python 3.7** in your fast disk space (i.e. `/scratch/gobi1/username/`) 
 - Option `-p /scratch/gobi1/username/learning` creates and sets the folder location of your environment
-
 - String `/scratch/gobi1/username/learning` will be used in all `conda` commands to refer to it
 ```
-$ conda create -p /scratch/gobi1/$USER/learning python=3.7  # change disk "gobi1" as appropriate
+$ conda create -p /scratch/gobi1/$USER/learning python=3.7  # change disk "gobi1" and Python version 3.7 as appropriate
 ```
 When asked to "*Proceed ([y]/n)?*" answer "*y*"
 
-Close the `ssh` connection
+Activate the environment using `source`
 ```
-$ exit
-```
-On your local machine, create file `~/temp.txt` with the following content 
-```
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/pkgs/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/pkgs/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/pkgs/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/pkgs/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-```
-From your local machine, copy this file to the desired Vector location
-```
-$ scp ~/temp.txt  username@m.[omitted domain]:~/
-```
-Login to the remote machine again, copy `temp.txt` into your `.bash_profile`, logout and login again
-```
-$ ssh username@m.[omitted domain]
-$ mv temp.txt .bash_profile 
-$ exit
-$ ssh username@m.[omitted domain]
-```
-At this point, your shell will show that you are in `conda`'s base environment (e.g. `(base) username@m:~$`)
-
-Activate the new environment and verify it is using Python 3.7
-```
-$ conda deactivate
-$ conda activate /scratch/gobi1/$USER/learning
-$ python
+$ source activate /scratch/gobi1/$USER/learning
 ```
 Note: since the environment was created using `-p`, the steps to remove it (if necessary) are now the following
 ```
 $ conda remove -p /scratch/gobi1/$USER/learning --all
 $ conda env remove -p /scratch/gobi1/$USER/learning
 ```
-List the installed packages in environment `/scratch/gobi1/username/learning`
+Use `$ which pip` to verify that it is currently pointing to the local `/scratch/gobi1/username/learning/bin/pip`
+
+Note: if you omitted option `python=X.Y` when creating the environment, `$ which pip` will return the central `/pkgs/anacondaXX/bin/pip`
+
+To address this, install `pip` within the environment using
+```
+$ source activate /scratch/gobi1/$USER/learning
+$ conda install pip
+```
+When asked to "*Proceed ([y]/n)?*" answer "*y*"
+
+List the packages installed in environment `/scratch/gobi1/username/learning`
 ```
 $ conda list -p /scratch/gobi1/$USER/learning
 ```
@@ -200,16 +205,29 @@ List your environments
 ```
 $ conda env list
 ```
-Install the frameworks in environment `/scratch/gobi1/username/learning`
+Install TensorFlow and PyTorch in environment `/scratch/gobi1/username/learning`
 ```
-$ conda activate /scratch/gobi1/$USER/learning
+$ source activate /scratch/gobi1/$USER/learning
 $ pip install tensorflow
 $ conda install pytorch torchvision cudatoolkit=10.1 -c pytorch
-$ pip install keras
-$ pip install ray
-$ pip install ray[tune]
-$ pip install ray[rllib] ray[debug]
-$ pip install keras-rl h5py Pillow gym[atari]
+```
+When asked to "*Proceed ([y]/n)?*" answer "*y*"
+
+To install the other packages at once, save them in a file, e.g. `requirements.txt` containing text
+```
+keras
+ray
+ray[tune]
+ray[rllib]
+ray[debug]
+keras-rl
+h5py
+Pillow
+gym[atari]
+```
+And run
+```
+$ pip install -r requirements.txt
 ```
 Verify all packages can be correctly imported in Python 3.7
 ```
@@ -225,7 +243,7 @@ $ python
 ```
 Repeat this procedure for `v.[omitted domain]`, using `ssd001/home` in place of  `gobi1`
 
-## Debug in shell using a `slurm` interactive session
+### Debug in shell using a `slurm` interactive session
 
 Remember: one is not supposed to run heavy workloads just by logging in through `ssh` 
 
@@ -240,40 +258,46 @@ $ ssh username@m.[omitted domain]     # change "username" and server "m" as appr
 $ sinfo
 $ squeue                              # use "$ squeue -u username" to only see jobs belonging to user "username"
 ```
-To use `conda` environments in an interactive `bash` shell, copy your `.bash_profile` (created above) into your `.bashrc`
+Start a `bash` shell in an interactive session (for up to 3 hours) with a GPU (to test its support)
 ```
-$ cp ~/.bash_profile ~/.bashrc
+$ srun --mem=4GB --gres=gpu:1 --pty /bin/bash
 ```
-Append a line to `.bashrc` to add the path towards CUDA to environmental variable `LD_LIBRARY_PATH`
+Note: you can only start an interactive session on a location with interactive partitions
+
+Verify the presence of a GPU and the version of CUDA
 ```
-$ echo "export LD_LIBRARY_PATH=/pkgs/cuda-10.1/lib64:/pkgs/cudnn-10.1-v7.6.3.30/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}" >> ~/.bashrc
-$ source ~/.bashrc                    # edit: in hindsight, this line is redundant but harmless
-```
-Start a `bash` shell in an interactive session (for up to 3 hours)
-```
-$ srun --mem=4GB --pty /bin/bash
+$ nvidia-smi
 ```
 Select `conda` environment `/scratch/gobi1/username/learning`
 ```
-$ conda deactivate
-$ conda activate /scratch/gobi1/$USER/learning
+$ source activate /scratch/gobi1/$USER/learning
 ```
-Verify that TensorFlow and PyTorch can see any available GPU and CUDA
+Export the paths towards the latest CUDA shared libraries 
+```
+export LD_LIBRARY_PATH=/pkgs/cuda-10.1/lib64:/pkgs/cudnn-10.1-v7.6.3.30/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+```
+Verify that TensorFlow can see the GPU
 ```
 $ python
 ```
-If you followed the instructions above, this should be Python 3.7
-
 In the interpreter, type
 ```
 >>> import tensorflow as tf
 >>> physical_devices = tf.config.list_physical_devices('GPU') 
 >>> print("Num GPUs:", len(physical_devices)) 
+```
+Verify that PyTorch can use CUDA
+```
+$ python
+```
+In the interpreter, type
+``` 
 >>> import torch
 >>> print(torch.cuda.is_available())
 ```
+Note: this second test might not succeed in an interactive session (e.g. if `nvidia-smi` reported CUDA 10.0) but still work when you submit your job with `sbatch` to a different partition
 
-## Submit your script for execution using `slurm` batch sessions
+### Submit your script for execution using `slurm` batch sessions
 
 This section verifies the correct use of your `conda` environment, CUDA, and packages in `slurm`'s batch mode
 
@@ -298,50 +322,51 @@ In your local machine's home directory (`$ cd ~`), save the following lines as `
 #!/bin/bash
 
 #SBATCH --job-name=test_job
-#SBATCH --output=/h/$USER/output-%N-%j.out      # LINE 4 - NOTE: for output and error, use absolute paths that exists already
-#SBATCH --error=/h/$USER/error-%N-%j.err        # LINE 5 - NOTE: %N and %j will be replaced by the host name and job id, respectively
+#SBATCH --output=/h/YOURUSERNAME/output-%N-%j.out    # LINE 4 - NOTE: for output and error, use absolute paths that exists already
+#SBATCH --error=/h/YOURUSERNAME/error-%N-%j.err      # LINE 5 - NOTE: %N and %j will be replaced by the host name and job id, respectively
 #SBATCH --open-mode=append
-#SBATCH --partition=gpu                         # self-explanatory, set to your preference (i.e. gpu/cpu)
-#SBATCH --cpus-per-task=1                       # self-explanatory, set to your preference
+#SBATCH --partition=gpu                              # self-explanatory, set to your preference (e.g. gpu or cpu on MaRS, p100 on Vaughan)
+#SBATCH --cpus-per-task=1                            # self-explanatory, set to your preference
 #SBATCH --ntasks-per-node=1
-#SBATCH --mem=4G                                # self-explanatory, set to your preference
-#SBATCH --gres=gpu:1                            # NOTE: you need a GPU for CUDA support; self-explanatory, set to your preference 
+#SBATCH --mem=4G                                     # self-explanatory, set to your preference
+#SBATCH --gres=gpu:1                                 # NOTE: you need a GPU for CUDA support; self-explanatory, set to your preference 
 #SBATCH --nodes=1
 #SBATCH --qos=normal
 
-rm -f ~/test.log                                # remove any previous copy of "test.log" which is used by "test.sh" to append its output
+rm -f ~/test.log                                     # remove any previous copy of "test.log" which is used by "test.sh" to append its output
 
-echo $SLURM_JOB_ID >> ~/test.log                # log the job id
-echo $SLURM_JOB_PARTITION >> ~/test.log         # log the job partition
+echo $SLURM_JOB_ID >> ~/test.log                     # log the job id
+echo $SLURM_JOB_PARTITION >> ~/test.log              # log the job partition
 
-source ~/.bashrc                                # NOTE: this is required for the next command to succeed
+export LD_LIBRARY_PATH=/pkgs/cuda-10.1/lib64:/pkgs/cudnn-10.1-v7.6.3.30/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}      # required for TensorFlow to see any GPU
 
-conda activate /scratch/gobi1/$USER/learning/   # LINE 22 - NOTE: set the path to your conda environment
-echo $CONDA_PREFIX >> ~/test.log
+source activate /scratch/gobi1/$USER/learning/       # LINE 22 - NOTE: set the path to your conda environment
+echo $CONDA_PREFIX >> ~/test.log                     # log the active conda environment 
 
-python --version >> ~/test.log
-python ~/test.py >> ~/test.log
+python --version >> ~/test.log                       # log Python version
 
-conda deactivate
+python ~/test.py >> ~/test.log                       # the script above, with its standard output redirected to test.log
+
+source deactivate
 ```
 Note: in lines 4, 5, and 22
-- Replace `$USER` with your username (optional)
+- Replace `YOURUSERNAME` with your username (required)
 - Replace `/scratch/gobi1/$USER/learning/` with your `conda` environment
 
 Copy these two files to your home directory on one of Vector's locations
 ```
-$ scp ~/test.* username@m.[omitted domain]:~/   # change "username" and server "m" as appropriate
+$ scp ~/test.* username@m.[omitted domain]:~/        # change "username" and server "m" as appropriate
 ```
 Login to the same location and submit the job for execution
 ```
-$ ssh username@m.[omitted domain]               # change "username" and server "m" as appropriate
+$ ssh username@m.[omitted domain]                    # change "username" and server "m" as appropriate
 $ sbatch ~/test.slrm
 ```
 It will return `$ Submitted batch job 491956`, where 491956 is, for example, the id of your job
 
 Once the job is queued, check for its status
 ```
-$ scontrol -d show job 491956 | grep Reason     # change job id 491956 as appropriate
+$ scontrol -d show job 491956 | grep Reason          # change job id 491956 as appropriate
 ```
 Once it returns `$ JobState=COMPLETED Reason=None Dependency=(null)`, use
 ```
@@ -349,9 +374,9 @@ $ cat ~/temp.log
 ```
 Verify that your output looks similar to
 ```
-491956                                          # this will be your job id
-gpu                                             # this will be the partition you chose
-/scratch/gobi1/username/learning                # this will be the path of your conda environment
+491956                                               # this will be your job id
+gpu                                                  # this will be the partition you chose
+/scratch/gobi1/username/learning                     # this will be the path of your conda environment
 Python 3.7.7
 TF Num GPUs: 1
 PyTorch CUDA True
@@ -405,11 +430,9 @@ $ rsync -zarvh username@m.[omitted domain]:~/ ~/a-folder/                    # d
 
 ### `git` and GitHub
 
-If your code is on your personal GitHub
+To use your password but to avoid typing your username every time you `git push` or `git pull`
 
-You might NOT want to create a private `ssh` key on a shared machine 
-
-To use your password but to avoid typing your username every time you `git push` or `git pull`, do this
+If you do NOT want to create a private `ssh` key on a shared machine, do this
 ```
 $ git config --global user.name JacopoPan                                    # change JacopoPan to your GitHub username
 $ git config --global user.email "jacopo.panerati@utoronto.ca"               # change the address to your GitHub e-mail
@@ -452,3 +475,50 @@ $ ./push-existing-file-changes.sh
 The commit message will state the name of the machine where the commit originated
  
 [Nathan's GitHub examples](https://github.com/nng555/cluster_examples) show how to use [`bash`](https://www.gnu.org/software/bash/manual/html_node/index.html) to automate a hyperparameters sweep with `slurm`
+
+### `crontab` for periodic tasks
+
+As pointed out [here](https://support.vectorinstitute.ai/Computing/CronRsync), one can use `crontab` to periodically execute a script
+
+For example, to syncronize the content of folder `send` on MaRS to folder `deliver` on Vaughan every 15'
+
+First setup `ssh` access via key from `m` to `v`
+
+On MaRS, create a private-public key pair
+```
+$ ssh-keygen -t rsa
+```
+Do not enter a filename or a passphrase, just press `Enter` 3 times
+
+Add the public key to the authorized keys on Vaughan 
+```
+$ cat ~/.ssh/id_rsa.pub | ssh username@v.[omitted domain] 'cat >> ~/.ssh/authorized_keys'
+```
+Still on MaRS, create script `repeat.sh` with content
+```
+#!/bin/bash
+
+rsync -zarvh ~/send/ username@v.[omitted domain]:~/deliver/ --delete
+```
+Make it executable and create directory `send` on MaRS
+```
+$ chmod +x ~/repeat.sh
+$ mkdir ~/send
+```
+Run `crontab -e` to edit `crontab`s tasks
+
+The first time, you will be asked for your favourite editor (`vim`)
+
+Append this line (and an empty one) to the file to run `repeat.sh` every 15'
+```
+*/15 * * * * ~/repeat.sh
+```
+Save and close (`:wq`)
+
+See `crontab`'s tasks with `crontab -l`
+
+The creation and removal of documents from `~/send` (on MaRS) will be reflected in `~/deliver` (on Vaughan) within 15'
+
+Note: [as explained by George](https://support.vectorinstitute.ai/Computing/CronRsync) add option
+- `-e "ssh -i /h/$USER/.ssh/rsync -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"`
+to use `rsync` over `ssh` (safer and more reliable)

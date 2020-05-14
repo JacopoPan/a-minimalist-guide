@@ -39,6 +39,10 @@ Minimal working examples (MWEs) of frameworks and simulation environments—for 
 
 ```
 
+## Jupyer Notebook
+
+- [Link](https://support.vectorinstitute.ai/jupyter_notebook)
+
 ## PyTorch and MNIST
 
 - [Example](https://support.vectorinstitute.ai/wandb)
