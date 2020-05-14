@@ -166,7 +166,7 @@ $ export PATH=/pkgs/anaconda37/bin:$PATH
 
 Verify `conda`'s version with `$ conda --version` 
 
-Running command `$ python` should start the corresponding version
+Running command `$ python` should start the associated version of Python's interpreter
 
 ### Install Python, `pip`, and your project's packages
 
@@ -174,7 +174,7 @@ Create a `conda` environment **with Python 3.7** in your fast disk space (i.e. `
 - Option `-p /scratch/gobi1/username/learning` creates and sets the folder location of your environment
 - String `/scratch/gobi1/username/learning` will be used in all `conda` commands to refer to it
 ```
-$ conda create -p /scratch/gobi1/$USER/learning python=3.7  # change disk "gobi1" and Python version 3.7 as appropriate
+$ conda create -p /scratch/gobi1/$USER/learning python=3.7  # change disk "gobi1", Python's version 3.7 as appropriate
 ```
 When asked to "*Proceed ([y]/n)?*" answer "*y*"
 
@@ -191,7 +191,7 @@ Use `$ which pip` to verify that it is currently pointing to the local `/scratch
 
 Note: if you omitted option `python=X.Y` when creating the environment, `$ which pip` will return the central `/pkgs/anacondaXX/bin/pip`
 
-To address this, install `pip` within the environment using
+If necessary, to address this, install `pip` within the environment using
 ```
 $ source activate /scratch/gobi1/$USER/learning
 $ conda install pip
@@ -214,7 +214,7 @@ $ conda install pytorch torchvision cudatoolkit=10.1 -c pytorch
 ```
 When asked to "*Proceed ([y]/n)?*" answer "*y*"
 
-To install the other packages at once, save them in a file, e.g. `requirements.txt` containing text
+To install these other packages at once, save them in file `requirements.txt` containing text
 ```
 keras
 ray
@@ -263,7 +263,7 @@ Start a `bash` shell in an interactive session (for up to 3 hours) with a GPU (t
 ```
 $ srun --mem=4GB --gres=gpu:1 --pty /bin/bash
 ```
-Note: you can only start an interactive session on a location with interactive partitions
+(Note: you can only start an interactive session on a location with interactive partitions)
 
 Verify the presence of a GPU and the version of CUDA
 ```
@@ -273,7 +273,7 @@ Select `conda` environment `/scratch/gobi1/username/learning`
 ```
 $ source activate /scratch/gobi1/$USER/learning
 ```
-Export the paths towards the latest CUDA shared libraries 
+Export the path towards the latest CUDA shared libraries 
 ```
 export LD_LIBRARY_PATH=/pkgs/cuda-10.1/lib64:/pkgs/cudnn-10.1-v7.6.3.30/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 ```
@@ -296,7 +296,7 @@ In the interpreter, type
 >>> import torch
 >>> print(torch.cuda.is_available())
 ```
-Note: this second test might not succeed in an interactive session (e.g. if `nvidia-smi` reported CUDA 10.0) but still work when you submit your job with `sbatch` to a different partition
+Note: this second test might not succeed in an interactive session (e.g. if `nvidia-smi` reported a different version of CUDA than the one used to install PyTorch) but PyTorch with CUDA still work when you submit your job with `sbatch` to a different partition
 
 ### Submit your script for execution using `slurm` batch sessions
 
