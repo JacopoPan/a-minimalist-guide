@@ -296,7 +296,7 @@ In the interpreter, type
 >>> import torch
 >>> print(torch.cuda.is_available())
 ```
-Note: this second test might not succeed in an interactive session (e.g. if `nvidia-smi` reported a different version of CUDA than the one used to install PyTorch) but PyTorch with CUDA still work when you submit your job with `sbatch` to a different partition
+Note: this second test might fail in an interactive session (e.g. if `nvidia-smi` reported a CUDA version != the one used to install PyTorch) but PyTorch with CUDA still work when you submit your job with `sbatch` (to a different partition)
 
 ### Submit your script for execution using `slurm` batch sessions
 
@@ -520,6 +520,6 @@ See `crontab`'s tasks with `crontab -l`
 
 The creation and removal of documents from `~/send` (on MaRS) will be reflected in `~/deliver` (on Vaughan) within 15'
 
-Note: [as explained by George](https://support.vectorinstitute.ai/Computing/CronRsync) add option
+Note: [as explained by George](https://support.vectorinstitute.ai/Computing/CronRsync), add option
 - `-e "ssh -i /h/$USER/.ssh/rsync -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"`
 to use `rsync` over `ssh` (safer and more reliable)
