@@ -87,18 +87,20 @@ Note: there minor differences in the file system organization of your home `~` a
 
 MaRS (login using `q.[omitted domain]`, `m.[omitted domain]`)
 ```
-/h/$USER                                # your home directory
-/scratch/gobi1/$USER                    # your fast disk space
-/scratch/gobi2/$USER                    # your large disk space
+/h/$USER                                # your home directory; max 75GB; backed up
+/scratch/gobi1/$USER                    # your fast disk space; max 300GB; not backed up
+/scratch/gobi2/$USER                    # your large disk space; max 3TB; not backed up
 /scratch/gobi1/datasets                 # fast shared space for datasets
 /scratch/gobi2/datasets                 # large shared space for datasets
 ```
+
+
 Vaughan/Vaughan2 (login using `vremote.[omitted domain]`, `vremote1.[omitted domain]`, `v.[omitted domain]`)
 ```
 /h/$USER                                # your home directory
                                         # NOTE: "/h/username/" is another name for "/scratch/ssd001/home/username" 
-/scratch/ssd001/home/$USER              # your fast disk space
-/scratch/hdd001/home/$USER              # your large disk space
+/scratch/ssd001/home/$USER              # your fast disk space; max 300GB; backed up
+/scratch/hdd001/home/$USER              # your large disk space; max 3TBl not backed up
 /scratch/ssd001/datasets                # fast shared space for datasets
 /scratch/hdd001/datasets                # large shared space for datasets
 ```
@@ -326,7 +328,7 @@ In your local machine's home directory (`$ cd ~`), save the following lines as `
 #SBATCH --output=/h/YOURUSERNAME/output-%N-%j.out    # LINE 4 - NOTE: for output and error, use absolute paths that exists already
 #SBATCH --error=/h/YOURUSERNAME/error-%N-%j.err      # LINE 5 - NOTE: %N and %j will be replaced by the host name and job id, respectively
 #SBATCH --open-mode=append
-#SBATCH --partition=gpu                              # self-explanatory, set to your preference (e.g. gpu or cpu on MaRS, p100 on Vaughan)
+#SBATCH --partition=gpu                              # self-explanatory, set to your preference (e.g. gpu or cpu on MaRS, p100, t4, or cpu on Vaughan)
 #SBATCH --cpus-per-task=1                            # self-explanatory, set to your preference
 #SBATCH --ntasks-per-node=1
 #SBATCH --mem=4G                                     # self-explanatory, set to your preference
