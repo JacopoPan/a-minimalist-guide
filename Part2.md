@@ -172,7 +172,7 @@ Running command `$ python` should start the associated version of Python's inter
 
 ### Install Python, `pip`, and your project's packages
 
-Create a `conda` environment **with Python 3.7** in your fast disk space (i.e. `/scratch/gobi1/username/`) 
+Create a `conda` environment **with its own Python 3.7** in your fast disk space (i.e. `/scratch/gobi1/username/`) 
 - Option `-p /scratch/gobi1/username/learning` creates and sets the folder location of your environment
 - String `/scratch/gobi1/username/learning` will be used in all `conda` commands to refer to it
 ```
