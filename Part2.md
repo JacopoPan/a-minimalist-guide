@@ -406,6 +406,19 @@ $ scontrol update jobid=491956 partition=gpu
 ```
 Also check these `slurm` [cheatsheet](https://slurm.schedmd.com/pdfs/summary.pdf), [tutorial](https://support.ceci-hpc.be/doc/_contents/QuickStart/SubmittingJobs/SlurmTutorial.html), and [Wiki page](https://support.vectorinstitute.ai/UsingSlurm)
 
+### Exporting `conda`, your environment, and CUDA libraries at once
+
+If you get tired of using these 3 lines
+```
+export LD_LIBRARY_PATH=/pkgs/cuda-10.1/lib64:/pkgs/cudnn-10.1-v7.6.3.30/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+export PATH=/pkgs/anaconda3/bin:$PATH
+source activate /scratch/gobi1/$USER/learning/
+```
+Save them in file with a descriptive filename, e.g. `conda3-learning-setup.sh` in your home `~` and run them at once with
+```
+$ source ~/conda3-learning-setup.sh
+```
+
 ## Transferring data between a local computer and Vector's locations 
 
 Besides being good at [`vim`](https://www.tutorialspoint.com/vim/vim_quick_guide.htm), a few commands can speed-up the workflow between a local and a remote machine
