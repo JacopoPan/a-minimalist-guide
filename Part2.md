@@ -539,6 +539,6 @@ Save and close (`:wq`); check your `crontab`'s tasks with `crontab -l`
 
 The creation and removal of documents from `~/send` (on MaRS) will be reflected in `~/deliver` (on Vaughan) within 15'
 
-Note: [as explained by George](https://support.vectorinstitute.ai/Computing/CronRsync), add option
+Note: [as explained by George](https://support.vectorinstitute.ai/Computing/CronRsync), to use `rsync` over `ssh` (safer and more reliable) add option
 - `-e "ssh -i /h/$USER/.ssh/rsync -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"`
-to use `rsync` over `ssh` (safer and more reliable)
+
