@@ -291,7 +291,7 @@ In the interpreter, type
 >>> import torch
 >>> print(torch.cuda.is_available())
 ```
-Note: this test might fail if `nvidia-smi` reported using CUDA 10.0 (instead of 10.1)
+Note: this test might fail if `nvidia-smi` reported using CUDA 10.0 (instead of CUDA 10.1 used by the installed `torch`)
 
 Make sure that you are using a node consistent with your PyTorch installation (e.g. `gruppy1`)
 
