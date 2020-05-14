@@ -409,7 +409,7 @@ Also check these `slurm` [cheatsheet](https://slurm.schedmd.com/pdfs/summary.pdf
 
 ### Exporting `conda`, your environment, and CUDA libraries at once
 
-If you get tired of using these 3 lines
+As noted by Relu, if you get tired of using these 3 lines
 ```
 export LD_LIBRARY_PATH=/pkgs/cuda-10.1/lib64:/pkgs/cudnn-10.1-v7.6.3.30/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 export PATH=/pkgs/anaconda3/bin:$PATH
@@ -419,6 +419,7 @@ Save them in file with a descriptive filename, e.g. `conda3-learning-setup.sh` i
 ```
 $ source ~/conda3-learning-setup.sh
 ```
+You can create a similar 3-line file for each one of your projects—so to use a specific `conda` and environment with it
 
 ## Transferring data between a local computer and Vector's locations 
 
