@@ -157,6 +157,7 @@ This can be done by adding—to environmental variable `PATH`—the location of 
 - `/pkgs/anaconda2/bin` uses `conda` 4.4.10 and Python 2.7.15
 - `/pkgs/anaconda3/bin` uses `conda` 4.7.12 and Python 3.6.10
 - `/pkgs/anaconda37/bin` uses `conda` 4.5.11 and  Python 3.7.3
+
 For example, for the newest `conda` 4.7.12 (with Python 3.6)
 ```
 $ export PATH=/pkgs/anaconda37/bin:$PATH
