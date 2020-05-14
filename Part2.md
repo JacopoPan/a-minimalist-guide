@@ -277,8 +277,9 @@ Verify the presence of a GPU and the version of CUDA
 ```
 $ nvidia-smi
 ```
-Select `conda` environment `/scratch/gobi1/username/learning`
+Export `conda` and activate environment `/scratch/gobi1/username/learning`
 ```
+$ export PATH=/pkgs/anaconda3/bin:$PATH
 $ source activate /scratch/gobi1/$USER/learning
 ```
 Verify that PyTorch can use CUDA
@@ -349,7 +350,8 @@ echo $SLURM_JOB_PARTITION >> ~/test.log              # log the job partition
 
 export LD_LIBRARY_PATH=/pkgs/cuda-10.1/lib64:/pkgs/cudnn-10.1-v7.6.3.30/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}      # required for TensorFlow to see any GPU
 
-source activate /scratch/gobi1/$USER/learning/       # LINE 22 - NOTE: set the path to your conda environment
+export PATH=/pkgs/anaconda3/bin:$PATH
+source activate /scratch/gobi1/$USER/learning/       # LINE 23 - NOTE: set the path to your conda environment
 echo $CONDA_PREFIX >> ~/test.log                     # log the active conda environment 
 
 python --version >> ~/test.log                       # log Python version
@@ -358,7 +360,7 @@ python ~/test.py >> ~/test.log                       # the script above, with it
 
 source deactivate
 ```
-Note: in lines 4, 5, and 22
+Note: in lines 4, 5, and 23
 - Replace `YOURUSERNAME` with your username (required)
 - Replace `/scratch/gobi1/$USER/learning/` with your `conda` environment
 
