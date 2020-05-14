@@ -155,7 +155,7 @@ $ ssh username@m.[omitted domain]       # change "username" and server "m" as ap
 ```
 Choose your preferred version of `conda`
 
-This can be done by adding—to environmental variable `PATH`—the location of a preinstalled version of Anaconda
+Do so by adding—to environmental variable `PATH`—the location of one of the preinstalled versions of Anaconda
 - `/pkgs/anaconda2/bin` uses `conda` 4.4.10 and Python 2.7.15
 - `/pkgs/anaconda3/bin` uses `conda` 4.7.12 and Python 3.6.10
 - `/pkgs/anaconda37/bin` uses `conda` 4.5.11 and  Python 3.7.3
@@ -193,7 +193,7 @@ Use `$ which pip` to verify that it is currently pointing to the local `/scratch
 
 Note: if you omitted option `python=X.Y` when creating the environment, `$ which pip` will return the central `/pkgs/anacondaXX/bin/pip`
 
-If necessary, to address this, install `pip` within the environment using
+If necessary, address this by installing `pip` within the environment with
 ```
 $ source activate /scratch/gobi1/$USER/learning
 $ conda install pip
