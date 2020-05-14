@@ -162,7 +162,7 @@ This can be done by adding—to environmental variable `PATH`—the location of 
 
 For example, for the newest `conda` 4.7.12 (with Python 3.6)
 ```
-$ export PATH=/pkgs/anaconda37/bin:$PATH
+$ export PATH=/pkgs/anaconda3/bin:$PATH
 ```
 (Note: there is also a `/pkgs/anaconda27/bin` installation but I was not able to run it when exporting these binaries)
 
@@ -258,14 +258,20 @@ Intense CPU and GPU computing is managed by the `slurm` manager in two ways
 Check the available partitions (CPUs, GPUs, interactive, etc.) and the queued jobs at a location (e.g. MaRS)
 ```
 $ ssh username@m.[omitted domain]     # change "username" and server "m" as appropriate
-$ sinfo
+$ sinfo                               # for partitions; use "$ sinfo -leN" to see the list of nodes instead
 $ squeue                              # use "$ squeue -u username" to only see jobs belonging to user "username"
 ```
-Start a `bash` shell in an interactive session (for up to 3 hours) with a GPU (to test its support)
+Start a `bash` shell with
+- 4GB of memory
+- 2 CPUS
+- 1 GPU (to test support)
+- in an interactive session (for up to 3 hours) 
 ```
-$ srun --mem=4GB --gres=gpu:1 --pty /bin/bash
+$ srun --mem=4GB -c 2 --gres=gpu:1 -p interactive --pty /bin/bash
 ```
 (Note: you can only start an interactive session on a location with interactive partitions)
+
+Use option `-w node-name` instead of `-p partition-name` to require a specific node
 
 Verify the presence of a GPU and the version of CUDA
 ```
