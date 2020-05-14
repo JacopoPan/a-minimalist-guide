@@ -136,14 +136,14 @@ While this is technically possible it requires to modify
 - Your `~/.bash_profile` file (for `ssh` sessions)
 - Your `~/.bashrc` file (for `bash`, e.g., in `slurm` interactive and batch sessions)
 
-**THIS IS BAD PRACTICE: modifying your `.bashrc` and `.bash_profile` files makes it difficult to port your project from one location to the other and/or merging configurations across locations**
+**THIS IS A BAD IDEA: relying on `.bashrc` and `.bash_profile` files makes your projects less portable/modular**
 
 Instead, you should stick to
 ```
 $ source activate name-or-path-to-the-conda-environment
 $ source deactivate 
 ```
-For certain `conda` versions, `source deactivate` might trigger a deprecation warning that one can ignore
+For newer `conda` versions, `source deactivate` might trigger a deprecation warning that one can ignore
 
 ### Select your preferred version of Anaconda (and Python)
 
