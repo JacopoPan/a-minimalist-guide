@@ -526,13 +526,13 @@ Make it executable and create directory `send` on MaRS
 $ chmod +x ~/repeat.sh
 $ mkdir ~/send
 ```
-Run `crontab -e` to edit `crontab`s tasks: your first time, you will be asked for your favourite editor (`vim`)
+Run `$ crontab -e` to edit `crontab`s tasks: your first time, you will be asked for your favourite editor (`vim`)
 
 Append (in `vim`, press `a` twice) this line (**and an empty one**) to the file to run `repeat.sh` every 15'
 ```
 */15 * * * * ~/repeat.sh
 ```
-Save and close (in `vim`, `Esc`+`:wq`+`Enter`); check your `crontab`'s tasks with `crontab -l`
+Save and close (in `vim`, `Esc`+`:wq`+`Enter`); check your `crontab`'s tasks with `$ crontab -l`
 
 The creation and removal of documents from `~/send` (on MaRS) will be reflected in `~/deliver` (on Vaughan) within 15'
 
