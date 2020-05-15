@@ -552,3 +552,9 @@ $ pip install pkg --no-cache-dir -b /scratch/gobi1/$USER/learning -t /scratch/go
 $ export PYTHONPATH=/scratch/gobi1/$USER/learning:$PYTHONPATH
 ```
 The first command installs `pkg` in your environment's folder, the second makes Python aware of its presence 
+
+## (deprecated) `.bashrc` vs `.bash_profile` and pre- vs post-`$PATH`ing
+
+- Certain commands can be executed automatically whenever you open a new terminal, create an `ssh` connection, or launch a script: understand the difference between 2 files in your home folder, `~/.bashrc` and `~/.bash_profile` to do so ([link]())
+
+- When you append paths to environmental variables such as `$PATH` and `$LD_LIBRARY_PATH`, remember that the order in which you do so matters (especially when loading different version of the same software) ([link]())
