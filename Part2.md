@@ -541,20 +541,6 @@ The creation and removal of documents from `~/send` (on MaRS) will be reflected 
 Note: [as explained by George](https://support.vectorinstitute.ai/Computing/CronRsync), to use `rsync` over `ssh` (safer and more reliable) add option
 - `-e "ssh -i /h/$USER/.ssh/rsync -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"`
 
-
-## (optional) Using the global `python` and `pip` installations
-
-**Note: This is an alternative approach to install an use Pyhthon packages w.r.t. what shown above**
-
-That is, if `$ which python` and `$ which pip` return a path starting with `/pkgs/anacondaXX/bin/..`
-
-In this case, as shown [here](https://support.vectorinstitute.ai/SetComputingEnvironment), you need to
-```
-$ pip install pkg --no-cache-dir -b /scratch/gobi1/$USER/learning -t /scratch/gobi1/$USER/learning
-$ export PYTHONPATH=/scratch/gobi1/$USER/learning:$PYTHONPATH
-```
-The first command installs `pkg` in your environment's folder, the second makes Python aware of its presence 
-
 ## (deprecated) `.bashrc` vs `.bash_profile` and pre- vs post-`$PATH`ing
 
 Commands can be executed automatically whenever you open a new terminal, create an `ssh` connection, or launch a script
@@ -562,3 +548,16 @@ Commands can be executed automatically whenever you open a new terminal, create 
 - Understand the difference between 2 configuration files in your home folder: `~/.bashrc` and `~/.bash_profile` ([link](https://superuser.com/questions/183870/difference-between-bashrc-and-bash-profile/183980))
 
 - When you append paths `$ export PATH=/add/path:$PATH` to environmental variables such as `$PATH` and `$LD_LIBRARY_PATH`, remember that the order matters (especially when using multiple versions of the same software) ([link](https://unix.stackexchange.com/questions/26047/how-to-correctly-add-a-path-to-path))
+
+## (optional/alternative) Using Vector's global `python` and `pip` installations
+
+**Note: This is an alternative approach to install an use Pyhthon packages w.r.t. the one shown in this guide**
+
+IF AND ONLY IF `$ which python` and `$ which pip` return a path starting with `/pkgs/anacondaXX/bin/`
+
+In this case, as shown [here](https://support.vectorinstitute.ai/SetComputingEnvironment), you need to
+```
+$ pip install pkg --no-cache-dir -b /scratch/gobi1/$USER/learning -t /scratch/gobi1/$USER/learning
+$ export PYTHONPATH=/scratch/gobi1/$USER/learning:$PYTHONPATH
+```
+The first command installs `pkg` in your environment's folder, the second makes Python aware of its presence 
