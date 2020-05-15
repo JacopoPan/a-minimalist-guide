@@ -390,7 +390,7 @@ Python 3.7.7
 TF Num GPUs: 1
 PyTorch CUDA True
 ```
-`error-gruppy8-491956.err` should contain `Using TensorFlow backend.` (`gruppy8` might be replaced by another host name)
+`error-gruppy8-491956.err` should contain `Using TensorFlow backend.` (`gruppy8` might be replaced by another node name)
 
 `output-gruppy8-491956.out` should be empty
 
