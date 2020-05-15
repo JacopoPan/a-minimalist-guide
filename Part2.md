@@ -209,13 +209,6 @@ List your environments
 ```
 $ conda env list
 ```
-Alternative: if you chose NOT to use local `python` and `pip` installs in your `conda` environment, as shown [here](https://support.vectorinstitute.ai/SetComputingEnvironment), you would need to
-```
-$ pip install pkg --no-cache-dir -b /scratch/gobi1/$USER/learning -t /scratch/gobi1/$USER/learning
-$ export PYTHONPATH=/scratch/gobi1/$USER/learning:$PYTHONPATH
-```
-This installs the packages in your environment folder and makes Python aware of them 
-
 Install TensorFlow and PyTorch in environment `/scratch/gobi1/username/learning`
 ```
 $ source activate /scratch/gobi1/$USER/learning
@@ -426,6 +419,17 @@ Save them in a file with a descriptive filename, e.g. `conda3-learning-setup.sh`
 $ source ~/conda3-learning-setup.sh
 ```
 You can create a similar 3-line file for each one of your projects—so to use a specific `conda` and environment with it
+
+### (alternative) Using the global `python` and `pip` installations
+
+That is, `$ which python` and `$ which pip` return a path starting with `/pkgs/anacondaXX/bin/..`
+
+In this case, as shown [here](https://support.vectorinstitute.ai/SetComputingEnvironment), you need to
+```
+$ pip install pkg --no-cache-dir -b /scratch/gobi1/$USER/learning -t /scratch/gobi1/$USER/learning
+$ export PYTHONPATH=/scratch/gobi1/$USER/learning:$PYTHONPATH
+```
+The first command installs `pkg` in your environment folder, the second makes Python aware of its presence 
 
 ## Transferring data between a local computer and Vector's locations 
 
