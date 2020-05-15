@@ -9,7 +9,7 @@ Credentials (username and password) for the cluster and the [Wiki](https://suppo
 
 Note: in what follows, remember to always replace `username` with your username—both in `ssh` logins and folder paths
 
-Everything after a `$` is entered on a terminal, everything after `>>>` is passed to a Python interpreter
+Everything after a `$` is entered on a terminal; everything after `>>>` is passed to a Python interpreter
 
 Connect to one of Vector's locations—this is an example of sequential connections (and disconnections) to all locations
 ```
