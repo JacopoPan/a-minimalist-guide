@@ -144,6 +144,8 @@ $ source deactivate
 ```
 For newer `conda` versions, `source deactivate` might trigger a deprecation warning that one can ignore
 
+Note: for the sake of this guide (i.e. in `bash`) `source` and `.` are [synonyms](https://ss64.com/bash/source.html) 
+
 ### Select your preferred version of Anaconda (and Python)
 
 Login via `ssh`
