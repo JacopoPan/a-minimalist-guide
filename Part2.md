@@ -413,7 +413,7 @@ export LD_LIBRARY_PATH=/pkgs/cuda-10.1/lib64:/pkgs/cudnn-10.1-v7.6.3.30/lib64${L
 export PATH=/pkgs/anaconda3/bin:$PATH
 source activate /scratch/gobi1/$USER/learning/
 ```
-Save them in file with a descriptive filename, e.g. `conda3-learning-setup.sh` in your home `~` and run them at once with
+Save them in a file with a descriptive filename, e.g. `conda3-learning-setup.sh` in your home `~` and run them at once with
 ```
 $ source ~/conda3-learning-setup.sh
 ```
