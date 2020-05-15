@@ -33,7 +33,7 @@ Instruction on how to use `slurm` for heavy workloads are given later in this gu
 ### `ssh` login from your workstation without a password
 
 Assuming you do NOT already have files `id_rsa` and `id_rsa.pub` in folder `~/.ssh` of your local machine
-- (If you do, skip the next 3 lines)
+- (If you do, skip the next 3 lines and 1 snippet)
 
 On your local machine, run
 ```
