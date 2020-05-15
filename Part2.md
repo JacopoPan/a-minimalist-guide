@@ -209,6 +209,13 @@ List your environments
 ```
 $ conda env list
 ```
+Alternative: if you chose NOT to use local `python` and `pip` installs in your `conda` environment, as shown [here](https://support.vectorinstitute.ai/SetComputingEnvironment), you would need to
+```
+$ pip install pkg --no-cache-dir -b /scratch/gobi1/$USER/learning -t /scratch/gobi1/$USER/learning
+$ export PYTHONPATH=/scratch/gobi1/$USER/learning:$PYTHONPATH
+```
+This installs the packages in your environment folder and makes Python aware of them 
+
 Install TensorFlow and PyTorch in environment `/scratch/gobi1/username/learning`
 ```
 $ source activate /scratch/gobi1/$USER/learning
