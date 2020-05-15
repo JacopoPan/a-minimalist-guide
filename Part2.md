@@ -131,7 +131,7 @@ Note: the instructions below are for the MaRS location; they can be used on Vaug
 
 If you used `conda` before, you might want to enter and leave `conda` environments using `$ conda activate/deactivate`
 
-While this is technically possible it requires to modify
+While this is technically possible, it requires to modify
 - Your `~/.bash_profile` file (for `ssh` sessions)
 - Your `~/.bashrc` file (for `bash`, e.g., in `slurm` interactive and batch sessions)
 
