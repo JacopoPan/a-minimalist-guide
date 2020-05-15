@@ -121,10 +121,7 @@ The list should include
 - MuJoCo
 - R, etc.
 
-You can ask ops@vectorinstitute.ai to install new packages using the following command
-```
-$ echo "octave" >> /tmp/packages        # to ask for the installation of "octave"
-```
+If you need additional packages, you can ask ops@vectorinstitute.ai to install them
 
 ## Create your environment on Vector's locations
 
