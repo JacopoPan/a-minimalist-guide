@@ -330,8 +330,8 @@ In your local machine's home directory (`$ cd ~`), save the following lines as `
 #!/bin/bash
 
 #SBATCH --job-name=test_job
-#SBATCH --output=/h/YOURUSERNAME/output-%N-%j.out    # LINE 4 - NOTE: for output and error, use absolute paths that exists already
-#SBATCH --error=/h/YOURUSERNAME/error-%N-%j.err      # LINE 5 - NOTE: %N and %j will be replaced by the host name and job id, respectively
+#SBATCH --output=/h/YOURUSERNAME/output-%N-%j.out    # LINES 4, 5 - NOTE: for output and error, use absolute paths that exists already
+#SBATCH --error=/h/YOURUSERNAME/error-%N-%j.err      # LINES 4, 5 - NOTE: %N and %j will be replaced by the host name and job id, respectively
 #SBATCH --open-mode=append
 #SBATCH --partition=gpu                              # self-explanatory, set to your preference (e.g. gpu or cpu on MaRS, p100, t4, or cpu on Vaughan)
 #SBATCH --cpus-per-task=1                            # self-explanatory, set to your preference
@@ -349,7 +349,7 @@ echo $SLURM_JOB_PARTITION >> ~/test.log              # log the job partition
 export LD_LIBRARY_PATH=/pkgs/cuda-10.1/lib64:/pkgs/cudnn-10.1-v7.6.3.30/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}      # required for TensorFlow to see any GPU
 
 export PATH=/pkgs/anaconda3/bin:$PATH                # exporting the binaries of your preferred version of conda
-source activate /scratch/gobi1/$USER/learning/       # LINE 23 - NOTE: set the path to your conda environment
+source activate /scratch/gobi1/$USER/learning/       # LINE 23 - NOTE: set the path to your conda environment path
 echo $CONDA_PREFIX >> ~/test.log                     # log the active conda environment 
 
 python --version >> ~/test.log                       # log Python version
