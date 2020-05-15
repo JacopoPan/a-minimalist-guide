@@ -542,7 +542,9 @@ Note: [as explained by George](https://support.vectorinstitute.ai/Computing/Cron
 - `-e "ssh -i /h/$USER/.ssh/rsync -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"`
 
 
-## (alternative to the process in this guide) Using the global `python` and `pip` installations
+## (optional) Using the global `python` and `pip` installations
+
+**Note: This is an alternative approach to install an use Pyhthon packages w.r.t. what shown above**
 
 That is, if `$ which python` and `$ which pip` return a path starting with `/pkgs/anacondaXX/bin/..`
 
