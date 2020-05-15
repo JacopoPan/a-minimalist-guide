@@ -555,6 +555,8 @@ The first command installs `pkg` in your environment's folder, the second makes 
 
 ## (deprecated) `.bashrc` vs `.bash_profile` and pre- vs post-`$PATH`ing
 
-- Certain commands can be executed automatically whenever you open a new terminal, create an `ssh` connection, or launch a script: understand the difference between 2 files in your home folder, `~/.bashrc` and `~/.bash_profile` to do so ([link]())
+Certain commands can be executed automatically whenever you open a new terminal, create an `ssh` connection, or launch a script
 
-- When you append paths to environmental variables such as `$PATH` and `$LD_LIBRARY_PATH`, remember that the order in which you do so matters (especially when loading different version of the same software) ([link]())
+- Know and understand the difference between 2 files in your home folder: `~/.bashrc` and `~/.bash_profile` to do so ([link](https://superuser.com/questions/183870/difference-between-bashrc-and-bash-profile/183980))
+
+- When you append paths to environmental variables such as `$PATH` and `$LD_LIBRARY_PATH`, remember that the order in which you do so matters (especially when loading different version of the same software) ([link](https://unix.stackexchange.com/questions/26047/how-to-correctly-add-a-path-to-path))
