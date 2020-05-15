@@ -559,4 +559,4 @@ Commands can be executed automatically whenever you open a new terminal, create 
 
 - Know and understand the difference between 2 files in your home folder: `~/.bashrc` and `~/.bash_profile` to do so ([link](https://superuser.com/questions/183870/difference-between-bashrc-and-bash-profile/183980))
 
-- When you append paths `$ export PATH=/add/path:$PATH` to environmental variables such as `$PATH` and `$LD_LIBRARY_PATH`, remember that the order in which you do so matters (especially when using multiple versions of the same software) ([link](https://unix.stackexchange.com/questions/26047/how-to-correctly-add-a-path-to-path))
+- When you append paths `$ export PATH=/add/path:$PATH` to environmental variables such as `$PATH` and `$LD_LIBRARY_PATH`, remember that the order matters (especially when using multiple versions of the same software) ([link](https://unix.stackexchange.com/questions/26047/how-to-correctly-add-a-path-to-path))
