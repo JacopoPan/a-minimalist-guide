@@ -545,7 +545,7 @@ Note: [as explained by George](https://support.vectorinstitute.ai/Computing/Cron
 
 You can make commands run automatically whenever you open a new terminal, create an `ssh` connection, or launch a script
 
-- To do so, understand the difference between 2 configuration files in your home folder: `~/.bashrc` and `~/.bash_profile` ([link](https://superuser.com/questions/183870/difference-between-bashrc-and-bash-profile/183980))
+- To do so, understand the role of the 2 configuration files in your home folder: `~/.bashrc` and `~/.bash_profile` ([link](https://superuser.com/questions/183870/difference-between-bashrc-and-bash-profile/183980))
 
 - When you append paths `$ export PATH=/add/path:$PATH` to environmental variables such as `$PATH` and `$LD_LIBRARY_PATH`, remember that the order matters—especially when using multiple versions of the same software ([link](https://unix.stackexchange.com/questions/26047/how-to-correctly-add-a-path-to-path))
 
