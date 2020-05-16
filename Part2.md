@@ -192,7 +192,7 @@ $ conda env remove -p /scratch/gobi1/$USER/learning
 ```
 Use `$ which pip` to verify that it is currently pointing to the local `/scratch/gobi1/username/learning/bin/pip`
 
-Note: if you omitted option `python=X.Y` when creating the environment, `$ which pip` will return the central `/pkgs/anacondaXX/bin/pip`
+Note: if you omitted option `python=X.Y` when creating the environment, `$ which pip` will return `/pkgs/anacondaXX/bin/pip`
 
 If necessary, address this by installing `pip` within the environment with
 ```
