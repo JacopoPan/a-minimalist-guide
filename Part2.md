@@ -551,7 +551,7 @@ You can make commands run automatically whenever you open a new terminal, create
 
 ## (optional/alternative) Using Anaconda's global `python` and `pip` installations
 
-**Note: This is an alternative approach—w.r.t. the one shown in this guide—to install an use Pyhthon packages**
+**Note: This is an alternative approach—w.r.t. the one shown in this guide—to install and use Pyhthon packages**
 
 *If and only if* `$ which python` and `$ which pip` return a path starting with `/pkgs/anacondaXX/bin/`, as shown [here](https://support.vectorinstitute.ai/SetComputingEnvironment), use
 ```
