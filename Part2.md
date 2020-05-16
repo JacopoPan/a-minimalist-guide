@@ -549,7 +549,7 @@ You can make commands run automatically whenever you open a new terminal, create
 
 - When you append paths `$ export PATH=/add/path:$PATH` to environmental variables such as `$PATH` and `$LD_LIBRARY_PATH`, remember that the order matters—especially when using multiple versions of the same software ([link](https://unix.stackexchange.com/questions/26047/how-to-correctly-add-a-path-to-path))
 
-## (optional/alternative) Using Vector's global `python` and `pip` installations
+## (optional/alternative) Using Anaconda's global `python` and `pip` installations
 
 **Note: This is an alternative approach—w.r.t. the one shown in this guide—to install an use Pyhthon packages**
 
