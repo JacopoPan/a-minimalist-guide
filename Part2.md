@@ -555,7 +555,8 @@ You can make commands run automatically whenever you open a new terminal, create
 
 *If and only if* `$ which python` and `$ which pip` return a path starting with `/pkgs/anacondaXX/bin/`, as shown [here](https://support.vectorinstitute.ai/SetComputingEnvironment), use
 ```
-$ pip install pkg --no-cache-dir -b /scratch/gobi1/$USER/learning -t /scratch/gobi1/$USER/learning
+$ mkdir /scratch/gobi1/$USER/learning/temp
+$ pip install package-name --no-cache-dir -b /scratch/gobi1/$USER/learning/temp -t /scratch/gobi1/$USER/learning
 $ export PYTHONPATH=/scratch/gobi1/$USER/learning:$PYTHONPATH
 ```
-The first command installs `pkg` in your environment's folder, the second makes Python aware of its presence 
+The second command installs `package-name` in your environment's folder, the third makes Python aware of its presence 
