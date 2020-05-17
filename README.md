@@ -178,7 +178,7 @@ Reboot, note that [this procedure](https://www.tensorflow.org/install/gpu) was w
 
 Yet, at the time of this writing (May 2020), it leads to the installation of CUDA 10.2 and driver `nvidia-440`
 
-This can be verified using commands `nvidia-smi` and `cat /proc/driver/nvidia/version`
+This can be verified using commands `$ nvidia-smi` and `$ cat /proc/driver/nvidia/version`
 
 Verify the GPU is visible by TensorFlow
 ```
