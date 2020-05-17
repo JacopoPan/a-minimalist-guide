@@ -4,6 +4,8 @@
 # Part 1 - Lenovo P52 Workstation
 
 The following instructions are for a fresh install of Ubuntu 16.04 LTS 64-bit on a Lenovo P52 (i7-8850H/Quadro P2000)
+
+Everything after a `$` is entered on a terminal; everything after `>>>` is passed to a Python interpreter
  
 At startup, access the BIOS (on the P52, `Enter`, then `F1`) and, under "*Security*" -> "*Secure Boot*", disable "*Secure Boot*"
 
