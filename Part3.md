@@ -47,7 +47,7 @@ Minimal working examples (MWEs) of frameworks and simulation environments—for 
 
 - [Example](https://support.vectorinstitute.ai/wandb)
 - [Checkpoints](https://support.vectorinstitute.ai/CheckpointRestartInstructions), [about `v`](https://support.vectorinstitute.ai/AboutVaughan2), symlinks (?)
-- [Viz](https://support.vectorinstitute.ai/wandb)
+- [Viz](https://support.vectorinstitute.ai/wandb) `/usr/local/bin/usageStats.sh`
 
 ## Keras and MNIST
 
