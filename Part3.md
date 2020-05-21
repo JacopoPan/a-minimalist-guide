@@ -66,9 +66,9 @@ Simplified installation instructions for other popular tools
 
 ### ROS
 
-- TBD
+- TBD, [link](http://wiki.ros.org/ROS/Installation)
 
 ### AirSim
 
-- TBD
+- TBD, [binaries](https://microsoft.github.io/AirSim/use_precompiled/), [source](https://microsoft.github.io/AirSim/build_linux/)
 
