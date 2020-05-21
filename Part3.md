@@ -41,13 +41,13 @@ Minimal working examples (MWEs) of frameworks and simulation environments—for 
 
 ## Jupyer Notebook
 
-- [Link](https://support.vectorinstitute.ai/jupyter_notebook)
+- [Link](https://support.vectorinstitute.ai/jupyter_notebook), [link](https://jupyter.org/install), [link](https://jupyter.readthedocs.io/en/latest/running.html#running)
 
 ## PyTorch and MNIST
 
 - [Example](https://support.vectorinstitute.ai/wandb)
 - [Checkpoints](https://support.vectorinstitute.ai/CheckpointRestartInstructions), [about `v`](https://support.vectorinstitute.ai/AboutVaughan2), symlinks (?)
-- [Viz](https://support.vectorinstitute.ai/wandb) `/usr/local/bin/usageStats.sh`
+- [Viz](https://support.vectorinstitute.ai/wandb), `$ /usr/local/bin/usageStats.sh`
 
 ## Keras and MNIST
 
