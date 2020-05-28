@@ -3,9 +3,31 @@
 
 # Part 3 - Simulating Multiple UAVs with AirSim and ROS
 
-base installation
+ubuntu 18.04 lts on lenovo p52 
+i7-8850H
+nvidia quadro p2000
 
-hardware and software
+enter, f1 
+
+config  - display  
+set - graphic device - to - discrete graphics
+
+security - secure boot 
+set -  secure boot - to - disabled
+
+if you can use wifi to download updates and install 3rd party software (graphics/wifi)
+
+click the gear besides sign in and choose ubuntu on wayland
+
+install updates from "software updater" if prompted
+
+nvidia proprietary driver nvidia-driver-440 should be available in software&updates
+
+apply, reboot
+
+the os should finally run smoothly and nvidia-smi report
+
+driver 440, cuda 10.2
 
 ## AirSim
 
