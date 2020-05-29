@@ -5,7 +5,9 @@
 
 ubuntu 18.04 lts on lenovo p52 
 i7-8850H
-nvidia quadro p2000
+NVIDIA quadro p2000
+
+## Ubuntu 18.04 and Nvidia proprietary drivers on Lenovo P52
 
 to install
 get 64 bit iso https://releases.ubuntu.com/18.04/
@@ -38,7 +40,7 @@ the os interface should now run smoothly and nvidia-smi report
 
 driver 440, cuda 10.2
 
-## AirSim
+## Using AirSim binaries
 
 https://microsoft.github.io/AirSim/
 
@@ -78,6 +80,7 @@ note that trapcam is split in two  file zip 001 zip 002
 concatenate them first before unzippin
 cat TrapCam.zip.00* > TrapCam.zip
 
+### Running each environment
 
 after unzipping
 run each env binaries using the name.sh script in each folder
@@ -103,6 +106,10 @@ it can be use to simulate flora and fauna
 it has an extra interface to adjust this configuration (the default flora is a bit too complex for the p52)
 https://arxiv.org/pdf/1904.05916.pdf
 
+
+
+
+### Personalizing a simulation with `setting.json`
 
 running any environment will create a file in ~/Documents/AirSim called setting.json
 
@@ -143,58 +150,108 @@ to start any environment with 2 simple flight drones 2 meters apart
 
 
 
-programmatically set the camera
+TO DO programmatically set the camera
 
 
 
 
+### Using AirSim Python APIs with Anaconda
+
+
+add a conda sections (conda with python 3.5 is recommended as of may 2020
+https://microsoft.github.io/AirSim/apis/
+
+
+$ sudo apt-get install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
+
+https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
+
+$ bash Anaconda3-2020.02-Linux-x86_64.sh
+
+accept terms
+type yes
+accept default location (enter)
+
+When prompted to "Do you wish the installer to initialize Anaconda3 by running conda init?" answer "yes"
+
+Finally, run
+
+$ source ~/.bashrc
+Turn off the auto-activation of the base environment and exit it
+
+$ conda config --set auto_activate_base False
+$ conda deactivate
+
+re-enter the (base) environment 
+conda activate
+
+or see part 1 to create project-specific one
+
+note that on ubuntu 18 the default pyhton is python3 (3.6)
+while in (base) it is python (3.7)
+
+in base you have pip pre-installed which is not the case for in ubuntu 18
+
+
+now 
+pip install msgpack-rpc-python
+
+ERROR: notebook 6.0.3 has requirement tornado>=5.0, but you'll have tornado 4.5.3 which is incompatible.
+ERROR: distributed 2.11.0 has requirement tornado>=5; python_version < "3.8", but you'll have tornado 4.5.3 which is incompatible.
+Installing collected packages: msgpack-python, tornado, msgpack-rpc-python
+  Attempting uninstall: tornado
+    Found existing installation: tornado 6.0.3
+    Uninstalling tornado-6.0.3:
+      Successfully uninstalled tornado-6.0.3
+Successfully installed msgpack-python-0.5.6 msgpack-rpc-python-0.4.1 tornado-4.5.3
 
 
 
-add a conda sections
-
-add pip install airsim
+pip install airsim
 
 https://pypi.org/project/airsim/
 
 
-
-
-
-
+### Example: 2-drone patrol and image taking from a ground observer POV
 
 
 a simple usage scrip for two drones
 
+TBD
+
+run and environments (refer to json with 2 drones)
+
+
+new terminal
+remember conda activate to get in base
+
+run python script
 
 
 
 
+## Compiling the Unreal Engine 4 from source
 
+## Compiling AirSim from source
 
+this is required to modify the flight controller implementation
 
+(note to self, but is it needed to re-compile UE4 or can we re-use binaries for that?)
 
+## Tuning `simpleflight` flight controller
 
+recompiling airsim..
 
+## Custom Unreal Engine 4 environments
 
+unfortunately needs windows
 
+https://microsoft.github.io/AirSim/unreal_custenv/
 
+## Custom drone models
 
+??? 
 
+## PX4 flight controller
 
-
-
-
-
-
-running a single car example
-
-running a multi-drone example
-
-environments
-
-robots models (in UE4)
-
-robots models (in AirSim)
-
-
+do we need/want this?
