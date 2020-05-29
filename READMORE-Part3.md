@@ -7,50 +7,32 @@ The following instructions are for a fresh install of Ubuntu 18.04 LTS 64-bit on
 
 Everything after a `$` is entered on a terminal; everything after `>>>` is passed to a Python interpreter
 
-## Ubuntu 18.04 and Nvidia proprietary drivers on Lenovo P52
+## Ubuntu 18.04 and NVIDIA proprietary drivers on Lenovo P52
 
-Download Ubuntu 18.04 LTS 64-bit .iso
-```
-$ wget https://releases.ubuntu.com/18.04/ubuntu-18.04.4-desktop-amd64.iso
-```
-Create a bootable USB stick (on Ubuntu, using [Startup Disk Creator](https://ubuntu.com/tutorials/tutorial-create-a-usb-stick-on-ubuntu#4-iso-and-usb-selection))
+Download Ubuntu 18.04 LTS 64-bit .iso: `$ wget https://releases.ubuntu.com/18.04/ubuntu-18.04.4-desktop-amd64.iso` and create a bootable USB stick (e.g., on Ubuntu, using [Startup Disk Creator](https://ubuntu.com/tutorials/tutorial-create-a-usb-stick-on-ubuntu#4-iso-and-usb-selection))
 
+**Important**: at boot time, enter P52's bios pressing `Enter`, then `F1`
 
-Important: at boot time, enter P52's bios pressing `Enter`, then `F1`
-
-Under the `Config` menu, enter the `Display` submenu
-
-Set `Graphic Device` to `Discrete Graphics` (instead of `Hybrid Graphics`)⁠—this will prevent crashes during Ubuntu 18's installation
-
-Under the `Security` menu, enter the `Secure Boot` submenu
-
-Set `Secure Boot` to `Disabled`⁠—this will let you install NVIDIA graphic drivers
+1. Under the `Config` menu, enter the `Display` submenu
+- Set `Graphic Device` to `Discrete Graphics` (and not `Hybrid Graphics`)⁠—this will prevent crashes during the installation
+2. Under the `Security` menu, enter the `Secure Boot` submenu
+- Set `Secure Boot` to `Disabled`⁠—this will let you install NVIDIA graphic drivers
 
 Install Ubuntu 18 (if possible, use Wi-Fi to "download updates and install 3rd party software" during the process)
 
-At the time of the first login, click the gear icon besides "Sign in"
+At the time of the first login, click the gear icon besides "Sign in"; choose "Ubuntu on [Wayland](https://wiki.ubuntu.com/Wayland)"
 
-Choose "Ubuntu on [Wayland](https://wiki.ubuntu.com/Wayland)"
+The graphical interface will be very slow⁠—this is expected—if prompted, install updates from "Software Updater" 
 
-The graphical interface will be very slow⁠—this is expected
+Open the "Software & Updates" application: NVIDIA proprietary driver `nvidia-driver-440` should be available
 
-If prompted, install updates from "Software Updater" 
+Select it, click apply, and reboot: this time around, the graphical interface should be runing smoothly
 
-In the "Software & Updates" application NVIDIA proprietary driver `nvidia-driver-440` should be available
-
-Select it, click apply, and reboot
-
-This time around, the graphical interface should be runing smoothly
-
-Open a terminal (`Ctrl`+`Alt`+`t`) and run command `$ nvidia-smi`
-
-It will report the use of driver 440 and CUDA 10.2
+Open a terminal (`Ctrl`+`Alt`+`t`) and run command `$ nvidia-smi`: it will report the use of driver 440 and CUDA 10.2
 
 ## Using AirSim binaries
 
-https://microsoft.github.io/AirSim/
-
-https://github.com/microsoft/AirSim
+AirSim ([Documentation](https://microsoft.github.io/AirSim/),[GitHub](https://github.com/microsoft/AirSim)) is an open source, photorealistic simulator for drones and ground vehicles developed on top of Epic's [Unreal Engine 4](https://github.com/EpicGames/UnrealEngine) by Microsoft Research ([arXiv paper](https://arxiv.org/abs/1705.05065))
 
 what it is
 
