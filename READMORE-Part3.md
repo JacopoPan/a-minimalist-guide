@@ -193,7 +193,7 @@ In `(base)`, install inter-process messaging library MessagePack-RPC
 $ conda activate
 $ pip install msgpack-rpc-python
 ```
-Note that **this might throw the following error and roll back `tornato` from version 6.0.3 to 4.5.3**—this is ok
+Note that this might throw the following error and roll back `tornato` from version 6.0.3 to 4.5.3—**this is ok**
 ```
 ERROR: notebook 6.0.3 has requirement tornado>=5.0, but you'll have tornado 4.5.3 which is incompatible.
 ERROR: distributed 2.11.0 has requirement tornado>=5; python_version < "3.8", but you'll have tornado 4.5.3 which is incompatible.
