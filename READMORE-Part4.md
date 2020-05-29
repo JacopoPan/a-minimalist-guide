@@ -39,6 +39,12 @@ Minimal working examples (MWEs) of frameworks and simulation environments—for 
 
 ```
 
+## ROS
+
+- software requirements
+- installing from package or source [link](http://wiki.ros.org/ROS/Installation)
+
+
 ## Jupyer Notebook
 
 - [Link](https://support.vectorinstitute.ai/jupyter_notebook), [link](https://jupyter.org/install), [link](https://jupyter.readthedocs.io/en/latest/running.html#running)
