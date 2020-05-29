@@ -30,30 +30,26 @@ Select it, click apply, and reboot: this time around, the graphical interface sh
 
 Open a terminal (`Ctrl`+`Alt`+`t`) and run command `$ nvidia-smi`: it will report the use of driver 440 and CUDA 10.2
 
-## Using AirSim binaries
+## Using AirSim binaries on Ubuntu 18
 
-AirSim ([Documentation](https://microsoft.github.io/AirSim/),[GitHub](https://github.com/microsoft/AirSim)) is an open source, photorealistic simulator for drones and ground vehicles developed on top of Epic's [Unreal Engine 4](https://github.com/EpicGames/UnrealEngine) by Microsoft Research ([arXiv paper](https://arxiv.org/abs/1705.05065))
+AirSim ([Documentation](https://microsoft.github.io/AirSim/),[GitHub](https://github.com/microsoft/AirSim)) is an open source, photorealistic simulator for drones and ground vehicles developed on top of Epic's [Unreal Engine 4](https://github.com/EpicGames/UnrealEngine) (UE4) by Microsoft Research ([arXiv paper](https://arxiv.org/abs/1705.05065))
 
-what it is
+The rest of this section is about **running AirSim UE4 binaries and using its Python APIs** on Ubuntu 18
 
-unreal and unity
+Instructions on how to compile both UE4 and AirSim sources on Ubuntu 18 are later in this guide
 
-software requirements
+Alternatively, one can
+- [Run AirSim binaries on Windows](https://github.com/microsoft/AirSim/releases) 
+- Or [install UE4 and compile AirSim sources on Windows](https://microsoft.github.io/AirSim/build_windows/)
 
-how it is available (as of may 2020) https://microsoft.github.io/AirSim/#how-to-get-it
-win, linux, mac
+Note that v1.3.1 of [Linux](https://github.com/microsoft/AirSim/releases/tag/v1.3.1-linux) and [Windows](https://github.com/microsoft/AirSim/releases/tag/v1.3.1-windows) precompiled binaries include **different environments**
 
-on linux
-you can build ue4 and airsim (in docker or your computer https://microsoft.github.io/AirSim/build_linux/)
+As of May 2020, [support for Unity](https://microsoft.github.io/AirSim/Unity/) is still experimental
 
-or
-installing from [binaries](https://microsoft.github.io/AirSim/use_precompiled/)
+### Download the precompiled environments
 
-here we use the binaries for linux using ue4 
-i.e. v1.3.1 - Linux
-https://github.com/Microsoft/AirSim/releases
-as it is a more recent and with more environments release than the unity based one
-
+Verify what is the latest [Linux release](https://github.com/microsoft/AirSim/releases), here we consider April 2020 [v1.3.1 release](https://github.com/microsoft/AirSim/releases/tag/v1.3.1-linux) which includes the following environments
+```
 Africa
 Blocks
 Building 99
@@ -62,37 +58,69 @@ Neighborhood
 Soccer Field
 TrapCam
 Zhangjiajie
-
-
-note that trapcam is split in two  file zip 001 zip 002
-concatenate them first before unzippin
-cat TrapCam.zip.00* > TrapCam.zip
+```
+Download all of them (approx. 8GB)
+```
+$ wget https://github.com/microsoft/AirSim/releases/download/v1.3.1-linux/Africa.zip
+$ wget https://github.com/microsoft/AirSim/releases/download/v1.3.1-linux/Blocks.zip
+$ wget https://github.com/microsoft/AirSim/releases/download/v1.3.1-linux/Building_99.zip
+$ wget https://github.com/microsoft/AirSim/releases/download/v1.3.1-linux/LandscapeMountains.zip
+$ wget https://github.com/microsoft/AirSim/releases/download/v1.3.1-linux/Neighborhood.zip
+$ wget https://github.com/microsoft/AirSim/releases/download/v1.3.1-linux/SoccerField.zip
+$ wget https://github.com/microsoft/AirSim/releases/download/v1.3.1-linux/TrapCam.zip.001
+$ wget https://github.com/microsoft/AirSim/releases/download/v1.3.1-linux/TrapCam.zip.002
+$ wget https://github.com/microsoft/AirSim/releases/download/v1.3.1-linux/Zhangjiajie.zip
+```
+Note that `TrapCam` is split into two files that need to be concatenated before unzipping
+```
+$ cat TrapCam.zip.00* > TrapCam.zip
+```
 
 ### Running each environment
 
-after unzipping
-run each env binaries using the name.sh script in each folder
+Unzip and run the environment, e.g. for `Africa.zip`, navigate to the download folder and
+```
+$ unzip Africa.zip -d Africa
+$ cd Africa
+$ ./Africa_001.sh                       # Each environment has an executable ".sh" in its top folder 
+```
+If prompted, select "Yes" or "No" to start the environment with a car or drone
 
-select yes or no for car or drone
+Use the `-ResX=num_x_pixels -ResY=num_y_pixels -windowed` options to set a lower resolution 
+```
+$ ./Africa_001.sh  -ResX=640 -ResY=480 -windowed
+```
 
-use alt Enter to switch between full screen and window
+Once the simulation starts, use `Alt`+`Enter` to switch between full screen and window views
 
-use alt Tab to get back to the terminal (and kill the sim with Ctrl C if you want)
+Occasionally, UE4 might capture your cursor: use `Alt`+`Tab` to navigate back to the terminal and kill the simulation with `Ctrl`+`c`; or switch Ubuntu workspace (`Ctrl`+`Alt`+top or bottom arrow) and close it from the sidebar
 
-(if you have issues with your cursor disappearing/being captured by UE4, simply switch Ubuntu workspace and close the sim from the sidebar)
+Use `Fn`+`F1` to display this list of commands
+```
+F1          Toggle this help
+F3          Toggle wireframe whe you press F1
+F10         Show weather options
+F           Switch to FPV View
+B           Switch to "fly with me"
+\           Switch to ground observer view
+/           Switch to chase with spring arm mode
+M           Switch to manual camera control
+                    Arrow keys
+                    Page Up/Down -> move up, down
+                    W, S -> pitch
+                    A, D -> yaw
+R           Toggle recording
+;           Toggle debug report
+0           Toggle all sub-windows
+1           Toggle depth sub-window
+2           Toggle segmentation sub-window
+3           Toggle scene sub-window
+T           Toggle trace line
+Backspace   Reset everything
+```
+When starting an environment with a car (`"SimMode": "Multirotor"`), the arrows key can also be used to drive the vehicle
 
-use Fn + F1 to see the keyboard commands
-
-list them here
-
-in car mode, the arrows can be used to drive the  the vehicle
-
-
-note that trap cam is a much more complex environment and might take time to load up
-
-it can be use to simulate flora and fauna 
-it has an extra interface to adjust this configuration (the default flora is a bit too complex for the p52)
-https://arxiv.org/pdf/1904.05916.pdf
+Note that the `TrapCam` environment is quite complex environment and can take a few minutes to load: it can be used to simulate flora and fauna (see [this paper](https://arxiv.org/pdf/1904.05916.pdf)) and it includes an interactive interface to to adjust their configuration
 
 
 
@@ -218,6 +246,23 @@ run python script
 
 
 
+
+
+
+```
+
+
+WIP from here
+
+
+
+```
+
+
+
+
+docker?
+
 ## Compiling the Unreal Engine 4 from source
 
 ## Compiling AirSim from source
@@ -238,8 +283,12 @@ https://microsoft.github.io/AirSim/unreal_custenv/
 
 ## Custom drone models
 
-??? 
+to be determined 
 
 ## PX4 flight controller
+
+do we need/want this?
+
+## ROS and AirSim C++ APIs
 
 do we need/want this?
