@@ -97,8 +97,49 @@ list them here
 in car mode, the arrows can be used to drive the  the vehicle
 
 
+note that trap cam is a much more complex environment and might take time to load up
+
+it can be use to simulate flora and fauna 
+it has an extra interface to adjust this configuration (the default flora is a bit too complex for the p52)
+https://arxiv.org/pdf/1904.05916.pdf
 
 
+running any environment will create a file in ~/Documents/AirSim called setting.json
+
+this file defines the simulation parameters but most notably which vehicles are in it
+it is documented here
+https://github.com/Microsoft/AirSim/blob/master/docs/settings.md
+
+
+to stop being askd to choose between car and multirotor add
+"SimMode": "Multirotor",
+
+a few note
+VehicleType: This could be either PhysXCar, SimpleFlight, PX4Multirotor or ComputerVision. There is no default value therefore this element must be specified.
+
+For cars, we support only PhysX for now (regardless of value in this setting). For multirotors, we support "FastPhysicsEngine" only.
+
+the default flight controller
+https://github.com/microsoft/AirSim/blob/master/docs/flight_controller.md
+is simple flight
+https://github.com/microsoft/AirSim/blob/master/docs/simple_flight.md
+
+to start any environment with 2 simple flight drones 2 meters apart
+{
+  "SeeDocsAt": "https://github.com/Microsoft/AirSim/blob/master/docs/settings.md",
+  "SettingsVersion": 1.2,
+  "SimMode": "Multirotor",
+  "Vehicles": {
+    "Drone0": {
+      "VehicleType": "SimpleFlight",
+      "X": 0, "Y": 0, "Z": 0, "Yaw": 0
+    },
+    "Drone1": {
+      "VehicleType": "SimpleFlight",
+      "X": 2, "Y": 0, "Z": 0, "Yaw": 0
+    }
+  }
+}
 
 
 
