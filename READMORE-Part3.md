@@ -3,42 +3,48 @@
 
 # Part 3 - Simulating Multiple UAVs with AirSim
 
-ubuntu 18.04 lts on lenovo p52 
-i7-8850H
-NVIDIA quadro p2000
+The following instructions are for a fresh install of Ubuntu 18.04 LTS 64-bit on a Lenovo P52 (i7-8850H/Quadro P2000)
+
+Everything after a `$` is entered on a terminal; everything after `>>>` is passed to a Python interpreter
 
 ## Ubuntu 18.04 and Nvidia proprietary drivers on Lenovo P52
 
-to install
-get 64 bit iso https://releases.ubuntu.com/18.04/
+Download Ubuntu 18.04 LTS 64-bit .iso
+```
+$ wget https://releases.ubuntu.com/18.04/ubuntu-18.04.4-desktop-amd64.iso
+```
+Create a bootable USB stick (on Ubuntu, using [Startup Disk Creator](https://ubuntu.com/tutorials/tutorial-create-a-usb-stick-on-ubuntu#4-iso-and-usb-selection))
 
-create bootable usb stick https://ubuntu.com/tutorials/tutorial-create-a-usb-stick-on-ubuntu#1-overview
 
-change to following in the p52 bios
+Important: at boot time, enter P52's bios pressing `Enter`, then `F1`
 
-enter, f1 
+Under the `Config` menu, enter the `Display` submenu
 
-config  - display  
-set - graphic device - to - discrete graphics
+Set `Graphic Device` to `Discrete Graphics` (instead of `Hybrid Graphics`)⁠—this will prevent crashes during Ubuntu 18's installation
 
-security - secure boot 
-set -  secure boot - to - disabled
+Under the `Security` menu, enter the `Secure Boot` submenu
 
-if you can, use wifi to download updates and install 3rd party software (graphics/wifi)
+Set `Secure Boot` to `Disabled`⁠—this will let you install NVIDIA graphic drivers
 
-click the gear besides sign in and choose ubuntu on wayland https://wiki.ubuntu.com/Wayland for your first login
+Install Ubuntu 18 (if possible, use Wi-Fi to "download updates and install 3rd party software" during the process)
 
-the interface will be slow for now
+At the time of the first login, click the gear icon besides "Sign in"
 
-install updates from "software updater" if prompted
+Choose "Ubuntu on [Wayland](https://wiki.ubuntu.com/Wayland)"
 
-nvidia proprietary driver nvidia-driver-440 should be available in software&updates
+The graphical interface will be very slow⁠—this is expected
 
-click apply, reboot
+If prompted, install updates from "Software Updater" 
 
-the os interface should now run smoothly and nvidia-smi report
+In the "Software & Updates" application NVIDIA proprietary driver `nvidia-driver-440` should be available
 
-driver 440, cuda 10.2
+Select it, click apply, and reboot
+
+This time around, the graphical interface should be runing smoothly
+
+Open a terminal (`Ctrl`+`Alt`+`t`) and run command `$ nvidia-smi`
+
+It will report the use of driver 440 and CUDA 10.2
 
 ## Using AirSim binaries
 
