@@ -164,45 +164,37 @@ Copy the following into `settings.json` starts a simulation with 2 quadcopters, 
 
 ### Using AirSim Python APIs with Anaconda
 
+AirSim exposes [Python aAPIs](https://microsoft.github.io/AirSim/apis/) to control vehicles—the use AirSim's C++ APIs is detailed below in this guide)—and, as of May 2020, Python 3.5 (or newer) and Anconda are recommended for their use
 
-add a conda sections (conda with python 3.5 is recommended as of may 2020
-https://microsoft.github.io/AirSim/apis/
-
-
+More thorough instructions to install and use `coda` are provided in [`README.md` of this repository](https://github.com/JacopoPan/a-minimalist-guide/blob/master/README.md); these are minimal steps
+```
 $ sudo apt-get install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
-
-https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
-
+$ wget https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
 $ bash Anaconda3-2020.02-Linux-x86_64.sh
+```
+Accept the terms and conditions; type `yes`; accept the default installation location by pressing `Enter`
 
-accept terms
-type yes
-accept default location (enter)
-
-When prompted to "Do you wish the installer to initialize Anaconda3 by running conda init?" answer "yes"
+When prompted to "Do you wish the installer to initialize Anaconda3 by running conda init?" type `yes` again
 
 Finally, run
-
+```
 $ source ~/.bashrc
-Turn off the auto-activation of the base environment and exit it
-
-$ conda config --set auto_activate_base False
+$ conda config --set auto_activate_base False   #this turns off the auto-activation of the (base) environment
+```
+Verify you can exit and re-enter the `(base)` `conda`'s environment 
+```
 $ conda deactivate
+$ conda activate
+```
+Note that in Ubuntu 18 the default Pyhton is `python3` (version 3.6) while in `conda`'s environment `(base)` the interpreter is `python` (version 3.7) and `pip` is pre-installed⁠—which is not the case in Ubuntu 18, outside `(base)`)
 
-re-enter the (base) environment 
-conda activate
-
-or see part 1 to create project-specific one
-
-note that on ubuntu 18 the default pyhton is python3 (3.6)
-while in (base) it is python (3.7)
-
-in base you have pip pre-installed which is not the case for in ubuntu 18
-
-
-now 
-pip install msgpack-rpc-python
-
+In `(base)`, install inter-process messaging library MessagePack-RPC 
+```
+$ conda activate
+$ pip install msgpack-rpc-python
+```
+Note that this might throw the following error and roll back `tornato` from version 6.0.3 to 4.5.3—this is ok
+```
 ERROR: notebook 6.0.3 has requirement tornado>=5.0, but you'll have tornado 4.5.3 which is incompatible.
 ERROR: distributed 2.11.0 has requirement tornado>=5; python_version < "3.8", but you'll have tornado 4.5.3 which is incompatible.
 Installing collected packages: msgpack-python, tornado, msgpack-rpc-python
@@ -211,12 +203,13 @@ Installing collected packages: msgpack-python, tornado, msgpack-rpc-python
     Uninstalling tornado-6.0.3:
       Successfully uninstalled tornado-6.0.3
 Successfully installed msgpack-python-0.5.6 msgpack-rpc-python-0.4.1 tornado-4.5.3
+```
+Install [AirSim's Python APIs](https://pypi.org/project/airsim/)
+```
+$ pip install airsim
+```
 
 
-
-pip install airsim
-
-https://pypi.org/project/airsim/
 
 
 
