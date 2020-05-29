@@ -84,7 +84,7 @@ $ unzip Africa.zip -d Africa
 $ cd Africa
 $ ./Africa_001.sh                       # Each environment has an executable ".sh" in its top folder 
 ```
-If prompted, select "Yes" or "No" to start the environment with a car or drone
+Select "Yes" or "No" to start the environment with a car or drone (this prompt will disappear once you set `SimMode` in `settings.json` as shown below)
 
 Use the `-ResX=num_x_pixels -ResY=num_y_pixels -windowed` options to set a lower resolution 
 ```
@@ -122,36 +122,28 @@ When starting an environment with a car (`"SimMode": "Multirotor"`), the arrows 
 
 Note that the `TrapCam` environment is quite complex environment and can take a few minutes to load: it can be used to simulate flora and fauna (see [this paper](https://arxiv.org/pdf/1904.05916.pdf)) and it includes an interactive interface to to adjust their configuration
 
+### Personalizing a simulation using `setting.json`
 
+The first time you run AirSim, it will create the following file ` ~/Documents/AirSim/settings.json` that will be loaded by all subsequent simulations; originally it only contains the following lines
+```
+{
+  "SeeDocsAt": "https://github.com/Microsoft/AirSim/blob/master/docs/settings.md",
+  "SettingsVersion": 1.2
+}
+```
+The documentation for this file is located [here](https://github.com/Microsoft/AirSim/blob/master/docs/settings.md); `settings.json` contains
+- Vehicle settings
+- Camera settings
+- Time-of-day settings
+- etc.
 
-
-### Personalizing a simulation with `setting.json`
-
-running any environment will create a file in ~/Documents/AirSim called setting.json
-
-this file defines the simulation parameters but most notably which vehicles are in it
-it is documented here
-https://github.com/Microsoft/AirSim/blob/master/docs/settings.md
-
-
-to stop being askd to choose between car and multirotor add
-"SimMode": "Multirotor",
-
-a few note
-VehicleType: This could be either PhysXCar, SimpleFlight, PX4Multirotor or ComputerVision. There is no default value therefore this element must be specified.
-
-For cars, we support only PhysX for now (regardless of value in this setting). For multirotors, we support "FastPhysicsEngine" only.
-
-the default flight controller
-https://github.com/microsoft/AirSim/blob/master/docs/flight_controller.md
-is simple flight
-https://github.com/microsoft/AirSim/blob/master/docs/simple_flight.md
-
-to start any environment with 2 simple flight drones 2 meters apart
+Copy the following into `settings.json` starts a simulation with 2 quadcopters, 2 meters apart, from an observer POV
+```
 {
   "SeeDocsAt": "https://github.com/Microsoft/AirSim/blob/master/docs/settings.md",
   "SettingsVersion": 1.2,
   "SimMode": "Multirotor",
+  "ViewMode": "GroundObserver",
   "Vehicles": {
     "Drone0": {
       "VehicleType": "SimpleFlight",
@@ -163,13 +155,12 @@ to start any environment with 2 simple flight drones 2 meters apart
     }
   }
 }
+```
+[`SimpleFlight`](https://github.com/microsoft/AirSim/blob/master/docs/simple_flight.md) is AirSim's default [flight controller](https://github.com/microsoft/AirSim/blob/master/docs/flight_controller.md) (see its [code](https://github.com/microsoft/AirSim/tree/master/AirLib/include/vehicles/multirotor/firmwares/simple_flight)); a few other relevant notes from the documentation
 
+> VehicleType: This could be either PhysXCar, SimpleFlight, PX4Multirotor or ComputerVision. There is no default value therefore this element must be specified.
 
-
-TO DO programmatically set the camera
-
-
-
+> For cars, we support only PhysX for now (regardless of value in this setting). For multirotors, we support "FastPhysicsEngine" only.
 
 ### Using AirSim Python APIs with Anaconda
 
@@ -228,6 +219,17 @@ pip install airsim
 https://pypi.org/project/airsim/
 
 
+
+```
+
+
+WIP from here
+
+
+
+```
+
+
 ### Example: 2-drone patrol and image taking from a ground observer POV
 
 
@@ -249,23 +251,19 @@ run python script
 
 
 
-```
-
-
-WIP from here
-
-
-
-```
 
 
 
 
-docker?
+
+
+
 
 ## Compiling the Unreal Engine 4 from source
 
 ## Compiling AirSim from source
+
+docker?
 
 this is required to modify the flight controller implementation
 
