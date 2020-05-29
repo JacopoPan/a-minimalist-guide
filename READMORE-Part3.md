@@ -1,7 +1,7 @@
 > A minimalist guide to  a few frameworks⁠—on Ubuntu and Vector computing⁠—for the person who was born yesterday
 >> Written by a novice for the novice
 
-# Part 3 - Simulating Multiple UAVs with AirSim and ROS
+# Part 3 - Simulating Multiple UAVs with AirSim
 
 ubuntu 18.04 lts on lenovo p52 
 i7-8850H
@@ -143,6 +143,9 @@ to start any environment with 2 simple flight drones 2 meters apart
 
 
 
+programmatically set the camera
+
+
 
 
 
@@ -161,7 +164,7 @@ https://pypi.org/project/airsim/
 
 
 
-
+a simple usage scrip for two drones
 
 
 
@@ -194,12 +197,4 @@ robots models (in UE4)
 
 robots models (in AirSim)
 
-## ROS
 
-software requirements
-
-installing from package [link](http://wiki.ros.org/ROS/Installation)
-
-installing from source [link](http://wiki.ros.org/ROS/Installation)
-
-using ROS with AirSim
