@@ -211,10 +211,13 @@ $ pip install airsim
 
 
 
------------------------
------------------------
+
 
 ```
+
+
+
+
 
 
 
@@ -231,6 +234,10 @@ WIP from here
 
 
 
+
+
+
+
 ```
 
 
@@ -238,44 +245,120 @@ WIP from here
 
 
 a simple usage scrip for two drones
-
-TBD
-
+```
+import airsim
+```
 run and environments (refer to json with 2 drones)
 
+new terminal, remember conda activate to get in base, run python script
+```
+$ conda activate
+$ python 
+```
+
+
+
+## Compiling the Unreal Engine 4 and AirSim from source
+
+recompiling airsim is required to modify the flight controller implementation
+(note to self, but is it needed to re-compile UE4 or can we re-use binaries for that?)
+
+in my case, i'm building outside the conda env
+
+### UE4
+
+to get ue4 sources you need
+github account https://github.com/
+epic account https://www.epicgames.com/id/login
+follow these instructions https://www.unrealengine.com/en-US/ue4-on-github
+to link your github and epic accounts
+to be added to epic dev team on github https://github.com/orgs/EpicGames/teams/developers
+and be able to clone https://github.com/EpicGames/UnrealEngine
+
+as of may 2020, 4.25 is the latest
+we are using 4.24 as recommended in airsim docs
+
+sudo apt install git
+git clone -b 4.24 https://github.com/EpicGames/UnrealEngine.git
+cd UnrealEngine
+./Setup.sh
+say yes to register file types if prompted
+./GenerateProjectFiles.sh
+make
+this takes a bit over 1h on the p52
+a few tempnam warnings 
+
+
+### AirSim
+
+cd ..
+git clone https://github.com/Microsoft/AirSim.git
+cd AirSim
+./setup.sh
+insert your password note that this will install clang-8 and python 2.7 among other ubuntu packages
+./build.sh
+throws plenty of warnings
+
+## first use
+
+echo  'export PATH=~/UnrealEngine/Engine/Binaries/Linux:$PATH' >> ~/.bashrc (note prefixing and use of single quote '
+source ~/.bashrc
+
+run UE4 bin from anywhere with simply
+
+$ UE4Editor
+can take a few minues (the first time only)
+
+Select or Create New Project
+click "More"
+Browse
+navigate to AirSim/Unreal/Environments/Blocks
+
+Blocks.uproject and Open
+
+next time it will be in recent projects on the Select or Create New Project menu
+
+Convert Project
+More options
+Convert in-place
+
+no more prompts but if you do refer to https://microsoft.github.io/AirSim/build_linux/
+
+dismiss new plugin notification, close the interface tour, some shaders will still be compiling
+
+click play or Alt+P
+
+wait for shaders to finish compiling
+
+it loaded settings.json in your ~/AirSim/... so you should see the car(s), drone(s) set there
+
+fn f1 for menu (it will activate wireframe visal go back with fn f3)
+
+m for manual camera then arrows + pgup pgdn and wsad to explore the environment
+
+esc to terminate
+
+alt p again
 
 new terminal
-remember conda activate to get in base
 
-run python script
-
+test api control
 
 
+### (alt) docker
 
-
-
+https://github.com/Microsoft/AirSim/blob/master/docs/docker_ubuntu.md
 
 
 
 
-
-
-
-
-
-## Compiling the Unreal Engine 4 from source
-
-## Compiling AirSim from source
-
-docker?
-
-this is required to modify the flight controller implementation
-
-(note to self, but is it needed to re-compile UE4 or can we re-use binaries for that?)
 
 ## Tuning `simpleflight` flight controller
 
 recompiling airsim..
+
+
+
 
 ## Custom Unreal Engine 4 environments
 
@@ -291,6 +374,10 @@ to be determined
 
 do we need/want this?
 
-## ROS and AirSim C++ APIs
+## AirSim Python APIs
 
-do we need/want this?
+with James
+
+## AirSim C++ APIs and ROS
+
+with James
