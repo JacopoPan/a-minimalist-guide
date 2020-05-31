@@ -162,6 +162,11 @@ Copy the following into `settings.json` starts a simulation with 2 quadcopters, 
 
 > For cars, we support only PhysX for now (regardless of value in this setting). For multirotors, we support "FastPhysicsEngine" only.
 
+Run the Africa environment again to see 2 drones in it
+```
+$ ./Africa_001.sh  -ResX=640 -ResY=480 -windowed
+```
+
 ### Using AirSim Python APIs with Anaconda
 
 AirSim exposes [Python aAPIs](https://microsoft.github.io/AirSim/apis/) to control vehicles—the use AirSim's C++ APIs is detailed below in this guide)—and, as of May 2020, Python 3.5 (or newer) and Anconda are recommended for their use
@@ -245,11 +250,51 @@ WIP below here
 ### Example: 2-drone patrol and image taking from a ground observer POV
 
 
-a simple usage scrip for two drones
+save these two scripts
 ```
 import airsim
+
+client = airsim.MultirotorClient()                       # connect to the simulator
+client.confirmConnection()
+client.enableApiControl(True, vehicle_name="Drone0")     # enable API control on Drone0
+client.armDisarm(True, vehicle_name="Drone0")            # arm Drone0
+
+client.takeoffAsync(vehicle_name="Drone0")               # let Drone0 take-off asynchronously (i.e. non-blocking)
+airsim.wait_key('Press any key to move')                 # the simulator waits for a key to start moving Drone1
+
+client.moveToPositionAsync(10, 5, -1.5, 5, vehicle_name="Drone0").join()
+client.hoverAsync(vehicle_name="Drone0").join()          # Drone0 moves to (10, 5, -1.5) at 5m/s and hovers
+                                                         # .join() let the script wait for asynchronous (non-blocking) methods
+
+airsim.wait_key('Press any key to reset')                # press a key
+client.armDisarm(False, vehicle_name="Drone0")           # to disarm Drone0
+client.reset()                                           # reset the simulation
+client.enableApiControl(False, vehicle_name="Drone0")    # and disable API control of Drone0
 ```
-run and environments (refer to json with 2 drones)
+
+
+```
+import airsim
+
+client = airsim.MultirotorClient()                       # connect to the simulator
+client.confirmConnection()
+client.enableApiControl(True, vehicle_name="Drone1")     # enable API control on Drone1
+client.armDisarm(True, vehicle_name="Drone1")            # arm Drone1
+
+client.takeoffAsync(vehicle_name="Drone1")               # let Drone1 take-off asynchronously (i.e. non-blocking)
+airsim.wait_key('Press any key to move')                 # the simulator waits for a key to start moving Drone1
+
+client.moveToPositionAsync(10, 4, -0.5, 5, vehicle_name="Drone1").join()
+client.hoverAsync(vehicle_name="Drone1").join()          # Drone1 moves to (10, 4, -0.5) at 5m/s and hovers
+                                                         # .join() let the script wait for asynchronous (non-blocking) methods
+
+airsim.wait_key('Press any key to reset')                # press a key
+client.armDisarm(False, vehicle_name="Drone1")           # to disarm Drone1
+client.reset()                                           # reset the simulation
+client.enableApiControl(False, vehicle_name="Drone1")    # and disable API control of Drone1
+```
+
+run an environments (refer to json with 2 drones)
 
 new terminal, remember conda activate to get in base, run python script
 ```
