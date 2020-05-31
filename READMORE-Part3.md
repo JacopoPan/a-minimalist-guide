@@ -294,6 +294,8 @@ client.reset()                                           # reset the simulation
 client.enableApiControl(False, vehicle_name="Drone1")    # and disable API control of Drone1
 ```
 
+add taking images
+
 run an environments (refer to json with 2 drones)
 
 new terminal, remember conda activate to get in base, run python script
@@ -302,7 +304,7 @@ $ conda activate
 $ python 
 ```
 
-
+note on control from a single script
 
 ## Compiling the Unreal Engine 4 and AirSim from source
 
@@ -396,7 +398,7 @@ new terminal
 
 test api control
 
-### (alt) docker
+### (alternative) Docker installation
 
 https://github.com/Microsoft/AirSim/blob/master/docs/docker_ubuntu.md
 
@@ -406,9 +408,11 @@ https://github.com/Microsoft/AirSim/blob/master/docs/docker_ubuntu.md
 
 ## Custom Unreal Engine 4 environments
 
-unfortunately needs windows
+needs windows
 
 https://microsoft.github.io/AirSim/unreal_custenv/
+
+how to import one on ubuntu
 
 
 
@@ -433,11 +437,16 @@ https://github.com/microsoft/AirSim/tree/master/AirLib/include/vehicles/multirot
 
 ## AirSim Python APIs
 
-documenting in full with the help of James
+documenting the APIs with the help of James
+
+https://github.com/microsoft/AirSim/blob/master/PythonClient/airsim/client.py
 
 ## AirSim C++ APIs
 
 documenting in full with the help of James
+
+https://github.com/microsoft/AirSim/blob/master/AirLib/src/vehicles/multirotor/api/MultirotorApiBase.cpp
+
 
 ### ROS usage
 
