@@ -434,6 +434,10 @@ recompiling airsim
 https://github.com/microsoft/AirSim/tree/master/AirLib/include/vehicles/multirotor
 
 
+## Create new binaries
+
+For custom environment/airsim
+TBD
 
 ## AirSim Python APIs
 
