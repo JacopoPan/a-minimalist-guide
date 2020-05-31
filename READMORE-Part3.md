@@ -214,30 +214,31 @@ $ pip install airsim
 
 
 ```
-
-
-
-
-
-
-
-
-
-
-
-WIP from here
-
-
-
-
-
-
-
-
-
-
-
-
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+WIP below here
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
 ```
 
 
@@ -332,11 +333,17 @@ wait for shaders to finish compiling
 
 it loaded settings.json in your ~/AirSim/... so you should see the car(s), drone(s) set there
 
+eg refer to the example settings in section above Personalizing a simulation using `setting.json` for 2 drones 2 meters apart observed from the ground observer pov
+
 fn f1 for menu (it will activate wireframe visal go back with fn f3)
 
 m for manual camera then arrows + pgup pgdn and wsad to explore the environment
 
 esc to terminate
+
+remember of the script defined above  in Example: 2-drone patrol and image taking from a ground observer POV
+
+you can run it in blocks as well
 
 alt p again
 
@@ -344,18 +351,10 @@ new terminal
 
 test api control
 
-
 ### (alt) docker
 
 https://github.com/Microsoft/AirSim/blob/master/docs/docker_ubuntu.md
 
-
-
-
-
-## Tuning `simpleflight` flight controller
-
-recompiling airsim..
 
 
 
@@ -366,18 +365,40 @@ unfortunately needs windows
 
 https://microsoft.github.io/AirSim/unreal_custenv/
 
-## Custom drone models
 
-to be determined 
+
+
+
+
+
+
+## Customizing the drone 
+
+
+## pyhsics and model
+
+https://github.com/Microsoft/AirSim/wiki/hexacopter
+
+## Tuning `simpleflight` flight controller
+
+recompiling airsim
+https://github.com/microsoft/AirSim/tree/master/AirLib/include/vehicles/multirotor
+
+
+
+## AirSim Python APIs
+
+documenting in full with the help of James
+
+## AirSim C++ APIs
+
+documenting in full with the help of James
+
+### ROS usage
+
+https://microsoft.github.io/AirSim/airsim_ros_pkgs/
 
 ## PX4 flight controller
 
 do we need/want this?
 
-## AirSim Python APIs
-
-with James
-
-## AirSim C++ APIs and ROS
-
-with James
