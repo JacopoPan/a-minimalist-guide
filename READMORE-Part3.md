@@ -247,7 +247,7 @@ WIP below here
 ```
 
 
-### Example: 2-drone patrol and image taking from a ground observer POV
+### 2-drone example
 
 
 save these two scripts
@@ -305,6 +305,40 @@ $ python
 ```
 
 note on control from a single script
+
+
+
+
+
+
+
+
+
+### Using AirSim Python C++ with ROS
+
+install ros steps (point below for installation from source)
+
+https://microsoft.github.io/AirSim/airsim_ros_pkgs/
+
+
+
+
+
+
+
+## AirSim Python APIs
+
+documenting the APIs with the help of James
+
+https://github.com/microsoft/AirSim/blob/master/PythonClient/airsim/client.py
+
+## AirSim C++ APIs
+
+documenting in full with the help of James
+
+https://github.com/microsoft/AirSim/blob/master/AirLib/src/vehicles/multirotor/api/MultirotorApiBase.cpp
+
+
 
 ## Compiling the Unreal Engine 4 and AirSim from source
 
@@ -398,11 +432,6 @@ new terminal
 
 test api control
 
-### (alternative) Docker installation
-
-https://github.com/Microsoft/AirSim/blob/master/docs/docker_ubuntu.md
-
-
 
 
 
@@ -424,11 +453,11 @@ how to import one on ubuntu
 ## Customizing the drone 
 
 
-## pyhsics and model
+### pyhsics and model
 
 https://github.com/Microsoft/AirSim/wiki/hexacopter
 
-## Tuning `simpleflight` flight controller
+### Tuning `simpleflight` flight controller
 
 recompiling airsim
 https://github.com/microsoft/AirSim/tree/master/AirLib/include/vehicles/multirotor
@@ -437,26 +466,21 @@ https://github.com/microsoft/AirSim/tree/master/AirLib/include/vehicles/multirot
 ## Create new binaries
 
 For custom environment/airsim
+at once ore in separate steps?
 TBD
 
-## AirSim Python APIs
-
-documenting the APIs with the help of James
-
-https://github.com/microsoft/AirSim/blob/master/PythonClient/airsim/client.py
-
-## AirSim C++ APIs
-
-documenting in full with the help of James
-
-https://github.com/microsoft/AirSim/blob/master/AirLib/src/vehicles/multirotor/api/MultirotorApiBase.cpp
 
 
-### ROS usage
 
-https://microsoft.github.io/AirSim/airsim_ros_pkgs/
+## (opitonal) PX4 flight controller
 
-## PX4 flight controller
+TBD, if needed
 
-do we need/want this?
+## (opitonal) ROS installation from source
 
+TBD, if needed
+
+## (alternative) Docker installation
+
+TBD, if needed https://github.com/Microsoft/AirSim/blob/master/docs/docker_ubuntu.md
+TBD
