@@ -470,13 +470,15 @@ at once ore in separate steps?
 TBD
 
 
+## Headless use on a remote server
 
+TBD, ideally on Vector's cluster
 
-## (opitonal) PX4 flight controller
+## (optional) PX4 flight controller
 
 TBD, if needed
 
-## (opitonal) ROS installation from source
+## (optional) ROS installation from source
 
 TBD, if needed
 
