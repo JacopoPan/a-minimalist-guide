@@ -167,6 +167,8 @@ Run the Africa environment again to see 2 drones in it
 $ ./Africa_001.sh  -ResX=640 -ResY=480 -windowed
 ```
 
+> UE 4.24 uses Vulkan drivers by default, but they can consume more GPU memory. If you get memory allocation errors, then you can try switching to OpenGL using `-opengl`
+
 ### Using AirSim Python APIs with Anaconda
 
 AirSim exposes [Python aAPIs](https://microsoft.github.io/AirSim/apis/) to control vehicles—the use AirSim's C++ APIs is detailed below in this guide)—and, as of May 2020, Python 3.5 (or newer) and Anconda are recommended for their use
@@ -198,6 +200,11 @@ In `(base)`, install inter-process messaging library MessagePack-RPC
 $ conda activate
 $ pip install msgpack-rpc-python
 ```
+add one of these
+```
+(base) pip install opencv-python
+conda install opencv
+```
 Note that this might throw the following error and roll back `tornato` from version 6.0.3 to 4.5.3—**this is ok**
 ```
 ERROR: notebook 6.0.3 has requirement tornado>=5.0, but you'll have tornado 4.5.3 which is incompatible.
@@ -217,38 +224,28 @@ $ pip install airsim
 
 
 
-
+----------
 ```
->
->
->
->
->
->
->
->
->
->
->
->
 WIP below here
->
->
->
->
->
->
->
->
->
->
->
->
 ```
+----------
+
+point out the difference between 
+using pip
+and building AirSim (`import airsim` will only work within `AirSim/PythonClient`)
+use conda with both (e.g. numpy is already in (base))
+
+in doubt
+conda activate
+pip uninstall airsim
+
+see `AirSim/PythonClient/setup_path.py`
 
 
 ### 2-drone example
 
+
+add simPrintLogMessage("Iteration: ", to_string(i))
 
 save these two scripts
 ```
@@ -296,6 +293,9 @@ client.enableApiControl(False, vehicle_name="Drone1")    # and disable API contr
 
 add taking images
 
+add pfm format apis
+https://microsoft.github.io/AirSim/pfm/
+
 run an environments (refer to json with 2 drones)
 
 new terminal, remember conda activate to get in base, run python script
@@ -307,8 +307,18 @@ $ python
 note on control from a single script
 
 
+api use NED, vehicle starts in 0,0,0
+note z is up in UE4 and down in AirSim
+OriginGeopoint sets lat lon alt of Player Start
 
 
+
+mention
+pausing
+collision
+time of day / lat, lon, sun position
+weather
+https://github.com/Microsoft/AirSim/blob/master/PythonClient/computer_vision/weather.py
 
 
 
@@ -319,8 +329,7 @@ note on control from a single script
 install ros steps (point below for installation from source)
 
 https://microsoft.github.io/AirSim/airsim_ros_pkgs/
-
-
+https://github.com/microsoft/AirSim/blob/master/docs/airsim_tutorial_pkgs.md
 
 
 
@@ -328,9 +337,17 @@ https://microsoft.github.io/AirSim/airsim_ros_pkgs/
 
 ## AirSim Python APIs
 
+explain `duration` `max_wait_seconds` `Async` `join` etc
+
+expalin drivetrain, yaw_mode, lookahead, and adaptive_lookahead
+
 documenting the APIs with the help of James
 
 https://github.com/microsoft/AirSim/blob/master/PythonClient/airsim/client.py
+
+By default AirSim uses carrot following algorithm.
+
+Currently lowest level control available in AirSim is moveByAngleThrottleAsync
 
 ## AirSim C++ APIs
 
@@ -372,6 +389,8 @@ make
 this takes a bit over 1h on the p52
 a few tempnam warnings 
 
+full docs
+https://docs.unrealengine.com/en-US/Platforms/Linux/index.html
 
 ### AirSim
 
@@ -427,6 +446,10 @@ m for manual camera then arrows + pgup pgdn and wsad to explore the environment
 
 esc to terminate
 
+**Unreal is slowed down dramatically when I run API**
+> After Unreal Editor loads, press Play button. Tip: go to 'Edit->Editor Preferences', in the 'Search' box type 'CPU' and ensure that the 'Use Less CPU when in Background' is unchecked.
+
+
 remember of the script defined above  in Example: 2-drone patrol and image taking from a ground observer POV
 
 you can run it in blocks as well
@@ -442,11 +465,15 @@ test api control
 
 ## Custom Unreal Engine 4 environments
 
-needs windows
-
+needs Epic Games Launcher (Windows, macOS?) to create and Unreal project folder
 https://microsoft.github.io/AirSim/unreal_custenv/
 
-how to import one on ubuntu
+then just copy it over to your Linux machine (how many of the steps above can we move to Ubuntu?)
+
+
+add notes on Updating Your Environment to Latest Version of AirSim
+
+
 
 
 
@@ -457,12 +484,20 @@ how to import one on ubuntu
 
 ## Customizing the drone 
 
+https://microsoft.github.io/AirSim/custom_drone/
 
 ### pyhsics and model
 
 https://github.com/Microsoft/AirSim/wiki/hexacopter
 
+### New APIs
+
+example
+https://github.com/Microsoft/AirSim/commit/f0e83c29e7685e1021185e3c95bfdaffb6cb85dc
+
 ### Tuning `simpleflight` flight controller
+
+Please note that simple_slight currently doesn't support state estimator which means estimated and ground truth kinematics values would be same for simple_flight.
 
 recompiling airsim
 https://github.com/microsoft/AirSim/tree/master/AirLib/include/vehicles/multirotor
@@ -478,6 +513,7 @@ TBD
 ## Headless AirSim on a remote server
 
 TBD, ideally on Vector's cluster
+https://microsoft.github.io/AirSim/settings/#viewmode NoDisplay(?)
 
 ## (optional) PX4 flight controller
 
