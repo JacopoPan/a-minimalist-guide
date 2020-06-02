@@ -360,6 +360,7 @@ and be able to clone https://github.com/EpicGames/UnrealEngine
 as of may 2020, 4.25 is the latest
 we are using 4.24 as recommended in airsim docs
 
+```
 sudo apt install git
 git clone -b 4.24 https://github.com/EpicGames/UnrealEngine.git
 cd UnrealEngine
@@ -367,24 +368,28 @@ cd UnrealEngine
 say yes to register file types if prompted
 ./GenerateProjectFiles.sh
 make
+```
 this takes a bit over 1h on the p52
 a few tempnam warnings 
 
 
 ### AirSim
 
+```
 cd ..
 git clone https://github.com/Microsoft/AirSim.git
 cd AirSim
-./setup.sh
-insert your password note that this will install clang-8 and python 2.7 among other ubuntu packages
+./setup.sh #insert your password note that this will install clang-8 and python 2.7 among other ubuntu packages
 ./build.sh
+```
 throws plenty of warnings
 
 ## first use
 
-echo  'export PATH=~/UnrealEngine/Engine/Binaries/Linux:$PATH' >> ~/.bashrc (note prefixing and use of single quote '
+```
+echo  'export PATH=~/UnrealEngine/Engine/Binaries/Linux:$PATH' >> ~/.bashrc #(note prefixing and use of single quote '
 source ~/.bashrc
+```
 
 run UE4 bin from anywhere with simply
 
