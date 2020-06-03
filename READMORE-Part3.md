@@ -416,6 +416,8 @@ https://github.com/microsoft/AirSim/blob/master/docs/airsim_tutorial_pkgs.md
 
 ## List of AirSim Python APIs
 
+make sure to disamibguate old and new apis https://microsoft.github.io/AirSim/upgrade_apis/
+
 explain `duration` `max_wait_seconds` `Async` `join` etc
 
 expalin drivetrain, yaw_mode, lookahead, and adaptive_lookahead
@@ -545,7 +547,11 @@ new terminal
 
 test api control
 
-
+```
+# If you are running you code from PythonClient folder in repo then you can also do this:
+import setup_path 
+import airsim
+```
 
 
 ## Custom Unreal Engine 4 environments
@@ -590,7 +596,9 @@ https://microsoft.github.io/AirSim/custom_drone/
 use own model
 https://microsoft.github.io/AirSim/settings/#pawnpaths
 
-https://github.com/Microsoft/AirSim/wiki/hexacopter
+from 2017: https://github.com/Microsoft/AirSim/wiki/hexacopter
+- use the same model
+- does the physics code still exists?
 
 For cars, we support only PhysX for now (regardless of value in this setting). For multirotors, we support "FastPhysicsEngine" only.
 
@@ -601,10 +609,18 @@ https://github.com/Microsoft/AirSim/commit/f0e83c29e7685e1021185e3c95bfdaffb6cb8
 
 ### Tuning `simpleflight` flight controller
 
-https://microsoft.github.io/AirSim/flight_controller/
-https://microsoft.github.io/AirSim/simple_flight/
+https://microsoft.github.io/AirSim/flight_controller/ / https://microsoft.github.io/AirSim/simple_flight/
 
-Please note that simple_slight currently doesn't support state estimator which means estimated and ground truth kinematics values would be same for simple_flight.
+> We thus view flight controller simply as collection of algorithms packaged in a library. Another key emphasis is to develop this code as dependency free header-only pure standard C++11 code.
+
+> Internally simple_flight uses cascade of PID controllers to finally generate actuator signals. 
+
+> Please note that simple_slight currently doesn't support state estimator which means estimated and ground truth kinematics values would be same for simple_flight.
+
+> We plan to add complimentary filter based state estimation for angular velocity and orientation using 2 sensors (gyroscope, accelerometer) in near future. In more longer term, we plan to integrate another library to do velocity and position estimation using 4 sensors (gyroscope, accelerometer, magnetometer and barometer) using EKF. If you have experience this area than we encourage you to engage with us and contribute!
+
+> simple_flight uses steppable clock by default which means clock advances when simulator tells it to advance (unlike wall clock which advances strictly according to passage of time). Otherwise add `"ClockType": "ScalableClock"`
+
 
 recompiling airsim
 https://github.com/microsoft/AirSim/tree/master/AirLib/include/vehicles/multirotor
@@ -622,13 +638,8 @@ TBD
 TBD, ideally on Vector's cluster
 https://microsoft.github.io/AirSim/settings/#viewmode NoDisplay(?)
 
-## (optional) PX4 flight controller
-
-TBD, if needed
-
-with xbox controller https://microsoft.github.io/AirSim/xbox_controller/
-on linux https://microsoft.github.io/AirSim/remote_control/
-see "RC" under vehicle in `settings.json`
+example of distributed RL with Azure
+https://github.com/microsoft/AutonomousDrivingCookbook/tree/master/DistributedRL
 
 ## (optional) ROS installation from source
 
@@ -638,3 +649,25 @@ TBD, if needed
 
 TBD, if needed https://github.com/Microsoft/AirSim/blob/master/docs/docker_ubuntu.md
 TBD
+
+## (optional) PX4 flight controller
+
+### SITL
+
+https://microsoft.github.io/AirSim/px4_sitl/ /  https://microsoft.github.io/AirSim/px4_build/
+
+px4 and mavlink
+- https://github.com/Microsoft/AirSim/wiki/Intercepting-MavLink-messages
+- https://microsoft.github.io/AirSim/px4_logging/
+- https://microsoft.github.io/AirSim/mavlinkcom/
+
+### HTIL 
+
+left for later
+
+with xbox controller https://microsoft.github.io/AirSim/xbox_controller/
+on linux https://microsoft.github.io/AirSim/remote_control/
+see "RC" under vehicle in `settings.json`
+
+https://microsoft.github.io/AirSim/px4_setup/
+
