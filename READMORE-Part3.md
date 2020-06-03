@@ -200,11 +200,6 @@ In `(base)`, install inter-process messaging library MessagePack-RPC
 $ conda activate
 $ pip install msgpack-rpc-python
 ```
-add one of these
-```
-(base) pip install opencv-python
-conda install opencv
-```
 Note that this might throw the following error and roll back `tornato` from version 6.0.3 to 4.5.3—**this is ok**
 ```
 ERROR: notebook 6.0.3 has requirement tornado>=5.0, but you'll have tornado 4.5.3 which is incompatible.
@@ -216,6 +211,15 @@ Installing collected packages: msgpack-python, tornado, msgpack-rpc-python
       Successfully uninstalled tornado-6.0.3
 Successfully installed msgpack-python-0.5.6 msgpack-rpc-python-0.4.1 tornado-4.5.3
 ```
+otherwise check this https://microsoft.github.io/AirSim/faq/#when-making-api-call-i-get-error
+
+add one of these
+```
+(base) pip install opencv-python
+conda install opencv
+```
+
+
 Install [AirSim's Python APIs](https://pypi.org/project/airsim/)
 ```
 $ pip install airsim
@@ -292,8 +296,46 @@ client.enableApiControl(False, vehicle_name="Drone1")    # and disable API contr
 ```
 
 add taking images
+```
+{
+  "SettingsVersion": 1.2,
+  "CameraDefaults": {
+      "CaptureSettings": [
+        {
+          "ImageType": 0,
+          "Width": 256,
+          "Height": 144,
+          "FOV_Degrees": 90,
+          "AutoExposureSpeed": 100,
+          "MotionBlurAmount": 0
+        }
+    ]
+  },
+  "SimMode": "ComputerVision"
+}
+```
 
-add pfm format apis
+```
+  Scene = 0, 
+  # but also 
+  DepthPlanner = 1, # ground truth 
+  DepthPerspective = 2, # ground truth 
+  DepthVis = 3, 
+  DisparityNormalized = 4,
+  Segmentation = 5,   # ground truth based on unreal meshes
+  SurfaceNormals = 6,
+  Infrared = 7 # TBD
+```
+
+use bottom camera, explain ids
+move camera
+```
+airsim.wait_key('Press any key to set camera-0 gimble to 15-degree pitch')
+client.simSetCameraOrientation("0", airsim.to_quaternion(0.261799, 0, 0)); #radians
+```
+
+png/rgb/float/pfm format apis
+https://microsoft.github.io/AirSim/image_apis/
 https://microsoft.github.io/AirSim/pfm/
 
 run an environments (refer to json with 2 drones)
@@ -313,6 +355,8 @@ OriginGeopoint sets lat lon alt of Player Start
 
 
 
+## Other stuff one can do with APIs/settings.json
+
 mention
 pausing
 collision
@@ -321,12 +365,47 @@ weather
 https://github.com/Microsoft/AirSim/blob/master/PythonClient/computer_vision/weather.py
 
 
+clock speed
+recoding
+
+https://microsoft.github.io/AirSim/settings/
+
+```
+"Vehicles": {
+    "FishEyeDrone": {
+      "VehicleType": "SimpleFlight",
+      "Cameras": {
+        "front-center": {
+          "CaptureSettings": [
+            {
+              "ImageType": 0,
+              "FOV_Degrees": 120
+            }
+          ]
+        }
+      }
+    }
+}
+```
+
+px4 settings
+https://microsoft.github.io/AirSim/settings/#additional-px4-settings
 
 
 
-### Using AirSim Python C++ with ROS
+### Using AirSim C++ APIs and ROS Melodic
+
+use with C++
+see includes and examples https://microsoft.github.io/AirSim/apis_cpp/
+
+compile and run
 
 install ros steps (point below for installation from source)
+
+requirements
+build airsim and ros nodes
+
+how to use this w/o building UE4/blocks
 
 https://microsoft.github.io/AirSim/airsim_ros_pkgs/
 https://github.com/microsoft/AirSim/blob/master/docs/airsim_tutorial_pkgs.md
@@ -335,7 +414,7 @@ https://github.com/microsoft/AirSim/blob/master/docs/airsim_tutorial_pkgs.md
 
 
 
-## AirSim Python APIs
+## List of AirSim Python APIs
 
 explain `duration` `max_wait_seconds` `Async` `join` etc
 
@@ -349,7 +428,13 @@ By default AirSim uses carrot following algorithm.
 
 Currently lowest level control available in AirSim is moveByAngleThrottleAsync
 
-## AirSim C++ APIs
+sensors 
+https://microsoft.github.io/AirSim/sensors/
+
+lidar needs to be enabled in settings https://microsoft.github.io/AirSim/lidar/
+example https://github.com/microsoft/AirSim/blob/master/PythonClient/multirotor/drone_lidar.py
+
+## List of AirSim C++ APIs
 
 documenting in full with the help of James
 
@@ -480,7 +565,21 @@ add notes on Updating Your Environment to Latest Version of AirSim
 
 
 
+## Modifying AirSim
 
+code structure
+https://microsoft.github.io/AirSim/code_structure/
+
+review the `.bat` and `.sh` scripts
+https://microsoft.github.io/AirSim/dev_workflow/
+
+essentially, build.sh copies the useful files to Blocks
+
+> For Linux, make code changes in AirLib or Unreal/Plugins folder and then run ./build.sh to rebuild. This step also copies the build output to Blocks sample project. You can then follow above steps again to re-run.
+https://microsoft.github.io/AirSim/unreal_blocks/
+
+the FAQs are Windows/Visual Studio based
+contemplate VS Code (?) https://code.visualstudio.com/docs/?dv=linux64_deb
 
 ## Customizing the drone 
 
@@ -488,7 +587,12 @@ https://microsoft.github.io/AirSim/custom_drone/
 
 ### pyhsics and model
 
+use own model
+https://microsoft.github.io/AirSim/settings/#pawnpaths
+
 https://github.com/Microsoft/AirSim/wiki/hexacopter
+
+For cars, we support only PhysX for now (regardless of value in this setting). For multirotors, we support "FastPhysicsEngine" only.
 
 ### New APIs
 
@@ -496,6 +600,9 @@ example
 https://github.com/Microsoft/AirSim/commit/f0e83c29e7685e1021185e3c95bfdaffb6cb85dc
 
 ### Tuning `simpleflight` flight controller
+
+https://microsoft.github.io/AirSim/flight_controller/
+https://microsoft.github.io/AirSim/simple_flight/
 
 Please note that simple_slight currently doesn't support state estimator which means estimated and ground truth kinematics values would be same for simple_flight.
 
@@ -518,6 +625,10 @@ https://microsoft.github.io/AirSim/settings/#viewmode NoDisplay(?)
 ## (optional) PX4 flight controller
 
 TBD, if needed
+
+with xbox controller https://microsoft.github.io/AirSim/xbox_controller/
+on linux https://microsoft.github.io/AirSim/remote_control/
+see "RC" under vehicle in `settings.json`
 
 ## (optional) ROS installation from source
 
