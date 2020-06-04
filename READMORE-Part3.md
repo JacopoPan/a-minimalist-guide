@@ -261,6 +261,7 @@ client.enableApiControl(True, vehicle_name="Drone0")     # enable API control on
 client.armDisarm(True, vehicle_name="Drone0")            # arm Drone0
 
 
+
 client.takeoffAsync(vehicle_name="Drone0")               # let Drone0 take-off asynchronously (i.e. non-blocking)
 airsim.wait_key('Press any key to move')                 # the simulator waits for a key to start moving Drone1
 
