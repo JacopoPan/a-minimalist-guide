@@ -63,6 +63,8 @@ throws plenty of warnings
 
 ## first use
 
+- remove pip installed airsim if any an add build path to pythonpath
+
 ```
 echo  'export PATH=~/UnrealEngine/Engine/Binaries/Linux:$PATH' >> ~/.bashrc #(note prefixing and use of single quote '
 source ~/.bashrc
@@ -125,21 +127,6 @@ import airsim
 ```
 
 
-## Custom Unreal Engine 4 environments
-
-needs Epic Games Launcher (Windows, macOS?) to create and Unreal project folder
-https://microsoft.github.io/AirSim/unreal_custenv/
-
-then just copy it over to your Linux machine (how many of the steps above can we move to Ubuntu?)
-
-
-add notes on Updating Your Environment to Latest Version of AirSim
-
-
-
-
-
-
 
 
 ## Modifying AirSim
@@ -158,25 +145,14 @@ https://microsoft.github.io/AirSim/unreal_blocks/
 the FAQs are Windows/Visual Studio based
 contemplate VS Code (?) https://code.visualstudio.com/docs/?dv=linux64_deb
 
-## Customizing the drone 
-
-https://microsoft.github.io/AirSim/custom_drone/
-
-### pyhsics and model
-
-use own model
-https://microsoft.github.io/AirSim/settings/#pawnpaths
-
-from 2017: https://github.com/Microsoft/AirSim/wiki/hexacopter
-- use the same model
-- does the physics code still exists?
-
-For cars, we support only PhysX for now (regardless of value in this setting). For multirotors, we support "FastPhysicsEngine" only.
-
-### New APIs
+### New Python APIs
 
 example
 https://github.com/Microsoft/AirSim/commit/f0e83c29e7685e1021185e3c95bfdaffb6cb85dc
+
+### New C++ APIs
+
+add printout of date of the most recent compilation
 
 ### Tuning `simpleflight` flight controller
 
@@ -192,9 +168,49 @@ https://microsoft.github.io/AirSim/flight_controller/ / https://microsoft.github
 
 > simple_flight uses steppable clock by default which means clock advances when simulator tells it to advance (unlike wall clock which advances strictly according to passage of time). Otherwise add `"ClockType": "ScalableClock"`
 
-
 recompiling airsim
 https://github.com/microsoft/AirSim/tree/master/AirLib/include/vehicles/multirotor
+
+
+
+
+
+
+
+
+
+## Custom Unreal Engine 4 environments
+
+needs Epic Games Launcher (Windows, macOS?) to create and Unreal project folder
+https://microsoft.github.io/AirSim/unreal_custenv/
+
+then just copy it over to your Linux machine (how many of the steps above can we move to Ubuntu?)
+
+
+add notes on Updating Your Environment to Latest Version of AirSim
+
+## Customizing the drone model
+
+https://microsoft.github.io/AirSim/custom_drone/
+
+### pyhsics and 3D model
+
+use own model
+https://microsoft.github.io/AirSim/settings/#pawnpaths
+
+from 2017: https://github.com/Microsoft/AirSim/wiki/hexacopter
+- use the same model
+- does the physics code still exists?
+
+For cars, we support only PhysX for now (regardless of value in this setting). For multirotors, we support "FastPhysicsEngine" only.
+
+
+
+
+
+
+
+
 
 
 ## Create new binaries
@@ -204,6 +220,11 @@ at once ore in separate steps?
 TBD
 
 
+
+
+
+
+
 ## Headless AirSim on a remote server
 
 TBD, ideally on Vector's cluster
@@ -211,6 +232,16 @@ https://microsoft.github.io/AirSim/settings/#viewmode NoDisplay(?)
 
 example of distributed RL with Azure
 https://github.com/microsoft/AutonomousDrivingCookbook/tree/master/DistributedRL
+
+
+
+
+
+
+
+
+
+
 
 ## (optional) ROS installation from source
 
