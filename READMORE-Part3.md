@@ -416,6 +416,23 @@ https://github.com/microsoft/AirSim/blob/master/docs/airsim_tutorial_pkgs.md
 
 
 
+
+
+
+## Headless AirSim on a remote server
+
+TBD, ideally on Vector's cluster
+https://microsoft.github.io/AirSim/settings/#viewmode NoDisplay(?)
+
+example of distributed RL with Azure
+https://github.com/microsoft/AutonomousDrivingCookbook/tree/master/DistributedRL
+
+
+
+
+
+
+
 ## List of AirSim Python APIs
 
 make sure to disamibguate old and new apis https://microsoft.github.io/AirSim/upgrade_apis/
