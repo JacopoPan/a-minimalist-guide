@@ -395,12 +395,18 @@ https://microsoft.github.io/AirSim/settings/#additional-px4-settings
 
 
 
-### Using AirSim C++ APIs and ROS Melodic
+
+
+
+### Using AirSim C++ APIs
+
 
 use with C++
 see includes and examples https://microsoft.github.io/AirSim/apis_cpp/
+https://github.com/microsoft/AirSim/issues/758
 
-compile and run
+### Using AirSim and ROS Melodic
+
 
 install ros steps (point below for installation from source)
 
