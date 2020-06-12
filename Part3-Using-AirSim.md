@@ -390,8 +390,11 @@ https://microsoft.github.io/AirSim/settings/
 }
 ```
 
-px4 settings
+px4 settings (ignore for now)
 https://microsoft.github.io/AirSim/settings/#additional-px4-settings
+
+
+
 
 
 
@@ -400,13 +403,18 @@ https://microsoft.github.io/AirSim/settings/#additional-px4-settings
 
 ### Using AirSim C++ APIs
 
-
 use with C++
 see includes and examples https://microsoft.github.io/AirSim/apis_cpp/
 https://github.com/microsoft/AirSim/issues/758
 
-### Using AirSim and ROS Melodic
 
+
+
+
+
+
+
+### Using AirSim and ROS Melodic
 
 install ros steps (point below for installation from source)
 
@@ -425,6 +433,10 @@ https://github.com/microsoft/AirSim/blob/master/docs/airsim_tutorial_pkgs.md
 
 
 
+
+
+
+
 ## Headless AirSim on a remote server
 
 TBD, ideally on Vector's cluster
@@ -432,6 +444,11 @@ https://microsoft.github.io/AirSim/settings/#viewmode NoDisplay(?)
 
 example of distributed RL with Azure
 https://github.com/microsoft/AutonomousDrivingCookbook/tree/master/DistributedRL
+
+
+
+
+
 
 
 
