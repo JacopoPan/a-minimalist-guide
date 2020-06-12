@@ -46,7 +46,7 @@ Minimal working examples (MWEs) of frameworks and simulation environments—for 
 ## PyTorch and MNIST
 
 - [Example](https://support.vectorinstitute.ai/wandb)
-- [Checkpoints](https://support.vectorinstitute.ai/CheckpointRestartInstructions), [about `v`](https://support.vectorinstitute.ai/AboutVaughan2), symlinks (?)
+- [Checkpoints](https://support.vectorinstitute.ai/CheckpointRestartInstructions), [about `v`](https://support.vectorinstitute.ai/AboutVaughan2), symlinks, etc.
 - [Viz](https://support.vectorinstitute.ai/wandb), `$ /usr/local/bin/usageStats.sh`
 
 ## Keras and MNIST
