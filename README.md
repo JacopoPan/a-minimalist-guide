@@ -1,7 +1,7 @@
 > A minimalist guide to  a few frameworks⁠—on Ubuntu and Vector computing⁠—for the person who was born yesterday
 >> Written by a novice for the novice
 
-# Part 1 - Python Machine Learning Frameworks on Lenovo P52
+# Part 1 - Python ML Frameworks on Lenovo P52
 
 The following instructions are for a fresh install of Ubuntu 16.04 LTS 64-bit on a Lenovo P52 (i7-8850H/Quadro P2000)
 
