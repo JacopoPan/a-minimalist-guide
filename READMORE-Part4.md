@@ -225,13 +225,6 @@ TBD
 
 
 
-## Headless AirSim on a remote server
-
-TBD, ideally on Vector's cluster
-https://microsoft.github.io/AirSim/settings/#viewmode NoDisplay(?)
-
-example of distributed RL with Azure
-https://github.com/microsoft/AutonomousDrivingCookbook/tree/master/DistributedRL
 
 
 
