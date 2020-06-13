@@ -422,6 +422,7 @@ https://wiki.ros.org/melodic/Installation/Ubuntu
 
 ```
 sudo apt install ros-melodic-mavros ros-melodic-mavros-extras
+sudo apt-get install gcc-8 g++-8
 ```
 
 requirements
