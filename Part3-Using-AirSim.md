@@ -420,6 +420,10 @@ install ros steps (point below for installation from source)
 
 https://wiki.ros.org/melodic/Installation/Ubuntu
 
+```
+sudo apt install ros-melodic-mavros ros-melodic-mavros-extras
+```
+
 requirements
 build airsim and ros nodes
 
