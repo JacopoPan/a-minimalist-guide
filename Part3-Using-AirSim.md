@@ -418,6 +418,8 @@ https://github.com/microsoft/AirSim/issues/758
 
 install ros steps (point below for installation from source)
 
+https://wiki.ros.org/melodic/Installation/Ubuntu
+
 requirements
 build airsim and ros nodes
 
