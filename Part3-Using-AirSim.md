@@ -425,8 +425,24 @@ sudo apt install ros-melodic-mavros ros-melodic-mavros-extras
 sudo apt-get install gcc-8 g++-8
 ```
 
+```
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 700 --slave /usr/bin/g++ g++ /usr/bin/g++-7
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 --slave /usr/bin/g++ g++ /usr/bin/g++-8
+```
+https://askubuntu.com/questions/1028601/install-gcc-8-only-on-ubuntu-18-04
+https://stackoverflow.com/questions/7832892/how-to-change-the-default-gcc-compiler-in-ubuntu
+
 requirements
 build airsim and ros nodes
+
+```
+source devel/setup.bash
+roslaunch airsim_ros_pkgs airsim_node.launch
+```
+```
+source devel/setup.bash
+roslaunch airsim_ros_pkgs rviz.launch
+```
 
 how to use this w/o building UE4/blocks
 
