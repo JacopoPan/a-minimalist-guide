@@ -544,8 +544,56 @@ use with C++
 see includes and examples https://microsoft.github.io/AirSim/apis_cpp/
 https://github.com/microsoft/AirSim/issues/758
 
+copy ~/AirSim/HelloDrone into a new project folder
+cp -r ~/AirSim/HelloDrone ~/AirSim/NewDroneProject
+rm ~/AirSim/NewDroneProject/HelloDrone.vcxproj ~/AirSim/NewDroneProject/HelloDrone.vcxproj.filters
+gedit ~/AirSim/NewDroneProject/HelloDrone.cpp and replace content with the following
+
+```
+#include <iostream>
+#include "vehicles/multirotor/api/MultirotorRpcLibClient.hpp"
+
+int main() 
+{
+    using namespace std;
+    msr::airlib::MultirotorRpcLibClient client;
+
+    cout << "Press Enter to enable API control" << endl; cin.get();
+    client.enableApiControl(true);
+
+    cout << "Press Enter to arm the drone" << endl; cin.get();
+    client.armDisarm(true);
+
+    cout << "Press Enter to takeoff" << endl; cin.get();
+    client.takeoffAsync(5)->waitOnLastTask();
+
+    cout << "Press Enter to move 5 meters in x direction with 1 m/s velocity" << endl; cin.get();  
+    auto position = client.getMultirotorState().getPosition(); // from current location
+    client.moveToPositionAsync(position.x() + 5, position.y(), position.z(), 1)->waitOnLastTask();
+
+    cout << "Press Enter to land" << endl; cin.get();
+    client.landAsync()->waitOnLastTask();
+
+    return 0;
+}
+```
+
+```
+cp -r ~/AirSim/cmake/HelloDrone ~/AirSim/cmake/NewDroneProject
+
+echo  'add_subdirectory("NewDroneProject")' >> ~/AirSim/cmake/CMakeLists.txt
+
+sed -i 's/HelloDrone/NewDroneProject/g' ~/AirSim/cmake/NewDroneProject/CMakeLists.txt
+```
+
+nothing more but replacing the name in two places `project()` and `include_directories()`
 
 
+```
+setup.sh
+build.sh
+```
+or just build if you already run setup
 
 
 
@@ -558,10 +606,25 @@ install ros steps (point below for installation from source)
 https://wiki.ros.org/melodic/Installation/Ubuntu
 
 ```
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+sudo apt update
+sudo apt install ros-melodic-desktop-full
+echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential
+sudo apt install python-rosdep
+sudo rosdep init
+rosdep update
+```
+
+additional reqs
+```
 sudo apt install ros-melodic-mavros ros-melodic-mavros-extras
 sudo apt-get install gcc-8 g++-8
 ```
 
+set gcc8 as default
 ```
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 700 --slave /usr/bin/g++ g++ /usr/bin/g++-7
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 --slave /usr/bin/g++ g++ /usr/bin/g++-8
@@ -581,8 +644,7 @@ source devel/setup.bash
 roslaunch airsim_ros_pkgs rviz.launch
 ```
 
-how to use this w/o building UE4/blocks
-
+how to use 
 https://microsoft.github.io/AirSim/airsim_ros_pkgs/
 https://github.com/microsoft/AirSim/blob/master/docs/airsim_tutorial_pkgs.md
 
