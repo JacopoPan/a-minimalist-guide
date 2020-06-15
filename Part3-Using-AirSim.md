@@ -682,9 +682,87 @@ https://microsoft.github.io/AirSim/airsim_ros_pkgs/
 
 add creating and compiling a new ros example
 
+```
+$ roslaunch airsim_ros_pkgs airsim_node.launch;
+$ roslaunch airsim_ros_pkgs rviz.launch
+```
+
+
+http://wiki.ros.org/rostopic#rostopic_list
+http://wiki.ros.org/rosservice#rosservice_list
+```
+jacopo@jacopo-ThinkPad-P52:~$ rostopic list -v
+
+Published topics:
+ * /move_base_simple/goal [geometry_msgs/PoseStamped] 1 publisher
+ * /airsim_node/Drone1/global_gps [sensor_msgs/NavSatFix] 1 publisher
+ * /rosout [rosgraph_msgs/Log] 3 publishers
+ * /airsim_node/Drone1/odom_local_ned [nav_msgs/Odometry] 1 publisher
+ * /tf [tf2_msgs/TFMessage] 2 publishers
+ * /clicked_point [geometry_msgs/PointStamped] 1 publisher
+ * /tf_static [tf2_msgs/TFMessage] 1 publisher
+ * /initialpose [geometry_msgs/PoseWithCovarianceStamped] 1 publisher
+ * /rosout_agg [rosgraph_msgs/Log] 1 publisher
+ * /airsim_node/Drone0/odom_local_ned [nav_msgs/Odometry] 1 publisher
+ * /airsim_node/origin_geo_point [airsim_ros_pkgs/GPSYaw] 1 publisher
+ * /airsim_node/Drone0/global_gps [sensor_msgs/NavSatFix] 1 publisher
+
+Subscribed topics:
+ * /airsim_node/all_robots/vel_cmd_body_frame [airsim_ros_pkgs/VelCmd] 1 subscriber
+ * /airsim_node/Drone0/vel_cmd_body_frame [airsim_ros_pkgs/VelCmd] 1 subscriber
+ * /airsim_node/front_left_custom/DepthPlanner/registered/points [sensor_msgs/PointCloud2] 1 subscriber
+ * /airsim_node/MyQuad/lidar/LidarCustom [sensor_msgs/PointCloud2] 1 subscriber
+ * /rosout [rosgraph_msgs/Log] 1 subscriber
+ * /airsim_node/group_of_obots/vel_cmd_world_frame [airsim_ros_pkgs/VelCmdGroup] 1 subscriber
+ * /airsim_node/group_of_robots/vel_cmd_body_frame [airsim_ros_pkgs/VelCmdGroup] 1 subscriber
+ * /tf_static [tf2_msgs/TFMessage] 1 subscriber
+ * /airsim_node/Drone1/vel_cmd_body_frame [airsim_ros_pkgs/VelCmd] 1 subscriber
+ * /airsim_node/all_robots/vel_cmd_world_frame [airsim_ros_pkgs/VelCmd] 1 subscriber
+ * /airsim_node/Drone0/vel_cmd_world_frame [airsim_ros_pkgs/VelCmd] 1 subscriber
+ * /tf [tf2_msgs/TFMessage] 1 subscriber
+ * /airsim_node/gimbal_angle_quat_cmd [airsim_ros_pkgs/GimbalAngleQuatCmd] 1 subscriber
+ * /airsim_node/gimbal_angle_euler_cmd [airsim_ros_pkgs/GimbalAngleEulerCmd] 1 subscriber
+ * /airsim_node/Drone1/vel_cmd_world_frame [airsim_ros_pkgs/VelCmd] 1 subscriber
+ * /airsim_node/MyQuad/odom_local_ned [nav_msgs/Odometry] 1 subscriber
 
 
 
+jacopo@jacopo-ThinkPad-P52:~$ rosservice list -n
+
+/airsim_node/Drone0/land /airsim_node
+/airsim_node/Drone0/takeoff /airsim_node
+/airsim_node/Drone1/land /airsim_node
+/airsim_node/Drone1/takeoff /airsim_node
+/airsim_node/all_robots/land /airsim_node
+/airsim_node/all_robots/takeoff /airsim_node
+/airsim_node/get_loggers /airsim_node
+/airsim_node/group_of_robots/land /airsim_node
+/airsim_node/group_of_robots/takeoff /airsim_node
+/airsim_node/reset /airsim_node
+/airsim_node/set_logger_level /airsim_node
+
+/ned_to_enu_pub/get_loggers /ned_to_enu_pub
+/ned_to_enu_pub/set_logger_level /ned_to_enu_pub
+
+/rosout/get_loggers /rosout
+/rosout/set_logger_level /rosout
+
+/rviz/get_loggers /rviz
+/rviz/load_config /rviz
+/rviz/reload_shaders /rviz
+/rviz/save_config /rviz
+/rviz/set_logger_level /rviz
+```
+
+usage of services
+```
+rostopic echo /airsim_node/Drone0/global_gps
+
+jacopo@jacopo-ThinkPad-P52:~$ rosservice call /airsim_node/Drone0/takeoff 0
+success: False
+jacopo@jacopo-ThinkPad-P52:~$ rosservice call /airsim_node/Drone0/land 0
+success: False
+```
 
 
 
