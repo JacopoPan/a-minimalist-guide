@@ -601,6 +601,11 @@ or just build if you already run setup
 
 
 
+
+
+
+
+
 ### Using AirSim and ROS Melodic
 
 install ros steps (point below for installation from source)
@@ -638,27 +643,38 @@ requirements
 build airsim and ros nodes
 
 ```
-source devel/setup.bash
+cd ~/AirSim/ros
+catkin_make
+```
+
+```
+source ~/AirSim/ros/devel/setup.bash
 roslaunch airsim_ros_pkgs airsim_node.launch
 ```
 ```
-source devel/setup.bash
+source ~/AirSim/ros/devel/setup.bash
 roslaunch airsim_ros_pkgs rviz.launch
 ```
 
-how to use 
-https://microsoft.github.io/AirSim/airsim_ros_pkgs/
+examples
+
+
+```
+source ~/AirSim/ros/devel/setup.bash
+```
+or 
+```
+echo  "source ~/AirSim/ros/devel/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+```
+
+
+any of these 3 example (ignore the build steps)
+
 https://github.com/microsoft/AirSim/blob/master/docs/airsim_tutorial_pkgs.md
 
-
-
-
-
-
-
-
-
-
+how to use 
+https://microsoft.github.io/AirSim/airsim_ros_pkgs/
 
 
 
