@@ -15,117 +15,12 @@ Everything after a `$` is entered on a terminal; everything after `>>>` is passe
 
 
 
-## Compiling the Unreal Engine 4 and AirSim from source
 
-recompiling airsim is required to modify the flight controller implementation
-(note to self, but is it needed to re-compile UE4 or can we re-use binaries for that?)
+## Headless AirSim on a remote server
 
-in my case, i'm building outside the conda env
-
-### UE4
-
-to get ue4 sources you need
-github account https://github.com/
-epic account https://www.epicgames.com/id/login
-follow these instructions https://www.unrealengine.com/en-US/ue4-on-github
-to link your github and epic accounts
-to be added to epic dev team on github https://github.com/orgs/EpicGames/teams/developers
-and be able to clone https://github.com/EpicGames/UnrealEngine
-
-as of may 2020, 4.25 is the latest
-we are using 4.24 as recommended in airsim docs
-
-```
-sudo apt install git
-git clone -b 4.24 https://github.com/EpicGames/UnrealEngine.git
-cd UnrealEngine
-./Setup.sh
-say yes to register file types if prompted
-./GenerateProjectFiles.sh
-make
-```
-this takes a bit over 1h on the p52
-a few tempnam warnings 
-
-full docs
-https://docs.unrealengine.com/en-US/Platforms/Linux/index.html
-
-### AirSim
-
-```
-cd ..
-git clone https://github.com/Microsoft/AirSim.git
-cd AirSim
-./setup.sh #insert your password note that this will install clang-8 and python 2.7 among other ubuntu packages
-./build.sh
-```
-throws plenty of warnings
-
-## first use
-
-- remove pip installed airsim if any an add build path to pythonpath
-
-```
-echo  'export PATH=~/UnrealEngine/Engine/Binaries/Linux:$PATH' >> ~/.bashrc #(note prefixing and use of single quote '
-source ~/.bashrc
-```
-
-run UE4 bin from anywhere with simply
-
-$ UE4Editor
-can take a few minues (the first time only)
-
-Select or Create New Project
-click "More"
-Browse
-navigate to AirSim/Unreal/Environments/Blocks
-
-Blocks.uproject and Open
-
-next time it will be in recent projects on the Select or Create New Project menu
-
-Convert Project
-More options
-Convert in-place
-
-no more prompts but if you do refer to https://microsoft.github.io/AirSim/build_linux/
-
-dismiss new plugin notification, close the interface tour, some shaders will still be compiling
-
-click play or Alt+P
-
-wait for shaders to finish compiling
-
-it loaded settings.json in your ~/AirSim/... so you should see the car(s), drone(s) set there
-
-eg refer to the example settings in section above Personalizing a simulation using `setting.json` for 2 drones 2 meters apart observed from the ground observer pov
-
-fn f1 for menu (it will activate wireframe visal go back with fn f3)
-
-m for manual camera then arrows + pgup pgdn and wsad to explore the environment
-
-esc to terminate
-
-**Unreal is slowed down dramatically when I run API**
-> After Unreal Editor loads, press Play button. Tip: go to 'Edit->Editor Preferences', in the 'Search' box type 'CPU' and ensure that the 'Use Less CPU when in Background' is unchecked.
-
-
-remember of the script defined above  in Example: 2-drone patrol and image taking from a ground observer POV
-
-you can run it in blocks as well
-
-alt p again
-
-new terminal
-
-test api control
-
-```
-# If you are running you code from PythonClient folder in repo then you can also do this:
-import setup_path 
-import airsim
-```
-
+TBD, ideally on Vector's cluster
+example of distributed RL with Azure
+https://github.com/microsoft/AutonomousDrivingCookbook/tree/master/DistributedRL
 
 
 
