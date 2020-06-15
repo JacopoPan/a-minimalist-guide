@@ -415,6 +415,8 @@ in my case, i'm building outside the conda env
 
 ### UE4
 
+required to build airsim
+
 to get ue4 sources you need
 github account https://github.com/
 epic account https://www.epicgames.com/id/login
@@ -447,7 +449,7 @@ https://docs.unrealengine.com/en-US/Platforms/Linux/index.html
 cd ..
 git clone https://github.com/Microsoft/AirSim.git
 cd AirSim
-./setup.sh #insert your password note that this will install clang-8 and python 2.7 among other ubuntu packages
+./setup.sh #insert your password, if asked, note that this will install clang-8 and python 2.7 among other ubuntu packages
 ./build.sh
 ```
 throws plenty of warnings
