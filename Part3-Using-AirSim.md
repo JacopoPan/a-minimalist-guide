@@ -393,13 +393,15 @@ https://microsoft.github.io/AirSim/settings/
 }
 ```
 
-px4 settings (ignore for now)
+px4 settings? (ignore for now)
 https://microsoft.github.io/AirSim/settings/#additional-px4-settings
 
 
 
 uninstall from (base)
+```
 pip uninstall airsim
+```
 
 
 
@@ -485,7 +487,7 @@ no more prompts but if you do refer to https://microsoft.github.io/AirSim/build_
 
 dismiss new plugin notification, close the interface tour, some shaders will still be compiling
 
-click play or Alt+P
+click play or Alt+p
 
 wait for shaders to finish compiling
 
@@ -507,7 +509,7 @@ remember of the script defined above  in Example: 2-drone patrol and image takin
 
 you can run it in blocks as well
 
-alt p again
+`Alt` `p` again
 
 new terminal
 
@@ -527,11 +529,12 @@ conda list -> no airsim
 
 import airsim only works in ~/AirSim/PythonClient
 
-to make it systemwide
+to make it system wide
 
-echo  'export PYTHONPATH=~/AirSim/PythonClient:$PYTHONPATH' >> ~/.bashrc
-#(note prefixing and use of single quote '
+```
+echo  'export PYTHONPATH=~/AirSim/PythonClient:$PYTHONPATH' >> ~/.bashrc # note prefixing and use of single quote '
 source ~/.bashrc
+```
 
 
 
@@ -547,9 +550,12 @@ see includes and examples https://microsoft.github.io/AirSim/apis_cpp/
 https://github.com/microsoft/AirSim/issues/758
 
 copy ~/AirSim/HelloDrone into a new project folder
+```
 cp -r ~/AirSim/HelloDrone ~/AirSim/NewDroneProject
 rm ~/AirSim/NewDroneProject/HelloDrone.vcxproj ~/AirSim/NewDroneProject/HelloDrone.vcxproj.filters
-gedit ~/AirSim/NewDroneProject/HelloDrone.cpp and replace content with the following
+gedit ~/AirSim/NewDroneProject/HelloDrone.cpp
+```
+and replace content with the following
 
 ```
 #include <iostream>
@@ -580,11 +586,10 @@ int main()
 }
 ```
 
+minor cmake changes
 ```
 cp -r ~/AirSim/cmake/HelloDrone ~/AirSim/cmake/NewDroneProject
-
 echo  'add_subdirectory("NewDroneProject")' >> ~/AirSim/cmake/CMakeLists.txt
-
 sed -i 's/HelloDrone/NewDroneProject/g' ~/AirSim/cmake/NewDroneProject/CMakeLists.txt
 ```
 
@@ -656,8 +661,7 @@ source ~/AirSim/ros/devel/setup.bash
 roslaunch airsim_ros_pkgs rviz.launch
 ```
 
-examples
-
+provided examples
 
 ```
 source ~/AirSim/ros/devel/setup.bash
@@ -669,14 +673,14 @@ source ~/.bashrc
 ```
 
 
-any of these 3 example (ignore the build steps)
+any of these 3 example (but ignore the build steps)
 
 https://github.com/microsoft/AirSim/blob/master/docs/airsim_tutorial_pkgs.md
 
 how to use 
 https://microsoft.github.io/AirSim/airsim_ros_pkgs/
 
-
+add creating and compiling a new ros example
 
 
 
