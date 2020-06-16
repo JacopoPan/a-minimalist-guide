@@ -795,6 +795,8 @@ static_transforms.launch
 eg pd_position_controller_simple.cpp
 line 64 subscribes to "/airsim_node/odom_local_ned" but it should be "/airsim_node/VEHICLE_NAME/odom_local_ned"
 
+>  think the yaw max velocity was used instead of the max z velocity. Double check lines 333 to 338 in pd_position_controller_simple.cpp , vel_cmd_.twist.angular.z should be replaced with vel_cmd_.twist.linear.z
+
 
 
 ## List of AirSim Python APIs
