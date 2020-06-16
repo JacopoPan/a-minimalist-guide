@@ -779,6 +779,22 @@ bool waitOnLastTask
 bool success
 ```
 
+note on other launch files but some seem wip
+
+```
+jacopo@jacopo-ThinkPad-P52:~/AirSim/ros/src/airsim_ros_pkgs/launch$ ls
+airsim_all.launch
+airsim_node.launch
+airsim_with_simple_PD_position_controller.launch
+dynamic_constraints.launch
+position_controller_simple.launch
+rviz.launch
+static_transforms.launch
+```
+
+eg pd_position_controller_simple.cpp
+line 64 subscribes to "/airsim_node/odom_local_ned" but it should be "/airsim_node/VEHICLE_NAME/odom_local_ned"
+
 
 
 ## List of AirSim Python APIs
