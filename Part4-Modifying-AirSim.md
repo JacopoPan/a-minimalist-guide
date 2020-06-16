@@ -66,6 +66,9 @@ https://microsoft.github.io/AirSim/flight_controller/ / https://microsoft.github
 recompiling airsim
 https://github.com/microsoft/AirSim/tree/master/AirLib/include/vehicles/multirotor
 
+multirotor model, etc.
+https://github.com/microsoft/AirSim/blob/master/AirLib/include/vehicles/multirotor/MultiRotorParams.hpp
+
 
 
 
