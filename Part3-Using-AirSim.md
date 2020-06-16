@@ -813,7 +813,9 @@ https://github.com/microsoft/AirSim/blob/master/PythonClient/airsim/client.py
 
 By default AirSim uses carrot following algorithm.
 
-Currently lowest level control available in AirSim is moveByAngleThrottleAsync
+> Currently lowest level control available in AirSim is moveByAngleThrottleAsync
+
+not true, as pointed out by James, https://github.com/microsoft/AirSim/blob/827f1f55df68eb1d026390e6db06c9dd11152ba2/PythonClient/airsim/client.py#L793
 
 sensors 
 https://microsoft.github.io/AirSim/sensors/
