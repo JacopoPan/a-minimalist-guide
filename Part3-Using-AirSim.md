@@ -764,10 +764,20 @@ jacopo@jacopo-ThinkPad-P52:~$ rosservice call /airsim_node/Drone0/land 0
 success: False
 ```
 
+tab to auto complete
+```
+ rosservice call /airsim_node/Drone0/takeoff "waitOnLastTask: false" 
+```
 
 
+```
+rosservice type /airsim_node/Drone0/takeoff | rossrv show
 
-
+jacopo@jacopo-ThinkPad-P52:~$ rosservice type /airsim_node/Drone0/takeoff | rossrv show
+bool waitOnLastTask
+---
+bool success
+```
 
 
 
