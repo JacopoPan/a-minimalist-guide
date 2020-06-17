@@ -244,7 +244,44 @@ if/when you modify or update AirSim, remember to replace the Plugins folder in t
 
 ### Alternative 2: create UE4 project from scratch and add assets from Epic Games Launcher/Marketplace
 
-...
+#### on ubuntu 
+
+run UE4Editor
+New Project Categories -> Games
+Select Template -> Blank
+Project Settings -> arrow right of Blueprint and choose C++; arrow right of With Starter Content and choose No Starter Content; also select folder/location and name for this empty project
+
+once the project is created 
+open it (.uproject file with UE4Editor, note you do not need to add a New C++ Class this time
+
+click yes if asked to recompile
+
+close UE4Editor
+
+copy the complete project folder over to the computer running epic games launcher
+
+#### on mac/win with epic games launcher
+
+copy the empty project folder to where you would download assets/projects
+~/Documents/Unreal Projects
+
+run epic games launcher;
+unreal engine (on the left menu);
+marketplace (on the top menu)
+
+select a free environment like Infinity Blade: Hideout
+
+click "add to project";
+check "Show all projects";
+select "MyProject";
+choose 4.24 under "Select version:";
+wait for the content to download/verify/install;
+
+copy back the folder to ubuntu
+
+#### on ubuntu
+
+
 
 
 ## Customizing the drone model
