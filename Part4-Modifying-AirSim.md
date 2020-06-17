@@ -108,11 +108,9 @@ We need to do this because Unreal requires at least one source file in project.
 This will trigger C++ compilation of the project
 add Binaries, Source folders, Makefile, CMakeLists.txt files (and more) in folder /SunTemple
 
-close UE4?
+close UE4Editor
 
 copy folder Plugins ~/AirSim/Unreal/Plugins inside folder SunTemple/
-
-close UE4?
 
 replace the content of SunTemple.uproject with 
 ```
@@ -170,12 +168,84 @@ use the python/c++ apis or ros wrapper to control the vehicles
 if/when you modify or update AirSim, remember to replace the Plugins folder in the project 
 
 
+### Alternative: create UE4 project from scratch https://docs.unrealengine.com/en-US/Engine/Basics/Projects/Browser/index.html
 
+run UE4Editor
+New Project Categories -> Games
+Select Template -> Blank
+Project Settings -> arrow right of Blueprint and choose C++; arrow right of With Starter Content and choose No Starter Content; also select folder/location and name for this empty project
 
-alt. create UE4 project from scratch https://docs.unrealengine.com/en-US/Engine/Basics/Projects/Browser/index.html
+once the project is created 
+open it (.uproject file with UE4Editor, note you do not need to add a New C++ Class this time
 
+click yes if asked to recompile
 
-add notes on Updating Your Environment to Latest Version of AirSim
+close UE4Editor
+
+copy folder Plugins ~/AirSim/Unreal/Plugins inside folder MyProject/
+
+replace the content of MyProject.uproject with (note that you only change the Name field under Modules
+```
+{
+    "FileVersion": 3,
+    "EngineAssociation": "4.24",
+    "Category": "Samples",
+    "Description": "",
+    "Modules": [
+        {
+            "Name": "MyProject",
+            "Type": "Runtime",
+            "LoadingPhase": "Default",
+            "AdditionalDependencies": [
+                "AirSim"
+            ]
+        }
+    ],
+    "TargetPlatforms": [
+        "MacNoEditor",
+        "WindowsNoEditor",
+    ],
+    "Plugins": [
+        {
+            "Name": "AirSim",
+            "Enabled": true
+        }
+    ]
+}
+```
+
+open uproject with UE4Editor again, confirm location of UE4Editor binaries again
+
+confirm rebuilding of airsim
+
+on the bottom right you might see a dialogue about new plugins, if you click manage plugins it shoudl show airsim
+(and it is enabled)
+
+in the world outliner search bar (should be on the top right by default)
+search player start, click to show the new tab "Details"
+the position where to spawn vehicles in airsim is under "Transform"
+
+again, it should already exist
+
+then click Window -> World Settings
+in the menu that will appear on the right, set set the GameMode Override to AirSimGameMode
+
+remember to 
+Go to 'Edit->Editor Preferences' in Unreal Editor, in the 'Search' box type 'CPU' and ensure that the 'Use Less CPU when in Background' is unchecked. If you don't do this then UE will be slowed down dramatically when UE window loses focus.
+
+save (ctrl shift s)
+
+you will be asked to prompt a name for the asset to be saved under /MyProject/Content/
+
+press alt p or the play button to load the config an vehicles in settings.json
+use the python/c++ apis or ros wrapper to control the vehicles
+
+if/when you modify or update AirSim, remember to replace the Plugins folder in the project 
+
+### Alternative 2: create UE4 project from scratch and add assets from Epic Games Launcher/Marketplace
+
+...
+
 
 ## Customizing the drone model
 
