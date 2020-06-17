@@ -69,6 +69,8 @@ https://github.com/microsoft/AirSim/tree/master/AirLib/include/vehicles/multirot
 multirotor model, etc.
 https://github.com/microsoft/AirSim/blob/master/AirLib/include/vehicles/multirotor/MultiRotorParams.hpp
 
+https://github.com/microsoft/AirSim/blob/master/AirLib/include/vehicles/multirotor/firmwares/simple_flight/SimpleFlightQuadXParams.hpp
+
 
 
 
