@@ -230,15 +230,28 @@ again, it should already exist
 then click Window -> World Settings
 in the menu that will appear on the right, set set the GameMode Override to AirSimGameMode
 
-remember to 
-Go to 'Edit->Editor Preferences' in Unreal Editor, in the 'Search' box type 'CPU' and ensure that the 'Use Less CPU when in Background' is unchecked. If you don't do this then UE will be slowed down dramatically when UE window loses focus.
-
 save (ctrl shift s)
 
-you will be asked to prompt a name for the asset to be saved under /MyProject/Content/
+you will be asked to prompt a name for the level to be saved under /MyProject/Content/
+
+to make it the default start (now that you have set its game mode)
+Edit
+Project Settings
+Maps & Modes
+
+Default Maps
+Editor Startup Map
+choose "the name you have given to the level just above"
+
+(you can set DefaultGameMode to AirSimGameMode and the Game Default Map to DemoMap1 but it should not be necessary at this time)
+
+save again (ctrl shift s)
 
 press alt p or the play button to load the config an vehicles in settings.json
 use the python/c++ apis or ros wrapper to control the vehicles
+
+remember to 
+Go to 'Edit->Editor Preferences' in Unreal Editor, in the 'Search' box type 'CPU' and ensure that the 'Use Less CPU when in Background' is unchecked. If you don't do this then UE will be slowed down dramatically when UE window loses focus.
 
 if/when you modify or update AirSim, remember to replace the Plugins folder in the project 
 
@@ -281,6 +294,105 @@ copy back the folder to ubuntu
 
 #### on ubuntu
 
+copy folder Plugins ~/AirSim/Unreal/Plugins inside folder MyProject/
+
+replace the content of MyProject.uproject with (note that you only change the Name field under Modules
+```
+{
+    "FileVersion": 3,
+    "EngineAssociation": "4.24",
+    "Category": "Samples",
+    "Description": "",
+    "Modules": [
+        {
+            "Name": "MyProject",
+            "Type": "Runtime",
+            "LoadingPhase": "Default",
+            "AdditionalDependencies": [
+                "AirSim"
+            ]
+        }
+    ],
+    "TargetPlatforms": [
+        "MacNoEditor",
+        "WindowsNoEditor",
+    ],
+    "Plugins": [
+        {
+            "Name": "AirSim",
+            "Enabled": true
+        }
+    ]
+}
+```
+
+troubleshoot, if you copied from mac, remove `._` files
+```
+jacopo@jacopo-ThinkPad-P52:~/Documents/Unreal Projects/MyProject/Source$ rm ._MyProject*
+```
+https://apple.stackexchange.com/questions/14980/why-are-dot-underscore-files-created-and-how-can-i-avoid-them
+
+
+
+open uproject with UE4Editor again, confirm location of UE4Editor binaries again
+
+confirm rebuilding of airsim AND the project MyProject itself
+
+on the bottom right you might see a dialogue about new plugins, if you click manage plugins it shoudl show airsim
+(and it is enabled)
+
+
+---
+in the Content tab (should be on the bottom of the screen or find it from the window menu)
+
+select EnvironmentPack3 -> Maps
+
+then DemoMap1
+
+
+in the world outliner search bar (should be on the top right by default)
+search player start, click to show the new tab "Details"
+the position where to spawn vehicles in airsim is under "Transform"
+again, it should already exist (create it otherwise)
+
+
+then click Window -> World Settings
+in the menu that will appear on the right, set set the GameMode Override to AirSimGameMode
+
+
+to make it the default start (now that you have set its game mode)
+Edit
+Project Settings
+Maps & Modes
+
+Default Maps
+Editor Startup Map
+choose DemoMap1
+
+(you can set DefaultGameMode to AirSimGameMode and the Game Default Map to DemoMap1 but it should not be necessary at this time)
+
+---
+
+
+save (ctrl shift s)
+
+remember to 
+Go to 'Edit->Editor Preferences' in Unreal Editor, in the 'Search' box type 'CPU' and ensure that the 'Use Less CPU when in Background' is unchecked. If you don't do this then UE will be slowed down dramatically when UE window loses focus.
+
+
+press alt p or the play button to load the config an vehicles in settings.json
+use the python/c++ apis or ros wrapper to control the vehicles
+
+if/when you modify or update AirSim, remember to replace the Plugins folder in the project 
+
+
+
+
+
+
+
+
+
 
 
 
@@ -298,6 +410,9 @@ from 2017: https://github.com/Microsoft/AirSim/wiki/hexacopter
 - does the physics code still exists?
 
 For cars, we support only PhysX for now (regardless of value in this setting). For multirotors, we support "FastPhysicsEngine" only.
+
+
+
 
 
 
