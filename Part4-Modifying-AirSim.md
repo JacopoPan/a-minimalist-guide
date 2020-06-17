@@ -100,6 +100,78 @@ accept the license agreement
 
 copy the folder "e.g. ~/Documents/Unreal Projects/Sun Temple to your ubuntu machine
 
+open the .uproject (e.g. SunTemple.uproject) with Unreal Engine Editor
+you will be asked to confirm the location of the UE editor (e.g. /home/$USER/UnrealEngine/)
+
+From the File menu select New C++ class, leave default None on the type of class, click Next, leave default name MyClass, and click Create Class. 
+We need to do this because Unreal requires at least one source file in project. 
+This will trigger C++ compilation of the project
+add Binaries, Source folders, Makefile, CMakeLists.txt files (and more) in folder /SunTemple
+
+close UE4?
+
+copy folder Plugins ~/AirSim/Unreal/Plugins inside folder SunTemple/
+
+close UE4?
+
+replace the content of SunTemple.uproject with 
+```
+{
+    "FileVersion": 3,
+    "EngineAssociation": "4.24",
+    "Category": "Samples",
+    "Description": "",
+    "Modules": [
+        {
+            "Name": "SunTemple",
+            "Type": "Runtime",
+            "LoadingPhase": "Default",
+            "AdditionalDependencies": [
+                "AirSim"
+            ]
+        }
+    ],
+    "TargetPlatforms": [
+        "MacNoEditor",
+        "WindowsNoEditor",
+    ],
+    "Plugins": [
+        {
+            "Name": "AirSim",
+            "Enabled": true
+        }
+    ]
+}
+```
+
+open .uproject again, confirm location of the Uengine binaries again
+
+you will be asked to rebuild the airsim module, click yes
+
+on the bottom right you might see a dialogue about new plugins, if you click manage plugins it shoudl show airsim
+(and it is enabled)
+
+in the world outliner search bar (should be on the top right by default)
+search player start, click to show properties (i.e. the position where to spawn vehicles in airsim)
+
+in SunTemple it exists already but you shold create it otherwise https://docs.unrealengine.com/en-US/Engine/Actors/PlayerStart/index.html
+
+then click Window -> World Settings
+in the menu that will appear on the right, set set the GameMode Override to AirSimGameMode
+
+remember to 
+Go to 'Edit->Editor Preferences' in Unreal Editor, in the 'Search' box type 'CPU' and ensure that the 'Use Less CPU when in Background' is unchecked. If you don't do this then UE will be slowed down dramatically when UE window loses focus.
+
+save (ctrl shift s)
+
+press alt p or the play button to load the config an vehicles in settings.json
+use the python/c++ apis or ros wrapper to control the vehicles
+
+if/when you modify or update AirSim, remember to replace the Plugins folder in the project 
+
+
+
+
 alt. create UE4 project from scratch https://docs.unrealengine.com/en-US/Engine/Basics/Projects/Browser/index.html
 
 
