@@ -82,7 +82,23 @@ https://github.com/microsoft/AirSim/blob/master/AirLib/include/vehicles/multirot
 needs Epic Games Launcher (Windows, macOS?) to create and Unreal project folder
 https://microsoft.github.io/AirSim/unreal_custenv/
 
-then just copy it over to your Linux machine (how many of the steps above can we move to Ubuntu?)
+download (on mac or win)
+https://www.epicgames.com/unrealtournament/en-US/download
+run Epic Games Launcher
+login with your epic games account
+unreal engine tab in the left
+learn tab on top
+find content with download
+e.g sun temple or blueprints under "Engine Features Samples"
+click the "free" button and then "create project"
+select UE4 v 4.24 
+(if you haven't installed it the number will be red and say "The selected engine association is not valid.", ignore it)
+accept the default download folder typically under ~/Documents/Unreal Projects/
+accept the license agreement
+
+copy the folder "e.g. ~/Documents/Unreal Projects/Sun Temple to your ubuntu machine
+
+alt. create UE4 project from scratch https://docs.unrealengine.com/en-US/Engine/Basics/Projects/Browser/index.html
 
 
 add notes on Updating Your Environment to Latest Version of AirSim
