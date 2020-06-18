@@ -34,11 +34,10 @@ Open a terminal (`Ctrl`+`Alt`+`t`) and run command `$ nvidia-smi`: it will repor
 
 ## Using AirSim binaries on Ubuntu 18
 
-AirSim ([Documentation](https://microsoft.github.io/AirSim/),[GitHub](https://github.com/microsoft/AirSim)) is an open source, photorealistic simulator for drones and ground vehicles developed on top of Epic's [Unreal Engine 4](https://github.com/EpicGames/UnrealEngine) (UE4) by Microsoft Research ([arXiv paper](https://arxiv.org/abs/1705.05065))
+AirSim ([Documentation](https://microsoft.github.io/AirSim/), [GitHub](https://github.com/microsoft/AirSim)) is an open source, photorealistic simulator for drones and ground vehicles developed on top of Epic's [Unreal Engine 4](https://github.com/EpicGames/UnrealEngine) (UE4) by Microsoft Research ([arXiv paper](https://arxiv.org/abs/1705.05065))
 
-Concretely, AirSim is a [_UE4 Plugin_](https://docs.unrealengine.com/en-US/Programming/Plugins/index.html): code and data you can add to any UE4 project
-
-The simplest way to use AirSim on Ubuntu 18 is to:
+Concretely, AirSim is a [_UE4 Plugin_](https://docs.unrealengine.com/en-US/Programming/Plugins/index.html)—code and data you can add to any UE4 project;
+the simplest way to use AirSim on Ubuntu 18 is to:
 - Run the binaries of a **precompiled UE4 environment** containing the AirSim pluging
 - Control the robots through AirSim's **Python APIs**
 
@@ -52,8 +51,7 @@ Note 4: as of June 2020, [support for Unity](https://microsoft.github.io/AirSim/
 
 ### Download the precompiled environments
 
-Find the latest AirSim's [Linux release](https://github.com/microsoft/AirSim/releases); 
-April 2020's [v1.3.1 release](https://github.com/microsoft/AirSim/releases/tag/v1.3.1-linux) includes the following environments:
+Find the latest AirSim's [Linux release](https://github.com/microsoft/AirSim/releases)—April 2020's [v1.3.1 release](https://github.com/microsoft/AirSim/releases/tag/v1.3.1-linux) includes the following environments:
 ```
 Africa
 Blocks
