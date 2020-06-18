@@ -412,6 +412,26 @@ https://microsoft.github.io/AirSim/settings/#pawnpaths
 > It's also a good idea to disable "Auto Possess Player" and "Auto Possess AI" as well as set AI Controller Class to None in BP details. Please make sure your asset is included for cooking in packaging options if you are creating binary.
 
 
+within your project (with AirSim) copy MyProject/Plugin/AirSim/Content/Blueprints/BP_FlyingPawn.uasset
+to MyProject/Content
+
+open the project
+
+import the static mesh and propellers;
+replace BP_FlyingPawn' static mesh
+edit the mesh (scale, rotate, add propellers, etc)
+
+edit `settings.json` adding
+```
+  "PawnPaths": {
+    "DefaultQuadrotor": {"PawnBP": "Class'/Game/BP_FlyingPawn.BP_FlyingPawn_C'"}
+  },
+```
+
+`/Game/BP_FlyingPawn.BP_FlyingPawn_C` will lead to the use of the the model in `MyProject/Content/BP_FlyingPawn.uasset`
+
+note that re-naming won't work (where to change this
+
 
 ### pyhsical properties etc
 
