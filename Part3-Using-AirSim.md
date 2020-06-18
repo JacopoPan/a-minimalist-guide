@@ -46,13 +46,15 @@ Note 1: the steps to build the UE4 Editor (necessary to modify models, environme
 
 Note 2: one can also [use the binaries](https://github.com/microsoft/AirSim/releases) or [build from source](https://microsoft.github.io/AirSim/build_windows/) on Windows
 
-Note 3: [Epic Games Launcher](https://www.epicgames.com/unrealtournament/en-US/download) can be used to download maps/assets from UE4's [Marketplace](https://www.unrealengine.com/marketplace/en-US/store). It is **not available on Linux** (Windows and Mac only). Yet, assets can be transferred to Ubuntu after download ([see the next part of this guide](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part4-Modifying-AirSim.md)) and [3rd party alternatives exist](https://github.com/neutrino-steak/UE4LinuxLauncher)
+Note 3: [Epic Games Launcher](https://www.epicgames.com/unrealtournament/en-US/download) can be used to download new maps/assets from UE4's [Marketplace](https://www.unrealengine.com/marketplace/en-US/store). It is **not available on Linux** (Windows and Mac only). Yet, assets can be transferred to Ubuntu after download ([see the next part of this guide](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part4-Modifying-AirSim.md)) and [3rd party alternatives exist](https://github.com/neutrino-steak/UE4LinuxLauncher)
 
 Note 4: as of June 2020, [support for Unity](https://microsoft.github.io/AirSim/Unity/) is still experimental
 
 ### Download the precompiled environments
 
-Verify what is the latest [Linux release](https://github.com/microsoft/AirSim/releases), here we consider April 2020 [v1.3.1 release](https://github.com/microsoft/AirSim/releases/tag/v1.3.1-linux) which includes the following environments
+Find the latest AirSim's [Linux release](https://github.com/microsoft/AirSim/releases)
+
+April 2020's [v1.3.1 release](https://github.com/microsoft/AirSim/releases/tag/v1.3.1-linux) includes the following environments:
 ```
 Africa
 Blocks
@@ -63,9 +65,9 @@ Soccer Field
 TrapCam
 Zhangjiajie
 ```
-Note: v1.3.1 of [Linux](https://github.com/microsoft/AirSim/releases/tag/v1.3.1-linux) and [Windows](https://github.com/microsoft/AirSim/releases/tag/v1.3.1-windows) precompiled binaries include **different environments**
+Note: [Windows' v1.3.1](https://github.com/microsoft/AirSim/releases/tag/v1.3.1-windows) precompiled binaries include **different environments**
 
-Download all of them (approx. 8GB)
+Download all of environments (approx. 8GB)
 ```
 $ wget https://github.com/microsoft/AirSim/releases/download/v1.3.1-linux/Africa.zip
 $ wget https://github.com/microsoft/AirSim/releases/download/v1.3.1-linux/Blocks.zip
@@ -82,24 +84,23 @@ Note that `TrapCam` is split into two files that need to be concatenated before 
 $ cat TrapCam.zip.00* > TrapCam.zip
 ```
 
-### Running each environment
+### Run a precompiled environment
 
-Unzip and run the environment, e.g. for `Africa.zip`, navigate to the download folder and
+Use an environment, e.g. `Africa.zip`, by navigating to the folder where it was downloaded and running
 ```
 $ unzip Africa.zip -d Africa
 $ cd Africa
-$ ./Africa_001.sh                       # Each environment has an executable ".sh" in its top folder 
+$ ./Africa_001.sh                       # Note: each environment has a single executable ".sh" script in its top folder, its name can vary 
 ```
-Select "Yes" or "No" to start the environment with a car or drone (this prompt will disappear once you set `SimMode` in `settings.json` as shown below)
+Select "Yes" or "No" to start the environment with either a car or drone
 
-Use the `-ResX=num_x_pixels -ResY=num_y_pixels -windowed` options to set a lower resolution 
-```
-$ ./Africa_001.sh  -ResX=640 -ResY=480 -windowed
-```
+Note: this prompt will disappear once you set `SimMode` in file `~/Documents/AirSim/settings.json` (more on this below)
 
 Once the simulation starts, use `Alt`+`Enter` to switch between full screen and window views
 
-Occasionally, UE4 might capture your cursor: use `Alt`+`Tab` to navigate back to the terminal and kill the simulation with `Ctrl`+`c`; or switch Ubuntu workspace (`Ctrl`+`Alt`+top or bottom arrow) and close it from the sidebar
+Note: if the environment's display window captures your cursor:
+- Use `Alt`+`Tab` to navigate back to the terminal and kill it with `Ctrl`+`c`
+- Or switch Ubuntu workspace (`Ctrl`+`Alt`+top or bottom arrow) and close it from the sidebar (right click and `Quit`)
 
 Use `Fn`+`F1` to display this list of commands
 ```
@@ -124,26 +125,38 @@ R           Toggle recording
 T           Toggle trace line
 Backspace   Reset everything
 ```
-When starting an environment with a car (`"SimMode": "Multirotor"`), the arrows key can also be used to drive the vehicle
+When starting an environment with a car (you answered "Yes" to the prompt), the arrows key can be used to drive it
 
-Note that the `TrapCam` environment is quite complex environment and can take a few minutes to load: it can be used to simulate flora and fauna (see [this paper](https://arxiv.org/pdf/1904.05916.pdf)) and it includes an interactive interface to to adjust their configuration
+Use the `-ResX=num_x_pixels -ResY=num_y_pixels -windowed` options to set your preferred resolution 
+```
+$ ./Africa_001.sh  -ResX=640 -ResY=480 -windowed
+```
+UE 4.24 uses Vulkan drivers which can take up more GPU memory. If you get memory allocation errors, you can swithc to OpenGL with
+```
+$ ./Africa_001.sh  -ResX=640 -ResY=480 -windowed -opengl
+```
+Note: the `TrapCam` environment is a quite complex one and it can take a few minutes to load: it simulates flora and fauna (see [this paper](https://arxiv.org/pdf/1904.05916.pdf)) and it includes an interactive interface to to adjust their configuration
 
-### Personalizing a simulation using `setting.json`
 
-The first time you run AirSim, it will create the following file ` ~/Documents/AirSim/settings.json` that will be loaded by all subsequent simulations; originally it only contains the following lines
+
+### Customize a simulation with `settings.json`
+
+The very first time you run AirSim, it will create file ` ~/Documents/AirSim/settings.json` with the following lines:
 ```
 {
   "SeeDocsAt": "https://github.com/Microsoft/AirSim/blob/master/docs/settings.md",
   "SettingsVersion": 1.2
 }
 ```
-The documentation for this file is located [here](https://github.com/Microsoft/AirSim/blob/master/docs/settings.md); `settings.json` contains
-- Vehicle settings
-- Camera settings
-- Time-of-day settings
-- etc.
+`settings.json` will be loaded everytime you load the AirSim plugin (e.g., running precompiled binaries or pressing "Play" in the UE4 Editor)
 
-Copy the following into `settings.json` starts a simulation with 2 quadcopters, 2 meters apart, from an observer POV
+`settings.json` can be used to configure many world's, vehicles', and cameras' parameters⁠—a complete list is provided [here](https://github.com/Microsoft/AirSim/blob/master/docs/settings.md)
+
+For example, copy the following into `settings.json` to start a simulation 
+- Using quadcopters (`"SimMode": "Multirotor"`)
+- Containing 2 of them (named `Drone0` and `Drone1`)
+- Setting them 2 meters apart along the `X` axis
+- And making the default `ViewMode` that of a `GroundObserver`
 ```
 {
   "SeeDocsAt": "https://github.com/Microsoft/AirSim/blob/master/docs/settings.md",
@@ -162,25 +175,26 @@ Copy the following into `settings.json` starts a simulation with 2 quadcopters, 
   }
 }
 ```
-[`SimpleFlight`](https://github.com/microsoft/AirSim/blob/master/docs/simple_flight.md) is AirSim's default [flight controller](https://github.com/microsoft/AirSim/blob/master/docs/flight_controller.md) (see its [code](https://github.com/microsoft/AirSim/tree/master/AirLib/include/vehicles/multirotor/firmwares/simple_flight)); a few other relevant notes from the documentation
+Note 1: `VehicleType` can be either `PhysXCar`, `SimpleFlight`, `PX4Multirotor`, or `ComputerVision`; as there is no default value, it must be specified
 
-> VehicleType: This could be either PhysXCar, SimpleFlight, PX4Multirotor or ComputerVision. There is no default value therefore this element must be specified.
+Note 2: [`SimpleFlight`](https://github.com/microsoft/AirSim/blob/master/docs/simple_flight.md) is AirSim's default [flight controller](https://github.com/microsoft/AirSim/blob/master/docs/flight_controller.md) (see its code [here](https://github.com/microsoft/AirSim/tree/master/AirLib/include/vehicles/multirotor/firmwares/simple_flight))
 
-> For cars, we support only PhysX for now (regardless of value in this setting). For multirotors, we support "FastPhysicsEngine" only.
+Note 3: `"ViewMode": "noDisplay",` can be used to [freeze rendering](https://microsoft.github.io/AirSim/settings/#viewmode) while still exposing AirSim's APIs (including the ones for compute vision) and improve performance (i.e., frames per second)
 
-Run the Africa environment again to see 2 drones in it (or neighborhood?)
+Note 4: while a `PhysicsEngineName` setting exists, AirSim only supports `PhysX` for cars and `FastPhysicsEngine` for multirotors
+
+Running the `Africa` environment again will display 2 drones within it
 ```
 $ ./Africa_001.sh  -ResX=640 -ResY=480 -windowed
 ```
 
-> UE 4.24 uses Vulkan drivers by default, but they can consume more GPU memory. If you get memory allocation errors, then you can try switching to OpenGL using `-opengl`
 
-noDisplay option
-https://microsoft.github.io/AirSim/settings/#viewmode NoDisplay(?)
+
+
 
 ### Using AirSim Python APIs with Anaconda
 
-AirSim exposes [Python aAPIs](https://microsoft.github.io/AirSim/apis/) to control vehicles—the use AirSim's C++ APIs is detailed below in this guide)—and, as of May 2020, Python 3.5 (or newer) and Anconda are recommended for their use
+AirSim exposes [Python APIs](https://microsoft.github.io/AirSim/apis/) to control vehicles—the use AirSim's C++ APIs is detailed below in this guide)—and, as of May 2020, Python 3.5 (or newer) and Anconda are recommended for their use
 
 More thorough instructions to install and use `coda` are provided in [`README.md` of this repository](https://github.com/JacopoPan/a-minimalist-guide/blob/master/README.md); these are minimal steps
 ```
@@ -228,6 +242,7 @@ add one of these (?)
 conda install opencv
 ```
 
+airsim v1.2.8
 
 Install [AirSim's Python APIs](https://pypi.org/project/airsim/)
 ```
@@ -237,11 +252,9 @@ $ pip install airsim
 
 
 
-----------
-```
-WIP below here
-```
-----------
+
+
+
 
 point out the difference between 
 using pip
@@ -398,10 +411,6 @@ https://microsoft.github.io/AirSim/settings/
     }
 }
 ```
-
-px4 settings? (ignore for now)
-https://microsoft.github.io/AirSim/settings/#additional-px4-settings
-
 
 
 uninstall from (base)
@@ -808,6 +817,36 @@ in total 3 main nodes
 - wrapper around the c++ apis
 - rviz
 - pd controler (contains bugs) add a minimal fix here or not?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
