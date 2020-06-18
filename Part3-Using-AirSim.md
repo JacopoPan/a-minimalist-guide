@@ -52,8 +52,7 @@ Note 4: as of June 2020, [support for Unity](https://microsoft.github.io/AirSim/
 
 ### Download the precompiled environments
 
-Find the latest AirSim's [Linux release](https://github.com/microsoft/AirSim/releases)
-
+Find the latest AirSim's [Linux release](https://github.com/microsoft/AirSim/releases); 
 April 2020's [v1.3.1 release](https://github.com/microsoft/AirSim/releases/tag/v1.3.1-linux) includes the following environments:
 ```
 Africa
@@ -175,7 +174,7 @@ For example, copy the following into `settings.json` to start a simulation
   }
 }
 ```
-Note 1: `VehicleType` can be either `PhysXCar`, `SimpleFlight`, `PX4Multirotor`, or `ComputerVision`; as there is no default value, it must be specified
+Note 1: `VehicleType` can be `PhysXCar`, `SimpleFlight`, `PX4Multirotor`, or `ComputerVision`; there is no default value: it must be specified
 
 Note 2: [`SimpleFlight`](https://github.com/microsoft/AirSim/blob/master/docs/simple_flight.md) is AirSim's default [flight controller](https://github.com/microsoft/AirSim/blob/master/docs/flight_controller.md) (see its code [here](https://github.com/microsoft/AirSim/tree/master/AirLib/include/vehicles/multirotor/firmwares/simple_flight))
 
