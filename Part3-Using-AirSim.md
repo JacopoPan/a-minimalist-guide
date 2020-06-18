@@ -34,17 +34,19 @@ Open a terminal (`Ctrl`+`Alt`+`t`) and run command `$ nvidia-smi`: it will repor
 
 AirSim ([Documentation](https://microsoft.github.io/AirSim/),[GitHub](https://github.com/microsoft/AirSim)) is an open source, photorealistic simulator for drones and ground vehicles developed on top of Epic's [Unreal Engine 4](https://github.com/EpicGames/UnrealEngine) (UE4) by Microsoft Research ([arXiv paper](https://arxiv.org/abs/1705.05065))
 
-The rest of this section is about **running AirSim UE4 binaries and using its Python APIs** on Ubuntu 18
+Concretely, AirSim is a [_UE4 Plugin_](https://docs.unrealengine.com/en-US/Programming/Plugins/index.html): code and data you can add to any UE4 project
 
-Instructions on how to compile both UE4 and AirSim sources on Ubuntu 18 are later in this guide
+The simplest way to use AirSim on Ubuntu 18 is to:
+- Run the binaries of a **precompiled UE4 environment** containing the AirSim pluging
+- Control the robots through AirSim's **Python APIs**
 
-Alternatively, one can
-- [Run AirSim binaries on Windows](https://github.com/microsoft/AirSim/releases) 
-- Or [install UE4 and compile AirSim sources on Windows](https://microsoft.github.io/AirSim/build_windows/)
+Note 1: the steps to build the UE4 Editor (necessary to modify models, environments, and add the AirSim plugin) and AirSim (including Python/C++ libraries and ROS nodes to interface with it) are given below
 
-Note that v1.3.1 of [Linux](https://github.com/microsoft/AirSim/releases/tag/v1.3.1-linux) and [Windows](https://github.com/microsoft/AirSim/releases/tag/v1.3.1-windows) precompiled binaries include **different environments**
+Note 2: one can also [use the binaries](https://github.com/microsoft/AirSim/releases) or [build from source](https://microsoft.github.io/AirSim/build_windows/) on Windows
 
-As of May 2020, [support for Unity](https://microsoft.github.io/AirSim/Unity/) is still experimental
+Note 3: one piece of software not available on Lainux—but **Windows and Mac only**—is [Epic Games Launcher](https://www.epicgames.com/unrealtournament/en-US/download). This is useful to down
+
+Note 4: As of June 2020, [support for Unity](https://microsoft.github.io/AirSim/Unity/) is still experimental
 
 ### Download the precompiled environments
 
@@ -59,6 +61,8 @@ Soccer Field
 TrapCam
 Zhangjiajie
 ```
+Note: v1.3.1 of [Linux](https://github.com/microsoft/AirSim/releases/tag/v1.3.1-linux) and [Windows](https://github.com/microsoft/AirSim/releases/tag/v1.3.1-windows) precompiled binaries include **different environments**
+
 Download all of them (approx. 8GB)
 ```
 $ wget https://github.com/microsoft/AirSim/releases/download/v1.3.1-linux/Africa.zip
