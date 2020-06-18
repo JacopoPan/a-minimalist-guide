@@ -14,16 +14,6 @@ Everything after a `$` is entered on a terminal; everything after `>>>` is passe
 --------------
 
 
-
-
-## Headless AirSim on a remote server
-
-TBD, ideally on Vector's cluster
-example of distributed RL with Azure
-https://github.com/microsoft/AutonomousDrivingCookbook/tree/master/DistributedRL
-
-
-
 ## Modifying AirSim
 
 code structure
@@ -70,6 +60,9 @@ multirotor model, etc.
 https://github.com/microsoft/AirSim/blob/master/AirLib/include/vehicles/multirotor/MultiRotorParams.hpp
 
 https://github.com/microsoft/AirSim/blob/master/AirLib/include/vehicles/multirotor/firmwares/simple_flight/SimpleFlightQuadXParams.hpp
+
+
+
 
 
 
@@ -398,64 +391,79 @@ if/when you modify or update AirSim, remember to replace the Plugins folder in t
 
 ## Customizing the drone model
 
-https://microsoft.github.io/AirSim/custom_drone/
+e.g. the hexacopter 3d model from https://github.com/Microsoft/AirSim/wiki/hexacopter
+```
+wget https://github.com/Microsoft/AirSim/wiki/images/DJI%20S900.zip
+```
+the .obj static mesh of this model https://grabcad.com/library/dji-s900-hex-rotor-drone-1 
+in step format https://en.wikipedia.org/wiki/ISO_10303-21
 
-### pyhsics and 3D model
-
-use own model
+use custom model
 https://microsoft.github.io/AirSim/settings/#pawnpaths
 
-from 2017: https://github.com/Microsoft/AirSim/wiki/hexacopter
-- use the same model
-- does the physics code still exists?
+> This allows you to specify your own vehicle pawn blueprints, for example, you can replace the default car in AirSim with your own car. 
 
-For cars, we support only PhysX for now (regardless of value in this setting). For multirotors, we support "FastPhysicsEngine" only.
+> Your vehicle BP can reside in Content folder of your own Unreal project (i.e. outside of AirSim plugin folder). For example, if you have a car BP located in file Content\MyCar\MySedanBP.uasset in your project then you can set "DefaultCar": {"PawnBP":"Class'/Game/MyCar/MySedanBP.MySedanBP_C'"}. 
 
+> The XYZ.XYZ_C is a special notation required to specify class for BP XYZ. 
 
+> Please note that your BP must be derived from CarPawn class. By default this is not the case but you can re-parent the BP using the "Class Settings" button in toolbar in UE editor after you open the BP and then choosing "Car Pawn" for Parent Class settings in Class Options. 
 
-
-
-
+> It's also a good idea to disable "Auto Possess Player" and "Auto Possess AI" as well as set AI Controller Class to None in BP details. Please make sure your asset is included for cooking in packaging options if you are creating binary.
 
 
 
+### pyhsical properties etc
+
+> For cars, we support only PhysX for now (regardless of value in this setting). For multirotors, we support "FastPhysicsEngine" only.
+
+
+You can create new config like this for physics parameters: https://github.com/Microsoft/AirSim/blob/v1.1.10/AirLib/include/vehicles/multirotor/configs/SimpleFlightQuadX.hpp
+
+transfer px4 hex physics to simple flight 
+https://github.com/Microsoft/AirSim/wiki/hexacopter
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------
+--------------
+--------------
+
+TBD
 
 ## Create new binaries
 
 For custom environment/airsim
-at once ore in separate steps?
-TBD
+
+## Headless AirSim on a remote server
+
+TBD, ideally on Vector's cluster
+example of distributed RL with Azure
+https://github.com/microsoft/AutonomousDrivingCookbook/tree/master/DistributedRL
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## (optional) ROS installation from source
-
-TBD, if needed
-
-## (alternative) Docker installation
-
-TBD, if needed https://github.com/Microsoft/AirSim/blob/master/docs/docker_ubuntu.md
-TBD
-
-## (optional) PX4 flight controller
+## PX4 flight controller
 
 ### SITL
 
@@ -475,4 +483,7 @@ on linux https://microsoft.github.io/AirSim/remote_control/
 see "RC" under vehicle in `settings.json`
 
 https://microsoft.github.io/AirSim/px4_setup/
+
+real custom drone: 
+https://microsoft.github.io/AirSim/custom_drone/
 
