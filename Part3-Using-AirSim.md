@@ -46,7 +46,7 @@ Note 1: the steps to build the UE4 Editor (necessary to modify models, environme
 
 Note 2: one can also [use the binaries](https://github.com/microsoft/AirSim/releases) or [build from source](https://microsoft.github.io/AirSim/build_windows/) on Windows
 
-Note 3: one piece of software not available on Linux—but **Windows and Mac only**—is [Epic Games Launcher](https://www.epicgames.com/unrealtournament/en-US/download). This is useful to download maps and other assets for the UE4 Editor from UE4's [Marketplace](https://www.unrealengine.com/marketplace/en-US/store). Yet, these assets can be easily transferred to Ubuntu once downloaded ([see the next part of this guide](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part4-Modifying-AirSim.md)) and [3rd party alternatives exist](https://github.com/neutrino-steak/UE4LinuxLauncher)
+Note 3: [Epic Games Launcher](https://www.epicgames.com/unrealtournament/en-US/download) can be used to download maps and other assets for the UE4 Editor from UE4's [Marketplace](https://www.unrealengine.com/marketplace/en-US/store). It is **not available on Linux** (Windows and Mac only). Yet, assets can be transferred to Ubuntu once downloaded ([see the next part of this guide](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part4-Modifying-AirSim.md)) and [3rd party alternatives exist](https://github.com/neutrino-steak/UE4LinuxLauncher)
 
 Note 4: as of June 2020, [support for Unity](https://microsoft.github.io/AirSim/Unity/) is still experimental
 
