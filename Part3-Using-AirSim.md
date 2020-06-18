@@ -9,9 +9,9 @@ Everything after a `$` is entered on a terminal; everything after `>>>` is passe
 
 ## Ubuntu 18.04 and NVIDIA proprietary drivers on Lenovo P52
 
-Download Ubuntu 18.04 LTS 64-bit .iso: `$ wget https://releases.ubuntu.com/18.04/ubuntu-18.04.4-desktop-amd64.iso` and create a bootable USB stick (e.g., on Ubuntu, using [Startup Disk Creator](https://ubuntu.com/tutorials/tutorial-create-a-usb-stick-on-ubuntu#4-iso-and-usb-selection))
+Download Ubuntu 18.04 LTS's 64-bit ISO image: `$ wget https://releases.ubuntu.com/18.04/ubuntu-18.04.4-desktop-amd64.iso` and create a bootable USB stick (e.g., on Ubuntu, using [Startup Disk Creator](https://ubuntu.com/tutorials/tutorial-create-a-usb-stick-on-ubuntu#4-iso-and-usb-selection))
 
-**Important**: at boot time, enter P52's bios pressing `Enter`, then `F1`
+**Important**: at boot time, enter the Lenovo P52's BIOS pressing `Enter`, then `F1`
 
 1. Under the `Config` menu, enter the `Display` submenu
 - Set `Graphic Device` to `Discrete Graphics` (and not `Hybrid Graphics`)⁠—this will prevent crashes during the installation
@@ -22,11 +22,13 @@ Install Ubuntu 18 (if possible, use Wi-Fi to "download updates and install 3rd p
 
 At the time of the first login, click the gear icon besides "Sign in"; choose "Ubuntu on [Wayland](https://wiki.ubuntu.com/Wayland)"
 
-The graphical interface will be very slow⁠—this is expected—if prompted, install updates from "Software Updater" 
+The graphical interface will be very slow⁠—this is expected, the system is not using the GPU nor the CPU integrated graphics
 
-Open the "Software & Updates" application: NVIDIA proprietary driver `nvidia-driver-440` should be available
+If prompted, install updates from "Software Updater" 
 
-Select it, click apply, and reboot: this time around, the graphical interface should be runing smoothly
+Open the "Software & Updates" application: NVIDIA's proprietary driver `nvidia-driver-440` should be available
+
+Select it, click apply, and reboot: this time around, the graphical interface will be running smoothly
 
 Open a terminal (`Ctrl`+`Alt`+`t`) and run command `$ nvidia-smi`: it will report the use of driver 440 and CUDA 10.2
 
@@ -40,13 +42,13 @@ The simplest way to use AirSim on Ubuntu 18 is to:
 - Run the binaries of a **precompiled UE4 environment** containing the AirSim pluging
 - Control the robots through AirSim's **Python APIs**
 
-Note 1: the steps to build the UE4 Editor (necessary to modify models, environments, and add the AirSim plugin) and AirSim (including Python/C++ libraries and ROS nodes to interface with it) are given below
+Note 1: the steps to build the UE4 Editor (necessary to modify models, environments, and add the AirSim plugin) and AirSim (including Python/C++ libraries and ROS nodes to interface with it) from source code are given below
 
 Note 2: one can also [use the binaries](https://github.com/microsoft/AirSim/releases) or [build from source](https://microsoft.github.io/AirSim/build_windows/) on Windows
 
-Note 3: one piece of software not available on Lainux—but **Windows and Mac only**—is [Epic Games Launcher](https://www.epicgames.com/unrealtournament/en-US/download). This is useful to down
+Note 3: one piece of software not available on Linux—but **Windows and Mac only**—is [Epic Games Launcher](https://www.epicgames.com/unrealtournament/en-US/download). This is useful to download maps and other assets for the UE4 Editor from UE4's [Marketplace](https://www.unrealengine.com/marketplace/en-US/store). Yet, these assets can be easily transferred to Ubuntu once downloaded ([see the next part of this guide](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part4-Modifying-AirSim.md)) and [3rd party alternatives exist](https://github.com/neutrino-steak/UE4LinuxLauncher)
 
-Note 4: As of June 2020, [support for Unity](https://microsoft.github.io/AirSim/Unity/) is still experimental
+Note 4: as of June 2020, [support for Unity](https://microsoft.github.io/AirSim/Unity/) is still experimental
 
 ### Download the precompiled environments
 
