@@ -466,35 +466,40 @@ https://github.com/Microsoft/AirSim/wiki/hexacopter
 
 
 
---------------
---------------
---------------
 
-TBD
 
 ## Create new binaries
 
 For custom environment/airsim
 
-## Headless AirSim on a remote server
-
-TBD, ideally on Vector's cluster
-example of distributed RL with Azure
-https://github.com/microsoft/AutonomousDrivingCookbook/tree/master/DistributedRL
-
+https://docs.unrealengine.com/en-US/Engine/Basics/Projects/Packaging/index.html
 
 ## PX4 flight controller
 
 ### SITL
 
-https://microsoft.github.io/AirSim/px4_sitl/ /  https://microsoft.github.io/AirSim/px4_build/
+https://microsoft.github.io/AirSim/px4_sitl/ 
+
+https://microsoft.github.io/AirSim/px4_build/
+
+https://github.com/microsoft/AirSim/issues/2647
 
 px4 and mavlink
 - https://github.com/Microsoft/AirSim/wiki/Intercepting-MavLink-messages
 - https://microsoft.github.io/AirSim/px4_logging/
 - https://microsoft.github.io/AirSim/mavlinkcom/
 
-### HTIL 
+
+
+
+
+--------------
+--------------
+--------------
+
+TBD
+
+### (INTB) HTIL 
 
 left for later
 
@@ -506,4 +511,11 @@ https://microsoft.github.io/AirSim/px4_setup/
 
 real custom drone: 
 https://microsoft.github.io/AirSim/custom_drone/
+
+## Headless AirSim on a remote server
+
+TBD, ideally on Vector's cluster
+example of distributed RL with Azure
+https://github.com/microsoft/AutonomousDrivingCookbook/tree/master/DistributedRL
+
 
