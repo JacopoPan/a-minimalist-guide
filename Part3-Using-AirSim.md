@@ -185,10 +185,6 @@ Running the `Africa` environment again will display 2 drones within it
 $ ./Africa_001.sh  -ResX=640 -ResY=480 -windowed
 ```
 
-
-
-
-
 ### Using AirSim Python APIs with Anaconda
 
 AirSim exposes [Python APIs](https://microsoft.github.io/AirSim/apis/) to control vehicles—the use AirSim's C++ APIs is detailed below in this guide)—and, as of May 2020, Python 3.5 (or newer) and Anconda are recommended for their use
@@ -414,20 +410,24 @@ uninstall from (base)
 ```
 pip uninstall airsim
 ```
+why
 
 
 
 
-setup and build Unreal / AirSim here..
 
-## Compiling the Unreal Engine 4 and AirSim from source
+
+
+## Building Unreal Engine 4 and AirSim from source
+
+what this is for
 
 recompiling airsim is required to modify the flight controller implementation
 (note to self, but is it needed to re-compile UE4 or can we re-use binaries for that?)
 
 in my case, i'm building outside the conda env
 
-### UE4
+### Build UE4 and UE4Editor
 
 required to build airsim
 
@@ -457,7 +457,7 @@ a few tempnam warnings
 full docs
 https://docs.unrealengine.com/en-US/Platforms/Linux/index.html
 
-### AirSim
+### Build AirSim
 
 ```
 cd ..
@@ -468,7 +468,7 @@ cd AirSim
 ```
 throws plenty of warnings
 
-## first use
+### First use of the (built) UE4Editor, Blocks environment, and Python APIs
 
 - remove pip installed airsim if any an add build path to pythonpath
 
@@ -534,9 +534,6 @@ import airsim
 ```
 
 
-
-
-
 conda list -> no airsim
 
 import airsim only works in ~/AirSim/PythonClient
@@ -548,14 +545,7 @@ echo  'export PYTHONPATH=~/AirSim/PythonClient:$PYTHONPATH' >> ~/.bashrc # note 
 source ~/.bashrc
 ```
 
-
-
-
-
-
-
-
-### Using AirSim C++ APIs
+### Compile an executable that uses AirSim C++ APIs
 
 use with C++
 see includes and examples https://microsoft.github.io/AirSim/apis_cpp/
@@ -623,7 +613,9 @@ or just build if you already run setup
 
 
 
-### Using AirSim and ROS Melodic
+### AirSim and ROS Melodic
+
+#### Install ROS Melodic
 
 install ros steps (point below for installation from source)
 
@@ -641,6 +633,8 @@ sudo apt install python-rosdep
 sudo rosdep init
 rosdep update
 ```
+
+#### Build AirSim ROS nodes
 
 additional reqs
 ```
@@ -663,6 +657,26 @@ build airsim and ros nodes
 cd ~/AirSim/ros
 catkin_make
 ```
+
+
+notes on debugging of the pd controller
+
+eg pd_position_controller_simple.cpp
+line 64 subscribes to "/airsim_node/odom_local_ned" but it should be "/airsim_node/VEHICLE_NAME/odom_local_ned"
+
+>  think the yaw max velocity was used instead of the max z velocity. Double check lines 333 to 338 in pd_position_controller_simple.cpp , vel_cmd_.twist.angular.z should be replaced with vel_cmd_.twist.linear.z
+
+in total 3 main nodes
+- wrapper around the c++ apis
+- rviz
+- pd controler (contains bugs) add a minimal fix here or not?
+
+
+
+
+
+
+#### Launch AirSim ROS nodes
 
 ```
 source ~/AirSim/ros/devel/setup.bash
@@ -699,6 +713,8 @@ $ roslaunch airsim_ros_pkgs airsim_node.launch;
 $ roslaunch airsim_ros_pkgs rviz.launch
 ```
 
+
+#### AirSim's ROS nodes' topics and services
 
 http://wiki.ros.org/rostopic#rostopic_list
 http://wiki.ros.org/rosservice#rosservice_list
@@ -791,7 +807,7 @@ bool waitOnLastTask
 bool success
 ```
 
-note on other launch files but some seem wip
+notes on other launch files
 
 ```
 jacopo@jacopo-ThinkPad-P52:~/AirSim/ros/src/airsim_ros_pkgs/launch$ ls
@@ -804,16 +820,6 @@ rviz.launch
 static_transforms.launch
 ```
 
-eg pd_position_controller_simple.cpp
-line 64 subscribes to "/airsim_node/odom_local_ned" but it should be "/airsim_node/VEHICLE_NAME/odom_local_ned"
-
->  think the yaw max velocity was used instead of the max z velocity. Double check lines 333 to 338 in pd_position_controller_simple.cpp , vel_cmd_.twist.angular.z should be replaced with vel_cmd_.twist.linear.z
-
-
-in total 3 main nodes
-- wrapper around the c++ apis
-- rviz
-- pd controler (contains bugs) add a minimal fix here or not?
 
 
 
