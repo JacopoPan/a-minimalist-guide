@@ -187,9 +187,9 @@ $ ./Africa_001.sh  -ResX=640 -ResY=480 -windowed
 
 ### Using AirSim Python APIs with Anaconda
 
-AirSim exposes [Python APIs](https://microsoft.github.io/AirSim/apis/) to control vehicles—the use AirSim's C++ APIs is detailed below in this guide)—and, as of May 2020, Python 3.5 (or newer) and Anconda are recommended for their use
+AirSim exposes [Python APIs](https://github.com/microsoft/AirSim/blob/master/docs/apis.md) to control vehicles—as of June 2020, Python 3.5 (or newer) and Anconda are recommended for their use
 
-More thorough instructions to install and use `coda` are provided in [`README.md` of this repository](https://github.com/JacopoPan/a-minimalist-guide/blob/master/README.md); these are minimal steps
+More thorough instructions to install and use `coda` are provided in [here](https://github.com/JacopoPan/a-minimalist-guide#install-conda); these are minimal steps
 ```
 $ sudo apt-get install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
 $ wget https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
@@ -204,19 +204,19 @@ Finally, run
 $ source ~/.bashrc
 $ conda config --set auto_activate_base False   #this turns off the auto-activation of the (base) environment
 ```
-Verify you can exit and re-enter the `(base)` `conda`'s environment 
+Verify that you can exit and re-enter the default `conda` environment called `(base)`
 ```
 $ conda deactivate
 $ conda activate
 ```
-Note that in Ubuntu 18 the default Pyhton is `python3` (version 3.6) while in `conda`'s environment `(base)` the interpreter is `python` (version 3.7) and `pip` is pre-installed⁠—which is not the case in Ubuntu 18, outside `(base)`)
+Note: Ubuntu 18's default Pyhton is `python3` (version 3.6) without `pip`; in `conda`'s environment `(base)` the interpreter is called `python` (version 3.7) and `pip` is pre-installed⁠
 
-In `(base)`, install inter-process messaging library MessagePack-RPC 
+In `(base)`, install the inter-process messaging library [MessagePack-RPC](https://github.com/msgpack-rpc/msgpack-rpc)
 ```
 $ conda activate
 $ pip install msgpack-rpc-python
 ```
-Note that this might throw the following error and roll back `tornato` from version 6.0.3 to 4.5.3—**this is ok**
+Note that this might throw an error and roll-back `tornado` from version 6.0.3 to 4.5.3—**this is ok**
 ```
 ERROR: notebook 6.0.3 has requirement tornado>=5.0, but you'll have tornado 4.5.3 which is incompatible.
 ERROR: distributed 2.11.0 has requirement tornado>=5; python_version < "3.8", but you'll have tornado 4.5.3 which is incompatible.
@@ -227,39 +227,18 @@ Installing collected packages: msgpack-python, tornado, msgpack-rpc-python
       Successfully uninstalled tornado-6.0.3
 Successfully installed msgpack-python-0.5.6 msgpack-rpc-python-0.4.1 tornado-4.5.3
 ```
-otherwise check this https://microsoft.github.io/AirSim/faq/#when-making-api-call-i-get-error
+If `tornado` is accidentally upgraded later on, check [this fix](https://github.com/microsoft/AirSim/blob/master/docs/faq.md#when-making-api-call-i-get-error)
 
-add one of these (?)
+Install [AirSim's Python APIs](https://pypi.org/project/airsim/) (as of June 2020, v1.2.8) in `(base)` from the Python Package Index (PyPI)
 ```
-(base) pip install opencv-python
-conda install opencv
-```
-
-airsim v1.2.8
-
-Install [AirSim's Python APIs](https://pypi.org/project/airsim/)
-```
+$ conda activate
 $ pip install airsim
 ```
-
-
-
-
-
-
-
-
-point out the difference between 
-using pip
-and building AirSim (`import airsim` will only work within `AirSim/PythonClient`)
-use conda with both (e.g. numpy is already in (base))
-
-in doubt
-conda activate
-pip uninstall airsim
-
-see `AirSim/PythonClient/setup_path.py`
-
+Note: to eventually modify AirSim's Python APIs, **remember to uninstall this package** and use a local build from source (more on this below)
+```
+$ conda activate
+$ pip uninstall airsim
+```
 
 ### 2-drone example
 
@@ -354,6 +333,13 @@ client.simSetCameraOrientation("0", airsim.to_quaternion(0.261799, 0, 0)); #radi
 png/rgb/float/pfm format apis
 https://microsoft.github.io/AirSim/image_apis/
 https://microsoft.github.io/AirSim/pfm/
+
+run one of these two if using import cv2
+```
+(base) pip install opencv-python
+conda install opencv
+```
+
 
 run an environments (refer to json with 2 drones)
 
