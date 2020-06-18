@@ -798,6 +798,12 @@ line 64 subscribes to "/airsim_node/odom_local_ned" but it should be "/airsim_no
 >  think the yaw max velocity was used instead of the max z velocity. Double check lines 333 to 338 in pd_position_controller_simple.cpp , vel_cmd_.twist.angular.z should be replaced with vel_cmd_.twist.linear.z
 
 
+in total 3 main nodes
+- wrapper around the c++ apis
+- rviz
+- pd controler (contains bugs) add a minimal fix here or not?
+
+
 
 ## List of AirSim Python APIs
 
