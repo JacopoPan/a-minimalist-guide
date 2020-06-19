@@ -599,10 +599,10 @@ line 64 subscribes to "/airsim_node/odom_local_ned" but it should be "/airsim_no
 
 Finally, build AirSim's ROS nodes; add to `~/.bashrc` and source the `~/AirSim/ros/` workspace
 ```
-cd ~/AirSim/ros
-catkin_make
-echo  "source ~/AirSim/ros/devel/setup.bash" >> ~/.bashrc
-source ~/.bashrc
+$ cd ~/AirSim/ros
+$ catkin_make
+$ echo  "source ~/AirSim/ros/devel/setup.bash" >> ~/.bashrc
+$ source ~/.bashrc
 ```
 
 #### Launch AirSim ROS nodes
@@ -613,8 +613,8 @@ in total 3 main nodes
 - pd controler (contains bugs) add a minimal fix here or not?
 
 ```
-roslaunch airsim_ros_pkgs airsim_node.launch
-roslaunch airsim_ros_pkgs rviz.launch
+$ roslaunch airsim_ros_pkgs airsim_node.launch
+$ roslaunch airsim_ros_pkgs rviz.launch
 ```
 provided examples
 
@@ -666,8 +666,6 @@ Subscribed topics:
  * /airsim_node/Drone1/vel_cmd_world_frame [airsim_ros_pkgs/VelCmd] 1 subscriber
  * /airsim_node/MyQuad/odom_local_ned [nav_msgs/Odometry] 1 subscriber
 
-
-
 jacopo@jacopo-ThinkPad-P52:~$ rosservice list -n
 
 /airsim_node/Drone0/land /airsim_node
@@ -694,23 +692,20 @@ jacopo@jacopo-ThinkPad-P52:~$ rosservice list -n
 /rviz/save_config /rviz
 /rviz/set_logger_level /rviz
 ```
-
 usage of services
 ```
-rostopic echo /airsim_node/Drone0/global_gps
+$ rostopic echo /airsim_node/Drone0/global_gps
 
 jacopo@jacopo-ThinkPad-P52:~$ rosservice call /airsim_node/Drone0/takeoff 0
 success: False
 jacopo@jacopo-ThinkPad-P52:~$ rosservice call /airsim_node/Drone0/land 0
 success: False
 ```
-
 tab to auto complete
 ```
  rosservice call /airsim_node/Drone0/takeoff "waitOnLastTask: false" 
 ```
-
-
+aaa
 ```
 rosservice type /airsim_node/Drone0/takeoff | rossrv show
 
@@ -719,9 +714,7 @@ bool waitOnLastTask
 ---
 bool success
 ```
-
 notes on other launch files
-
 ```
 jacopo@jacopo-ThinkPad-P52:~/AirSim/ros/src/airsim_ros_pkgs/launch$ ls
 airsim_all.launch
@@ -765,33 +758,24 @@ static_transforms.launch
 
 
 
+documenting the APIs with the help of James
 
 ## List of AirSim Python APIs
 
-make sure to disamibguate old and new apis https://microsoft.github.io/AirSim/upgrade_apis/
-
-explain `duration` `max_wait_seconds` `Async` `join` etc
-
-expalin drivetrain, yaw_mode, lookahead, and adaptive_lookahead
-
-documenting the APIs with the help of James
-
 https://github.com/microsoft/AirSim/blob/master/PythonClient/airsim/client.py
+- make sure to disamibguate old and new apis https://microsoft.github.io/AirSim/upgrade_apis/
+- explain `duration` `max_wait_seconds` `Async` `join` etc
+- explain drivetrain, yaw_mode, lookahead, and adaptive_lookahead
+- make sure to cover the sensors in https://microsoft.github.io/AirSim/sensors/ including lidar
+[link](https://microsoft.github.io/AirSim/lidar/)
+[link](https://github.com/microsoft/AirSim/blob/master/PythonClient/multirotor/drone_lidar.py)
 
-By default AirSim uses carrot following algorithm.
-
+Check claims
+> By default AirSim uses carrot following algorithm.
 > Currently lowest level control available in AirSim is moveByAngleThrottleAsync
 
 not true, as pointed out by James, https://github.com/microsoft/AirSim/blob/827f1f55df68eb1d026390e6db06c9dd11152ba2/PythonClient/airsim/client.py#L793
 
-sensors 
-https://microsoft.github.io/AirSim/sensors/
-
-lidar needs to be enabled in settings https://microsoft.github.io/AirSim/lidar/
-example https://github.com/microsoft/AirSim/blob/master/PythonClient/multirotor/drone_lidar.py
-
 ## List of AirSim C++ APIs
-
-documenting in full with the help of James
 
 https://github.com/microsoft/AirSim/blob/master/AirLib/src/vehicles/multirotor/api/MultirotorApiBase.cpp
