@@ -183,7 +183,7 @@ Running the `Africa` environment again will display 2 drones within it
 $ ./Africa_001.sh  -ResX=640 -ResY=480 -windowed
 ```
 
-### Option A: Use AirSim Python APIs with Anaconda
+### Option A: use AirSim's Python APIs with Anaconda
 
 AirSim exposes [Python APIs](https://github.com/microsoft/AirSim/blob/master/docs/apis.md) to control vehicles—as of June 2020, Python 3.5 (or newer) and Anconda are recommended for their use
 
