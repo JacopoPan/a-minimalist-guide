@@ -408,145 +408,100 @@ $ pip uninstall airsim
 
 ## Building Unreal Engine 4 and AirSim from source
 
-what this is for
+Building the Unreal Engine 4 (and Editor) and AirSim allows to use the latter's C++ APIs and their ROS wrapper node.
 
-recompiling airsim is required to modify the flight controller implementation
-(note to self, but is it needed to re-compile UE4 or can we re-use binaries for that?)
-
-in my case, i'm building outside the conda env
+The UE4 Editor and AirSim source code are also necessary to create custom maps, robot models, flight controllers, new APIs, etc. as shown in the [next part of this guide](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part4-Modifying-AirSim.md)
 
 ### Build UE4 and UE4Editor
 
-required to build airsim
+The first step is to build the [Unreal Engine 4.24 on Ubuntu 18](https://docs.unrealengine.com/en-US/Platforms/Linux/index.html), to do so, one needs
+- A [GitHub account](https://github.com/login)
+- An [Epic account](https://www.epicgames.com/id/login)
 
-to get ue4 sources you need
-github account https://github.com/
-epic account https://www.epicgames.com/id/login
-follow these instructions https://www.unrealengine.com/en-US/ue4-on-github
-to link your github and epic accounts
-to be added to epic dev team on github https://github.com/orgs/EpicGames/teams/developers
-and be able to clone https://github.com/EpicGames/UnrealEngine
+Follow [these instructions](https://www.unrealengine.com/en-US/ue4-on-github) to link your GitHub and Epic accounts
 
-as of may 2020, 4.25 is the latest
-we are using 4.24 as recommended in airsim docs
+Once you have been added to [Epic Games' organization](https://github.com/EpicGames) as a [developer](https://github.com/orgs/EpicGames/teams/developers), you will be able to `git clone` [UE4's source code](https://github.com/EpicGames/UnrealEngine)
 
+As of June 2020, 4.25 is the latest release but we use 4.24, as recommended by AirSim's documentation
+
+The following steps take **a bit more than 1 hour** on a Lenovo P52 (and throw a few warnings)
 ```
-sudo apt install git
-git clone -b 4.24 https://github.com/EpicGames/UnrealEngine.git
-cd UnrealEngine
-./Setup.sh
-say yes to register file types if prompted
-./GenerateProjectFiles.sh
-make
+$ sudo apt install git
+$ cd ~
+$ git clone -b 4.24 https://github.com/EpicGames/UnrealEngine.git
+$ cd UnrealEngine
+$ ./Setup.sh                 # if prompted, say yes to register file types
+$ ./GenerateProjectFiles.sh
+$ make
 ```
-this takes a bit over 1h on the p52
-a few tempnam warnings 
-
-full docs
-https://docs.unrealengine.com/en-US/Platforms/Linux/index.html
+Modify your `~/.bashrc` file to add the location of UE4's binaries to the `PATH` environmental variable
+```
+$ echo  'export PATH=~/UnrealEngine/Engine/Binaries/Linux:$PATH' >> ~/.bashrc             # note the use of single quotes ' and the prefixing
+$ source ~/.bashrc
+```
+You can now run `$ UE4Editor` from any folder/location 
 
 ### Build AirSim
 
+The following steps build AirSim in just a few minutes (and throw plenty of warnings)
 ```
-cd ..
-git clone https://github.com/Microsoft/AirSim.git
-cd AirSim
-./setup.sh #insert your password, if asked, note that this will install clang-8 and python 2.7 among other ubuntu packages
-./build.sh
+$ cd ~
+$ git clone https://github.com/Microsoft/AirSim.git
+$ cd AirSim
+$ ./setup.sh                   # insert your password, if asked,; note that this will install clang-8 and python 2.7 among other Ubuntu packages
+$ ./build.sh
 ```
-throws plenty of warnings
-
-### First use of the (built) UE4Editor, Blocks environment, and Python APIs
-
-- remove pip installed airsim if any an add build path to pythonpath
-
+Modify your `~/.bashrc` file to add the location of AirSim's Python APIs to the `PYTHONPATH` environmental variable
 ```
-echo  'export PATH=~/UnrealEngine/Engine/Binaries/Linux:$PATH' >> ~/.bashrc #(note prefixing and use of single quote '
-source ~/.bashrc
+$ echo  'export PYTHONPATH=~/AirSim/PythonClient:$PYTHONPATH' >> ~/.bashrc                # note the use of single quotes ' and the prefixing
+$ source ~/.bashrc
 ```
+You can now use `>>> import airsim` in a Python interpreter from any folder/location 
 
-run UE4 bin from anywhere with simply
+### First use of the UE4Editor, Blocks environment, and Python APIs
 
+Run the Unreal Engine 4 Editor from any folder by simply typing
+```
 $ UE4Editor
-can take a few minues (the first time only)
-
-Select or Create New Project
-click "More"
-Browse
-navigate to AirSim/Unreal/Environments/Blocks
-
-Blocks.uproject and Open
-
-next time it will be in recent projects on the Select or Create New Project menu
-
-Convert Project
-More options
-Convert in-place
-
-no more prompts but if you do refer to https://microsoft.github.io/AirSim/build_linux/
-
-dismiss new plugin notification, close the interface tour, some shaders will still be compiling
-
-click play or Alt+p
-
-wait for shaders to finish compiling
-
-it loaded settings.json in your ~/AirSim/... so you should see the car(s), drone(s) set there
-
-eg refer to the example settings in section above Personalizing a simulation using `setting.json` for 2 drones 2 meters apart observed from the ground observer pov
-
-fn f1 for menu (it will activate wireframe visal go back with fn f3)
-
-m for manual camera then arrows + pgup pgdn and wsad to explore the environment
-
-esc to terminate
-
-**Unreal is slowed down dramatically when I run API**
-> After Unreal Editor loads, press Play button. Tip: go to 'Edit->Editor Preferences', in the 'Search' box type 'CPU' and ensure that the 'Use Less CPU when in Background' is unchecked.
-
-
-remember of the script defined above  in Example: 2-drone patrol and image taking from a ground observer POV
-
-you can run it in blocks as well
-
-`Alt` `p` again
-
-new terminal
-
-test api control
-
 ```
-# If you are running you code from PythonClient folder in repo then you can also do this:
-import setup_path 
-import airsim
+The first time, this might take a few minutes; when the UE4Editor start, to use the default "Blocks" environment, follow [these steps](https://microsoft.github.io/AirSim/build_linux/)
+- Choose "Select or Create New Project"
+- Click on "More", then "Browse"
+- Navigate to `~/AirSim/Unreal/Environments/Blocks`
+- Select `Blocks.uproject` and "Open"
+- Choose "Convert Project", then "More options"
+- Finally, "Convert in-place:
+Note: the next time you run UE4Editor, Blocks will appear among the recent projects in the "Select or Create New Project" menu
+
+You can dismiss the "New plugin" notification and close the UE4Editor interface tour; some shaders will still be compiling
+
+**Important**: go to "Edit -> Editor Preferences"; in the "Search" box, type "CPU" and ensure that the "Use Less CPU when in Background" is unchecked
+
+Wait for shaders to finish compiling, then click the "Play" button (or `Alt`+`p`)
+
+The settings from `~/Documents/AirSim/settings.json` will be loaded (thus, you will see 2 drones if you followed the steps above)
+
+`Fn`+`F1` will show the in-game menu; open a terminal (`Ctrl`+`Alt`+`t`) to run one of the Python examples
 ```
-
-
-conda list -> no airsim
-
-import airsim only works in ~/AirSim/PythonClient
-
-to make it system wide
-
+$ conda activate
+$ python ~/drone0.py
 ```
-echo  'export PYTHONPATH=~/AirSim/PythonClient:$PYTHONPATH' >> ~/.bashrc # note prefixing and use of single quote '
-source ~/.bashrc
+Press `Esc` to end the simulation
+
+### Compile an executable that uses AirSim's C++ APIs
+
+The simplest way to use AirSim's [C++ APIs](https://microsoft.github.io/AirSim/apis_cpp/) is to duplicate one of the example projects (e.g. `~/AirSim/HelloDrone`) and use the same [CMake-based](https://cmake.org/) compiler tool chain
+
+Copy `~/AirSim/HelloDrone` into a new folder called `NewDroneProject`
 ```
-
-### Compile an executable that uses AirSim C++ APIs
-
-use with C++
-see includes and examples https://microsoft.github.io/AirSim/apis_cpp/
-https://github.com/microsoft/AirSim/issues/758
-
-copy ~/AirSim/HelloDrone into a new project folder
+$ cp -r ~/AirSim/HelloDrone ~/AirSim/NewDroneProject
 ```
-cp -r ~/AirSim/HelloDrone ~/AirSim/NewDroneProject
-rm ~/AirSim/NewDroneProject/HelloDrone.vcxproj ~/AirSim/NewDroneProject/HelloDrone.vcxproj.filters
-gedit ~/AirSim/NewDroneProject/HelloDrone.cpp
+Remove Visual Studio's files and replace the content of `HelloDrone.cpp`
 ```
-and replace content with the following
-
+$ rm ~/AirSim/NewDroneProject/HelloDrone.vcxproj ~/AirSim/NewDroneProject/HelloDrone.vcxproj.filters
+$ gedit ~/AirSim/NewDroneProject/HelloDrone.cpp
+```
+With the following lines
 ```
 #include <iostream>
 #include "vehicles/multirotor/api/MultirotorRpcLibClient.hpp"
@@ -575,28 +530,29 @@ int main()
     return 0;
 }
 ```
-
-minor cmake changes
+Duplicate `HelloDrone`'s cmake folder into one called `~/AirSim/cmake/NewDroneProject`
 ```
-cp -r ~/AirSim/cmake/HelloDrone ~/AirSim/cmake/NewDroneProject
-echo  'add_subdirectory("NewDroneProject")' >> ~/AirSim/cmake/CMakeLists.txt
-sed -i 's/HelloDrone/NewDroneProject/g' ~/AirSim/cmake/NewDroneProject/CMakeLists.txt
+$ cp -r ~/AirSim/cmake/HelloDrone ~/AirSim/cmake/NewDroneProject
 ```
-
-nothing more but replacing the name in two places `project()` and `include_directories()`
-
-
+Modify the `CMakeLists.txt` file in this folder by replacing the occurrences of `HelloDrone` with `NewDroneProject`
 ```
-setup.sh
-build.sh
+$ sed -i 's/HelloDrone/NewDroneProject/g' ~/AirSim/cmake/NewDroneProject/CMakeLists.txt
 ```
-or just build if you already run setup
-
-
-
-
-
-
+Add the name of this folder to the top level `CMakeLists.txt`
+```
+$ echo  'add_subdirectory("NewDroneProject")' >> ~/AirSim/cmake/CMakeLists.txt
+```
+Finally, setup and build AirSim again
+```
+$ cd ~/AirSim
+$ ./setup.sh              # optional, if you had run it before
+$ ./build.sh
+```
+The executable of `NewDroneProject` will be located in `~/AirSim/build_debug/output/bin/` and can be run as
+```
+~/AirSim/build_debug/output/bin/NewDroneProject
+```
+Remember to start the UE4Editor/Blocks and press "Play" first, for `NewDroneProject` to connect
 
 
 
@@ -621,6 +577,15 @@ sudo apt install python-rosdep
 sudo rosdep init
 rosdep update
 ```
+
+
+
+
+
+
+
+
+
 
 #### Build AirSim ROS nodes
 
