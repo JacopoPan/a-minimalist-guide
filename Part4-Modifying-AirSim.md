@@ -432,6 +432,10 @@ edit `settings.json` adding
 
 note that re-naming won't work (where to change this
 
+refer to these issues as well
+https://github.com/microsoft/AirSim/issues/627
+https://github.com/microsoft/AirSim/issues/1506
+
 
 ### pyhsical properties etc
 
