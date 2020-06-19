@@ -592,6 +592,10 @@ line 64 subscribes to "/airsim_node/odom_local_ned" but it should be "/airsim_no
 
 >  think the yaw max velocity was used instead of the max z velocity. Double check lines 333 to 338 in pd_position_controller_simple.cpp , vel_cmd_.twist.angular.z should be replaced with vel_cmd_.twist.linear.z
 
+check this issue from last month https://github.com/microsoft/AirSim/issues/2709
+
+[note this pull req](https://github.com/microsoft/AirSim/pull/2743)
+
 ------------------------------------
 
 
