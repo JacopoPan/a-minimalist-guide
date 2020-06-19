@@ -134,8 +134,6 @@ $ ./Africa_001.sh  -ResX=640 -ResY=480 -windowed -opengl
 ```
 Note: the `TrapCam` environment is a quite complex one and it can take a few minutes to load: it simulates flora and fauna (see [this paper](https://arxiv.org/pdf/1904.05916.pdf)) and it includes an interactive interface to to adjust their configuration
 
-
-
 ### Customize a simulation with `settings.json`
 
 The very first time you run AirSim, it will create file ` ~/Documents/AirSim/settings.json` with the following lines:
@@ -400,12 +398,6 @@ $ conda activate
 $ pip uninstall airsim
 ```
 
-
-
-
-
-
-
 ## Building Unreal Engine 4 and AirSim from source
 
 Building the Unreal Engine 4 (and Editor) and AirSim allows to use the latter's C++ APIs and their ROS wrapper node.
@@ -550,67 +542,48 @@ $ ./build.sh
 ```
 The executable of `NewDroneProject` will be located in `~/AirSim/build_debug/output/bin/` and can be run as
 ```
-~/AirSim/build_debug/output/bin/NewDroneProject
+$ ~/AirSim/build_debug/output/bin/NewDroneProject
 ```
 Remember to start the UE4Editor/Blocks and press "Play" first, for `NewDroneProject` to connect
 
-
-
-
 ### AirSim and ROS Melodic
+
+AirSim's also provides a [ROS wrapper node around its C++ library called `airsim_node`](https://github.com/microsoft/AirSim/blob/master/docs/airsim_ros_pkgs.md)
 
 #### Install ROS Melodic
 
-install ros steps (point below for installation from source)
-
-https://wiki.ros.org/melodic/Installation/Ubuntu
-
+First, install ROS Melodic following [these steps](https://wiki.ros.org/melodic/Installation/Ubuntu)
 ```
-sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
-sudo apt update
-sudo apt install ros-melodic-desktop-full
-echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
-source ~/.bashrc
-sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential
-sudo apt install python-rosdep
-sudo rosdep init
-rosdep update
+$ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+$ sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+$ sudo apt update
+$ sudo apt install ros-melodic-desktop-full
+$ echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
+$ source ~/.bashrc
+$ sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential
+$ sudo apt install python-rosdep
+$ sudo rosdep init
+$ rosdep update
 ```
-
-
-
-
-
-
-
-
-
+Note: while this guide focusses on Ubuntu 18 and ROS Melodic, as of June 2020, AirSim still works with Ubuntu 16 and [ROS Kinetic](http://wiki.ros.org/kinetic/Installation) as well
 
 #### Build AirSim ROS nodes
 
-additional reqs
+Install additional packages and dependencies 
 ```
-sudo apt install ros-melodic-mavros ros-melodic-mavros-extras
-sudo apt-get install gcc-8 g++-8
+$ sudo apt install ros-melodic-mavros ros-melodic-mavros-extras
+$ sudo apt-get install gcc-8 g++-8
 ```
-
-set gcc8 as default
+Set `gcc8` as the [default `gcc`](https://stackoverflow.com/questions/7832892/how-to-change-the-default-gcc-compiler-in-ubuntu) in Ubuntu 18
 ```
-sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 700 --slave /usr/bin/g++ g++ /usr/bin/g++-7
-sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 --slave /usr/bin/g++ g++ /usr/bin/g++-8
-```
-https://askubuntu.com/questions/1028601/install-gcc-8-only-on-ubuntu-18-04
-https://stackoverflow.com/questions/7832892/how-to-change-the-default-gcc-compiler-in-ubuntu
-
-requirements
-build airsim and ros nodes
-
-```
-cd ~/AirSim/ros
-catkin_make
+$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 700 --slave /usr/bin/g++ g++ /usr/bin/g++-7
+$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 --slave /usr/bin/g++ g++ /usr/bin/g++-8
 ```
 
+
+
+
+------------------------------------
 
 notes on debugging of the pd controller
 
@@ -619,53 +592,40 @@ line 64 subscribes to "/airsim_node/odom_local_ned" but it should be "/airsim_no
 
 >  think the yaw max velocity was used instead of the max z velocity. Double check lines 333 to 338 in pd_position_controller_simple.cpp , vel_cmd_.twist.angular.z should be replaced with vel_cmd_.twist.linear.z
 
+------------------------------------
+
+
+
+
+Finally, build AirSim's ROS nodes; add to `~/.bashrc` and source the `~/AirSim/ros/` workspace
+```
+cd ~/AirSim/ros
+catkin_make
+echo  "source ~/AirSim/ros/devel/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+```
+
+#### Launch AirSim ROS nodes
+
 in total 3 main nodes
 - wrapper around the c++ apis
 - rviz
 - pd controler (contains bugs) add a minimal fix here or not?
 
-
-
-
-
-
-#### Launch AirSim ROS nodes
-
 ```
-source ~/AirSim/ros/devel/setup.bash
 roslaunch airsim_ros_pkgs airsim_node.launch
-```
-```
-source ~/AirSim/ros/devel/setup.bash
 roslaunch airsim_ros_pkgs rviz.launch
 ```
-
 provided examples
-
-```
-source ~/AirSim/ros/devel/setup.bash
-```
-or 
-```
-echo  "source ~/AirSim/ros/devel/setup.bash" >> ~/.bashrc
-source ~/.bashrc
-```
-
 
 any of these 3 example (but ignore the build steps)
 
 https://github.com/microsoft/AirSim/blob/master/docs/airsim_tutorial_pkgs.md
 
 how to use 
-https://microsoft.github.io/AirSim/airsim_ros_pkgs/
+https://github.com/microsoft/AirSim/blob/master/docs/airsim_ros_pkgs.md
 
 add creating and compiling a new ros example
-
-```
-$ roslaunch airsim_ros_pkgs airsim_node.launch;
-$ roslaunch airsim_ros_pkgs rviz.launch
-```
-
 
 #### AirSim's ROS nodes' topics and services
 
