@@ -394,7 +394,7 @@ Note 5: the weather can be modified from the [APIs](https://github.com/microsoft
 
 Note 6: the [clock speed](https://github.com/microsoft/AirSim/blob/master/docs/settings.md#clockspeed) can also be adjusted from `settings.json`
 
-Before moving on to the next steps, **remember to uninstall `airsim` from `(base)`** to avoid conflicts with the local build
+Before moving on to the next steps, **remember to uninstall `airsim` from `(base)`** to avoid conflicts with the locally built AirSim from source
 ```
 $ conda activate
 $ pip uninstall airsim
