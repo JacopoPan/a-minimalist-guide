@@ -183,7 +183,7 @@ Running the `Africa` environment again will display 2 drones within it
 $ ./Africa_001.sh  -ResX=640 -ResY=480 -windowed
 ```
 
-### Using AirSim Python APIs with Anaconda
+### Option A: Use AirSim Python APIs with Anaconda
 
 AirSim exposes [Python APIs](https://github.com/microsoft/AirSim/blob/master/docs/apis.md) to control vehicles—as of June 2020, Python 3.5 (or newer) and Anconda are recommended for their use
 
@@ -238,7 +238,7 @@ $ conda activate
 $ pip uninstall airsim
 ```
 
-### AirSim's Python APIs 2-drone example
+#### AirSim's Python APIs 2-drone example
 
 To run a 2-drone example, make sure that `~/Documents/AirSim/settings.json` contains the configuration proposed [above](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part3-Using-AirSim.md#customize-a-simulation-with-settingsjson)
 
@@ -338,7 +338,7 @@ Note 2: latitude and longitude of (0,0,0) can be set in `settings.json` by addin
 ```
 Note: if you add this at the end (i.e., before the last `}`) of `settings.json`, you must remove the trailing comma and add one at the end of the previous setting
 
-#### Cameras APIs and settings
+##### Cameras APIs and settings
 
 The scripts above use camera `bottom_center`; the [available cameras](https://github.com/microsoft/AirSim/blob/master/docs/image_apis.md#available-cameras) are
 ```
@@ -480,7 +480,7 @@ $ python ~/drone0.py
 ```
 Press `Esc` to end the simulation
 
-### Compile an executable that uses AirSim's C++ APIs
+### Option B: Compile an executable that uses AirSim's C++ APIs
 
 The simplest way to use AirSim's [C++ APIs](https://microsoft.github.io/AirSim/apis_cpp/) is to duplicate one of the example projects (e.g. `~/AirSim/HelloDrone`) and use the same [CMake-based](https://cmake.org/) compiler tool chain
 
@@ -546,7 +546,7 @@ $ ~/AirSim/build_debug/output/bin/NewDroneProject
 ```
 Remember to first start the UE4Editor and Blocks—and press "Play"—for the `NewDroneProject` executable to connect
 
-### AirSim and ROS Melodic
+### Option C: using AirSim with ROS Melodic
 
 AirSim's also provides a [ROS wrapper node around its C++ library called `airsim_node`](https://github.com/microsoft/AirSim/blob/master/docs/airsim_ros_pkgs.md)
 
