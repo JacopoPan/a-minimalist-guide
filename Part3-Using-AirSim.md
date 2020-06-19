@@ -128,7 +128,7 @@ Use the `-ResX=num_x_pixels -ResY=num_y_pixels -windowed` options to set your pr
 ```
 $ ./Africa_001.sh  -ResX=640 -ResY=480 -windowed
 ```
-UE 4.24 uses Vulkan drivers which can take up more GPU memory. If you get memory allocation errors, you can swithc to OpenGL with
+UE 4.24 uses Vulkan drivers which can take up more GPU memory. If you get memory allocation errors, you can switch to OpenGL with
 ```
 $ ./Africa_001.sh  -ResX=640 -ResY=480 -windowed -opengl
 ```
