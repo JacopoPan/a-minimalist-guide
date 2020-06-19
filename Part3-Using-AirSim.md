@@ -544,7 +544,7 @@ The executable of `NewDroneProject` will be located in `~/AirSim/build_debug/out
 ```
 $ ~/AirSim/build_debug/output/bin/NewDroneProject
 ```
-Remember to start the UE4Editor/Blocks and press "Play" first, for `NewDroneProject` to connect
+Remember to first start the UE4Editor and Blocks—and press "Play"—for the `NewDroneProject` executable to connect
 
 ### AirSim and ROS Melodic
 
