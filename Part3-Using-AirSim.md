@@ -756,7 +756,7 @@ static_transforms.launch
 
 
 
-
+----------------------------------------
 
 documenting the APIs with the help of James
 
@@ -771,7 +771,8 @@ https://github.com/microsoft/AirSim/blob/master/PythonClient/airsim/client.py
 [link](https://github.com/microsoft/AirSim/blob/master/PythonClient/multirotor/drone_lidar.py)
 
 Check claims
-> By default AirSim uses carrot following algorithm.
+> By default AirSim uses carrot following algorithm
+
 > Currently lowest level control available in AirSim is moveByAngleThrottleAsync
 
 not true, as pointed out by James, https://github.com/microsoft/AirSim/blob/827f1f55df68eb1d026390e6db06c9dd11152ba2/PythonClient/airsim/client.py#L793
