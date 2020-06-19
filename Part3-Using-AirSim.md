@@ -152,7 +152,7 @@ The very first time you run AirSim, it will create file ` ~/Documents/AirSim/set
 For example, copy the following into `settings.json` to start a simulation 
 - Using quadcopters (`"SimMode": "Multirotor"`)
 - Containing 2 of them (named `Drone0` and `Drone1`)
-- Setting them 2 meters apart along the `X` axis
+- Setting them 2 meters apart along the `X` axis, and 1 along `Y`
 - And making the default `ViewMode` that of a `GroundObserver`
 ```
 {
@@ -167,7 +167,7 @@ For example, copy the following into `settings.json` to start a simulation
     },
     "Drone1": {
       "VehicleType": "SimpleFlight",
-      "X": 2, "Y": 0, "Z": 0, "Yaw": 0
+      "X": 2, "Y": 1, "Z": 0, "Yaw": 0
     }
   }
 }
@@ -227,7 +227,7 @@ Installing collected packages: msgpack-python, tornado, msgpack-rpc-python
       Successfully uninstalled tornado-6.0.3
 Successfully installed msgpack-python-0.5.6 msgpack-rpc-python-0.4.1 tornado-4.5.3
 ```
-If `tornado` is accidentally upgraded later on, check [this fix](https://github.com/microsoft/AirSim/blob/master/docs/faq.md#when-making-api-call-i-get-error)
+If `tornado` is accidentally upgraded later on, check [this potential fix](https://github.com/microsoft/AirSim/blob/master/docs/faq.md#when-making-api-call-i-get-error)
 
 Install [AirSim's Python APIs](https://pypi.org/project/airsim/) (as of June 2020, v1.2.8) in `(base)` from the Python Package Index (PyPI)
 ```
@@ -240,13 +240,13 @@ $ conda activate
 $ pip uninstall airsim
 ```
 
-### 2-drone example
+### AirSim's Python APIs 2-drone example
 
+To run a 2-drone example, make sure that `~/Documents/AirSim/settings.json` contains the configuration proposed [above](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part3-Using-AirSim.md#customize-a-simulation-with-settingsjson)
 
-add simPrintLogMessage("Iteration: ", to_string(i))
-
-save these two scripts
+Save the following 2 scripts in your home folder as `~/drone0.py` and `~/drone1.py`
 ```
+# drone0.py
 import airsim
 
 client = airsim.MultirotorClient()                       # connect to the simulator
@@ -254,23 +254,31 @@ client.confirmConnection()
 client.enableApiControl(True, vehicle_name="Drone0")     # enable API control on Drone0
 client.armDisarm(True, vehicle_name="Drone0")            # arm Drone0
 
+client.takeoffAsync(vehicle_name="Drone0").join()        # let Drone0 take-off
+client.moveToPositionAsync(15, -3, -4, 5, vehicle_name="Drone0").join()
+client.hoverAsync(vehicle_name="Drone0").join()          # Drone0 moves to (15, -3, 4) at 5m/s and hovers (note the inverted Z axis)
+                                                         # .join() let the script wait for asynchronous (i.e. non-blocking) methods
 
+# take an image of type "Scene" from the "bottom_center" of "Drone0"
+raw = client.simGetImage("bottom_center", airsim.ImageType.Scene, vehicle_name="Drone0")
+f = open("Drone0a.png", "wb")
+f.write(raw)                                             # save the image as a PNG file
+f.close()
 
-client.takeoffAsync(vehicle_name="Drone0")               # let Drone0 take-off asynchronously (i.e. non-blocking)
-airsim.wait_key('Press any key to move')                 # the simulator waits for a key to start moving Drone1
+# take an image of type "Segmentation" from the "bottom_center" of "Drone0"
+raw = client.simGetImage("bottom_center", airsim.ImageType.Segmentation, vehicle_name="Drone0")
+f = open("Drone0b.png", "wb")
+f.write(raw)                                             # save the image as a PNG file
+f.close()
 
-client.moveToPositionAsync(10, 5, -1.5, 5, vehicle_name="Drone0").join()
-client.hoverAsync(vehicle_name="Drone0").join()          # Drone0 moves to (10, 5, -1.5) at 5m/s and hovers
-                                                         # .join() let the script wait for asynchronous (non-blocking) methods
-
-airsim.wait_key('Press any key to reset')                # press a key
-client.armDisarm(False, vehicle_name="Drone0")           # to disarm Drone0
+airsim.wait_key('Press any key to reset')                # press any key
+client.armDisarm(False, vehicle_name="Drone0")           # disarm Drone0
 client.reset()                                           # reset the simulation
-client.enableApiControl(False, vehicle_name="Drone0")    # and disable API control of Drone0
+client.enableApiControl(False, vehicle_name="Drone0")    # disable API control of Drone0
 ```
-
-
+And
 ```
+# drone1.py
 import airsim
 
 client = airsim.MultirotorClient()                       # connect to the simulator
@@ -278,125 +286,119 @@ client.confirmConnection()
 client.enableApiControl(True, vehicle_name="Drone1")     # enable API control on Drone1
 client.armDisarm(True, vehicle_name="Drone1")            # arm Drone1
 
-client.takeoffAsync(vehicle_name="Drone1")               # let Drone1 take-off asynchronously (i.e. non-blocking)
-airsim.wait_key('Press any key to move')                 # the simulator waits for a key to start moving Drone1
+client.takeoffAsync(vehicle_name="Drone1").join()        # let Drone1 take-off
+client.moveToPositionAsync(20, 3, -1, 5, vehicle_name="Drone1").join()
+client.hoverAsync(vehicle_name="Drone1").join()          # Drone1 moves to (20, 3, 1) at 5m/s and hovers (note the inverted Z axis)
+                                                         # .join() let the script wait for asynchronous (i.e. non-blocking) methods
 
-client.moveToPositionAsync(10, 4, -0.5, 5, vehicle_name="Drone1").join()
-client.hoverAsync(vehicle_name="Drone1").join()          # Drone1 moves to (10, 4, -0.5) at 5m/s and hovers
-                                                         # .join() let the script wait for asynchronous (non-blocking) methods
+# take an image of type "Scene" from the "bottom_center" of "Drone1"
+raw = client.simGetImage("bottom_center", airsim.ImageType.Scene, vehicle_name="Drone1")
+f = open("Drone1a.png", "wb")
+f.write(raw)                                             # save the image as a PNG file
+f.close()
 
-airsim.wait_key('Press any key to reset')                # press a key
-client.armDisarm(False, vehicle_name="Drone1")           # to disarm Drone1
+# modify the orientation for camera "bottom_center" of "Drone1"
+client.simSetCameraOrientation("bottom_center", airsim.to_quaternion(1.5, 0, 0), vehicle_name="Drone1"); # radians
+
+# take another image of type "Scene" from the "bottom_center" of "Drone1"
+raw = client.simGetImage("bottom_center", airsim.ImageType.Scene, vehicle_name="Drone1")
+f = open("Drone1b.png", "wb")
+f.write(raw)                                             # save the image as a PNG file
+f.close()
+
+airsim.wait_key('Press any key to reset')                # press any key
+client.armDisarm(False, vehicle_name="Drone1")           # disarm Drone1
 client.reset()                                           # reset the simulation
-client.enableApiControl(False, vehicle_name="Drone1")    # and disable API control of Drone1
+client.enableApiControl(False, vehicle_name="Drone1")    # disable API control of Drone1
 ```
+Open 3 terminals (3x `Ctrl`+`Alt`+`t`); in the first one, run an AirSim environment, e.g., for "Neighborhood"
+```
+$ cd Neighborhood
+$ ./AirSimNH.sh  -ResX=640 -ResY=480 -windowed
+```
+In each of the other 2 terminals, run the Python scripts
+```
+$ conda activate
+$ python ~/drone0.py
+```
+And
+```
+$ conda activate
+$ python ~/drone1.py
+```
+The 2 drones will perform a short flight and create 4 PNG images in `~`: `Drone0a.png`, `Drone0b.png`, `Drone1a.png`, `Drone1b.png`
 
-add taking images
+Note 1: AirSim's APIs use North-East-Down (NED) coordinates (`Z` points up in UE4 but down in AirSim)
+
+Note 2: latitude and longitude of (0,0,0) can be set in `settings.json` by adding
 ```
-{
-  "SettingsVersion": 1.2,
+  "OriginGeopoint": {
+    "Latitude": 47.641468,
+    "Longitude": -122.140165,
+    "Altitude": 122
+  },
+```
+Note: if you add this at the end (i.e., before the last `}`) of `settings.json`, you must remove the trailing comma and add one at the end of the previous setting
+
+#### Cameras APIs and settings
+
+The scripts above use camera `bottom_center`; the [available cameras](https://github.com/microsoft/AirSim/blob/master/docs/image_apis.md#available-cameras) are
+```
+Car and Multirotor
+    front_center
+    front_right
+    front_left
+    back_center
+Car only
+    fpv
+Multirotor only
+    bottom_center
+```
+The scripts above use 2 image types, `airsim.ImageType.Scene` and `airsim.ImageType.Segmentation`; the [available image types](https://github.com/microsoft/AirSim/blob/master/docs/image_apis.md#available-imagetype-values) are
+```
+  Scene = 0,                  # UE4 rendered view
+  DepthPlanner = 1,           # ground truth, camera plan depth 
+  DepthPerspective = 2,       # ground truth, projection ray depth 
+  DepthVis = 3, 
+  DisparityNormalized = 4,
+  Segmentation = 5,           # ground truth using UE4's meshes
+  SurfaceNormals = 6,
+  Infrared = 7                # currently, a mapping from object id to the 0-255 range
+```
+Script `drone1.py` uses `client.simSetCameraOrientation(..)` to [modify the orientation](https://github.com/microsoft/AirSim/blob/master/docs/image_apis.md#camera-apis) of a camera on "Drone1"
+
+The default resolution of a camera capture is 256x144 pixels, to [change camera settings and resolution](https://github.com/microsoft/AirSim/blob/master/docs/image_apis.md#changing-resolution-and-camera-parameters)
+```
   "CameraDefaults": {
       "CaptureSettings": [
         {
           "ImageType": 0,
-          "Width": 256,
-          "Height": 144,
+          "Width": 1024,
+          "Height": 576,
           "FOV_Degrees": 90,
           "AutoExposureSpeed": 100,
           "MotionBlurAmount": 0
         }
     ]
   },
-  "SimMode": "ComputerVision"
-}
 ```
+Note 1: if you add this at the end (i.e., before the last `}`) of `settings.json`, you must remove the trailing comma and add one at the end of the previous setting
 
-```
-  Scene = 0, 
-  # but also 
-  DepthPlanner = 1, # ground truth 
-  DepthPerspective = 2, # ground truth 
-  DepthVis = 3, 
-  DisparityNormalized = 4,
-  Segmentation = 5,   # ground truth based on unreal meshes
-  SurfaceNormals = 6,
-  Infrared = 7 # TBD
-```
+Note 2: `"ImageType": 0,` means that this will only affect the new resolution (1024x576) of `airsim.ImageType.Scene`
 
-use bottom camera, explain ids
-move camera
-```
-airsim.wait_key('Press any key to set camera-0 gimble to 15-degree pitch')
-client.simSetCameraOrientation("0", airsim.to_quaternion(0.261799, 0, 0)); #radians
-```
+Note 3: more information about the computer vision API are available at these links: [APIs](https://github.com/microsoft/AirSim/blob/master/docs/image_apis.md), [pfm](https://github.com/microsoft/AirSim/blob/master/docs/pfm.md)
 
-png/rgb/float/pfm format apis
-https://microsoft.github.io/AirSim/image_apis/
-https://microsoft.github.io/AirSim/pfm/
+Note 4: the time of the day (affecting the sun's position) can be set through the [APIs](https://github.com/microsoft/AirSim/blob/master/docs/apis.md#time-of-day-api) or [`settings.json`](https://github.com/microsoft/AirSim/blob/master/docs/settings.md#timeofday)
 
-run one of these two if using import cv2
-```
-(base) pip install opencv-python
-conda install opencv
-```
+Note 5: the weather can be modified from the [APIs](https://github.com/microsoft/AirSim/blob/master/docs/apis.md#weather-apis) (see the [code](https://github.com/Microsoft/AirSim/blob/master/PythonClient/computer_vision/weather.py))
 
+Note 6: the [clock speed](https://github.com/microsoft/AirSim/blob/master/docs/settings.md#clockspeed) can also be adjusted from `settings.json`
 
-run an environments (refer to json with 2 drones)
-
-new terminal, remember conda activate to get in base, run python script
+Before moving on to the next steps, **remember to uninstall `airsim` from `(base)`** to avoid conflicts with the local build
 ```
 $ conda activate
-$ python 
+$ pip uninstall airsim
 ```
-
-note on control from a single script
-
-
-api use NED, vehicle starts in 0,0,0
-note z is up in UE4 and down in AirSim
-OriginGeopoint sets lat lon alt of Player Start
-
-
-
-## Other stuff one can do with APIs/settings.json
-
-mention
-pausing
-collision
-time of day / lat, lon, sun position
-weather
-https://github.com/Microsoft/AirSim/blob/master/PythonClient/computer_vision/weather.py
-
-
-clock speed
-recoding
-
-https://microsoft.github.io/AirSim/settings/
-
-```
-"Vehicles": {
-    "FishEyeDrone": {
-      "VehicleType": "SimpleFlight",
-      "Cameras": {
-        "front-center": {
-          "CaptureSettings": [
-            {
-              "ImageType": 0,
-              "FOV_Degrees": 120
-            }
-          ]
-        }
-      }
-    }
-}
-```
-
-
-uninstall from (base)
-```
-pip uninstall airsim
-```
-why
 
 
 
