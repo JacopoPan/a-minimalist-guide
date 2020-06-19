@@ -445,7 +445,8 @@ https://github.com/Microsoft/AirSim/wiki/hexacopter
 
 
 
-
+also see this pull request
+https://github.com/microsoft/AirSim/pull/1890
 
 
 
