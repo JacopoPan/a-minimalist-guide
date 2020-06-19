@@ -679,127 +679,17 @@ rviz.launch
 static_transforms.launch
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ----------------------------------------
 
-documenting the APIs with the help of James
+Work in progress by [James Xu](https://github.com/Jamesjrxu/AirSim_doc)
 
 ## List of AirSim's Python APIs
+See [Python_API.md](https://github.com/Jamesjrxu/AirSim_doc/blob/master/Python_API.md)
 
-https://github.com/microsoft/AirSim/blob/master/PythonClient/airsim/client.py
-- make sure to disamibguate old and new apis https://microsoft.github.io/AirSim/upgrade_apis/
-- explain `duration` `max_wait_seconds` `Async` `join` etc
-- explain drivetrain, yaw_mode, lookahead, and adaptive_lookahead
-- make sure to cover the sensors in https://microsoft.github.io/AirSim/sensors/ including lidar
-[link](https://microsoft.github.io/AirSim/lidar/)
-[link](https://github.com/microsoft/AirSim/blob/master/PythonClient/multirotor/drone_lidar.py)
-
-Check claims
-> By default AirSim uses carrot following algorithm
-
-> Currently lowest level control available in AirSim is moveByAngleThrottleAsync
-
-not true, as pointed out by James, https://github.com/microsoft/AirSim/blob/827f1f55df68eb1d026390e6db06c9dd11152ba2/PythonClient/airsim/client.py#L793
 
 ## List of AirSim's C++ APIs
+See [CPP_API.md](https://github.com/Jamesjrxu/AirSim_doc/blob/master/CPP_API.md)
 
-https://github.com/microsoft/AirSim/blob/master/AirLib/src/vehicles/multirotor/api/MultirotorApiBase.cpp
 
-## List of AirSim's ROS topics and services
-
-### `airsim_node` node
-
-### `position_controller_simple` node
-
-### `rviz` (?) node
-
-```
-$ rostopic list -v
-
-Published topics:
- * /move_base_simple/goal [geometry_msgs/PoseStamped] 1 publisher
- * /airsim_node/Drone1/global_gps [sensor_msgs/NavSatFix] 1 publisher
- * /rosout [rosgraph_msgs/Log] 3 publishers
- * /airsim_node/Drone1/odom_local_ned [nav_msgs/Odometry] 1 publisher
- * /tf [tf2_msgs/TFMessage] 2 publishers
- * /clicked_point [geometry_msgs/PointStamped] 1 publisher
- * /tf_static [tf2_msgs/TFMessage] 1 publisher
- * /initialpose [geometry_msgs/PoseWithCovarianceStamped] 1 publisher
- * /rosout_agg [rosgraph_msgs/Log] 1 publisher
- * /airsim_node/Drone0/odom_local_ned [nav_msgs/Odometry] 1 publisher
- * /airsim_node/origin_geo_point [airsim_ros_pkgs/GPSYaw] 1 publisher
- * /airsim_node/Drone0/global_gps [sensor_msgs/NavSatFix] 1 publisher
-
-Subscribed topics:
- * /airsim_node/all_robots/vel_cmd_body_frame [airsim_ros_pkgs/VelCmd] 1 subscriber
- * /airsim_node/Drone0/vel_cmd_body_frame [airsim_ros_pkgs/VelCmd] 1 subscriber
- * /airsim_node/front_left_custom/DepthPlanner/registered/points [sensor_msgs/PointCloud2] 1 subscriber
- * /airsim_node/MyQuad/lidar/LidarCustom [sensor_msgs/PointCloud2] 1 subscriber
- * /rosout [rosgraph_msgs/Log] 1 subscriber
- * /airsim_node/group_of_obots/vel_cmd_world_frame [airsim_ros_pkgs/VelCmdGroup] 1 subscriber
- * /airsim_node/group_of_robots/vel_cmd_body_frame [airsim_ros_pkgs/VelCmdGroup] 1 subscriber
- * /tf_static [tf2_msgs/TFMessage] 1 subscriber
- * /airsim_node/Drone1/vel_cmd_body_frame [airsim_ros_pkgs/VelCmd] 1 subscriber
- * /airsim_node/all_robots/vel_cmd_world_frame [airsim_ros_pkgs/VelCmd] 1 subscriber
- * /airsim_node/Drone0/vel_cmd_world_frame [airsim_ros_pkgs/VelCmd] 1 subscriber
- * /tf [tf2_msgs/TFMessage] 1 subscriber
- * /airsim_node/gimbal_angle_quat_cmd [airsim_ros_pkgs/GimbalAngleQuatCmd] 1 subscriber
- * /airsim_node/gimbal_angle_euler_cmd [airsim_ros_pkgs/GimbalAngleEulerCmd] 1 subscriber
- * /airsim_node/Drone1/vel_cmd_world_frame [airsim_ros_pkgs/VelCmd] 1 subscriber
- * /airsim_node/MyQuad/odom_local_ned [nav_msgs/Odometry] 1 subscriber
-
-$ rosservice list -n
-
-/airsim_node/Drone0/land /airsim_node
-/airsim_node/Drone0/takeoff /airsim_node
-/airsim_node/Drone1/land /airsim_node
-/airsim_node/Drone1/takeoff /airsim_node
-/airsim_node/all_robots/land /airsim_node
-/airsim_node/all_robots/takeoff /airsim_node
-/airsim_node/get_loggers /airsim_node
-/airsim_node/group_of_robots/land /airsim_node
-/airsim_node/group_of_robots/takeoff /airsim_node
-/airsim_node/reset /airsim_node
-/airsim_node/set_logger_level /airsim_node
-
-/ned_to_enu_pub/get_loggers /ned_to_enu_pub
-/ned_to_enu_pub/set_logger_level /ned_to_enu_pub
-
-/rosout/get_loggers /rosout
-/rosout/set_logger_level /rosout
-
-/rviz/get_loggers /rviz
-/rviz/load_config /rviz
-/rviz/reload_shaders /rviz
-/rviz/save_config /rviz
-/rviz/set_logger_level /rviz
-```
+## List of AirSim's ROS topics and services 
+See [ROS_Wrapper.md](https://github.com/Jamesjrxu/AirSim_doc/blob/master/ROS_Wrapper.md)
