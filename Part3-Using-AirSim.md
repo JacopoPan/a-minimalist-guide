@@ -174,7 +174,7 @@ For example, copy the following into `settings.json` to start a simulation
   }
 }
 ```
-Note 1: `VehicleType` can be `PhysXCar`, `SimpleFlight`, `PX4Multirotor`, or `ComputerVision`; there is no default value, **it must be specified**
+Note 1: `VehicleType` can be `PhysXCar`, `SimpleFlight`, `PX4Multirotor`, `ComputerVision`; there is no default: **it must be specified**
 
 Note 2: [`SimpleFlight`](https://github.com/microsoft/AirSim/blob/master/docs/simple_flight.md) is AirSim's default [flight controller](https://github.com/microsoft/AirSim/blob/master/docs/flight_controller.md) (see its code [here](https://github.com/microsoft/AirSim/tree/master/AirLib/include/vehicles/multirotor/firmwares/simple_flight))
 
@@ -236,7 +236,7 @@ Install [AirSim's Python APIs](https://pypi.org/project/airsim/) (as of June 202
 $ conda activate
 $ pip install airsim
 ```
-Note: to modify AirSim's Python APIs, **remember to eventually uninstall this package** and use a local build from source (more on this below)
+Note: to modify AirSim's Python APIs, **remember to eventually uninstall this package** and use a local build (more on this below)
 ```
 $ conda activate
 $ pip uninstall airsim
@@ -387,7 +387,7 @@ Note 5: the **weather** can be modified from the [APIs](https://github.com/micro
 
 Note 6: the [**clock speed**](https://github.com/microsoft/AirSim/blob/master/docs/settings.md#clockspeed) can also be adjusted from `settings.json`
 
-Before moving on to the next steps, **remember to uninstall `airsim` from `(base)`** to avoid conflicts with the locally built AirSim from source
+Before moving on to the next steps, **remember to uninstall `airsim` from `(base)`** to avoid conflicts with the local build of AirSim 
 ```
 $ conda activate
 $ pip uninstall airsim
@@ -458,6 +458,7 @@ The first time, this might take a few minutes; when the UE4Editor start, to use 
 - Select `Blocks.uproject` and "Open"
 - When the "Convert Project" menu appears, select the "More options" button
 - Then, "Convert in-place"
+
 Note: the next time you run UE4Editor, Blocks will appear among the recent projects in the "Select or Create New Project" menu
 
 You can dismiss the "New plugin" notification and close the UE4Editor interface tour; some shaders will still be compiling
@@ -611,15 +612,15 @@ And the output of `$ rostopic list` lines such as
 ```
 Start and environment (e.g. `$ ~/Africa/Africa_001.sh -ResX=640 -ResY=480 -windowed`), then run one of [AirSim's launch files](https://github.com/microsoft/AirSim/tree/master/ros/src/airsim_ros_pkgs/launch)
 
-For node `airsim_node` only
+To use node `airsim_node` only
 ```
 $ roslaunch airsim_ros_pkgs airsim_node.launch
 ```
-For nodes `airsim_node` and `pid_position_node`
+To use both node `airsim_node` and node `pid_position_node`
 ```
 $ roslaunch airsim_ros_pkgs airsim_all.launch
 ```
-`airsim_node` and `pid_position_node`'s [source code](https://github.com/microsoft/AirSim/tree/master/ros/src/airsim_ros_pkgs/src) resides mostly in files `airsim_ros_wrapper.cpp` and `pd_position_controller_simple.cpp`; **if you modify them, recompile** with
+`airsim_node` and `pid_position_node`'s [source code](https://github.com/microsoft/AirSim/tree/master/ros/src/airsim_ros_pkgs/src) mostly resides in 2 files: `airsim_ros_wrapper.cpp` and `pd_position_controller_simple.cpp`; **if you modify them, remember to recompile** with
 ```
 $ cd ~/AirSim/ros
 $ catkin_make
