@@ -665,11 +665,11 @@ In [`pd_position_controller_simple.cpp`](https://github.com/microsoft/AirSim/blo
 
 1. To get rid of `[ERROR] [1234567890.1234567890]: [PIDPositionController] Waiting for odometry!`, given that `~/Documents/AirSim/settings.json` contains a single quadcopter named `Drone0`, replace line 64 
 ```
-    airsim_odom_sub_ = nh_.subscribe("/airsim_node/odom_local_ned", 50, &PIDPositionController::airsim_odom_cb, this);
+airsim_odom_sub_ = nh_.subscribe("/airsim_node/odom_local_ned", 50, &PIDPositionController::airsim_odom_cb, this);
 ```
-With
+With line
 ```
-    airsim_odom_sub_ = nh_.subscribe("/airsim_node/Drone0/odom_local_ned", 50, &PIDPositionController::airsim_odom_cb, this);
+airsim_odom_sub_ = nh_.subscribe("/airsim_node/Drone0/odom_local_ned", 50, &PIDPositionController::airsim_odom_cb, this);
 ```
 2. On lines 334 and 338, replace 4 occurrences of `vel_cmd_.twist.linear.z` with `vel_cmd_.twist.angular.z` 
 
