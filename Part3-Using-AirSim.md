@@ -358,7 +358,7 @@ The scripts above use 2 image types, `airsim.ImageType.Scene` and `airsim.ImageT
   DepthPlanner = 1,           # ground truth, camera plan depth 
   DepthPerspective = 2,       # ground truth, projection ray depth 
   DepthVis = 3, 
-  DisparityNormalized = 4,
+  DisparityNormalized = 4,    
   Segmentation = 5,           # ground truth using UE4's meshes
   SurfaceNormals = 6,
   Infrared = 7                # currently, a mapping from object id to the 0-255 range
@@ -422,13 +422,13 @@ $ sudo apt install git
 $ cd ~
 $ git clone -b 4.24 https://github.com/EpicGames/UnrealEngine.git
 $ cd UnrealEngine
-$ ./Setup.sh                 # if prompted, say yes to register file types
+$ ./Setup.sh                                                                     # if prompted, say yes to register file types
 $ ./GenerateProjectFiles.sh
 $ make
 ```
 Modify your `~/.bashrc` file to add the location of UE4's binaries to the `PATH` environmental variable
 ```
-$ echo  'export PATH=~/UnrealEngine/Engine/Binaries/Linux:$PATH' >> ~/.bashrc             # note the use of single quotes ' and the prefixing
+$ echo  'export PATH=~/UnrealEngine/Engine/Binaries/Linux:$PATH' >> ~/.bashrc    # note the use of single quotes ' and the prefixing
 $ source ~/.bashrc
 ```
 You can now run `$ UE4Editor` from any folder/location 
@@ -440,12 +440,12 @@ The following steps build AirSim in just a few minutes (and throw plenty of warn
 $ cd ~
 $ git clone https://github.com/Microsoft/AirSim.git
 $ cd AirSim
-$ ./setup.sh                   # insert your password, if asked,; note that this will install clang-8 and python 2.7 among other Ubuntu packages
+$ ./setup.sh    # insert your password, if asked,; note that this will install clang-8 and python 2.7 among other Ubuntu packages
 $ ./build.sh
 ```
 Modify your `~/.bashrc` file to add the location of AirSim's Python APIs to the `PYTHONPATH` environmental variable
 ```
-$ echo  'export PYTHONPATH=~/AirSim/PythonClient:$PYTHONPATH' >> ~/.bashrc                # note the use of single quotes ' and the prefixing
+$ echo  'export PYTHONPATH=~/AirSim/PythonClient:$PYTHONPATH' >> ~/.bashrc       # note the use of single quotes ' and the prefixing
 $ source ~/.bashrc
 ```
 You can now use `>>> import airsim` in a Python interpreter from any folder/location 
@@ -498,14 +498,13 @@ With the following lines
 #include <iostream>
 #include "vehicles/multirotor/api/MultirotorRpcLibClient.hpp"
 
-int main() 
-{
+int main() {
     using namespace std;
     msr::airlib::MultirotorRpcLibClient client;
 
     cout << "Press Enter to enable API control" << endl; cin.get();
     client.enableApiControl(true);
-
+    
     cout << "Press Enter to arm the drone" << endl; cin.get();
     client.armDisarm(true);
 
@@ -518,7 +517,6 @@ int main()
 
     cout << "Press Enter to land" << endl; cin.get();
     client.landAsync()->waitOnLastTask();
-
     return 0;
 }
 ```
@@ -663,7 +661,7 @@ $ rosservice call /airsim_node/Drone0/takeoff "waitOnLastTask: true"
 
 In [`pd_position_controller_simple.cpp`](https://github.com/microsoft/AirSim/blob/master/ros/src/airsim_ros_pkgs/src/pd_position_controller_simple.cpp)
 
-1. To get rid of `[ERROR] [1234567890.1234567890]: [PIDPositionController] Waiting for odometry!`, given that `~/Documents/AirSim/settings.json` contains a single quadcopter named `Drone0`, replace line 64 
+1. To get rid of `[ERROR] [1234567890.1234567890]: [PIDPositionController] Waiting for odometry!`, **given that `~/Documents/AirSim/settings.json` contains a single quadcopter named `Drone0`**, replace line 64 
 ```
 airsim_odom_sub_ = nh_.subscribe("/airsim_node/odom_local_ned", 50, &PIDPositionController::airsim_odom_cb, this);
 ```
