@@ -134,7 +134,7 @@ $ ./Africa_001.sh  -ResX=640 -ResY=480 -windowed -opengl
 ```
 Note: the `TrapCam` environment is a quite complex one and it can take a few minutes to load: it simulates flora and fauna (see [this paper](https://arxiv.org/pdf/1904.05916.pdf)) and it includes an interactive interface to to adjust their configuration
 
-### Customize a simulation with `settings.json`
+### Customize a simulation through `settings.json`
 
 The very first time you run AirSim, it will create file ` ~/Documents/AirSim/settings.json` with the following lines:
 ```
