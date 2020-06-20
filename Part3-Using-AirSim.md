@@ -624,7 +624,11 @@ For node `airsim_node` only, or
 ```
 $ roslaunch airsim_ros_pkgs airsim_all.launch
 ```
-For nodes `airsim_node` and `pid_position_node` (the 2 nodes making up the whole AirSim ROS package)
+For nodes `airsim_node` and `pid_position_node`, the 2 nodes making up the whole AirSim ROS package whose [source code](https://github.com/microsoft/AirSim/tree/master/ros/src/airsim_ros_pkgs/src) resides mostly in files `airsim_ros_wrapper.cpp` and `pd_position_controller_simple.cpp`; if you modify them, remember to recompile them with
+```
+$ cd ~/AirSim/ros
+$ catkin_make
+```
 
 Note 1: `airsim_node.launch` includes `static_transforms.launch` which uses [`tf`](http://wiki.ros.org/tf) to publish NED to ENU coodinates
 
@@ -646,11 +650,6 @@ Check which [services](http://wiki.ros.org/rosservice#rosservice_list) are avail
 ```
 $ rosservice list
 ```
-
-
-
-
-
 using of services
 ```
 $ rostopic echo /airsim_node/Drone0/global_gps
@@ -671,15 +670,6 @@ bool waitOnLastTask
 ---
 bool success
 ```
-
-
-main nodes, [source](https://github.com/microsoft/AirSim/tree/master/ros/src/airsim_ros_pkgs/src)
-recompileing
-
-
-
-3 provided examples in [link](https://github.com/microsoft/AirSim/blob/master/docs/airsim_tutorial_pkgs.md) (ignore build steps)
-
 known bugs and limitations
 notes on debugging of the pd controller
 
@@ -687,8 +677,6 @@ eg pd_position_controller_simple.cpp
 line 64 subscribes to "/airsim_node/odom_local_ned" but it should be "/airsim_node/VEHICLE_NAME/odom_local_ned"
 
 >  think the yaw max velocity was used instead of the max z velocity. Double check lines 333 to 338 in pd_position_controller_simple.cpp , vel_cmd_.twist.angular.z should be replaced with vel_cmd_.twist.linear.z
-
-
 
 ## Keep AirSim's source code up-to-date
 
