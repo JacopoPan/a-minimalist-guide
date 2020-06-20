@@ -200,7 +200,7 @@ When prompted to "Do you wish the installer to initialize Anaconda3 by running c
 Finally, run
 ```
 $ source ~/.bashrc
-$ conda config --set auto_activate_base False            # this turns off the auto-activation of the (base) environment
+$ conda config --set auto_activate_base False          # this turns off the auto-activation of the (base) environment
 ```
 Verify that you can exit and re-enter the default `conda` environment called `(base)`
 ```
