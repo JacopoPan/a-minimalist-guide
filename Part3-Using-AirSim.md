@@ -87,7 +87,7 @@ Use an environment, e.g. `Africa.zip`, by navigating to the folder where it was 
 ```
 $ unzip Africa.zip -d Africa
 $ cd Africa
-$ ./Africa_001.sh                       # Note: each environment has a single executable ".sh" script in its top folder, its name can vary 
+$ ./Africa_001.sh            # each environment has a single executable ".sh" script in its top folder, the name can vary 
 ```
 Select "Yes" or "No" to start the environment with either a car or drone
 
@@ -200,7 +200,7 @@ When prompted to "Do you wish the installer to initialize Anaconda3 by running c
 Finally, run
 ```
 $ source ~/.bashrc
-$ conda config --set auto_activate_base False   #this turns off the auto-activation of the (base) environment
+$ conda config --set auto_activate_base False            # this turns off the auto-activation of the (base) environment
 ```
 Verify that you can exit and re-enter the default `conda` environment called `(base)`
 ```
@@ -247,67 +247,67 @@ Save the following 2 scripts in your home folder as `~/drone0.py` and `~/drone1.
 # drone0.py
 import airsim
 
-client = airsim.MultirotorClient()                       # connect to the simulator
+client = airsim.MultirotorClient()                                       # connect to the simulator
 client.confirmConnection()
-client.enableApiControl(True, vehicle_name="Drone0")     # enable API control on Drone0
-client.armDisarm(True, vehicle_name="Drone0")            # arm Drone0
+client.enableApiControl(True, vehicle_name="Drone0")                     # enable API control on Drone0
+client.armDisarm(True, vehicle_name="Drone0")                            # arm Drone0
 
-client.takeoffAsync(vehicle_name="Drone0").join()        # let Drone0 take-off
+client.takeoffAsync(vehicle_name="Drone0").join()                        # let Drone0 take-off
 client.moveToPositionAsync(15, -3, -4, 5, vehicle_name="Drone0").join()
-client.hoverAsync(vehicle_name="Drone0").join()          # Drone0 moves to (15, -3, 4) at 5m/s and hovers (note the inverted Z axis)
-                                                         # .join() let the script wait for asynchronous (i.e. non-blocking) methods
+client.hoverAsync(vehicle_name="Drone0").join()                          # Drone0 moves to (15, -3, 4) at 5m/s and hovers (note the inverted Z axis)
+                                                                         # .join() let the script wait for asynchronous (i.e. non-blocking) methods
 
 # take an image of type "Scene" from the "bottom_center" of "Drone0"
 raw = client.simGetImage("bottom_center", airsim.ImageType.Scene, vehicle_name="Drone0")
 f = open("Drone0a.png", "wb")
-f.write(raw)                                             # save the image as a PNG file
+f.write(raw)                                                             # save the image as a PNG file
 f.close()
 
 # take an image of type "Segmentation" from the "bottom_center" of "Drone0"
 raw = client.simGetImage("bottom_center", airsim.ImageType.Segmentation, vehicle_name="Drone0")
 f = open("Drone0b.png", "wb")
-f.write(raw)                                             # save the image as a PNG file
+f.write(raw)                                                             # save the image as a PNG file
 f.close()
 
-airsim.wait_key('Press any key to reset')                # press any key
-client.armDisarm(False, vehicle_name="Drone0")           # disarm Drone0
-client.reset()                                           # reset the simulation
-client.enableApiControl(False, vehicle_name="Drone0")    # disable API control of Drone0
+airsim.wait_key('Press any key to reset')                                # press any key
+client.armDisarm(False, vehicle_name="Drone0")                           # disarm Drone0
+client.reset()                                                           # reset the simulation
+client.enableApiControl(False, vehicle_name="Drone0")                    # disable API control of Drone0
 ```
 And
 ```
 # drone1.py
 import airsim
 
-client = airsim.MultirotorClient()                       # connect to the simulator
+client = airsim.MultirotorClient()                                       # connect to the simulator
 client.confirmConnection()
-client.enableApiControl(True, vehicle_name="Drone1")     # enable API control on Drone1
-client.armDisarm(True, vehicle_name="Drone1")            # arm Drone1
+client.enableApiControl(True, vehicle_name="Drone1")                     # enable API control on Drone1
+client.armDisarm(True, vehicle_name="Drone1")                            # arm Drone1
 
-client.takeoffAsync(vehicle_name="Drone1").join()        # let Drone1 take-off
+client.takeoffAsync(vehicle_name="Drone1").join()                        # let Drone1 take-off
 client.moveToPositionAsync(20, 3, -1, 5, vehicle_name="Drone1").join()
-client.hoverAsync(vehicle_name="Drone1").join()          # Drone1 moves to (20, 3, 1) at 5m/s and hovers (note the inverted Z axis)
-                                                         # .join() let the script wait for asynchronous (i.e. non-blocking) methods
+client.hoverAsync(vehicle_name="Drone1").join()                          # Drone1 moves to (20, 3, 1) at 5m/s and hovers (note the inverted Z axis)
+                                                                         # .join() let the script wait for asynchronous (i.e. non-blocking) methods
 
 # take an image of type "Scene" from the "bottom_center" of "Drone1"
 raw = client.simGetImage("bottom_center", airsim.ImageType.Scene, vehicle_name="Drone1")
 f = open("Drone1a.png", "wb")
-f.write(raw)                                             # save the image as a PNG file
+f.write(raw)                                                             # save the image as a PNG file
 f.close()
 
 # modify the orientation for camera "bottom_center" of "Drone1"
-client.simSetCameraOrientation("bottom_center", airsim.to_quaternion(1.5, 0, 0), vehicle_name="Drone1"); # radians
+client.simSetCameraOrientation("bottom_center", airsim.to_quaternion(1.5, 0, 0), vehicle_name="Drone1")      # radians
 
 # take another image of type "Scene" from the "bottom_center" of "Drone1"
 raw = client.simGetImage("bottom_center", airsim.ImageType.Scene, vehicle_name="Drone1")
 f = open("Drone1b.png", "wb")
-f.write(raw)                                             # save the image as a PNG file
+f.write(raw)                                                             # save the image as a PNG file
 f.close()
 
-airsim.wait_key('Press any key to reset')                # press any key
-client.armDisarm(False, vehicle_name="Drone1")           # disarm Drone1
-client.reset()                                           # reset the simulation
-client.enableApiControl(False, vehicle_name="Drone1")    # disable API control of Drone1
+airsim.wait_key('Press any key to reset')                                # press any key
+client.armDisarm(False, vehicle_name="Drone1")                           # disarm Drone1
+client.reset()                                                           # reset the simulation
+client.enableApiControl(False, vehicle_name="Drone1")                    # disable API control of Drone1
 ```
 Open 3 terminals (3x `Ctrl`+`Alt`+`t`); in the first one, run an AirSim environment, e.g., for "Neighborhood"
 ```
@@ -354,14 +354,14 @@ Multirotor only
 ```
 The scripts above use 2 image types, `airsim.ImageType.Scene` and `airsim.ImageType.Segmentation`; the [available image types](https://github.com/microsoft/AirSim/blob/master/docs/image_apis.md#available-imagetype-values) are
 ```
-  Scene = 0,                  # UE4 rendered view
-  DepthPlanner = 1,           # ground truth, camera plan depth 
-  DepthPerspective = 2,       # ground truth, projection ray depth 
+  Scene = 0,                       # UE4 rendered view
+  DepthPlanner = 1,                # ground truth, camera plan depth 
+  DepthPerspective = 2,            # ground truth, projection ray depth 
   DepthVis = 3, 
-  DisparityNormalized = 4,    
-  Segmentation = 5,           # ground truth using UE4's meshes
+  DisparityNormalized = 4,
+  Segmentation = 5,                # ground truth using UE4's meshes
   SurfaceNormals = 6,
-  Infrared = 7                # currently, a mapping from object id to the 0-255 range
+  Infrared = 7                     # currently, a mapping from object id to the 0-255 range
 ```
 Script `drone1.py` uses `client.simSetCameraOrientation(..)` to [modify the orientation](https://github.com/microsoft/AirSim/blob/master/docs/image_apis.md#camera-apis) of a camera on "Drone1"
 
@@ -422,13 +422,13 @@ $ sudo apt install git
 $ cd ~
 $ git clone -b 4.24 https://github.com/EpicGames/UnrealEngine.git
 $ cd UnrealEngine
-$ ./Setup.sh                                                                     # if prompted, say yes to register file types
+$ ./Setup.sh                                                       # if prompted, say yes to register file types
 $ ./GenerateProjectFiles.sh
 $ make
 ```
 Modify your `~/.bashrc` file to add the location of UE4's binaries to the `PATH` environmental variable
 ```
-$ echo  'export PATH=~/UnrealEngine/Engine/Binaries/Linux:$PATH' >> ~/.bashrc    # note the use of single quotes ' and the prefixing
+$ echo  'export PATH=~/UnrealEngine/Engine/Binaries/Linux:$PATH' >> ~/.bashrc       # note the use of single quotes ' and the prefixing
 $ source ~/.bashrc
 ```
 You can now run `$ UE4Editor` from any folder/location 
@@ -445,7 +445,7 @@ $ ./build.sh
 ```
 Modify your `~/.bashrc` file to add the location of AirSim's Python APIs to the `PYTHONPATH` environmental variable
 ```
-$ echo  'export PYTHONPATH=~/AirSim/PythonClient:$PYTHONPATH' >> ~/.bashrc       # note the use of single quotes ' and the prefixing
+$ echo  'export PYTHONPATH=~/AirSim/PythonClient:$PYTHONPATH' >> ~/.bashrc          # note the use of single quotes ' and the prefixing
 $ source ~/.bashrc
 ```
 You can now use `>>> import airsim` in a Python interpreter from any folder/location 
