@@ -440,7 +440,7 @@ The following steps build AirSim in just a few minutes (and throw plenty of warn
 $ cd ~
 $ git clone https://github.com/Microsoft/AirSim.git
 $ cd AirSim
-$ ./setup.sh    # insert your password, if asked,; note that this will install clang-8 and python 2.7 among other Ubuntu packages
+$ ./setup.sh    # insert your password, if asked; note that this will install clang-8 and python 2.7 among other Ubuntu packages
 $ ./build.sh
 ```
 Modify your `~/.bashrc` file to add the location of AirSim's Python APIs to the `PYTHONPATH` environmental variable
