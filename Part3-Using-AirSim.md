@@ -663,11 +663,11 @@ $ rosservice call /airsim_node/Drone0/takeoff "waitOnLastTask: true"
 
 In [`pd_position_controller_simple.cpp`](https://github.com/microsoft/AirSim/blob/master/ros/src/airsim_ros_pkgs/src/pd_position_controller_simple.cpp)
 
-1. To get rid of `[ERROR] [1234567890.1234567890]: [PIDPositionController] Waiting for odometry!`, replace line 64 
+1. To get rid of `[ERROR] [1234567890.1234567890]: [PIDPositionController] Waiting for odometry!`, given that `~/Documents/AirSim/settings.json` contains a single quadcopter named `Drone0`, replace line 64 
 ```
     airsim_odom_sub_ = nh_.subscribe("/airsim_node/odom_local_ned", 50, &PIDPositionController::airsim_odom_cb, this);
 ```
-Given that you are using a single quadcopter named `Drone0` in `~/Documents/AirSim/settings.json`, with
+With
 ```
     airsim_odom_sub_ = nh_.subscribe("/airsim_node/Drone0/odom_local_ned", 50, &PIDPositionController::airsim_odom_cb, this);
 ```
