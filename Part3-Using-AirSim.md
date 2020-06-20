@@ -609,15 +609,17 @@ And the output of `$ rostopic list` lines such as
 /airsim_node/PhysXCar/*
 /airsim_node/SimpleFlight/*
 ```
-Once you have an environment running (e.g. `$ ~/Africa/Africa_001.sh -ResX=640 -ResY=480 -windowed`), run one of [AirSim's launch files](https://github.com/microsoft/AirSim/tree/master/ros/src/airsim_ros_pkgs/launch)
+Start and environment (e.g. `$ ~/Africa/Africa_001.sh -ResX=640 -ResY=480 -windowed`), then run one of [AirSim's launch files](https://github.com/microsoft/AirSim/tree/master/ros/src/airsim_ros_pkgs/launch)
+
+For node `airsim_node` only
 ```
 $ roslaunch airsim_ros_pkgs airsim_node.launch
 ```
-For node `airsim_node` only, or 
+For nodes `airsim_node` and `pid_position_node`
 ```
 $ roslaunch airsim_ros_pkgs airsim_all.launch
 ```
-For nodes `airsim_node` and `pid_position_node`, the 2 nodes making up the whole AirSim ROS package whose [source code](https://github.com/microsoft/AirSim/tree/master/ros/src/airsim_ros_pkgs/src) resides mostly in files `airsim_ros_wrapper.cpp` and `pd_position_controller_simple.cpp`; if you modify them, remember to recompile them with
+`airsim_node` and `pid_position_node`'s [source code](https://github.com/microsoft/AirSim/tree/master/ros/src/airsim_ros_pkgs/src) resides mostly in files `airsim_ros_wrapper.cpp` and `pd_position_controller_simple.cpp`; **if you modify them, recompile** with
 ```
 $ cd ~/AirSim/ros
 $ catkin_make
@@ -625,11 +627,11 @@ $ catkin_make
 
 Note 1: `airsim_node.launch` includes `static_transforms.launch` which uses [`tf`](http://wiki.ros.org/tf) to publish NED to ENU coodinates
 
-Note 2: `airsim_all.launch` includes `airsim_node.launch`, `position_controller_simple.launch`, and `dynamic_constraints.launch` (setting speed and gimbal constraints)
+Note 2: `airsim_all.launch` includes `airsim_node.launch`, `position_controller_simple.launch`, and `dynamic_constraints.launch` (which sets constraints for maxiums speeds and the gimbal)
 
 Note 3: `rviz.launch` starts [ROS' 3D visualization tool `rviz`](http://wiki.ros.org/rviz)
 
-Note 4: `airsim_with_simple_PD_position_controller.launch` **does not work** because it includes `static_transforms.launch` twice (remove line 10, if necessary)
+Note 4: `airsim_with_simple_PD_position_controller.launch` **does not work** because it includes `static_transforms.launch` twice (this can be fixed by removing line 10, if necessary)
 
 In a new terminal (`Ctrl`+`Alt`+`t`), check which nodes are running
 ```
