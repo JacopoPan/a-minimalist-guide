@@ -461,8 +461,8 @@ The first time, this might take a few minutes; when the UE4Editor start, to use 
 - Click on "More", then "Browse"
 - Navigate to `~/AirSim/Unreal/Environments/Blocks`
 - Select `Blocks.uproject` and "Open"
-- Choose "Convert Project", then "More options"
-- Finally, "Convert in-place:
+- When the "Convert Project" menu appears, select the "More options" button
+- Then, "Convert in-place"
 Note: the next time you run UE4Editor, Blocks will appear among the recent projects in the "Select or Create New Project" menu
 
 You can dismiss the "New plugin" notification and close the UE4Editor interface tour; some shaders will still be compiling
@@ -579,28 +579,6 @@ Set `gcc8` as the [default `gcc`](https://stackoverflow.com/questions/7832892/ho
 $ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 700 --slave /usr/bin/g++ g++ /usr/bin/g++-7
 $ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 --slave /usr/bin/g++ g++ /usr/bin/g++-8
 ```
-
-
-
-
-------------------------------------
-
-notes on debugging of the pd controller
-
-eg pd_position_controller_simple.cpp
-line 64 subscribes to "/airsim_node/odom_local_ned" but it should be "/airsim_node/VEHICLE_NAME/odom_local_ned"
-
->  think the yaw max velocity was used instead of the max z velocity. Double check lines 333 to 338 in pd_position_controller_simple.cpp , vel_cmd_.twist.angular.z should be replaced with vel_cmd_.twist.linear.z
-
-check this issue from last month https://github.com/microsoft/AirSim/issues/2709
-
-[note this pull req](https://github.com/microsoft/AirSim/pull/2743)
-
-------------------------------------
-
-
-
-
 Finally, build AirSim's ROS nodes; add to `~/.bashrc` and source the `~/AirSim/ros/` workspace
 ```
 $ cd ~/AirSim/ros
@@ -611,43 +589,68 @@ $ source ~/.bashrc
 
 #### Launch AirSim ROS nodes
 
-how to use 
-[link](https://github.com/microsoft/AirSim/blob/master/docs/airsim_ros_pkgs.md)
-
-3 main nodes
-- wrapper around the c++ apis
-- rviz
-- pd controler (contains bugs, see minimal fix above)
-
+Make sure that the content of `~/Documents/AirSim/settings.json` includes
+- Line `"SimMode": "Multirotor",`
+- And at least one vehicle, e.g. `Drone0`
+```
+{
+  "SeeDocsAt": "https://github.com/Microsoft/AirSim/blob/master/docs/settings.md",
+  "SettingsVersion": 1.2,
+  "SimMode": "Multirotor",
+  "Vehicles": {
+    "Drone0": {
+      "VehicleType": "SimpleFlight",
+      "X": 0, "Y": 0, "Z": 0, "Yaw": 0
+    }
+  }
+}
+```
+If you do not do so, the output of `$ roslaunch airsim_ros_pkgs airsim_node.launch` will include
+```
+Exception raised by the API:
+rpclib: function 'getMultirotorState' (called with 1 arg(s)) threw an exception. The exception contained this information: Vehicle API for 'ComputerVision' is not available. This could either because this is simulation-only API or this vehicle does not exist.
+```
+And the output of `$ rostopic list` lines such as
+```
+/airsim_node/ComputerVision/*
+/airsim_node/PhysXCar/*
+/airsim_node/SimpleFlight/*
+```
+Once you have an environment running (e.g. `$ ~/Africa/Africa_001.sh -ResX=640 -ResY=480 -windowed`), run one of [AirSim's launch files](https://github.com/microsoft/AirSim/tree/master/ros/src/airsim_ros_pkgs/launch)
 ```
 $ roslaunch airsim_ros_pkgs airsim_node.launch
-$ roslaunch airsim_ros_pkgs rviz.launch
 ```
-3 provided examples in [link](https://github.com/microsoft/AirSim/blob/master/docs/airsim_tutorial_pkgs.md) (ignore build steps)
+For node `airsim_node` only, or 
+```
+$ roslaunch airsim_ros_pkgs airsim_all.launch
+```
+For nodes `airsim_node` and `pid_position_node` (the 2 nodes making up the whole AirSim ROS package)
 
-#### Use AirSim's ROS nodes' topics and services
+Note 1: `airsim_node.launch` includes `static_transforms.launch` which uses [`tf`](http://wiki.ros.org/tf) to publish NED to ENU coodinates
 
-http://wiki.ros.org/rostopic#rostopic_list
-http://wiki.ros.org/rosservice#rosservice_list
+Note 2: `airsim_all.launch` includes `airsim_node.launch`, `position_controller_simple.launch`, and `dynamic_constraints.launch` (setting speed and gimbal constraints)
+
+Note 3: `rviz.launch` starts [ROS' 3D visualization tool `rviz`](http://wiki.ros.org/rviz)
+
+Note 4: `airsim_with_simple_PD_position_controller.launch` **does not work** because it includes `static_transforms.launch` twice (remove line 10, if necessary)
+
+Check which nodes are running in a new terminal (`Ctrl`+`Alt`+`t`) with
+```
+$ rosnode list
+```
+Check which [topics](http://wiki.ros.org/rostopic#rostopic_list) are being published and subscribed in a new terminal (`Ctrl`+`Alt`+`t`) with
 ```
 $ rostopic list -v
-
-Published topics:
- * /airsim_node/origin_geo_point [airsim_ros_pkgs/GPSYaw] 1 publisher
- * /airsim_node/Drone0/global_gps [sensor_msgs/NavSatFix] 1 publisher
- ...
-
-Subscribed topics:
- * /airsim_node/all_robots/vel_cmd_body_frame [airsim_ros_pkgs/VelCmd] 1 subscriber
- * /airsim_node/Drone0/vel_cmd_body_frame [airsim_ros_pkgs/VelCmd] 1 subscriber
-...
-
-$ rosservice list -n
-
-/airsim_node/Drone0/land /airsim_node
-/airsim_node/Drone0/takeoff /airsim_node
-...
 ```
+Check which [services](http://wiki.ros.org/rosservice#rosservice_list) are available in a new terminal (`Ctrl`+`Alt`+`t`) with
+```
+$ rosservice list
+```
+
+
+
+
+
 using of services
 ```
 $ rostopic echo /airsim_node/Drone0/global_gps
@@ -661,22 +664,45 @@ tab to auto complete
 ```
 $ rosservice call /airsim_node/Drone0/takeoff "waitOnLastTask: false" 
 ```
-aaa
+alt
 ```
 $ rosservice type /airsim_node/Drone0/takeoff | rossrv show
 bool waitOnLastTask
 ---
 bool success
 ```
-notes on other launch files in `~/AirSim/ros/src/airsim_ros_pkgs/launch`
+
+
+main nodes, [source](https://github.com/microsoft/AirSim/tree/master/ros/src/airsim_ros_pkgs/src)
+recompileing
+
+
+
+3 provided examples in [link](https://github.com/microsoft/AirSim/blob/master/docs/airsim_tutorial_pkgs.md) (ignore build steps)
+
+known bugs and limitations
+notes on debugging of the pd controller
+
+eg pd_position_controller_simple.cpp
+line 64 subscribes to "/airsim_node/odom_local_ned" but it should be "/airsim_node/VEHICLE_NAME/odom_local_ned"
+
+>  think the yaw max velocity was used instead of the max z velocity. Double check lines 333 to 338 in pd_position_controller_simple.cpp , vel_cmd_.twist.angular.z should be replaced with vel_cmd_.twist.linear.z
+
+
+
+## Keep AirSim's source code up-to-date
+
+AirSim is constantly being developed (e.g. this [pull request](https://github.com/microsoft/AirSim/pull/2743) for an upgraded `airsim_ros_pkgs` is currently open)
+
+To pull updated source code (i.e. overwriting your modification but not deleting new files) and re-compile it
 ```
-airsim_all.launch
-airsim_node.launch
-airsim_with_simple_PD_position_controller.launch
-dynamic_constraints.launch
-position_controller_simple.launch
-rviz.launch
-static_transforms.launch
+$ cd ~/AirSim
+$ git reset --hard origin/master
+$ git pull origin master
+$ ./setup.sh
+$ ./build.sh
+$ cd ./ros
+$ catkin_make
 ```
 
 ----------------------------------------
