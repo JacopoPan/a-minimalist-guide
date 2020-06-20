@@ -646,37 +646,31 @@ Check which [topics](http://wiki.ros.org/rostopic#rostopic_list) are being publi
 ```
 $ rostopic list -v
 ```
+Print `Drone0`'s GPS coodinates topic with
+```
+$ rostopic echo /airsim_node/Drone0/global_gps
+```
 Check which [services](http://wiki.ros.org/rosservice#rosservice_list) are available in a new terminal (`Ctrl`+`Alt`+`t`) with
 ```
 $ rosservice list
 ```
-using of services
+Let `Drone0` take-off with (use `Tab` to autocomplete the arguments after the service name `takeoff`) 
 ```
-$ rostopic echo /airsim_node/Drone0/global_gps
+$ rosservice call /airsim_node/Drone0/takeoff "waitOnLastTask: true"
+```
 
-$ rosservice call /airsim_node/Drone0/takeoff 0
-success: False
-$ rosservice call /airsim_node/Drone0/land 0
-success: False
-```
-tab to auto complete
-```
-$ rosservice call /airsim_node/Drone0/takeoff "waitOnLastTask: false" 
-```
-alt
-```
-$ rosservice type /airsim_node/Drone0/takeoff | rossrv show
-bool waitOnLastTask
----
-bool success
-```
-known bugs and limitations
-notes on debugging of the pd controller
+#### Known bugs and limitations
 
-eg pd_position_controller_simple.cpp
-line 64 subscribes to "/airsim_node/odom_local_ned" but it should be "/airsim_node/VEHICLE_NAME/odom_local_ned"
+In [`pd_position_controller_simple.cpp`](https://github.com/microsoft/AirSim/blob/master/ros/src/airsim_ros_pkgs/src/pd_position_controller_simple.cpp)
 
->  think the yaw max velocity was used instead of the max z velocity. Double check lines 333 to 338 in pd_position_controller_simple.cpp , vel_cmd_.twist.angular.z should be replaced with vel_cmd_.twist.linear.z
+To get rid of `[ERROR] [1234567890.1234567890]: [PIDPositionController] Waiting for odometry!`, replace line 64 
+```
+    airsim_odom_sub_ = nh_.subscribe("/airsim_node/odom_local_ned", 50, &PIDPositionController::airsim_odom_cb, this);
+```
+Given that you are using a single quadcopter named `Drone0` in `~/Documents/AirSim/settings.json`, with
+```
+    airsim_odom_sub_ = nh_.subscribe("/airsim_node/Drone0/odom_local_ned", 50, &PIDPositionController::airsim_odom_cb, this);
+```
 
 ## Keep AirSim's source code up-to-date
 
@@ -700,10 +694,8 @@ Work in progress by [James Xu](https://github.com/Jamesjrxu/AirSim_doc)
 ## List of AirSim's Python APIs
 See [Python_API.md](https://github.com/Jamesjrxu/AirSim_doc/blob/master/Python_API.md)
 
-
 ## List of AirSim's C++ APIs
 See [CPP_API.md](https://github.com/Jamesjrxu/AirSim_doc/blob/master/CPP_API.md)
-
 
 ## List of AirSim's ROS topics and services 
 See [ROS_Wrapper.md](https://github.com/Jamesjrxu/AirSim_doc/blob/master/ROS_Wrapper.md)
