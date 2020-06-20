@@ -9,7 +9,11 @@ Everything after a `$` is entered on a terminal; everything after `>>>` is passe
 
 ## Ubuntu 18.04 and NVIDIA proprietary drivers on Lenovo P52
 
-Download Ubuntu 18.04 LTS's 64-bit ISO image: `$ wget https://releases.ubuntu.com/18.04/ubuntu-18.04.4-desktop-amd64.iso` and create a bootable USB stick (e.g., on Ubuntu, using [Startup Disk Creator](https://ubuntu.com/tutorials/tutorial-create-a-usb-stick-on-ubuntu#4-iso-and-usb-selection))
+Download Ubuntu 18.04 LTS's 64-bit ISO image
+```
+$ wget https://releases.ubuntu.com/18.04/ubuntu-18.04.4-desktop-amd64.iso
+```
+And create a bootable USB stick—e.g., on Ubuntu, using [Startup Disk Creator](https://ubuntu.com/tutorials/tutorial-create-a-usb-stick-on-ubuntu#4-iso-and-usb-selection)
 
 **Important**: at boot time, enter the Lenovo P52's BIOS pressing `Enter`, then `F1`
 
@@ -20,13 +24,13 @@ Download Ubuntu 18.04 LTS's 64-bit ISO image: `$ wget https://releases.ubuntu.co
 
 Install Ubuntu 18 (if possible, use Wi-Fi to "download updates and install 3rd party software" during the process)
 
-At the time of the first login, click the gear icon besides "Sign in"; choose "Ubuntu on [Wayland](https://wiki.ubuntu.com/Wayland)"
+At the time of the **first login**, click the gear icon besides "Sign in"; choose "Ubuntu on [Wayland](https://wiki.ubuntu.com/Wayland)"
 
 The graphical interface will be very slow⁠—this is expected, the system is not using the GPU nor the CPU integrated graphics
 
 If prompted, install updates from "Software Updater" 
 
-Open the "Software & Updates" application: NVIDIA's proprietary driver `nvidia-driver-440` should be available
+Open the "Software & Updates" application: **NVIDIA's proprietary driver** `nvidia-driver-440` should be available
 
 Select it, click apply, and reboot: this time around, the graphical interface will be running smoothly
 
@@ -41,13 +45,13 @@ the simplest way to use AirSim on Ubuntu 18 is to:
 - Run the binaries of a **precompiled UE4 environment** containing the AirSim pluging
 - Control the robots through AirSim's **Python APIs**
 
-Note 1: the steps to build the UE4 Editor (necessary to modify models, environments, and add the AirSim plugin) and AirSim (including Python/C++ libraries and ROS nodes to interface with it) from source code are given below
+Note 1: the steps to build the UE4 and UE4Editor (necessary to modify models and environments) and AirSim (including Python/C++ APIs and ROS wrapper nodes) from **source code** are given below 
 
-Note 2: one can also [use the binaries](https://github.com/microsoft/AirSim/releases) or [build from source](https://microsoft.github.io/AirSim/build_windows/) on Windows
+Note 2: [binaries](https://github.com/microsoft/AirSim/releases) and [sources](https://github.com/microsoft/airsim/blob/master/docs/build_windows.md) can be run/built on Windows as well
 
-Note 3: [Epic Games Launcher](https://www.epicgames.com/unrealtournament/en-US/download) can be used to download new maps/assets from UE4's [Marketplace](https://www.unrealengine.com/marketplace/en-US/store). It is **not available on Linux** (Windows and Mac only). Yet, assets can be transferred to Ubuntu after download ([see the next part of this guide](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part4-Modifying-AirSim.md)) and [3rd party alternatives exist](https://github.com/neutrino-steak/UE4LinuxLauncher)
+Note 3: [Epic Games Launcher](https://www.epicgames.com/unrealtournament/en-US/download) can be used to download new maps/assets from UE4's [Marketplace](https://www.unrealengine.com/marketplace/en-US/store). It is **not available on Linux** (Windows and Mac only). Yet, assets can be transferred to Ubuntu once downloaded ([see the next part of this guide](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part4-Modifying-AirSim.md)) and [3rd party alternatives exist](https://github.com/neutrino-steak/UE4LinuxLauncher)
 
-Note 4: as of June 2020, [support for Unity](https://microsoft.github.io/AirSim/Unity/) is still experimental
+Note 4: as of June 2020, [support for Unity](https://github.com/microsoft/airsim/blob/master/docs/Unity.md) as an alternative to the UE4 is still experimental
 
 ### Download the precompiled environments
 
@@ -76,14 +80,14 @@ $ wget https://github.com/microsoft/AirSim/releases/download/v1.3.1-linux/TrapCa
 $ wget https://github.com/microsoft/AirSim/releases/download/v1.3.1-linux/TrapCam.zip.002
 $ wget https://github.com/microsoft/AirSim/releases/download/v1.3.1-linux/Zhangjiajie.zip
 ```
-Note that `TrapCam` is split into two files that need to be concatenated before unzipping
+Note that `TrapCam` is split into two files that need to be concatenated into one before unzipping
 ```
 $ cat TrapCam.zip.00* > TrapCam.zip
 ```
 
 ### Run a precompiled environment
 
-Use an environment, e.g. `Africa.zip`, by navigating to the folder where it was downloaded and running
+Use an environment, e.g. `Africa.zip`, by navigating to the download folder, unzipping, and running it
 ```
 $ unzip Africa.zip -d Africa
 $ cd Africa
@@ -122,28 +126,28 @@ R           Toggle recording
 T           Toggle trace line
 Backspace   Reset everything
 ```
-When starting an environment with a car (you answered "Yes" to the prompt), the arrows key can be used to drive it
+When starting an environment with a car (i.e., you answered "Yes" to the prompt), the arrows keys can be used to drive it
 
-Use the `-ResX=num_x_pixels -ResY=num_y_pixels -windowed` options to set your preferred resolution 
+Use `-ResX=num_x_pixels -ResY=num_y_pixels -windowed` to set your preferred resolution 
 ```
 $ ./Africa_001.sh  -ResX=640 -ResY=480 -windowed
 ```
-UE 4.24 uses Vulkan drivers which can take up more GPU memory. If you get memory allocation errors, you can switch to OpenGL with
+UE4.24 uses Vulkan drivers and ir can take up more GPU memory; if you get memory allocation errors, switch to OpenGL with
 ```
 $ ./Africa_001.sh  -ResX=640 -ResY=480 -windowed -opengl
 ```
-Note: the `TrapCam` environment is a quite complex one and it can take a few minutes to load: it simulates flora and fauna (see [this paper](https://arxiv.org/pdf/1904.05916.pdf)) and it includes an interactive interface to to adjust their configuration
+Note: the `TrapCam` environment is a quite complex one and it can take a few minutes to load: it simulates flora and fauna (see [this paper](https://arxiv.org/pdf/1904.05916.pdf)) and it includes an interactive interface to adjust their configuration
 
 ### Customize a simulation through `settings.json`
 
-The very first time you run AirSim, it will create file ` ~/Documents/AirSim/settings.json` with the following lines:
+The **first time you run AirSim**, file ` ~/Documents/AirSim/settings.json` will be created/initialized with
 ```
 {
   "SeeDocsAt": "https://github.com/Microsoft/AirSim/blob/master/docs/settings.md",
   "SettingsVersion": 1.2
 }
 ```
-`settings.json` will be loaded everytime you load the AirSim plugin (e.g., running precompiled binaries or pressing "Play" in the UE4 Editor)
+`settings.json` will be loaded everytime you load the AirSim plugin (i.e., running precompiled binaries or pressing "Play" in the UE4Editor)
 
 `settings.json` can be used to configure many world's, vehicles', and cameras' parameters⁠—a complete list is provided [here](https://github.com/Microsoft/AirSim/blob/master/docs/settings.md)
 
@@ -170,15 +174,15 @@ For example, copy the following into `settings.json` to start a simulation
   }
 }
 ```
-Note 1: `VehicleType` can be `PhysXCar`, `SimpleFlight`, `PX4Multirotor`, or `ComputerVision`; there is no default value: it must be specified
+Note 1: `VehicleType` can be `PhysXCar`, `SimpleFlight`, `PX4Multirotor`, or `ComputerVision`; there is no default value, **it must be specified**
 
 Note 2: [`SimpleFlight`](https://github.com/microsoft/AirSim/blob/master/docs/simple_flight.md) is AirSim's default [flight controller](https://github.com/microsoft/AirSim/blob/master/docs/flight_controller.md) (see its code [here](https://github.com/microsoft/AirSim/tree/master/AirLib/include/vehicles/multirotor/firmwares/simple_flight))
 
-Note 3: `"ViewMode": "noDisplay",` can be used to [freeze rendering](https://microsoft.github.io/AirSim/settings/#viewmode) while still exposing AirSim's APIs (including the ones for compute vision) and improve performance (i.e., frames per second)
+Note 3: `"ViewMode": "noDisplay",` can be used to [freeze rendering](https://github.com/microsoft/airsim/blob/master/docs/settings.md#viewmode) while still exposing AirSim's APIs (including the ones for compute vision) and improving performance (i.e., frames per second)
 
 Note 4: while a `PhysicsEngineName` setting exists, AirSim only supports `PhysX` for cars and `FastPhysicsEngine` for multirotors
 
-Running the `Africa` environment again will display 2 drones within it
+Running the `Africa` environment with these `settings.json` will display 2 drones within it
 ```
 $ ./Africa_001.sh  -ResX=640 -ResY=480 -windowed
 ```
@@ -232,7 +236,7 @@ Install [AirSim's Python APIs](https://pypi.org/project/airsim/) (as of June 202
 $ conda activate
 $ pip install airsim
 ```
-Note: to eventually modify AirSim's Python APIs, **remember to uninstall this package** and use a local build from source (more on this below)
+Note: to modify AirSim's Python APIs, **remember to eventually uninstall this package** and use a local build from source (more on this below)
 ```
 $ conda activate
 $ pip uninstall airsim
@@ -244,8 +248,7 @@ To run a 2-drone example, make sure that `~/Documents/AirSim/settings.json` cont
 
 Save the following 2 scripts in your home folder as `~/drone0.py` and `~/drone1.py`
 ```
-# drone0.py
-import airsim
+import airsim                                                            # drone0.py
 
 client = airsim.MultirotorClient()                                       # connect to the simulator
 client.confirmConnection()
@@ -253,18 +256,15 @@ client.enableApiControl(True, vehicle_name="Drone0")                     # enabl
 client.armDisarm(True, vehicle_name="Drone0")                            # arm Drone0
 
 client.takeoffAsync(vehicle_name="Drone0").join()                        # let Drone0 take-off
-client.moveToPositionAsync(15, -3, -4, 5, vehicle_name="Drone0").join()
-client.hoverAsync(vehicle_name="Drone0").join()                          # Drone0 moves to (15, -3, 4) at 5m/s and hovers (note the inverted Z axis)
-                                                                         # .join() let the script wait for asynchronous (i.e. non-blocking) methods
+client.moveToPositionAsync(15, -3, -4, 5, vehicle_name="Drone0").join()  # Drone0 moves to (15, -3, 4) at 5m/s and hovers (note the inverted Z axis)
+client.hoverAsync(vehicle_name="Drone0").join()                          # .join() let the script wait for asynchronous (i.e. non-blocking) methods
 
-# take an image of type "Scene" from the "bottom_center" of "Drone0"
-raw = client.simGetImage("bottom_center", airsim.ImageType.Scene, vehicle_name="Drone0")
+raw = client.simGetImage("bottom_center", airsim.ImageType.Scene, vehicle_name="Drone0")           # take an image of type "Scene" from the "bottom_center" of "Drone0"
 f = open("Drone0a.png", "wb")
 f.write(raw)                                                             # save the image as a PNG file
 f.close()
 
-# take an image of type "Segmentation" from the "bottom_center" of "Drone0"
-raw = client.simGetImage("bottom_center", airsim.ImageType.Segmentation, vehicle_name="Drone0")
+raw = client.simGetImage("bottom_center", airsim.ImageType.Segmentation, vehicle_name="Drone0")    # take an image of type "Segmentation" from the "bottom_center" of "Drone0"
 f = open("Drone0b.png", "wb")
 f.write(raw)                                                             # save the image as a PNG file
 f.close()
@@ -276,8 +276,7 @@ client.enableApiControl(False, vehicle_name="Drone0")                    # disab
 ```
 And
 ```
-# drone1.py
-import airsim
+import airsim                                                            # drone1.py
 
 client = airsim.MultirotorClient()                                       # connect to the simulator
 client.confirmConnection()
@@ -285,21 +284,17 @@ client.enableApiControl(True, vehicle_name="Drone1")                     # enabl
 client.armDisarm(True, vehicle_name="Drone1")                            # arm Drone1
 
 client.takeoffAsync(vehicle_name="Drone1").join()                        # let Drone1 take-off
-client.moveToPositionAsync(20, 3, -1, 5, vehicle_name="Drone1").join()
-client.hoverAsync(vehicle_name="Drone1").join()                          # Drone1 moves to (20, 3, 1) at 5m/s and hovers (note the inverted Z axis)
-                                                                         # .join() let the script wait for asynchronous (i.e. non-blocking) methods
+client.moveToPositionAsync(20, 3, -1, 5, vehicle_name="Drone1").join()   # Drone1 moves to (20, 3, 1) at 5m/s and hovers (note the inverted Z axis)
+client.hoverAsync(vehicle_name="Drone1").join()                          # .join() let the script wait for asynchronous (i.e. non-blocking) methods
 
-# take an image of type "Scene" from the "bottom_center" of "Drone1"
-raw = client.simGetImage("bottom_center", airsim.ImageType.Scene, vehicle_name="Drone1")
+raw = client.simGetImage("bottom_center", airsim.ImageType.Scene, vehicle_name="Drone1")      # take an image of type "Scene" from the "bottom_center" of "Drone1"
 f = open("Drone1a.png", "wb")
 f.write(raw)                                                             # save the image as a PNG file
 f.close()
 
-# modify the orientation for camera "bottom_center" of "Drone1"
-client.simSetCameraOrientation("bottom_center", airsim.to_quaternion(1.5, 0, 0), vehicle_name="Drone1")      # radians
+client.simSetCameraOrientation("bottom_center", airsim.to_quaternion(1.5, 0, 0), vehicle_name="Drone1")      # modify the orientation (in radians) for camera "bottom_center" of "Drone1"
 
-# take another image of type "Scene" from the "bottom_center" of "Drone1"
-raw = client.simGetImage("bottom_center", airsim.ImageType.Scene, vehicle_name="Drone1")
+raw = client.simGetImage("bottom_center", airsim.ImageType.Scene, vehicle_name="Drone1")      # take another image of type "Scene" from the "bottom_center" of "Drone1"
 f = open("Drone1b.png", "wb")
 f.write(raw)                                                             # save the image as a PNG file
 f.close()
@@ -336,7 +331,7 @@ Note 2: latitude and longitude of (0,0,0) can be set in `settings.json` by addin
     "Altitude": 122
   },
 ```
-Note: if you add this at the end (i.e., before the last `}`) of `settings.json`, you must remove the trailing comma and add one at the end of the previous setting
+Note: if you add this at the end (i.e., before the last `}`) of `settings.json`, you must **remove the trailing comma** and add one at the end of the previous setting
 
 ##### Cameras APIs and settings
 
@@ -347,9 +342,9 @@ Car and Multirotor
     front_right
     front_left
     back_center
-Car only
+Car-only
     fpv
-Multirotor only
+Multirotor-only
     bottom_center
 ```
 The scripts above use 2 image types, `airsim.ImageType.Scene` and `airsim.ImageType.Segmentation`; the [available image types](https://github.com/microsoft/AirSim/blob/master/docs/image_apis.md#available-imagetype-values) are
@@ -380,17 +375,17 @@ The default resolution of a camera capture is 256x144 pixels, to [change camera 
     ]
   },
 ```
-Note 1: if you add this at the end (i.e., before the last `}`) of `settings.json`, you must remove the trailing comma and add one at the end of the previous setting
+Note 1: if you add this at the end (i.e., before the last `}`) of `settings.json`, you must **remove the trailing comma** and add one at the end of the previous setting
 
 Note 2: `"ImageType": 0,` means that this will only affect the new resolution (1024x576) of `airsim.ImageType.Scene`
 
 Note 3: more information about the computer vision API are available at these links: [APIs](https://github.com/microsoft/AirSim/blob/master/docs/image_apis.md), [pfm](https://github.com/microsoft/AirSim/blob/master/docs/pfm.md)
 
-Note 4: the time of the day (affecting the sun's position) can be set through the [APIs](https://github.com/microsoft/AirSim/blob/master/docs/apis.md#time-of-day-api) or [`settings.json`](https://github.com/microsoft/AirSim/blob/master/docs/settings.md#timeofday)
+Note 4: the **time of the day** (affecting the sun's position) can be set through the [APIs](https://github.com/microsoft/AirSim/blob/master/docs/apis.md#time-of-day-api) or [`settings.json`](https://github.com/microsoft/AirSim/blob/master/docs/settings.md#timeofday)
 
-Note 5: the weather can be modified from the [APIs](https://github.com/microsoft/AirSim/blob/master/docs/apis.md#weather-apis) (see the [code](https://github.com/Microsoft/AirSim/blob/master/PythonClient/computer_vision/weather.py))
+Note 5: the **weather** can be modified from the [APIs](https://github.com/microsoft/AirSim/blob/master/docs/apis.md#weather-apis) (see the [code](https://github.com/Microsoft/AirSim/blob/master/PythonClient/computer_vision/weather.py))
 
-Note 6: the [clock speed](https://github.com/microsoft/AirSim/blob/master/docs/settings.md#clockspeed) can also be adjusted from `settings.json`
+Note 6: the [**clock speed**](https://github.com/microsoft/AirSim/blob/master/docs/settings.md#clockspeed) can also be adjusted from `settings.json`
 
 Before moving on to the next steps, **remember to uninstall `airsim` from `(base)`** to avoid conflicts with the locally built AirSim from source
 ```
@@ -400,9 +395,9 @@ $ pip uninstall airsim
 
 ## Building Unreal Engine 4 and AirSim from source
 
-Building the Unreal Engine 4 (and Editor) and AirSim allows to use the latter's C++ APIs and their ROS wrapper node.
+Building the Unreal Engine 4 (and Editor) and AirSim allows to use the latter's C++ APIs and their ROS wrapper node
 
-The UE4 Editor and AirSim source code are also necessary to create custom maps, robot models, flight controllers, new APIs, etc. as shown in the [next part of this guide](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part4-Modifying-AirSim.md)
+The UE4Editor and AirSim source code are also necessary to create custom maps, robot models, flight controllers, new APIs, etc. as shown in the [next part of this guide](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part4-Modifying-AirSim.md)
 
 ### Build UE4 and UE4Editor
 
@@ -456,7 +451,7 @@ Run the Unreal Engine 4 Editor from any folder by simply typing
 ```
 $ UE4Editor
 ```
-The first time, this might take a few minutes; when the UE4Editor start, to use the default "Blocks" environment, follow [these steps](https://microsoft.github.io/AirSim/build_linux/)
+The first time, this might take a few minutes; when the UE4Editor start, to use the default "Blocks" environment, follow [these steps](https://github.com/microsoft/airsim/blob/master/docs/build_linux.md)
 - Choose "Select or Create New Project"
 - Click on "More", then "Browse"
 - Navigate to `~/AirSim/Unreal/Environments/Blocks`
@@ -482,7 +477,7 @@ Press `Esc` to end the simulation
 
 ### Option B: Compile an executable that uses AirSim's C++ APIs
 
-The simplest way to use AirSim's [C++ APIs](https://microsoft.github.io/AirSim/apis_cpp/) is to duplicate one of the example projects (e.g. `~/AirSim/HelloDrone`) and use the same [CMake-based](https://cmake.org/) compiler tool chain
+The simplest way to use AirSim's [C++ APIs](https://github.com/microsoft/airsim/blob/master/docs/apis_cpp.md) is to duplicate one of the example projects (e.g. `~/AirSim/HelloDrone`) and use the same [CMake-based](https://cmake.org/) compiler tool chain
 
 Copy `~/AirSim/HelloDrone` into a new folder called `NewDroneProject`
 ```
@@ -528,7 +523,7 @@ Modify the `CMakeLists.txt` file in this folder by replacing the occurrences of 
 ```
 $ sed -i 's/HelloDrone/NewDroneProject/g' ~/AirSim/cmake/NewDroneProject/CMakeLists.txt
 ```
-Add the name of this folder to the top level `CMakeLists.txt`
+Add folder `NewDroneProject` to the top level `CMakeLists.txt` file
 ```
 $ echo  'add_subdirectory("NewDroneProject")' >> ~/AirSim/cmake/CMakeLists.txt
 ```
@@ -636,34 +631,34 @@ Note 3: `rviz.launch` starts [ROS' 3D visualization tool `rviz`](http://wiki.ros
 
 Note 4: `airsim_with_simple_PD_position_controller.launch` **does not work** because it includes `static_transforms.launch` twice (remove line 10, if necessary)
 
-Check which nodes are running in a new terminal (`Ctrl`+`Alt`+`t`) with
+In a new terminal (`Ctrl`+`Alt`+`t`), check which nodes are running
 ```
 $ rosnode list
 ```
-Check which [topics](http://wiki.ros.org/rostopic#rostopic_list) are being published and subscribed in a new terminal (`Ctrl`+`Alt`+`t`) with
+In a new terminal (`Ctrl`+`Alt`+`t`), check which [topics](http://wiki.ros.org/rostopic#rostopic_list) are being published and subscribed
 ```
 $ rostopic list -v
 ```
-Print `Drone0`'s GPS coodinates topic with
+Print `Drone0`'s GPS coodinates topic
 ```
 $ rostopic echo /airsim_node/Drone0/global_gps
 ```
-Check which [services](http://wiki.ros.org/rosservice#rosservice_list) are available in a new terminal (`Ctrl`+`Alt`+`t`) with
+In a new terminal (`Ctrl`+`Alt`+`t`), check which [services](http://wiki.ros.org/rosservice#rosservice_list) are available
 ```
 $ rosservice list
 ```
-Let `Drone0` take-off with (use `Tab` to autocomplete the arguments after the service name `takeoff`) 
+Let `Drone0` take-off (use `Tab` to autocomplete the arguments after the service name `takeoff`) 
 ```
 $ rosservice call /airsim_node/Drone0/takeoff "waitOnLastTask: true"
 ```
 
 #### Known bugs and limitations
 
-In [`pd_position_controller_simple.cpp`](https://github.com/microsoft/AirSim/blob/master/ros/src/airsim_ros_pkgs/src/pd_position_controller_simple.cpp)
+AirSim's ROS nodes are still being developed; e.g., in [`pd_position_controller_simple.cpp`](https://github.com/microsoft/AirSim/blob/master/ros/src/airsim_ros_pkgs/src/pd_position_controller_simple.cpp)
 
 1. On lines 334 and 338, replace 4 occurrences of `vel_cmd_.twist.linear.z` with `vel_cmd_.twist.angular.z` 
 
-2. To get rid of `[ERROR] [1234567890.1234567890]: [PIDPositionController] Waiting for odometry!`, **given that `~/Documents/AirSim/settings.json` contains a single quadcopter named `Drone0`**, replace line 64 
+2. To get rid of `[ERROR] [1234567890.1234567890]: [PIDPositionController] Waiting for odometry!`, **IF `~/Documents/AirSim/settings.json` contains a single quadcopter named `Drone0`**, replace line 64 
 ```
 airsim_odom_sub_ = nh_.subscribe("/airsim_node/odom_local_ned", 50, &PIDPositionController::airsim_odom_cb, this);
 ```
@@ -674,9 +669,9 @@ airsim_odom_sub_ = nh_.subscribe("/airsim_node/Drone0/odom_local_ned", 50, &PIDP
 
 ## Keep AirSim's source code up-to-date
 
-AirSim is constantly being developed (e.g. this [pull request](https://github.com/microsoft/AirSim/pull/2743) for an upgraded `airsim_ros_pkgs` is currently open)
+AirSim is constantly being developed (e.g. this [pull request](https://github.com/microsoft/AirSim/pull/2743) for `airsim_ros_pkgs` is open as of June 2020)
 
-To pull updated source code (i.e. overwriting your modification but not deleting new files) and re-compile it
+To pull updated source code (i.e. overwriting your modification but not deleting newly created files) and re-compile it
 ```
 $ cd ~/AirSim
 $ git reset --hard origin/master
