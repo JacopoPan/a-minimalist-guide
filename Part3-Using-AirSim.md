@@ -87,7 +87,7 @@ Use an environment, e.g. `Africa.zip`, by navigating to the folder where it was 
 ```
 $ unzip Africa.zip -d Africa
 $ cd Africa
-$ ./Africa_001.sh            # each environment has a single ".sh" script in its top folder, the name can vary 
+$ ./Africa_001.sh              # each environment has a single ".sh" script in its top folder, the name can vary 
 ```
 Select "Yes" or "No" to start the environment with either a car or drone
 
