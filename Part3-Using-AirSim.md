@@ -422,7 +422,7 @@ $ sudo apt install git
 $ cd ~
 $ git clone -b 4.24 https://github.com/EpicGames/UnrealEngine.git
 $ cd UnrealEngine
-$ ./Setup.sh                                                       # if prompted, say yes to register file types
+$ ./Setup.sh                                                             # if prompted, say yes to register file types
 $ ./GenerateProjectFiles.sh
 $ make
 ```
@@ -535,7 +535,7 @@ $ echo  'add_subdirectory("NewDroneProject")' >> ~/AirSim/cmake/CMakeLists.txt
 Finally, setup and build AirSim again
 ```
 $ cd ~/AirSim
-$ ./setup.sh              # optional, if you had run it before
+$ ./setup.sh
 $ ./build.sh
 ```
 The executable of `NewDroneProject` will be located in `~/AirSim/build_debug/output/bin/` and can be run as
@@ -661,7 +661,9 @@ $ rosservice call /airsim_node/Drone0/takeoff "waitOnLastTask: true"
 
 In [`pd_position_controller_simple.cpp`](https://github.com/microsoft/AirSim/blob/master/ros/src/airsim_ros_pkgs/src/pd_position_controller_simple.cpp)
 
-1. To get rid of `[ERROR] [1234567890.1234567890]: [PIDPositionController] Waiting for odometry!`, **given that `~/Documents/AirSim/settings.json` contains a single quadcopter named `Drone0`**, replace line 64 
+1. On lines 334 and 338, replace 4 occurrences of `vel_cmd_.twist.linear.z` with `vel_cmd_.twist.angular.z` 
+
+2. To get rid of `[ERROR] [1234567890.1234567890]: [PIDPositionController] Waiting for odometry!`, **given that `~/Documents/AirSim/settings.json` contains a single quadcopter named `Drone0`**, replace line 64 
 ```
 airsim_odom_sub_ = nh_.subscribe("/airsim_node/odom_local_ned", 50, &PIDPositionController::airsim_odom_cb, this);
 ```
@@ -669,7 +671,6 @@ With line
 ```
 airsim_odom_sub_ = nh_.subscribe("/airsim_node/Drone0/odom_local_ned", 50, &PIDPositionController::airsim_odom_cb, this);
 ```
-2. On lines 334 and 338, replace 4 occurrences of `vel_cmd_.twist.linear.z` with `vel_cmd_.twist.angular.z` 
 
 ## Keep AirSim's source code up-to-date
 
