@@ -671,6 +671,7 @@ Given that you are using a single quadcopter named `Drone0` in `~/Documents/AirS
 ```
     airsim_odom_sub_ = nh_.subscribe("/airsim_node/Drone0/odom_local_ned", 50, &PIDPositionController::airsim_odom_cb, this);
 ```
+On lines 334 and 338, replace 4 occurrences of `vel_cmd_.twist.linear.z` with `vel_cmd_.twist.angular.z` 
 
 ## Keep AirSim's source code up-to-date
 
