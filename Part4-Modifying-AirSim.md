@@ -437,6 +437,17 @@ https://github.com/microsoft/AirSim/blob/master/AirLib/include/vehicles/multirot
 
 https://github.com/microsoft/AirSim/blob/master/AirLib/include/vehicles/multirotor/firmwares/simple_flight/SimpleFlightQuadXParams.hpp
 
+#### adding state estimation
+
+potential project
+- https://github.com/microsoft/AirSim/blob/master/docs/simple_flight.md#state-estimation
+- https://github.com/microsoft/AirSim/blob/master/AirLib/include/vehicles/multirotor/firmwares/simple_flight/AirSimSimpleFlightEstimator.hpp
+- https://github.com/microsoft/AirSim/blob/master/AirLib/include/vehicles/multirotor/firmwares/simple_flight/AirSimSimpleFlightBoard.hpp
+
+
+
+
+
 ### PX4 flight controller
 
 #### SITL
