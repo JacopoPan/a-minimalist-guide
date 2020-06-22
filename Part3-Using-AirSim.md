@@ -428,7 +428,7 @@ $ source ~/.bashrc
 ```
 You can now run `$ UE4Editor` from any folder/location 
 
-Note: UE4 versions >4.21 use [Vulkan](https://developer.nvidia.com/vulkan-driver); on Ubuntu 16, [extra installation steps](https://linuxconfig.org/install-and-test-vulkan-on-linux) for the driver might be required (if one does not want to use the deprecated OpenGL)
+Note: UE4 versions >4.21 use [Vulkan](https://developer.nvidia.com/vulkan-driver); on Ubuntu 16, [extra steps](https://linuxconfig.org/install-and-test-vulkan-on-linux) might be required (if one does not want to use the deprecated OpenGL)
 
 ### Build AirSim
 
