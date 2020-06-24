@@ -9,28 +9,27 @@ Everything after a `$` is entered on a terminal; everything after `>>>` is passe
 
 
 
-
-
-
-
 ## Custom Unreal Engine 4 environments
 
-### Alternative A: create UE4 project from scratch https://docs.unrealengine.com/en-US/Engine/Basics/Projects/Browser/index.html
+### Create UE4 project from scratch 
 
-run UE4Editor
-New Project Categories -> Games
-Select Template -> Blank
-Project Settings -> arrow right of Blueprint and choose C++; arrow right of With Starter Content and choose No Starter Content; also select folder/location and name for this empty project
+ubuntu only
+
+[create projects](https://docs.unrealengine.com/en-US/Engine/Basics/Projects/Browser/index.html)
+
+- run UE4Editor
+- New Project Categories -> Games
+- Select Template -> Blank
+- Project Settings -> arrow right of Blueprint and choose C++; arrow right of With Starter Content and choose No Starter Content; also select folder/location and - name for this empty project
 
 once the project is created 
-open it (.uproject file with UE4Editor, note you do not need to add a New C++ Class this time
-
-click yes if asked to recompile
-
-close UE4Editor
-
-copy folder Plugins ~/AirSim/Unreal/Plugins inside folder MyProject/
-
+- open it (.uproject file with UE4Editor, note you do not need to add a New C++ Class this time
+- click yes if asked to recompile
+- close UE4Editor
+- copy folder Plugins ~/AirSim/Unreal/Plugins inside folder MyProject/
+```
+$ cp
+```
 replace the content of MyProject.uproject with (note that you only change the Name field under Modules
 ```
 {
@@ -60,89 +59,84 @@ replace the content of MyProject.uproject with (note that you only change the Na
     ]
 }
 ```
-open uproject with UE4Editor again, confirm location of UE4Editor binaries again
+- open uproject with UE4Editor again, confirm location of UE4Editor binaries again
+- confirm rebuilding of airsim
 
-confirm rebuilding of airsim
-
-on the bottom right you might see a dialogue about new plugins, if you click manage plugins it shoudl show airsim
-(and it is enabled)
+on the bottom right you might see a dialogue about new plugins
+- if you click manage plugins it shoudl show airsim (and it is enabled)
 
 in the world outliner search bar (should be on the top right by default)
-search player start, click to show the new tab "Details"
-the position where to spawn vehicles in airsim is under "Transform"
-
-again, it should already exist
+- search player start, click to show the new tab "Details"
+- the position where to spawn vehicles in airsim is under "Transform" (again, it should already exist)
 
 then click Window -> World Settings
-in the menu that will appear on the right, set set the GameMode Override to AirSimGameMode
+- in the menu that will appear on the right, set set the GameMode Override to AirSimGameMode
+- save (ctrl shift s)
 
-save (ctrl shift s)
-
-you will be asked to prompt a name for the level to be saved under /MyProject/Content/
+??? you will be asked to prompt a name for the level to be saved under /MyProject/Content/
 
 to make it the default start (now that you have set its game mode)
-Edit
-Project Settings
-Maps & Modes
+- Edit -> Project Settings -> Maps & Modes
+- Default Maps -> Editor Startup Map
+- choose "the name you have given to the level just above"
 
-Default Maps
-Editor Startup Map
-choose "the name you have given to the level just above"
+(you can set DefaultGameMode to AirSimGameMode and the Game Default Map to DemoMap1, if you like)
+- save again (ctrl shift s)
+- press alt p or the play button to load the config an vehicles in settings.json
+- use the python/c++ apis or ros wrapper to control the vehicles
 
-(you can set DefaultGameMode to AirSimGameMode and the Game Default Map to DemoMap1 but it should not be necessary at this time)
-
-save again (ctrl shift s)
-
-press alt p or the play button to load the config an vehicles in settings.json
-use the python/c++ apis or ros wrapper to control the vehicles
-
-remember to 
+always remember 1
 Go to 'Edit->Editor Preferences' in Unreal Editor, in the 'Search' box type 'CPU' and ensure that the 'Use Less CPU when in Background' is unchecked. If you don't do this then UE will be slowed down dramatically when UE window loses focus.
 
+always remember 2 
 if/when you modify or update AirSim, remember to replace the Plugins folder in the project 
 
-### Alternative B: create UE4 project from scratch and add assets from Marketplace with Epic Games Launcher
+### Create UE4 project from scratch and add assets from Marketplace with Epic Games Launcher
+
+needs ubuntu and either a win or mac machine (or a 3rd party solution doing the same as Epic Games Launcher)
 
 #### on ubuntu 
 
-run UE4Editor
-New Project Categories -> Games
-Select Template -> Blank
-Project Settings -> arrow right of Blueprint and choose C++; arrow right of With Starter Content and choose No Starter Content; also select folder/location and name for this empty project
+- run UE4Editor
+- New Project Categories -> Games
+- Select Template -> Blank
+- Project Settings -> arrow right of Blueprint and choose C++; arrow right of With Starter Content and choose No Starter Content; also select folder/location and name for this empty project
 
 once the project is created 
-open it (.uproject file with UE4Editor, note you do not need to add a New C++ Class this time
-
-click yes if asked to recompile
-
-close UE4Editor
-
-copy the complete project folder over to the computer running epic games launcher
+- open it (.uproject file with UE4Editor, note you do not need to add a New C++ Class this time
+- click yes if asked to recompile
+- close UE4Editor
+- copy the complete project folder over to the computer running epic games launcher
 
 #### on mac/win with epic games launcher
 
-copy the empty project folder to where you would download assets/projects
-~/Documents/Unreal Projects
+- copy the empty project folder to where you would download assets/projects, e.g., `~/Documents/Unreal Projects`
+- run epic games launcher;
+- unreal engine (on the left menu);
+- marketplace (on the top menu)
+- select a free environment like Infinity Blade: Hideout
+- click "add to project";
+- check "Show all projects";
+- select "MyProject";
+- choose 4.24 under "Select version:";
+- wait for the content to download/verify/install;
+- copy back the folder to ubuntu
 
-run epic games launcher;
-unreal engine (on the left menu);
-marketplace (on the top menu)
-
-select a free environment like Infinity Blade: Hideout
-
-click "add to project";
-check "Show all projects";
-select "MyProject";
-choose 4.24 under "Select version:";
-wait for the content to download/verify/install;
-
-copy back the folder to ubuntu
+altenratively download a complete project from the learn tab
+- learn tab on top
+- find content with download
+e.g sun temple or blueprints under "Engine Features Samples"
+- click the "free" button and then "create project"
+- select UE4 v 4.24 
+(if you haven't installed it the number will be red and say "The selected engine association is not valid.", ignore it)
+- accept the default download folder typically under ~/Documents/Unreal Projects/
+- accept the license agreement
+- copy the folder "e.g. ~/Documents/Unreal Projects/Sun Temple to your ubuntu machine
 
 #### on ubuntu
 
-copy folder Plugins ~/AirSim/Unreal/Plugins inside folder MyProject/
-
-replace the content of MyProject.uproject with (note that you only change the Name field under Modules
+- copy folder Plugins ~/AirSim/Unreal/Plugins inside folder MyProject/
+- replace the content of MyProject.uproject with (note that you only change the Name field under Modules
 ```
 {
     "FileVersion": 3,
@@ -175,147 +169,40 @@ troubleshoot, if you copied from mac, remove `._` files
 ```
 jacopo@jacopo-ThinkPad-P52:~/Documents/Unreal Projects/MyProject/Source$ rm ._MyProject*
 ```
-https://apple.stackexchange.com/questions/14980/why-are-dot-underscore-files-created-and-how-can-i-avoid-them
+[link](https://apple.stackexchange.com/questions/14980/why-are-dot-underscore-files-created-and-how-can-i-avoid-them)
 
-open uproject with UE4Editor again, confirm location of UE4Editor binaries again
-
-confirm rebuilding of airsim AND the project MyProject itself
-
-on the bottom right you might see a dialogue about new plugins, if you click manage plugins it shoudl show airsim
+- open uproject with UE4Editor again, confirm location of UE4Editor binaries again
+- confirm rebuilding of airsim AND the project MyProject itself
+- on the bottom right you might see a dialogue about new plugins, if you click manage plugins it shoudl show airsim
 (and it is enabled)
 
----
-
-in the Content tab (should be on the bottom of the screen or find it from the window menu)
-
-select EnvironmentPack3 -> Maps
-
-then DemoMap1
+- in the Content tab (should be on the bottom of the screen or find it from the window menu)
+- select EnvironmentPack3 -> Maps
+- then DemoMap1
 
 in the world outliner search bar (should be on the top right by default)
-search player start, click to show the new tab "Details"
-the position where to spawn vehicles in airsim is under "Transform"
+- search player start, click to show the new tab "Details"
+- the position where to spawn vehicles in airsim is under "Transform"
 again, it should already exist (create it otherwise)
 
 then click Window -> World Settings
-in the menu that will appear on the right, set set the GameMode Override to AirSimGameMode
+- in the menu that will appear on the right, set set the GameMode Override to AirSimGameMode
 
 to make it the default start (now that you have set its game mode)
-Edit
-Project Settings
-Maps & Modes
+- Edit -> Project Settings -> Maps & Modes
+- Default Maps -> Editor Startup Map
+- choose DemoMap1
 
-Default Maps
-Editor Startup Map
-choose DemoMap1
+(you can set DefaultGameMode to AirSimGameMode and the Game Default Map to DemoMap1, if you like)
+- save again (ctrl shift s)
+- press alt p or the play button to load the config an vehicles in settings.json
+- use the python/c++ apis or ros wrapper to control the vehicles
 
-(you can set DefaultGameMode to AirSimGameMode and the Game Default Map to DemoMap1 but it should not be necessary at this time)
-
----
-
-save (ctrl shift s)
-
-remember to 
+always remember 1
 Go to 'Edit->Editor Preferences' in Unreal Editor, in the 'Search' box type 'CPU' and ensure that the 'Use Less CPU when in Background' is unchecked. If you don't do this then UE will be slowed down dramatically when UE window loses focus.
 
-
-press alt p or the play button to load the config an vehicles in settings.json
-use the python/c++ apis or ros wrapper to control the vehicles
-
+always remember 2 
 if/when you modify or update AirSim, remember to replace the Plugins folder in the project 
-
-### Simple but misleading: obtaining a complete project from the Learn tab
-
-needs Epic Games Launcher (Windows, macOS?) to create and Unreal project folder
-https://microsoft.github.io/AirSim/unreal_custenv/
-
-download (on mac or win)
-https://www.epicgames.com/unrealtournament/en-US/download
-run Epic Games Launcher
-login with your epic games account
-unreal engine tab in the left
-learn tab on top
-find content with download
-e.g sun temple or blueprints under "Engine Features Samples"
-click the "free" button and then "create project"
-select UE4 v 4.24 
-(if you haven't installed it the number will be red and say "The selected engine association is not valid.", ignore it)
-accept the default download folder typically under ~/Documents/Unreal Projects/
-accept the license agreement
-
-copy the folder "e.g. ~/Documents/Unreal Projects/Sun Temple to your ubuntu machine
-
-open the .uproject (e.g. SunTemple.uproject) with Unreal Engine Editor
-you will be asked to confirm the location of the UE editor (e.g. /home/$USER/UnrealEngine/)
-
-From the File menu select New C++ class, leave default None on the type of class, click Next, leave default name MyClass, and click Create Class. 
-We need to do this because Unreal requires at least one source file in project. 
-This will trigger C++ compilation of the project
-add Binaries, Source folders, Makefile, CMakeLists.txt files (and more) in folder /SunTemple
-
-close UE4Editor
-
-copy folder Plugins ~/AirSim/Unreal/Plugins inside folder SunTemple/
-
-replace the content of SunTemple.uproject with 
-```
-{
-    "FileVersion": 3,
-    "EngineAssociation": "4.24",
-    "Category": "Samples",
-    "Description": "",
-    "Modules": [
-        {
-            "Name": "SunTemple",
-            "Type": "Runtime",
-            "LoadingPhase": "Default",
-            "AdditionalDependencies": [
-                "AirSim"
-            ]
-        }
-    ],
-    "TargetPlatforms": [
-        "MacNoEditor",
-        "WindowsNoEditor",
-    ],
-    "Plugins": [
-        {
-            "Name": "AirSim",
-            "Enabled": true
-        }
-    ]
-}
-```
-open .uproject again, confirm location of the Uengine binaries again
-
-you will be asked to rebuild the airsim module, click yes
-
-on the bottom right you might see a dialogue about new plugins, if you click manage plugins it shoudl show airsim
-(and it is enabled)
-
-in the world outliner search bar (should be on the top right by default)
-search player start, click to show properties (i.e. the position where to spawn vehicles in airsim)
-
-in SunTemple it exists already but you shold create it otherwise https://docs.unrealengine.com/en-US/Engine/Actors/PlayerStart/index.html
-
-then click Window -> World Settings
-in the menu that will appear on the right, set set the GameMode Override to AirSimGameMode
-
-remember to 
-Go to 'Edit->Editor Preferences' in Unreal Editor, in the 'Search' box type 'CPU' and ensure that the 'Use Less CPU when in Background' is unchecked. If you don't do this then UE will be slowed down dramatically when UE window loses focus.
-
-save (ctrl shift s)
-
-press alt p or the play button to load the config an vehicles in settings.json
-use the python/c++ apis or ros wrapper to control the vehicles
-
-if/when you modify or update AirSim, remember to replace the Plugins folder in the project 
-
-
-
-
-
-
 
 ## Custmom vehicle mesh
 
