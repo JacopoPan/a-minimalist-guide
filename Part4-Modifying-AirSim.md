@@ -293,7 +293,10 @@ https://microsoft.github.io/AirSim/unreal_blocks/
 the FAQs are Windows/Visual Studio based
 contemplate VS Code (?) https://code.visualstudio.com/docs/?dv=linux64_deb
 
+example: pull request changing cameraOrientation to cameraPose https://github.com/microsoft/AirSim/pull/2710
+
 ### New Python APIs
+
 
 example
 https://github.com/Microsoft/AirSim/commit/f0e83c29e7685e1021185e3c95bfdaffb6cb85dc
