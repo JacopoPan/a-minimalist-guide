@@ -56,6 +56,7 @@ Minimal working examples (MWEs) of frameworks and simulation environments—for 
 ## RLlib/Gym and MuJoCo/Atari57
 
 - [MuJoCo](https://github.com/openai/mujoco-py/)
+- [PyBullet](https://pybullet.org/wordpress/)
 - [Keras-RL example](https://github.com/keras-rl/keras-rl/blob/master/examples/ddpg_mujoco.py)
 - [Vector link 1](https://support.vectorinstitute.ai/mujoco_updated)
 - [Vector link 2](https://support.vectorinstitute.ai/SoftwareVaughan)
