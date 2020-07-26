@@ -393,6 +393,7 @@ https://microsoft.github.io/AirSim/custom_drone/
 on Vector's cluster
 - https://github.com/microsoft/AirSim-NeurIPS2019-Drone-Racing/issues/112
 - https://github.com/microsoft/AirSim/issues/1224
+- https://github.com/microsoft/AirSim-NeurIPS2019-Drone-Racing/issues/64
 
 example of distributed RL with Azure
 https://github.com/microsoft/AutonomousDrivingCookbook/tree/master/DistributedRL
