@@ -39,25 +39,22 @@ Minimal working examples (MWEs) of frameworks and simulation environments—for 
 
 ```
 
-## Jupyer Notebook
-
-- [Link](https://support.vectorinstitute.ai/jupyter_notebook), [link](https://jupyter.org/install), [link](https://jupyter.readthedocs.io/en/latest/running.html#running)
-
-## PyTorch and MNIST
+## Checkpoints
 
 - [Example](https://support.vectorinstitute.ai/wandb)
 - [Checkpoints](https://support.vectorinstitute.ai/CheckpointRestartInstructions), [about `v`](https://support.vectorinstitute.ai/AboutVaughan2), symlinks, etc.
 - [Viz](https://support.vectorinstitute.ai/wandb), `$ /usr/local/bin/usageStats.sh`
 
-## Keras and MNIST
+## Jupyer Notebooks
 
-- TBD
+- [Link](https://support.vectorinstitute.ai/jupyter_notebook), [link](https://jupyter.org/install), [link](https://jupyter.readthedocs.io/en/latest/running.html#running)
 
-## RLlib/Gym and MuJoCo/Atari57
+## Gym, PyBullet and RLlib
 
 - [MuJoCo](https://github.com/openai/mujoco-py/)
 - [PyBullet](https://pybullet.org/wordpress/)
 - [Keras-RL example](https://github.com/keras-rl/keras-rl/blob/master/examples/ddpg_mujoco.py)
 - [Vector link 1](https://support.vectorinstitute.ai/mujoco_updated)
 - [Vector link 2](https://support.vectorinstitute.ai/SoftwareVaughan)
+
 
