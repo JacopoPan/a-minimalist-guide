@@ -689,7 +689,7 @@ $ catkin_make
 
 ----------------------------------------
 
-Work in progress by [James Xu](https://github.com/Jamesjrxu/AirSim_doc)
+Contributed by [James Xu](https://github.com/Jamesjrxu/)
 
 ## List of AirSim's Python APIs
 See [Python_API.md](https://github.com/JacopoPan/a-minimalist-guide/blob/master/AirSim-APIs/Python_API.md)
