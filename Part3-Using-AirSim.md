@@ -692,10 +692,10 @@ $ catkin_make
 Work in progress by [James Xu](https://github.com/Jamesjrxu/AirSim_doc)
 
 ## List of AirSim's Python APIs
-See [Python_API.md](https://github.com/Jamesjrxu/AirSim_doc/blob/master/Python_API.md)
+See [Python_API.md](https://github.com/JacopoPan/a-minimalist-guide/blob/master/AirSim-APIs/Python_API.md)
 
 ## List of AirSim's C++ APIs
-See [CPP_API.md](https://github.com/Jamesjrxu/AirSim_doc/blob/master/CPP_API.md)
+See [CPP_API.md](https://github.com/JacopoPan/a-minimalist-guide/blob/master/AirSim-APIs/CPP_API.md)
 
 ## List of AirSim's ROS topics and services 
-See [ROS_Wrapper.md](https://github.com/Jamesjrxu/AirSim_doc/blob/master/ROS_Wrapper.md)
+See [ROS_Wrapper.md](https://github.com/JacopoPan/a-minimalist-guide/blob/master/AirSim-APIs/ROS_Wrapper.md)
