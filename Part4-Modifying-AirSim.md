@@ -397,3 +397,24 @@ on Vector's cluster
 
 example of distributed RL with Azure
 https://github.com/microsoft/AutonomousDrivingCookbook/tree/master/DistributedRL
+
+
+--------
+
+## Checkpoints
+
+- [Example](https://support.vectorinstitute.ai/wandb)
+- [Checkpoints](https://support.vectorinstitute.ai/CheckpointRestartInstructions), [about `v`](https://support.vectorinstitute.ai/AboutVaughan2), symlinks, etc.
+- [Viz](https://support.vectorinstitute.ai/wandb), `$ /usr/local/bin/usageStats.sh`
+
+## Jupyer Notebooks
+
+- [Link](https://support.vectorinstitute.ai/jupyter_notebook), [link](https://jupyter.org/install), [link](https://jupyter.readthedocs.io/en/latest/running.html#running)
+
+## Gym, PyBullet and RLlib
+
+- [MuJoCo](https://github.com/openai/mujoco-py/)
+- [PyBullet](https://pybullet.org/wordpress/)
+- [Keras-RL example](https://github.com/keras-rl/keras-rl/blob/master/examples/ddpg_mujoco.py)
+- [Vector link 1](https://support.vectorinstitute.ai/mujoco_updated)
+- [Vector link 2](https://support.vectorinstitute.ai/SoftwareVaughan)
