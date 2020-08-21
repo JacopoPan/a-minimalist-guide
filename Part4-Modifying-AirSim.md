@@ -366,29 +366,7 @@ For custom environment/airsim
 https://docs.unrealengine.com/en-US/Engine/Basics/Projects/Packaging/index.html
 
 
-
-
-
-
---------------
---------------
---------------
---------------
-
-## (TBD) HTIL 
-
-left for later
-
-with xbox controller https://microsoft.github.io/AirSim/xbox_controller/
-on linux https://microsoft.github.io/AirSim/remote_control/
-see "RC" under vehicle in `settings.json`
-
-https://microsoft.github.io/AirSim/px4_setup/
-
-real custom drone: 
-https://microsoft.github.io/AirSim/custom_drone/
-
-## (TBD) Headless AirSim on a remote server
+## Headless AirSim on a remote server
 
 on Vector's cluster
 - https://github.com/microsoft/AirSim-NeurIPS2019-Drone-Racing/issues/112
@@ -418,3 +396,23 @@ https://github.com/microsoft/AutonomousDrivingCookbook/tree/master/DistributedRL
 - [Keras-RL example](https://github.com/keras-rl/keras-rl/blob/master/examples/ddpg_mujoco.py)
 - [Vector link 1](https://support.vectorinstitute.ai/mujoco_updated)
 - [Vector link 2](https://support.vectorinstitute.ai/SoftwareVaughan)
+
+
+
+--------------
+--------------
+--------------
+--------------
+
+## (TBD) HTIL 
+
+left for later
+
+with xbox controller https://microsoft.github.io/AirSim/xbox_controller/
+on linux https://microsoft.github.io/AirSim/remote_control/
+see "RC" under vehicle in `settings.json`
+
+https://microsoft.github.io/AirSim/px4_setup/
+
+real custom drone: 
+https://microsoft.github.io/AirSim/custom_drone/
