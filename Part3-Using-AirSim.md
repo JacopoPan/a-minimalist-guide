@@ -567,7 +567,7 @@ Note: while this guide focusses on Ubuntu 18 and ROS Melodic, as of June 2020, A
 
 Install additional packages and dependencies 
 ```
-$ sudo apt install ros-melodic-mavros ros-melodic-mavros-extras
+$ sudo apt install ros-melodic-mavros ros-melodic-mavros-extras ros-melodic-tf2-sensor-msgs        # tf2-sensor-msgs required as of Summer 2020
 $ sudo apt-get install gcc-8 g++-8
 ```
 Set `gcc8` as the [default `gcc`](https://stackoverflow.com/questions/7832892/how-to-change-the-default-gcc-compiler-in-ubuntu) in Ubuntu 18
