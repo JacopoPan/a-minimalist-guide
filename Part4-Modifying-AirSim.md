@@ -97,7 +97,8 @@ $
 
 
 
-### Create a UE4 project with AirSim's plugin and assets from Epic Games Launcher's Marketplace 
+
+### Assets from Epic Games Launcher's Marketplace 
 
 needs ubuntu and either a win or mac machine (or a 3rd party solution doing the same as Epic Games Launcher)
 
@@ -265,12 +266,16 @@ https://github.com/microsoft/AirSim/issues/1506
 
 
 
-## Headless AirSim on a remote server
+
+
+## AirSim on a remote server
 
 e.g. on Vector's cluster
 - https://github.com/microsoft/AirSim-NeurIPS2019-Drone-Racing/issues/112
 - https://github.com/microsoft/AirSim/issues/1224
 - https://github.com/microsoft/AirSim-NeurIPS2019-Drone-Racing/issues/64
+
+
 
 
 
