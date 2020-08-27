@@ -1,0 +1,16 @@
+{
+  "SeeDocsAt": "https://github.com/Microsoft/AirSim/blob/master/docs/settings.md",
+  "SettingsVersion": 1.2,
+  "SimMode": "Multirotor",
+  "ViewMode": "GroundObserver",
+  "Vehicles": {
+    "Drone0": {
+      "VehicleType": "SimpleFlight",
+      "X": 0, "Y": 0, "Z": 0, "Yaw": 0
+    },
+    "Drone1": {
+      "VehicleType": "SimpleFlight",
+      "X": 2, "Y": 1, "Z": 0, "Yaw": 0
+    }
+  }
+}
