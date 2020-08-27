@@ -8,10 +8,12 @@ The following instructions are for a fresh install of Ubuntu 18.04 LTS 64-bit on
 Everything after a `$` is entered on a terminal; everything after `>>>` is passed to a Python interpreter
 
 
-
 ## Custom Unreal Engine 4 environments
 
-### Create UE4 project from scratch 
+[AirSim](https://github.com/microsoft/AirSim) is an [Unreal Engine Plugin](https://docs.unrealengine.com/en-US/Programming/Plugins/index.html)
+and it can be added to any new UE4 project
+
+### Create a UE4 project with AirSim from scratch 
 
 ubuntu only
 
@@ -23,7 +25,7 @@ ubuntu only
 - Project Settings -> arrow right of Blueprint and choose C++; arrow right of With Starter Content and choose No Starter Content; also select folder/location and - name for this empty project
 
 once the project is created 
-- open it (.uproject file with UE4Editor, note you do not need to add a New C++ Class this time
+- open it (.uproject file with UE4Editor, note you do not need to add a New C++ Class this time)
 - click yes if asked to recompile
 - close UE4Editor
 - copy folder Plugins ~/AirSim/Unreal/Plugins inside folder MyProject/
@@ -91,7 +93,11 @@ Go to 'Edit->Editor Preferences' in Unreal Editor, in the 'Search' box type 'CPU
 always remember 2 
 if/when you modify or update AirSim, remember to replace the Plugins folder in the project 
 
-### Create UE4 project from scratch and add assets from Marketplace with Epic Games Launcher
+
+
+
+
+### Create a UE4 project with AirSim using assets from Epic Games Launcher's Marketplace 
 
 needs ubuntu and either a win or mac machine (or a 3rd party solution doing the same as Epic Games Launcher)
 
@@ -200,11 +206,9 @@ to make it the default start (now that you have set its game mode)
 - press alt p or the play button to load the config an vehicles in settings.json
 - use the python/c++ apis or ros wrapper to control the vehicles
 
-always remember 1
-Go to 'Edit->Editor Preferences' in Unreal Editor, in the 'Search' box type 'CPU' and ensure that the 'Use Less CPU when in Background' is unchecked. If you don't do this then UE will be slowed down dramatically when UE window loses focus.
 
-always remember 2 
-if/when you modify or update AirSim, remember to replace the Plugins folder in the project 
+
+
 
 ## Custmom vehicle mesh
 
@@ -254,6 +258,9 @@ https://github.com/microsoft/AirSim/issues/627
 https://github.com/microsoft/AirSim/issues/1506
 
 
+
+
+
 ## Headless AirSim on a remote server
 
 on Vector's cluster
@@ -261,24 +268,24 @@ on Vector's cluster
 - https://github.com/microsoft/AirSim/issues/1224
 - https://github.com/microsoft/AirSim-NeurIPS2019-Drone-Racing/issues/64
 
+
+
+
+
 ## Packaging custom UE4 environments and AirSim
 
 For custom environment/airsim https://docs.unrealengine.com/en-US/Engine/Basics/Projects/Packaging/index.html
 
 
-### PX4 flight controller
-
-#### SITL
-- https://microsoft.github.io/AirSim/px4_sitl/ 
-- https://microsoft.github.io/AirSim/px4_build/
-- https://github.com/microsoft/AirSim/issues/2647
-
-px4 and mavlink
-- https://github.com/Microsoft/AirSim/wiki/Intercepting-MavLink-messages
-- https://microsoft.github.io/AirSim/px4_logging/
-- https://microsoft.github.io/AirSim/mavlinkcom/
 
 
+
+
+
+
+--------
+
+## Additional readings
 
 
 ## Custom vehicle pyhsical properties
@@ -341,9 +348,25 @@ https://github.com/microsoft/AirSim/blob/master/AirLib/include/vehicles/multirot
 
 --------
 
+## PX4 flight controller
+
+### SITL
+- https://microsoft.github.io/AirSim/px4_sitl/ 
+- https://microsoft.github.io/AirSim/px4_build/
+- https://github.com/microsoft/AirSim/issues/2647
+
+px4 and mavlink
+- https://github.com/Microsoft/AirSim/wiki/Intercepting-MavLink-messages
+- https://microsoft.github.io/AirSim/px4_logging/
+- https://microsoft.github.io/AirSim/mavlinkcom/
+
+--------
+
 ## HTIL 
 - [PX4](https://microsoft.github.io/AirSim/px4_setup/)
 - [Custom drone](https://microsoft.github.io/AirSim/custom_drone/)
+
+--------
 
 ## Checkpoints
 
