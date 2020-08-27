@@ -1,0 +1,26 @@
+{
+    "FileVersion": 3,
+    "EngineAssociation": "4.24",
+    "Category": "Samples",
+    "Description": "",
+    "Modules": [
+        {
+            "Name": "MyProject",
+            "Type": "Runtime",
+            "LoadingPhase": "Default",
+            "AdditionalDependencies": [
+                "AirSim"
+            ]
+        }
+    ],
+    "TargetPlatforms": [
+        "MacNoEditor",
+        "WindowsNoEditor",
+    ],
+    "Plugins": [
+        {
+            "Name": "AirSim",
+            "Enabled": true
+        }
+    ]
+}
