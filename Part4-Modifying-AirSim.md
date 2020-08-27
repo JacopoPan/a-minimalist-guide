@@ -10,16 +10,14 @@ Everything after a `$` is entered on a terminal; everything after `>>>` is passe
 
 ## Custom Unreal Engine 4 environments
 
-[AirSim](https://github.com/microsoft/AirSim) is an [Unreal Engine Plugin](https://docs.unrealengine.com/en-US/Programming/Plugins/index.html)
-and it can be added to any new UE4 project
+[AirSim](https://github.com/microsoft/AirSim) is packaged as an [Unreal Engine 4 Plugin](https://docs.unrealengine.com/en-US/Programming/Plugins/index.html)
+and it can be added to essentially any new UE4 project
 
-### Create a UE4 project with AirSim from scratch 
+### Create a UE4 project with AirSim's plugin from scratch 
 
-ubuntu only
+On Ubuntu, one can create a [new UE4 project](https://docs.unrealengine.com/en-US/Engine/Basics/Projects/Browser/index.html) from scratch and add AirSim's plugin as follows 
 
-[create projects](https://docs.unrealengine.com/en-US/Engine/Basics/Projects/Browser/index.html)
-
-- run UE4Editor
+- Start the `UE4Editor` (if you followed [Part 3](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part3-Using-AirSim.md), type `$ UE4Editor` in your terminal)
 - New Project Categories -> Games
 - Select Template -> Blank
 - Project Settings -> arrow right of Blueprint and choose C++; arrow right of With Starter Content and choose No Starter Content; also select folder/location and - name for this empty project
@@ -87,17 +85,19 @@ to make it the default start (now that you have set its game mode)
 - press alt p or the play button to load the config an vehicles in settings.json
 - use the python/c++ apis or ros wrapper to control the vehicles
 
-always remember 1
+**Note**:
 Go to 'Edit->Editor Preferences' in Unreal Editor, in the 'Search' box type 'CPU' and ensure that the 'Use Less CPU when in Background' is unchecked. If you don't do this then UE will be slowed down dramatically when UE window loses focus.
 
-always remember 2 
+**Note**:
 if/when you modify or update AirSim, remember to replace the Plugins folder in the project 
+```
+$ 
+```
 
 
 
 
-
-### Create a UE4 project with AirSim using assets from Epic Games Launcher's Marketplace 
+### Create a UE4 project with AirSim's plugin and assets from Epic Games Launcher's Marketplace 
 
 needs ubuntu and either a win or mac machine (or a 3rd party solution doing the same as Epic Games Launcher)
 
@@ -113,6 +113,8 @@ once the project is created
 - click yes if asked to recompile
 - close UE4Editor
 - copy the complete project folder over to the computer running epic games launcher
+
+identical up to line XYZ
 
 #### on mac/win with epic games launcher
 
@@ -142,6 +144,8 @@ e.g sun temple or blueprints under "Engine Features Samples"
 
 
 #### on ubuntu
+
+identical from line XYZ
 
 - copy folder Plugins ~/AirSim/Unreal/Plugins inside folder MyProject/
 - replace the content of MyProject.uproject with (note that you only change the Name field under Modules
@@ -210,7 +214,7 @@ to make it the default start (now that you have set its game mode)
 
 
 
-## Custmom vehicle mesh
+## Custom vehicle mesh
 
 e.g. the hexacopter 3d model from https://github.com/Microsoft/AirSim/wiki/hexacopter
 ```
@@ -263,7 +267,7 @@ https://github.com/microsoft/AirSim/issues/1506
 
 ## Headless AirSim on a remote server
 
-on Vector's cluster
+e.g. on Vector's cluster
 - https://github.com/microsoft/AirSim-NeurIPS2019-Drone-Racing/issues/112
 - https://github.com/microsoft/AirSim/issues/1224
 - https://github.com/microsoft/AirSim-NeurIPS2019-Drone-Racing/issues/64
@@ -346,8 +350,6 @@ https://github.com/microsoft/AirSim/blob/master/AirLib/include/vehicles/multirot
 
 https://github.com/microsoft/AirSim/blob/master/AirLib/include/vehicles/multirotor/firmwares/simple_flight/SimpleFlightQuadXParams.hpp
 
---------
-
 ## PX4 flight controller
 
 ### SITL
@@ -360,29 +362,30 @@ px4 and mavlink
 - https://microsoft.github.io/AirSim/px4_logging/
 - https://microsoft.github.io/AirSim/mavlinkcom/
 
---------
-
 ## HTIL 
 - [PX4](https://microsoft.github.io/AirSim/px4_setup/)
 - [Custom drone](https://microsoft.github.io/AirSim/custom_drone/)
 
---------
+
+-------
+
+move to part 2
 
 ## Checkpoints
 
-- [Example](https://support.vectorinstitute.ai/wandb)
 - [Checkpoints](https://support.vectorinstitute.ai/CheckpointRestartInstructions), [about `v`](https://support.vectorinstitute.ai/AboutVaughan2), symlinks, etc.
+
+## Viz
+
 - [Viz](https://support.vectorinstitute.ai/wandb), `$ /usr/local/bin/usageStats.sh`
 
 ## Jupyer Notebooks
 
 - [Link 1](https://support.vectorinstitute.ai/jupyter_notebook), [link 2](https://jupyter.org/install), [link 3](https://jupyter.readthedocs.io/en/latest/running.html#running)
 
-## Gym, PyBullet and RLlib
+## MuJoCo, PyBullet
 
-- [MuJoCo](https://github.com/openai/mujoco-py/)
-- [PyBullet](https://pybullet.org/wordpress/)
-- [Keras-RL example](https://github.com/keras-rl/keras-rl/blob/master/examples/ddpg_mujoco.py)
-- [Vector link 1](https://support.vectorinstitute.ai/mujoco_updated), [link 2](https://support.vectorinstitute.ai/SoftwareVaughan)
+- [MuJoCo](https://github.com/openai/mujoco-py/). [Vector link 1](https://support.vectorinstitute.ai/mujoco_updated), [link 2](https://support.vectorinstitute.ai/SoftwareVaughan)
+- [PyBullet](https://pybullet.org/wordpress/) gym-pybullet-drones
 
 
