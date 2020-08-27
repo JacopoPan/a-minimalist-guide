@@ -128,10 +128,12 @@ altenratively download a complete project from the learn tab
 e.g sun temple or blueprints under "Engine Features Samples"
 - click the "free" button and then "create project"
 - select UE4 v 4.24 
-(if you haven't installed it the number will be red and say "The selected engine association is not valid.", ignore it)
+(if you havent installed it the number will be red and say "The selected engine association is not valid.", ignore it)
+
 - accept the default download folder typically under ~/Documents/Unreal Projects/
 - accept the license agreement
-- copy the folder "e.g. ~/Documents/Unreal Projects/Sun Temple to your ubuntu machine
+- copy the folder "e.g. `~/Documents/Unreal Projects/Sun Temple` to your ubuntu machine
+
 
 #### on ubuntu
 
@@ -252,7 +254,29 @@ https://github.com/microsoft/AirSim/issues/627
 https://github.com/microsoft/AirSim/issues/1506
 
 
+## Headless AirSim on a remote server
 
+on Vector's cluster
+- https://github.com/microsoft/AirSim-NeurIPS2019-Drone-Racing/issues/112
+- https://github.com/microsoft/AirSim/issues/1224
+- https://github.com/microsoft/AirSim-NeurIPS2019-Drone-Racing/issues/64
+
+## Packaging custom UE4 environments and AirSim
+
+For custom environment/airsim https://docs.unrealengine.com/en-US/Engine/Basics/Projects/Packaging/index.html
+
+
+### PX4 flight controller
+
+#### SITL
+- https://microsoft.github.io/AirSim/px4_sitl/ 
+- https://microsoft.github.io/AirSim/px4_build/
+- https://github.com/microsoft/AirSim/issues/2647
+
+px4 and mavlink
+- https://github.com/Microsoft/AirSim/wiki/Intercepting-MavLink-messages
+- https://microsoft.github.io/AirSim/px4_logging/
+- https://microsoft.github.io/AirSim/mavlinkcom/
 
 
 
@@ -268,13 +292,6 @@ https://github.com/Microsoft/AirSim/wiki/hexacopter
 
 also see this pull request
 https://github.com/microsoft/AirSim/pull/1890
-
-
-
-
-
-
-
 
 
 ## Modifying AirSim APIs and controllers
@@ -297,13 +314,8 @@ example: pull request changing cameraOrientation to cameraPose https://github.co
 
 ### New Python APIs
 
+example https://github.com/Microsoft/AirSim/commit/f0e83c29e7685e1021185e3c95bfdaffb6cb85dc
 
-example
-https://github.com/Microsoft/AirSim/commit/f0e83c29e7685e1021185e3c95bfdaffb6cb85dc
-
-### New C++ APIs
-
-add printout of date of the most recent compilation
 
 ### `simpleflight` flight controller
 
@@ -327,57 +339,11 @@ https://github.com/microsoft/AirSim/blob/master/AirLib/include/vehicles/multirot
 
 https://github.com/microsoft/AirSim/blob/master/AirLib/include/vehicles/multirotor/firmwares/simple_flight/SimpleFlightQuadXParams.hpp
 
-#### adding state estimation
-
-potential project
-- https://github.com/microsoft/AirSim/blob/master/docs/simple_flight.md#state-estimation
-- https://github.com/microsoft/AirSim/blob/master/AirLib/include/vehicles/multirotor/firmwares/simple_flight/AirSimSimpleFlightEstimator.hpp
-- https://github.com/microsoft/AirSim/blob/master/AirLib/include/vehicles/multirotor/firmwares/simple_flight/AirSimSimpleFlightBoard.hpp
-
-
-
-
-
-### PX4 flight controller
-
-#### SITL
-
-https://microsoft.github.io/AirSim/px4_sitl/ 
-
-https://microsoft.github.io/AirSim/px4_build/
-
-https://github.com/microsoft/AirSim/issues/2647
-
-px4 and mavlink
-- https://github.com/Microsoft/AirSim/wiki/Intercepting-MavLink-messages
-- https://microsoft.github.io/AirSim/px4_logging/
-- https://microsoft.github.io/AirSim/mavlinkcom/
-
-
-
-
-
-
-
-## Packaging custom UE4 environments and AirSim
-
-For custom environment/airsim
-
-https://docs.unrealengine.com/en-US/Engine/Basics/Projects/Packaging/index.html
-
-
-## Headless AirSim on a remote server
-
-on Vector's cluster
-- https://github.com/microsoft/AirSim-NeurIPS2019-Drone-Racing/issues/112
-- https://github.com/microsoft/AirSim/issues/1224
-- https://github.com/microsoft/AirSim-NeurIPS2019-Drone-Racing/issues/64
-
-example of distributed RL with Azure
-https://github.com/microsoft/AutonomousDrivingCookbook/tree/master/DistributedRL
-
-
 --------
+
+## HTIL 
+- [PX4](https://microsoft.github.io/AirSim/px4_setup/)
+- [Custom drone](https://microsoft.github.io/AirSim/custom_drone/)
 
 ## Checkpoints
 
@@ -387,32 +353,13 @@ https://github.com/microsoft/AutonomousDrivingCookbook/tree/master/DistributedRL
 
 ## Jupyer Notebooks
 
-- [Link](https://support.vectorinstitute.ai/jupyter_notebook), [link](https://jupyter.org/install), [link](https://jupyter.readthedocs.io/en/latest/running.html#running)
+- [Link 1](https://support.vectorinstitute.ai/jupyter_notebook), [link 2](https://jupyter.org/install), [link 3](https://jupyter.readthedocs.io/en/latest/running.html#running)
 
 ## Gym, PyBullet and RLlib
 
 - [MuJoCo](https://github.com/openai/mujoco-py/)
 - [PyBullet](https://pybullet.org/wordpress/)
 - [Keras-RL example](https://github.com/keras-rl/keras-rl/blob/master/examples/ddpg_mujoco.py)
-- [Vector link 1](https://support.vectorinstitute.ai/mujoco_updated)
-- [Vector link 2](https://support.vectorinstitute.ai/SoftwareVaughan)
+- [Vector link 1](https://support.vectorinstitute.ai/mujoco_updated), [link 2](https://support.vectorinstitute.ai/SoftwareVaughan)
 
 
-
---------------
---------------
---------------
---------------
-
-## (TBD) HTIL 
-
-left for later
-
-with xbox controller https://microsoft.github.io/AirSim/xbox_controller/
-on linux https://microsoft.github.io/AirSim/remote_control/
-see "RC" under vehicle in `settings.json`
-
-https://microsoft.github.io/AirSim/px4_setup/
-
-real custom drone: 
-https://microsoft.github.io/AirSim/custom_drone/
