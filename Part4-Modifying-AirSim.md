@@ -138,50 +138,76 @@ You can make `DemoMap1` the default "Editor Startup Map" and "Game Startup Map" 
 
 ## Custom vehicle mesh
 
-e.g. the hexacopter 3d model from https://github.com/Microsoft/AirSim/wiki/hexacopter
+e.g. the hexacopter 3d model usere [here](https://github.com/Microsoft/AirSim/wiki/hexacopter)
 ```
-wget https://github.com/Microsoft/AirSim/wiki/images/DJI%20S900.zip
+$ wget https://github.com/Microsoft/AirSim/wiki/images/DJI%20S900.zip
 ```
-the .obj static mesh of this model https://grabcad.com/library/dji-s900-hex-rotor-drone-1 
-in step format https://en.wikipedia.org/wiki/ISO_10303-21
 
-use custom model
-https://microsoft.github.io/AirSim/settings/#pawnpaths
+unzip and copy to Oxcart/Content
 
-> This allows you to specify your own vehicle pawn blueprints, for example, you can replace the default car in AirSim with your own car. 
+within the project to which you added AirSim make a copy of
+`Oxcart/Plugin/AirSim/Content/Blueprints/BP_FlyingPawn.uasset`
+to `Oxcart/Content`
 
-> Your vehicle BP can reside in Content folder of your own Unreal project (i.e. outside of AirSim plugin folder). For example, if you have a car BP located in file Content\MyCar\MySedanBP.uasset in your project then you can set "DefaultCar": {"PawnBP":"Class'/Game/MyCar/MySedanBP.MySedanBP_C'"}. 
+open the project iwith the unreal engine editor
 
-> The XYZ.XYZ_C is a special notation required to specify class for BP XYZ. 
+on the bottom right, you will be notified of source files changes and asked to import them 
 
-> Please note that your BP must be derived from CarPawn class. By default this is not the case but you can re-parent the BP using the "Class Settings" button in toolbar in UE editor after you open the BP and then choosing "Car Pawn" for Parent Class settings in Class Options. 
+in the "FBX Import Options" menu select "Import All"
 
-> It's also a good idea to disable "Auto Possess Player" and "Auto Possess AI" as well as set AI Controller Class to None in BP details. Please make sure your asset is included for cooking in packaging options if you are creating binary.
+the "Message Log" will show 3 warnings, ignore them
+
+the DJI S900 (containing .obj files) and DJI_S900 (containing .uasset files) as well as 
+BP_FlyingPawn will appear on the Content Browser at the bottom
+
+double click on folder DJI_S900, right click DJI_S900 and select "Edit.."
+
+in the "Details" tab on the right, scroll down to "Import Settings" and set the "X" value of "Import Rotation" to 90
+
+the click on the "Asset" dropdown menu at the top and "Reimport DJI_S900", this should fix the orientation of the mesh
+
+save and close DJI_S900
+
+repeat these steps to rotate by 90 degrees DJI_MotorProp as well
+
+if you want, make "defaultMat" a differnt color
+right clikc "Edit.."
+select "Param", on the "Details" tab, find "Material Expression Vector Parameter" and modify "Default Value"
+save and close defaultMat
+
+go back to the "Content" folder in the "Content Browser"
+
+right click on BP_FlyingPawn and "Edit.."
+
+under "Components" on the left, select "BodyMesh"
+
+on the left, under "Static Mesh" open the dropdown menu saying "Quadrotor1" and select "DJI_S900"
+
+under "Transform", set the 3 values besides "Scale" to .2
+
+click on  "Prop3" "Prop2" "Prop1" "Prop0" and change their "Static Mesh" for "DJI_MotorProp"
+
+in the "Components" tab on the left, right click on Prop0, Prop1, Rotation0, Rotation1 and duplicate them
 
 
-within your project (with AirSim) copy MyProject/Plugin/AirSim/Content/Blueprints/BP_FlyingPawn.uasset
-to MyProject/Content
 
-open the project
+WIP (fix propellers positions and rotations)
 
-import the static mesh and propellers;
-replace BP_FlyingPawn' static mesh
-edit the mesh (scale, rotate, add propellers, etc)
 
-edit `settings.json` adding
+
+
+edit `settings.json` adding https://microsoft.github.io/AirSim/settings/#pawnpaths
 ```
   "PawnPaths": {
     "DefaultQuadrotor": {"PawnBP": "Class'/Game/BP_FlyingPawn.BP_FlyingPawn_C'"}
   },
 ```
 
-`/Game/BP_FlyingPawn.BP_FlyingPawn_C` will lead to the use of the the model in `MyProject/Content/BP_FlyingPawn.uasset`
+> Note: `/Game/BP_FlyingPawn.BP_FlyingPawn_C` will lead to the use of the the model in `MyProject/Content/BP_FlyingPawn.uasset`
+> The XYZ.XYZ_C is a special notation required to specify class for BP XYZ. 
+> Please note that your BP must be derived from CarPawn class. By default this is not the case but you can re-parent the BP using the "Class Settings" button in toolbar in UE editor after you open the BP and then choosing "Car Pawn" for Parent Class settings in Class Options. 
 
-note that re-naming won't work (where to change this
-
-refer to these issues as well
-https://github.com/microsoft/AirSim/issues/627
-https://github.com/microsoft/AirSim/issues/1506
+> It's also a good idea to disable "Auto Possess Player" and "Auto Possess AI" as well as set AI Controller Class to None in BP details. Please make sure your asset is included for cooking in packaging options if you are creating binary.
 
 
 
@@ -210,7 +236,13 @@ For custom environment/airsim https://docs.unrealengine.com/en-US/Engine/Basics/
 
 
 
+## Modifying AirSim's source
 
+links
+
+how to recompile
+
+reminders of what to change
 
 
 --------
