@@ -99,7 +99,7 @@ The project can now be used as an AirSim environemnt, pressing "Play" (`Alt`+`p`
 
 Grabbing assets (models, maps, levels) from [Unreal Engine's Marketplace](https://unrealengine.com/marketplace/en-US/store) requires [Epic Games Launcher](https://www.epicgames.com/store/en-US/download) which is only available for Windows and macOS (even though [3rd party solutions for Linux exist](https://lutris.net/games/epic-games-store/)) 
 
-To add assets to a project
+To *add assets* to a project
 - Create an empty project as show in the previous section (i.e., the first 11 bullet points)
 - Copy the entire project folder to the (Windows or macOS) computer running "Epic Games Launcher"
 - Start "Epic Games Launcher"
@@ -112,7 +112,7 @@ To add assets to a project
 - Wait for the content to download, verify, and install
 - You can now copy back the entire project folder to an Ubuntu machine
 
-Alternatively, to obtain a complete project from the "Learn" tab
+Alternatively, to *obtain a complete project* from the "Learn" tab
 - Follow the first 4 steps in the previous list
 - On the top, select "Learn"
 - Find content with dowload (e.g. "Sun Temple" under "Engine Features Samples")
@@ -121,13 +121,15 @@ Alternatively, to obtain a complete project from the "Learn" tab
 - Accept the default download folder (`~/Documents/Unreal\ Projects/`) and licence agreement
 - You can now copy back the entire project folder to an Ubuntu machine
 
-Then, follow the bullet points from the 12th on from the previous section ("Copy AirSim's Unreal Plugins folder..")
+Then, follow the bullet points from the 12th on from the previous section (i.e., "Copy AirSim's Unreal Plugins folder..")
 
-The "Content" tab (at the bottom or under "Window") will have the new assets, e.g. for "Infinity Blade: Hideout", `EnvironmentPack3` -> `Maps` -> `DemoMap1`
+The "Content" tab (at the bottom or under "Window") will have the new assets
+
+E.g. for "Infinity Blade: Hideout", `EnvironmentPack3` -> `Maps` -> `DemoMap1`
 
 You can make `DemoMap1` the default "Editor Startup Map" and "Game Startup Map" under "Project Settings" -> "Maps & Modes"
 
-**Troubleshoot**, if you copied files from  macOS, remove [`._` files](https://apple.stackexchange.com/questions/14980/why-are-dot-underscore-files-created-and-how-can-i-avoid-them) to avoid build errors
+**Troubleshoot**: if you copied files from  macOS, remember to remove [`._` files](https://apple.stackexchange.com/questions/14980/why-are-dot-underscore-files-created-and-how-can-i-avoid-them) to avoid build errors
 
 
 
