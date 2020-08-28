@@ -77,7 +77,7 @@ $ gedit ~/Documents/Unreal\ Projects/Oxcart/Oxcart.uproject
 - From the "Window" dropdown menu, click on "World Settings"
 - In the "GameMode Override" dropdown menu, select "AirSimGameMode"
 - Save the project (`Ctrl`+`s`)
-- You will be prompted to save the level with a name (e.g. `OxcartLvl1`) under `~/Documents/Unreal\ Projects/Oxcart/Content`, click "Save"
+- You will be prompted to save the level with a name (e.g. `OxcartLvl1`) under `Unreal\ Projects/Oxcart/Content`, click "Save"
 - Make this level the default start: from menu "Edit" select "Project Settings"
 - On the left of the new window, under "Project", select "Maps & Modes"
 - On the right, under "Default Maps", select `OxcartLvl1` from the dropdown menu for the "Editor Startup Map"
@@ -86,14 +86,10 @@ $ gedit ~/Documents/Unreal\ Projects/Oxcart/Oxcart.uproject
 
 The project can now be used as an AirSim environemnt, pressing "Play" (`Alt`+`p`) will load the AirSim vehicles and options in `~/Documents/AirSim/settings.json`
 
-**Note**:
-Go to 'Edit->Editor Preferences' in Unreal Editor, in the 'Search' box type 'CPU' and ensure that the 'Use Less CPU when in Background' is unchecked. If you don't do this then UE will be slowed down dramatically when UE window loses focus.
+**Note**, always remember to **uncheck** option 'Use Less CPU when in Background': "Edit", "Editor Preferences", then search for 'CPU' to show the option
 
-**Note**:
-if/when you modify or update AirSim, remember to replace the Plugins folder in the project 
-```
-$ 
-```
+**Note**, when you modify or **update** AirSim, you should replace (and rebuild) the `AirSim` folder under the `Plugins` folder of your project
+
 
 
 
@@ -101,116 +97,38 @@ $
 
 ### Assets from Epic Games Launcher's Marketplace 
 
-needs ubuntu and either a win or mac machine (or a 3rd party solution doing the same as Epic Games Launcher)
+Grabbing assets (models, maps, levels) from [Unreal Engine's Marketplace](https://unrealengine.com/marketplace/en-US/store) requires [Epic Games Launcher](https://www.epicgames.com/store/en-US/download) which is only available for Windows and macOS (even though [3rd party solutions for Linux exist](https://lutris.net/games/epic-games-store/)) 
 
-#### on ubuntu 
+To add assets to a project
+- Create an empty project as show in the previous section (i.e., the first 11 bullet points)
+- Copy the entire project folder to the (Windows or macOS) computer running "Epic Games Launcher"
+- Start "Epic Games Launcher"
+- On the left, select "Unreal Engine"
+- On the top, select "Marketplace"
+- Find a free environment (e.g. "Infinity Blade: Hideout")
+- Click on "Add to project"
+- Use "Show all projects" to select "YourProjectName" (e.g. `Oxcart`);
+- Under "Select version:", choose "4.24" (UE4 version used by AirSim at the time of this writing)
+- Wait for the content to download, verify, and install
+- You can now copy back the entire project folder to an Ubuntu machine
 
-- run UE4Editor
-- New Project Categories -> Games
-- Select Template -> Blank
-- Project Settings -> arrow right of Blueprint and choose C++; arrow right of With Starter Content and choose No Starter Content; also select folder/location and name for this empty project
+Alternatively, to obtain a complete project from the "Learn" tab
+- Follow the first 4 steps in the previous list
+- On the top, select "Learn"
+- Find content with dowload (e.g. "Sun Temple" under "Engine Features Samples")
+- Click the "Free" button and "Create project"
+- Select "UE4 v4.24" (if UE4 is not installed on the computer used for the downlaod the number will be red and say "The selected engine association is not valid.", you can ignore the warning)
+- Accept the default download folder (`~/Documents/Unreal\ Projects/`) and licence agreement
+- You can now copy back the entire project folder to an Ubuntu machine
 
-once the project is created 
-- open it (.uproject file with UE4Editor, note you do not need to add a New C++ Class this time
-- click yes if asked to recompile
-- close UE4Editor
-- copy the complete project folder over to the computer running epic games launcher
+Then, follow the bullet points from the 12th on from the previous section ("Copy AirSim's Unreal Plugins folder..")
 
-identical up to line XYZ
+The "Content" tab (at the bottom or under "Window") will have the new assets, e.g. for "Infinity Blade: Hideout", `EnvironmentPack3` -> `Maps` -> `DemoMap1`
 
-#### on mac/win with epic games launcher
+You can make `DemoMap1` the default "Editor Startup Map" and "Game Startup Map" under "Project Settings" -> "Maps & Modes"
 
-- copy the empty project folder to where you would download assets/projects, e.g., `~/Documents/Unreal Projects`
-- run epic games launcher;
-- unreal engine (on the left menu);
-- marketplace (on the top menu)
-- select a free environment like Infinity Blade: Hideout
-- click "add to project";
-- check "Show all projects";
-- select "MyProject";
-- choose 4.24 under "Select version:";
-- wait for the content to download/verify/install;
-- copy back the folder to ubuntu
+**Troubleshoot**, if you copied files from  macOS, remove [`._` files](https://apple.stackexchange.com/questions/14980/why-are-dot-underscore-files-created-and-how-can-i-avoid-them) to avoid build errors
 
-altenratively download a complete project from the learn tab
-- learn tab on top
-- find content with download
-e.g sun temple or blueprints under "Engine Features Samples"
-- click the "free" button and then "create project"
-- select UE4 v 4.24 
-(if you havent installed it the number will be red and say "The selected engine association is not valid.", ignore it)
-
-- accept the default download folder typically under ~/Documents/Unreal Projects/
-- accept the license agreement
-- copy the folder "e.g. `~/Documents/Unreal Projects/Sun Temple` to your ubuntu machine
-
-
-#### on ubuntu
-
-identical from line XYZ
-
-- copy folder Plugins ~/AirSim/Unreal/Plugins inside folder MyProject/
-- replace the content of MyProject.uproject with (note that you only change the Name field under Modules
-```
-{
-    "FileVersion": 3,
-    "EngineAssociation": "4.24",
-    "Category": "Samples",
-    "Description": "",
-    "Modules": [
-        {
-            "Name": "MyProject",
-            "Type": "Runtime",
-            "LoadingPhase": "Default",
-            "AdditionalDependencies": [
-                "AirSim"
-            ]
-        }
-    ],
-    "TargetPlatforms": [
-        "MacNoEditor",
-        "WindowsNoEditor",
-    ],
-    "Plugins": [
-        {
-            "Name": "AirSim",
-            "Enabled": true
-        }
-    ]
-}
-```
-troubleshoot, if you copied from mac, remove `._` files
-```
-jacopo@jacopo-ThinkPad-P52:~/Documents/Unreal Projects/MyProject/Source$ rm ._MyProject*
-```
-[link](https://apple.stackexchange.com/questions/14980/why-are-dot-underscore-files-created-and-how-can-i-avoid-them)
-
-- open uproject with UE4Editor again, confirm location of UE4Editor binaries again
-- confirm rebuilding of airsim AND the project MyProject itself
-- on the bottom right you might see a dialogue about new plugins, if you click manage plugins it shoudl show airsim
-(and it is enabled)
-
-- in the Content tab (should be on the bottom of the screen or find it from the window menu)
-- select EnvironmentPack3 -> Maps
-- then DemoMap1
-
-in the world outliner search bar (should be on the top right by default)
-- search player start, click to show the new tab "Details"
-- the position where to spawn vehicles in airsim is under "Transform"
-again, it should already exist (create it otherwise)
-
-then click Window -> World Settings
-- in the menu that will appear on the right, set set the GameMode Override to AirSimGameMode
-
-to make it the default start (now that you have set its game mode)
-- Edit -> Project Settings -> Maps & Modes
-- Default Maps -> Editor Startup Map
-- choose DemoMap1
-
-(you can set DefaultGameMode to AirSimGameMode and the Game Default Map to DemoMap1, if you like)
-- save again (ctrl shift s)
-- press alt p or the play button to load the config an vehicles in settings.json
-- use the python/c++ apis or ros wrapper to control the vehicles
 
 
 
