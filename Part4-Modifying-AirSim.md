@@ -18,19 +18,25 @@ and it can be added to essentially any new UE4 project
 On Ubuntu, one can create a [new UE4 project](https://docs.unrealengine.com/en-US/Engine/Basics/Projects/Browser/index.html) from scratch and add AirSim's plugin as follows 
 
 - Start the `UE4Editor` (if you followed [Part 3](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part3-Using-AirSim.md), type `$ UE4Editor` in your terminal)
-- New Project Categories -> Games
-- Select Template -> Blank
-- Project Settings -> arrow right of Blueprint and choose C++; arrow right of With Starter Content and choose No Starter Content; also select folder/location and - name for this empty project
-
-once the project is created 
-- open it (.uproject file with UE4Editor, note you do not need to add a New C++ Class this time)
-- click yes if asked to recompile
-- close UE4Editor
-- copy folder Plugins ~/AirSim/Unreal/Plugins inside folder MyProject/
+- On the "Select or Create New Project" menu, under "New Project Categories", choose "Games" and click "Next"
+- On the "Select Template" menu, pick "Blank" and click "Next"
+- On the "Project Settings" menu, open the dropdown menu of the "Blueprint" tile and choose "C++" instead
+- On the same menu,  open the dropdown menu of the "With Starter Content" tile and choose "No Starter Content"
+- On the same menu, pick a folder (e.g. `~/Documents/Unreal\ Projects`) and name (e.g. [`Oxcart`](https://www.cia.gov/library/readingroom/docs/DOC_0001458639.pdf)) for the project
+- Click on "Create Project"
+- Once the project is created, navigate to the folder where it was created (`~/Documents/Unreal\ Projects/Oxcart`)
+- Open file `Oxcart.uproject` with the Unreal Engine Editor (default or select by right click)
+- If you are prompted for "Missing Modules" and asked "Would you like to rebuild them now?", choose "Yes"
+- Close the Unreal Engine Editor
+- Copy AirSim's Unreal Plugins folder into the new project
 ```
-$ cp
+$ cp -r ~/AirSim/Unreal/Plugins ~/Documents/Unreal\ Projects/Oxcart
 ```
-replace the content of MyProject.uproject with (note that you only change the Name field under Modules
+- Open `Oxcart.uproject` with a text editor
+```
+$ gedit ~/Documents/Unreal\ Projects/Oxcart/Oxcart.uproject
+```
+- Replace its content with the following (making sure that `"Name"` under `"Modules"` matches the project)
 ```
 {
     "FileVersion": 3,
@@ -39,7 +45,7 @@ replace the content of MyProject.uproject with (note that you only change the Na
     "Description": "",
     "Modules": [
         {
-            "Name": "MyProject",
+            "Name": "Oxcart",
             "Type": "Runtime",
             "LoadingPhase": "Default",
             "AdditionalDependencies": [
@@ -59,31 +65,26 @@ replace the content of MyProject.uproject with (note that you only change the Na
     ]
 }
 ```
-- open uproject with UE4Editor again, confirm location of UE4Editor binaries again
-- confirm rebuilding of airsim
+- Open `Oxcart.uproject` with the Unreal Engine Editor again
+- On menu "Select Unreal Engine Verion", confirm the location of your UE4's build (usually `~/UnrealEngine`), click "Ok"
+- If you are prompted for "Missing Modules" (AirSim in this case) and asked "Would you like to rebuild them now?", choose "Yes"
+- When the Editor launches, you'll see a prompt "New plugins are available" on the bottom right of the screen
+- Clicking on "Manage plugins" will open a menu showing that AirSim is *installed* and *enabled* (close this menu)
+- In the "World Outliner" level editor (top right by default or under the "Window" menu) search bar, type "Player Start"
+- Click on the "Player Start" result to open the "Details" tab
+- The origin position for AirSim's vehicles is the "Location" under "Transform"
+- If a "Player Start" does not exist, add it from "Modes" tab (on the top left)
+- From the "Window" dropdown menu, click on "World Settings"
+- In the "GameMode Override" dropdown menu, select "AirSimGameMode"
+- Save the project (`Ctrl`+`s`)
+- You will be prompted to save the level with a name (e.g. `OxcartLvl1`) under `~/Documents/Unreal\ Projects/Oxcart/Content`, click "Save"
+- Make this level the default start: from menu "Edit" select "Project Settings"
+- On the left of the new window, under "Project", select "Maps & Modes"
+- On the right, under "Default Maps", select `OxcartLvl1` from the dropdown menu for the "Editor Startup Map"
+- Also make "AirSimGameMode" the "Default GameMode" and `OxcartLvl1` the "Game Default Map", if desired
+- Close the "Project Settings" menu, save the project (`Ctrl`+`s`)
 
-on the bottom right you might see a dialogue about new plugins
-- if you click manage plugins it shoudl show airsim (and it is enabled)
-
-in the world outliner search bar (should be on the top right by default)
-- search player start, click to show the new tab "Details"
-- the position where to spawn vehicles in airsim is under "Transform" (again, it should already exist)
-
-then click Window -> World Settings
-- in the menu that will appear on the right, set set the GameMode Override to AirSimGameMode
-- save (ctrl shift s)
-
-??? you will be asked to prompt a name for the level to be saved under /MyProject/Content/
-
-to make it the default start (now that you have set its game mode)
-- Edit -> Project Settings -> Maps & Modes
-- Default Maps -> Editor Startup Map
-- choose "the name you have given to the level just above"
-
-(you can set DefaultGameMode to AirSimGameMode and the Game Default Map to DemoMap1, if you like)
-- save again (ctrl shift s)
-- press alt p or the play button to load the config an vehicles in settings.json
-- use the python/c++ apis or ros wrapper to control the vehicles
+The project can now be used as an AirSim environemnt, pressing "Play" (`Alt`+`p`) will load the AirSim vehicles and options in `~/Documents/AirSim/settings.json`
 
 **Note**:
 Go to 'Edit->Editor Preferences' in Unreal Editor, in the 'Search' box type 'CPU' and ensure that the 'Use Less CPU when in Background' is unchecked. If you don't do this then UE will be slowed down dramatically when UE window loses focus.
