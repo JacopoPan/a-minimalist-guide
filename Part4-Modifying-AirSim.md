@@ -41,7 +41,7 @@ $ gedit ~/Documents/Unreal\ Projects/Oxcart/Oxcart.uproject
 {
     "FileVersion": 3,
     "EngineAssociation": "4.24",
-    "Category": "Samples",
+    "Category": "",
     "Description": "",
     "Modules": [
         {
@@ -52,10 +52,6 @@ $ gedit ~/Documents/Unreal\ Projects/Oxcart/Oxcart.uproject
                 "AirSim"
             ]
         }
-    ],
-    "TargetPlatforms": [
-        "MacNoEditor",
-        "WindowsNoEditor",
     ],
     "Plugins": [
         {
@@ -148,68 +144,51 @@ You can make `DemoMap1` the default "Editor Startup Map" and "Game Startup Map" 
 
 rememver the pgup, pgdn, keys and right click+mouse for panning
 
-e.g. the hexacopter 3d model usere [here](https://github.com/Microsoft/AirSim/wiki/hexacopter)
-```
-$ wget https://github.com/Microsoft/AirSim/wiki/images/DJI%20S900.zip
-```
+download uassets provided here and move them to 
 
-unzip
-
-within the project to which you added AirSim make a copy of
-`Oxcart/Plugin/AirSim/Content/Blueprints/BP_FlyingPawn.uasset`
-to `Oxcart/Content`
+to `Oxcart/Content/FlyingPawnHex` (creat the directory)
 
 open the project iwith the unreal engine editor
 
-"Import" to Oxcart/Content from tab "Content Browser" the two obj files
+the folder and assets will appear on the Content Browser at the bottom
 
-in the "FBX Import Options" menu select "Import All"
+right click FlyingPawnHex and select "Edit.."
 
-the "Message Log" will show 3 warnings, ignore them
+if necessary, under "Components" on the left, select "BodyMesh"
 
-the DJI_S900, DJI_MotorProp, defaultMat as well as 
-BP_FlyingPawn will appear on the Content Browser at the bottom
+on the right, under "Static Mesh" open the dropdown menu and select "DJI_S900"
 
-double click on folder DJI_S900, right click DJI_S900 and select "Edit.."
+similarly, you might need to re set the Static Mesh field of "Prop3" "Prop2" "Prop1" "Prop0" etc
+to "DJI_MotorProp" (it should not be the case this might happen if the relative paths between assets have changed)
 
-in the "Details" tab on the right, scroll down to "Import Settings" and set the "X" value of "Import Rotation" to 90
-
-the click on the "Asset" dropdown menu at the top and "Reimport DJI_S900", this should fix the orientation of the mesh
-
-save and close DJI_S900
-
-repeat these steps to rotate by 90 degrees DJI_MotorProp as well
-
-for DJI_MotorProp, under "Transform" set the X and Y of "Import Translation" to 200 and -345, respectively
-
-(this will center the pivot frame wrt the propeller)
-
-if you want, make "defaultMat" a differnt color
-right clikc "Edit.."
-select "Param", on the "Details" tab, find "Material Expression Vector Parameter" and modify "Default Value"
-connecto the the "Metallic" option in the "defaultMat" tile, if desired
-save and close defaultMat
-
-go back to the "Content" folder in the "Content Browser"
-
-right click on BP_FlyingPawn and "Edit.."
-
-under "Components" on the left, select "BodyMesh"
-
-on the left, under "Static Mesh" open the dropdown menu saying "Quadrotor1" and select "DJI_S900"
-
-under "Transform", set the 3 values besides "Scale" to .2
-
-click on  "Prop3" "Prop2" "Prop1" "Prop0" and change their "Static Mesh" for "DJI_MotorProp"
-
-use the "Viewport" for place the 6 propellers in the right positions on each arm
+if neessary use the "Viewport" for place the 6 propellers in the right positions on each arm
 
 change the "Position Grid Snap" value from 10 to 1 
+
+close and UE4
+
+replace the two files in
+/Unreal/Plugins/AirSim.. with those provided there
+
+```
+snippet
+```
+
+if you want to add some debug print to screen
+```
+GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Screen Message"));
+```
+
+rebuild arisim
+
+reopen UE4 and oxcart
+when asked to rebuild, say yes
+
 
 edit `settings.json` adding https://microsoft.github.io/AirSim/settings/#pawnpaths
 ```
   "PawnPaths": {
-    "DefaultQuadrotor": {"PawnBP": "Class'/Game/BP_FlyingPawn.BP_FlyingPawn_C'"}
+    "DefaultQuadrotor": {"PawnBP": "Class'/Game/FlyingPawnHex/BP_FlyingPawn.BP_FlyingPawn_C'"}
   },
 ```
 
@@ -234,10 +213,23 @@ also see https://github.com/microsoft/AirSim/pull/1890/files
 
 ## Packaging custom UE4 environments and AirSim
 
-See [these instructons](https://docs.unrealengine.com/en-US/Engine/Basics/Projects/Packaging/index.html)
-
 if using u4.24, fix this error
 https://github.com/EpicGames/UnrealEngine/commit/cb388710a7fbe43eaa82a6d8c43b1632f25f6386
+
+replace 2 files with those provied
+
+ideally, recompile UE4
+
+then see [these instructons](https://docs.unrealengine.com/en-US/Engine/Basics/Projects/Packaging/index.html)
+
+you will end up with folder of precompiled binaries
+
+move settings json
+
+runs as `$ command`
+
+
+
 
 ## AirSim on a remote server
 
@@ -398,10 +390,6 @@ how to recompile
 
 reminders of what to change
 
-# PX4 SITL
-
-https://github.com/microsoft/AirSim/blob/master/docs/px4_sitl.md
-
 
 
 
@@ -413,7 +401,7 @@ https://github.com/microsoft/AirSim/blob/master/docs/px4_sitl.md
 
 --------
 
-## Additional readings
+## Additional links
 
 
 ## Custom vehicle pyhsical properties
@@ -475,6 +463,10 @@ https://github.com/microsoft/AirSim/blob/master/AirLib/include/vehicles/multirot
 https://github.com/microsoft/AirSim/blob/master/AirLib/include/vehicles/multirotor/firmwares/simple_flight/SimpleFlightQuadXParams.hpp
 
 ## PX4 flight controller
+
+# PX4 SITL
+
+https://github.com/microsoft/AirSim/blob/master/docs/px4_sitl.md
 
 ### SITL
 - https://microsoft.github.io/AirSim/px4_sitl/ 
