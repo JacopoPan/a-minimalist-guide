@@ -221,6 +221,11 @@ replace 2 files with those provied
 ideally, recompile UE4
 
 then see [these instructons](https://docs.unrealengine.com/en-US/Engine/Basics/Projects/Packaging/index.html)
+package for "Linux"
+
+you want to cook the custom hex pawn, to do so
+ "File" -> "Package Project" -> "Packaging Settings.."
+ under "Packaging" find "Additional Asset Directories to Cook" and add, for example "FlyingPawnHex"
 
 you will end up with folder of precompiled binaries
 
