@@ -273,6 +273,10 @@ how to recompile
 
 reminders of what to change
 
+# PX4 SITL
+
+https://github.com/microsoft/AirSim/blob/master/docs/px4_sitl.md
+
 
 
 
