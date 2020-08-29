@@ -198,12 +198,7 @@ in the "Components" tab on the left, right click on Prop0, Prop1, Rotation0, Rot
 
 use the "Viewport" for place the 6 propellers in the right positions on each arm
 
-
-
-WIP (fix propellers positions and rotations)
-
-
-
+change the "Position Grid Snap" value from 10 to 1 
 
 edit `settings.json` adding https://microsoft.github.io/AirSim/settings/#pawnpaths
 ```
