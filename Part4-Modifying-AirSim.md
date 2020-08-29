@@ -138,6 +138,8 @@ You can make `DemoMap1` the default "Editor Startup Map" and "Game Startup Map" 
 
 ## Custom vehicle mesh
 
+rememver the pgup, pgdn, keys and right click+mouse for panning
+
 e.g. the hexacopter 3d model usere [here](https://github.com/Microsoft/AirSim/wiki/hexacopter)
 ```
 $ wget https://github.com/Microsoft/AirSim/wiki/images/DJI%20S900.zip
@@ -170,9 +172,14 @@ save and close DJI_S900
 
 repeat these steps to rotate by 90 degrees DJI_MotorProp as well
 
+for DJI_MotorProp, under "Transform" set the X and Y of "Import Translation" to 200 and -345, respectively
+
+(this will center the pivot frame wrt the propeller)
+
 if you want, make "defaultMat" a differnt color
 right clikc "Edit.."
 select "Param", on the "Details" tab, find "Material Expression Vector Parameter" and modify "Default Value"
+connecto the the "Metallic" option in the "defaultMat" tile, if desired
 save and close defaultMat
 
 go back to the "Content" folder in the "Content Browser"
@@ -188,6 +195,8 @@ under "Transform", set the 3 values besides "Scale" to .2
 click on  "Prop3" "Prop2" "Prop1" "Prop0" and change their "Static Mesh" for "DJI_MotorProp"
 
 in the "Components" tab on the left, right click on Prop0, Prop1, Rotation0, Rotation1 and duplicate them
+
+use the "Viewport" for place the 6 propellers in the right positions on each arm
 
 
 
@@ -210,7 +219,7 @@ edit `settings.json` adding https://microsoft.github.io/AirSim/settings/#pawnpat
 > It's also a good idea to disable "Auto Possess Player" and "Auto Possess AI" as well as set AI Controller Class to None in BP details. Please make sure your asset is included for cooking in packaging options if you are creating binary.
 
 
-
+how to use 6 propellers
 
 
 
