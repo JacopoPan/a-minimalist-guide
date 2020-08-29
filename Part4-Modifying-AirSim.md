@@ -366,25 +366,5 @@ px4 and mavlink
 - [Custom drone](https://microsoft.github.io/AirSim/custom_drone/)
 
 
--------
-
-move to part 2
-
-## Checkpoints
-
-- [Checkpoints](https://support.vectorinstitute.ai/CheckpointRestartInstructions), [about `v`](https://support.vectorinstitute.ai/AboutVaughan2), symlinks, etc.
-
-## Viz
-
-- [Viz](https://support.vectorinstitute.ai/wandb), `$ /usr/local/bin/usageStats.sh`
-
-## Jupyer Notebooks
-
-- [Link 1](https://support.vectorinstitute.ai/jupyter_notebook), [link 2](https://jupyter.org/install), [link 3](https://jupyter.readthedocs.io/en/latest/running.html#running)
-
-## MuJoCo, PyBullet
-
-- [MuJoCo](https://github.com/openai/mujoco-py/). [Vector link 1](https://support.vectorinstitute.ai/mujoco_updated), [link 2](https://support.vectorinstitute.ai/SoftwareVaughan)
-- [PyBullet](https://pybullet.org/wordpress/) gym-pybullet-drones
 
 
