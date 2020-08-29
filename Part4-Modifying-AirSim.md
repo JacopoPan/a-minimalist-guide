@@ -136,6 +136,14 @@ You can make `DemoMap1` the default "Editor Startup Map" and "Game Startup Map" 
 
 
 
+
+
+
+
+
+
+
+
 ## Custom vehicle mesh
 
 rememver the pgup, pgdn, keys and right click+mouse for panning
@@ -145,7 +153,7 @@ e.g. the hexacopter 3d model usere [here](https://github.com/Microsoft/AirSim/wi
 $ wget https://github.com/Microsoft/AirSim/wiki/images/DJI%20S900.zip
 ```
 
-unzip and copy to Oxcart/Content
+unzip
 
 within the project to which you added AirSim make a copy of
 `Oxcart/Plugin/AirSim/Content/Blueprints/BP_FlyingPawn.uasset`
@@ -153,13 +161,13 @@ to `Oxcart/Content`
 
 open the project iwith the unreal engine editor
 
-on the bottom right, you will be notified of source files changes and asked to import them 
+"Import" to Oxcart/Content from tab "Content Browser" the two obj files
 
 in the "FBX Import Options" menu select "Import All"
 
 the "Message Log" will show 3 warnings, ignore them
 
-the DJI S900 (containing .obj files) and DJI_S900 (containing .uasset files) as well as 
+the DJI_S900, DJI_MotorProp, defaultMat as well as 
 BP_FlyingPawn will appear on the Content Browser at the bottom
 
 double click on folder DJI_S900, right click DJI_S900 and select "Edit.."
@@ -194,8 +202,6 @@ under "Transform", set the 3 values besides "Scale" to .2
 
 click on  "Prop3" "Prop2" "Prop1" "Prop0" and change their "Static Mesh" for "DJI_MotorProp"
 
-in the "Components" tab on the left, right click on Prop0, Prop1, Rotation0, Rotation1 and duplicate them
-
 use the "Viewport" for place the 6 propellers in the right positions on each arm
 
 change the "Position Grid Snap" value from 10 to 1 
@@ -216,15 +222,9 @@ edit `settings.json` adding https://microsoft.github.io/AirSim/settings/#pawnpat
 
 how to use 6 propellers
 
+**in the "Components" tab on the left, right click on Prop0, Prop1, Rotation0, Rotation1 and duplicate them**
 
 
-
-## AirSim on a remote server
-
-e.g. on Vector's cluster
-- https://github.com/microsoft/AirSim-NeurIPS2019-Drone-Racing/issues/112
-- https://github.com/microsoft/AirSim/issues/1224
-- https://github.com/microsoft/AirSim-NeurIPS2019-Drone-Racing/issues/64
 
 
 
@@ -234,8 +234,33 @@ e.g. on Vector's cluster
 
 ## Packaging custom UE4 environments and AirSim
 
-For custom environment/airsim https://docs.unrealengine.com/en-US/Engine/Basics/Projects/Packaging/index.html
+See [these instructons](https://docs.unrealengine.com/en-US/Engine/Basics/Projects/Packaging/index.html)
 
+## AirSim on a remote server
+
+e.g. on Vector's cluster
+
+```
+$ DISPLAY= ./AirSimExe.sh -opengl4
+or 
+$ ./AirSimExe.sh -nullrhi - not that if you call simGetImages with -nullrhi option, it would result in an error.
+```
+https://github.com/microsoft/AirSim-NeurIPS2019-Drone-Racing/issues/112
+
+**multiple instances**
+set "LocalHostIp": "127.0.0.1",  "127.0.0.2", etc
+
+AirSim gives higher priority to a settings.json lying in the same directory as the linux/windows unreal binary, as compared to the one lying in /home/$USER/Documents/AirSim/settings.json
+
+So, one way to do this is to copy paste the unreal binaries, and have different settings.json in each binary folder.
+
+For example, you can place a settings.json in
+PATH_TO/AirSim_1/AirSimExe/Binaries/Linux/settings.json, with a particular port number, and when you run it with ./AirSim_1/AirSimExe.sh -windowed
+
+And then you can copy-paste the unreal engine binaries:
+PATH_TO/AirSim_2/AirSimExe/Binaries/Linux/settings.json, with a new port number, and when you run it with ./AirSim_2/AirSimExe.sh -windowed it should use the new port number
+
+https://github.com/microsoft/AirSim-NeurIPS2019-Drone-Racing/issues/64
 
 
 
@@ -247,6 +272,14 @@ links
 how to recompile
 
 reminders of what to change
+
+
+
+
+
+
+
+
 
 
 --------
