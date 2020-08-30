@@ -319,45 +319,29 @@ recap how to recompile / reminders of what to change
 ## Additional links
 
 
-## Custom vehicle pyhsical properties
 
-> For cars, we support only PhysX for now (regardless of value in this setting). For multirotors, we support "FastPhysicsEngine" only.
-
-You can create new config like this for physics parameters: https://github.com/Microsoft/AirSim/blob/v1.1.10/AirLib/include/vehicles/multirotor/configs/SimpleFlightQuadX.hpp
-
-transfer px4 hex physics to simple flight 
-https://github.com/Microsoft/AirSim/wiki/hexacopter
-
-also see this pull request
-https://github.com/microsoft/AirSim/pull/1890
-
-
-## Modifying AirSim APIs and controllers
-
-code structure
+developing 
 https://microsoft.github.io/AirSim/code_structure/
-
-review the `.bat` and `.sh` scripts
 https://microsoft.github.io/AirSim/dev_workflow/
 
-essentially, build.sh copies the useful files to Blocks
 
-> For Linux, make code changes in AirLib or Unreal/Plugins folder and then run ./build.sh to rebuild. This step also copies the build output to Blocks sample project. You can then follow above steps again to re-run.
-https://microsoft.github.io/AirSim/unreal_blocks/
-
-the FAQs are Windows/Visual Studio based
-contemplate VS Code (?) https://code.visualstudio.com/docs/?dv=linux64_deb
-
+new apis 
 example: pull request changing cameraOrientation to cameraPose https://github.com/microsoft/AirSim/pull/2710
-
-### New Python APIs
 
 example https://github.com/Microsoft/AirSim/commit/f0e83c29e7685e1021185e3c95bfdaffb6cb85dc
 
 
-### `simpleflight` flight controller
 
-https://microsoft.github.io/AirSim/flight_controller/ / https://microsoft.github.io/AirSim/simple_flight/
+You can create new config like this for physics parameters: 
+https://github.com/Microsoft/AirSim/blob/v1.1.10/AirLib/include/vehicles/multirotor/configs/SimpleFlightQuadX.hpp
+also see this pull request
+https://github.com/microsoft/AirSim/pull/1890
+
+
+default
+https://microsoft.github.io/AirSim/flight_controller/
+is
+https://microsoft.github.io/AirSim/simple_flight/
 
 > We thus view flight controller simply as collection of algorithms packaged in a library. Another key emphasis is to develop this code as dependency free header-only pure standard C++11 code.
 
@@ -365,38 +349,11 @@ https://microsoft.github.io/AirSim/flight_controller/ / https://microsoft.github
 
 > Please note that simple_slight currently doesn't support state estimator which means estimated and ground truth kinematics values would be same for simple_flight.
 
-> We plan to add complimentary filter based state estimation for angular velocity and orientation using 2 sensors (gyroscope, accelerometer) in near future. In more longer term, we plan to integrate another library to do velocity and position estimation using 4 sensors (gyroscope, accelerometer, magnetometer and barometer) using EKF. If you have experience this area than we encourage you to engage with us and contribute!
-
 > simple_flight uses steppable clock by default which means clock advances when simulator tells it to advance (unlike wall clock which advances strictly according to passage of time). Otherwise add `"ClockType": "ScalableClock"`
 
-recompiling airsim
-https://github.com/microsoft/AirSim/tree/master/AirLib/include/vehicles/multirotor
-
-multirotor model, etc.
-https://github.com/microsoft/AirSim/blob/master/AirLib/include/vehicles/multirotor/MultiRotorParams.hpp
-
-https://github.com/microsoft/AirSim/blob/master/AirLib/include/vehicles/multirotor/firmwares/simple_flight/SimpleFlightQuadXParams.hpp
-
-## PX4 flight controller
-
-# PX4 SITL
-
+PX4 SITL
 https://github.com/microsoft/AirSim/blob/master/docs/px4_sitl.md
-
-### SITL
-- https://microsoft.github.io/AirSim/px4_sitl/ 
-- https://microsoft.github.io/AirSim/px4_build/
-- https://github.com/microsoft/AirSim/issues/2647
-
-px4 and mavlink
-- https://github.com/Microsoft/AirSim/wiki/Intercepting-MavLink-messages
-- https://microsoft.github.io/AirSim/px4_logging/
-- https://microsoft.github.io/AirSim/mavlinkcom/
-
-## HTIL 
-- [PX4](https://microsoft.github.io/AirSim/px4_setup/)
-- [Custom drone](https://microsoft.github.io/AirSim/custom_drone/)
-
+https://github.com/microsoft/AirSim/blob/master/docs/px4_build.md
 
 
 
