@@ -318,42 +318,24 @@ recap how to recompile / reminders of what to change
 
 ## Additional links
 
+- Review AirSim's [code structure](https://microsoft.github.io/AirSim/code_structure/) and [development workflow](https://microsoft.github.io/AirSim/dev_workflow/)
 
+- Check out `AirLib`'s `multirotor` [`src`](https://github.com/microsoft/AirSim/tree/master/AirLib/src/vehicles/multirotor/api) and [`include` folders](https://github.com/microsoft/AirSim/tree/master/AirLib/include/vehicles/multirotor)
 
-developing 
-https://microsoft.github.io/AirSim/code_structure/
-https://microsoft.github.io/AirSim/dev_workflow/
+- For examples of how to add new APIs to AirSim, check out this [commit](https://github.com/Microsoft/AirSim/commit/f0e83c29e7685e1021185e3c95bfdaffb6cb85dc) and [pull request](https://github.com/microsoft/AirSim/pull/2710)
 
+- The default [flight controller](https://microsoft.github.io/AirSim/flight_controller/) in AirSim  is [`simple_flight`](https://microsoft.github.io/AirSim/simple_flight/)
 
-new apis 
-example: pull request changing cameraOrientation to cameraPose https://github.com/microsoft/AirSim/pull/2710
+> [..] simply [..] (a) collection of algorithms packaged in a library [..] develop this code as dependency free header-only pure standard C++11 code
 
-example https://github.com/Microsoft/AirSim/commit/f0e83c29e7685e1021185e3c95bfdaffb6cb85dc
+> Internally `simple_flight` uses cascade of PID controllers to finally generate actuator signals. 
 
+> Please note that `simple_slight` currently does not support state estimation, i.e. estimated and ground truth kinematics values are the same
 
+> Notably, `simple_flight` usesca steppable clock which means its clock advances when simulator tells it to advance, this is convenient for learning applications, Otherwise add `"ClockType": "ScalableClock"` to `settinfs.json`
 
-You can create new config like this for physics parameters: 
-https://github.com/Microsoft/AirSim/blob/v1.1.10/AirLib/include/vehicles/multirotor/configs/SimpleFlightQuadX.hpp
-also see this pull request
-https://github.com/microsoft/AirSim/pull/1890
+- Alternatively, AirSim's simlation can be used with PX4 autopilot's stack as software-in-the-loop (SITL) [link 1](https://github.com/microsoft/AirSim/blob/master/docs/px4_sitl.md) [link 2](https://github.com/microsoft/AirSim/blob/master/docs/px4_build.md)
 
-
-default
-https://microsoft.github.io/AirSim/flight_controller/
-is
-https://microsoft.github.io/AirSim/simple_flight/
-
-> We thus view flight controller simply as collection of algorithms packaged in a library. Another key emphasis is to develop this code as dependency free header-only pure standard C++11 code.
-
-> Internally simple_flight uses cascade of PID controllers to finally generate actuator signals. 
-
-> Please note that simple_slight currently doesn't support state estimator which means estimated and ground truth kinematics values would be same for simple_flight.
-
-> simple_flight uses steppable clock by default which means clock advances when simulator tells it to advance (unlike wall clock which advances strictly according to passage of time). Otherwise add `"ClockType": "ScalableClock"`
-
-PX4 SITL
-https://github.com/microsoft/AirSim/blob/master/docs/px4_sitl.md
-https://github.com/microsoft/AirSim/blob/master/docs/px4_build.md
 
 
 
