@@ -326,11 +326,11 @@ recap how to recompile / reminders of what to change
 
 - The default [flight controller](https://microsoft.github.io/AirSim/flight_controller/) in AirSim  is [`simple_flight`](https://microsoft.github.io/AirSim/simple_flight/)
 
-> [..] simply [..] (a) collection of algorithms packaged in a library [..] develop this code as dependency free header-only pure standard C++11 code
+> [..] simply [..] (a) collection of algorithms packaged in a library [..] develop this code as dependency free header-only pure standard C++11
 
 > Internally `simple_flight` uses cascade of PID controllers to finally generate actuator signals. 
 
-> Please note that `simple_slight` currently does not support state estimation, i.e. estimated and ground truth kinematics values are the same
+> Note that `simple_slight` currently does not support state estimation, i.e. estimated and ground truth kinematics values are the same
 
 > Notably, `simple_flight` usesca steppable clock which means its clock advances when simulator tells it to advance, this is convenient for learning applications, Otherwise add `"ClockType": "ScalableClock"` to `settinfs.json`
 
