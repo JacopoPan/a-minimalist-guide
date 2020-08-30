@@ -255,34 +255,49 @@ To make it self-contained, move `settings.json` from `~/Documents/AirSim/` to `~
 
 ## AirSim on a remote server
 
-e.g. on Vector's cluster
+To run a packaged Unreal environment with AirSim on a remote machine—e.g. Vector Institute's cluster—there are 2 main options
 
+Using the `DISPLAY` [environment variable](https://help.ubuntu.com/community/EnvironmentVariables)
 ```
-$ DISPLAY= ./AirSimExe.sh -opengl4
-or 
-$ ./AirSimExe.sh -nullrhi - not that if you call simGetImages with -nullrhi option, it would result in an error.
+$ DISPLAY= ./Blocks.sh
 ```
-https://github.com/microsoft/AirSim-NeurIPS2019-Drone-Racing/issues/112
+or using option `-nullrhi`, to avoid any tier 1 rendering
+```
+$ ./AirSimExe.sh -nullrhi
+```
+Note that calling `simGetImages` with -`nullrhi` would result in an [error](https://github.com/microsoft/AirSim-NeurIPS2019-Drone-Racing/issues/112)
 
-**running multiple instances**
-set "LocalHostIp": "127.0.0.1",  "127.0.0.2", etc
+To [save resources](https://microsoft.github.io/AirSim/settings/#viewmode), consider adding to `settings.json`
+```
+"--ViewMode": "NoDisplay",
+```
 
-AirSim gives higher priority to a settings.json lying in the same directory as the linux/windows unreal binary, as compared to the one lying in /home/$USER/Documents/AirSim/settings.json
+To run and connect to [multiple instances](https://github.com/microsoft/AirSim-NeurIPS2019-Drone-Racing/issues/64) of the same environment on one cluster node
+- Replicate the environment N times
+- Copy `settings.json` within folder `[..]/Blocks/Binaries/Linux/` of each packaged environment
+- Add a different address with option [`LocalHostIp`](https://microsoft.github.io/AirSim/settings/#localhostip-setting) to each copy of `settings.json`
+```
+"LocalHostIp": "127.0.0.x",
+```
+- Start multiple environments and connect to each by their address, e.g. using the Python APIs
+```
+>>> import airsim
+>>> airsimClient = airsim.MultirotorClient("127.0.0.x")
+```
+An example of how to wrap AirSim's APIs within [RLlib](https://github.com/JacopoPan/a-minimalist-guide#ray-rllib)'s `ExternalMultiAgentEnv` class is given in [`minimal-airsim-rllib-ma-env.py`](https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/minimal-airsim-rllib-ma-env.py)
+```
+class ExternalAirSimMultiAgent(ExternalMultiAgentEnv):
 
-So, one way to do this is to copy paste the unreal binaries, and have different settings.json in each binary folder.
+    def __init__(self, env_config: EnvContext, action_space: gym.Space, observation_space: gym.Space, max_concurrent: int):
+       self.address = "127.0.0."+str(env_config.worker_index+1)
+       super().__init__(action_space, observation_space, max_concurrent)
 
-For example, you can place a settings.json in
-PATH_TO/AirSim_1/AirSimExe/Binaries/Linux/settings.json, with a particular port number, and when you run it with ./AirSim_1/AirSimExe.sh -windowed
-
-And then you can copy-paste the unreal engine binaries:
-PATH_TO/AirSim_2/AirSimExe/Binaries/Linux/settings.json, with a new port number, and when you run it with ./AirSim_2/AirSimExe.sh -windowed it should use the new port number
-
-https://github.com/microsoft/AirSim-NeurIPS2019-Drone-Racing/issues/64
-
-**using AirSim's UE4 binaries as RLlib external environment**
-
-add file
-
+    def run(self):
+       self.airsimclient = airsim.MultirotorClient(self.address)
+       self.airsimclient.confirmConnection()
+       self.airsimclient.simPause(True)
+       ...
+```
 
 
 
