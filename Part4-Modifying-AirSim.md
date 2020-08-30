@@ -199,10 +199,6 @@ edit `settings.json` adding https://microsoft.github.io/AirSim/settings/#pawnpat
 > It's also a good idea to disable "Auto Possess Player" and "Auto Possess AI" as well as set AI Controller Class to None in BP details. Please make sure your asset is included for cooking in packaging options if you are creating binary.
 
 
-how to use 6 propellers,
-also see https://github.com/microsoft/AirSim/pull/1890/files
-
-
 
 
 
@@ -225,8 +221,8 @@ package for "Linux"
 
 you want to cook the custom hex pawn, to do so
  "File" -> "Package Project" -> "Packaging Settings.."
- under "Packaging" find "Additional Asset Directories to Cook" and add, for example "FlyingPawnHex"
-
+ under "Packaging" check "Cook Everything in the Project Content Directory"
+ 
 you will end up with folder of precompiled binaries
 
 move settings json
