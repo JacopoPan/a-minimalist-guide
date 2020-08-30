@@ -302,18 +302,6 @@ class ExternalAirSimMultiAgent(ExternalMultiAgentEnv):
 
 
 
-
-## Modifying AirSim's source
-
-links
-
-recap how to recompile / reminders of what to change
-
-
-
-
-
-
 --------
 
 ## Additional links
