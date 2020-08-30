@@ -334,7 +334,7 @@ recap how to recompile / reminders of what to change
 
 > Notably, `simple_flight` usesca steppable clock which means its clock advances when simulator tells it to advance, this is convenient for learning applications, Otherwise add `"ClockType": "ScalableClock"` to `settinfs.json`
 
-- Alternatively, AirSim's simlation can be used with PX4 autopilot's stack as software-in-the-loop (SITL) [link 1](https://github.com/microsoft/AirSim/blob/master/docs/px4_sitl.md) [link 2](https://github.com/microsoft/AirSim/blob/master/docs/px4_build.md)
+- Alternatively, AirSim's simlation can be used with PX4 autopilot's stack as software-in-the-loop (SITL), [link 1](https://github.com/microsoft/AirSim/blob/master/docs/px4_sitl.md), [link 2](https://github.com/microsoft/AirSim/blob/master/docs/px4_build.md)
 
 
 
