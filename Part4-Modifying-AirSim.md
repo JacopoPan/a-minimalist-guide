@@ -146,13 +146,21 @@ rememver the pgup, pgdn, keys and right click+mouse for panning
 
 download uassets provided here and move them to 
 
-to `Oxcart/Content/FlyingPawnHex` (creat the directory)
+BP_FlyingPawn.uasset
+`~/AirSim/Unreal/Environments/Blocks/Plugins/AirSim/Content/Blueprints`
+
+and defaultMat.uasset, DJI_S900.uasset, DJI_MotorProp.uasset
+~/AirSim/Unreal/Environments/Blocks/Plugins/AirSim/Content/Models
 
 open the project iwith the unreal engine editor
 
-the folder and assets will appear on the Content Browser at the bottom
+on the Content Browser at the bottom
 
-right click FlyingPawnHex and select "Edit.."
+click the "View Options" at the bottom right to make sure that plugin content is displayed
+
+then click the icon on the left of "Filter" to show AirSim's content
+
+find FlyingPawnHex under "Blueprints", right click and select "Edit.."
 
 if necessary, under "Components" on the left, select "BodyMesh"
 
