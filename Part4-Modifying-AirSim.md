@@ -142,71 +142,86 @@ You can make `DemoMap1` the default "Editor Startup Map" and "Game Startup Map" 
 
 ## Custom vehicle mesh
 
-rememver the pgup, pgdn, keys and right click+mouse for panning
+Replacing a vehicle's mesh can be done within the Unreal Engine Editor an modifying `settings.json`
 
+Adding simple functionalities (e.g. the spin motion of additional propellers) requires to edit AirSim's plugin source and re-build an environment
 
-download uassets provided here
+The simplest way to do so is by using the Blocks environment located in `~/AirSim/Unreal/Environments/Blocks/`
 
-BP_FlyingPawn.uasset, defaultMat.uasset, DJI_S900.uasset, DJI_MotorProp.uasset
-
-and move them to 
-
-`~/AirSim/Unreal/Environments/Blocks/Content/Hexacopter`
-
-open the project iwith the unreal engine editor
-
-on the Content Browser at the bottom
-
-find FlyingPawnHex.uasset under "Hexacopter", right click and select "Edit.."
-
-if necessary, under "Components" on the left, select "BodyMesh"
-
-on the right, under "Static Mesh" open the dropdown menu and select "DJI_S900"
-
-similarly, you might need to re set the Static Mesh field of "Prop3" "Prop2" "Prop1" "Prop0" 4, 5 etc
-to "DJI_MotorProp" (it should not be the case this might happen if the relative paths between assets have changed)
-
-if neessary use the "Viewport" for place the 6 propellers in the right positions on each arm
-change the "Position Grid Snap" value from 10 to 1 
-
-close and UE4
-
-replace the two files in
-/Unreal/Plugins/AirSim.. with those provided there
-
+Modify the code in `~/AirSim/Unreal/Plugins/AirSim/`, then
 ```
-snippet
-```
+$ cd ~/AirSim
+$ ./setup.sh
+$ ./build.sh
+```  
+Open the editor (`$ UE4Editor`) and confirm rebuilding of Blocks and AirSim
 
-if you want to add some debug print to screen
+### Make `DefaultQuadrotor` look like a Hexacopter
+
+To purely change the appearance of AirSim's `DefaultQuadrotor`, follow these steps
+- Replace files `FlyingPawn.h` and `FlyingPawn.cpp` in folder `~/AirSim/Unreal/Plugins/AirSim/Source/Vehicles/Multirotor` with those provided [here](https://github.com/JacopoPan/a-minimalist-guide/tree/master/files)
+> Note that the only modifications are line 43 in `FlyingPawn.h`
+```
+static constexpr size_t rotor_count = 6;
+```
+> And lines 94-109 in `FlyingPawn.cpp`
+```
+if (rotor_index==0) {
+    auto comp = rotating_movements_[4];
+    if (comp != nullptr) {
+        comp->RotationRate.Yaw = 
+            rotor_infos.at(rotor_index).rotor_speed * rotor_infos.at(rotor_index).rotor_direction *
+            180.0f / M_PIf * RotatorFactor;
+    }
+}
+if (rotor_index==2) {
+    auto comp = rotating_movements_[5];
+    if (comp != nullptr) {
+        comp->RotationRate.Yaw = 
+            rotor_infos.at(rotor_index).rotor_speed * rotor_infos.at(rotor_index).rotor_direction *
+            180.0f / M_PIf * RotatorFactor;
+    }
+}
+```
+> These changes are simply meant to copy the rotation of propellers 0 and 2 (CW and CCW) into `Rotation4` and `Rotation5`
+
+- If desired, add debug information printed to screen with this instruction
 ```
 GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Screen Message"));
 ```
+- Rebuild AirSim
+```
+$ cd ~/AirSim
+$ ./setup.sh
+$ ./build.sh
+```  
+- Open the editor (`$ UE4Editor`) and confirm rebuilding of Blocks and AirSim
+- Close the Unreal Engine Editor
+- Download folder [`Hexacopter`](https://github.com/JacopoPan/a-minimalist-guide/tree/master/files/Hexacopter)
+- Move it inside folder `~/AirSim/Unreal/Environments/Blocks/Content/`
+- Re-open the editor (`$ UE4Editor`)
+- In the "Content Manager" tab at the bottom, find `FlyingPawnHex.uasset` in folder `Hexacopter`
+- Right click on it and select "Edit.."
+- In the new window, under "Components" on the left, select "BodyMesh"
+- On the right panel, make sure that "Static Mesh" is set to "DJI_S900"
+- Similarly, make sure that the "Static Mesh" of all propellers ("Prop0", etc.) is "DJI_MotorProp"
+> Note: this steps are only necessary in case the relative paths between these `.uasset` files have changed
 
-rebuild arisim
+- If desired, use the "Viewport" tab to change the positions of 6 propellers w.r.t the drone's body
+> Tip: change the "Position Grid Snap"'s value from 10 to 1 
+> Tip: use arrows, `PgUp`, `PgDn`, and trackpad + right or left click to navigate the viewport
 
-reopen UE4 and oxcart
-when asked to rebuild, say yes
-
-
-edit `settings.json` adding https://microsoft.github.io/AirSim/settings/#pawnpaths
+- Add the [`PawnPaths`](https://microsoft.github.io/AirSim/settings/#pawnpaths) option to `~/Documents/AirSim/settings.json`
 ```
   "PawnPaths": {
-    "DefaultQuadrotor": {"PawnBP": "Class'/Game/FlyingPawnHex/BP_FlyingPawn.BP_FlyingPawn_C'"}
+    "DefaultQuadrotor": {"PawnBP": "Class'/Game/FlyingPawnHex/BP_FlyingPawnHex.BP_FlyingPawnHex_C'"}
   },
 ```
-
-> Note: `/Game/BP_FlyingPawn.BP_FlyingPawn_C` will lead to the use of the the model in `MyProject/Content/BP_FlyingPawn.uasset`
-> The XYZ.XYZ_C is a special notation required to specify class for BP XYZ. 
+> Note: `/Game/XYZ.XYZ_C` refers to BP `Oxcart/Content/XYZ.uasset`, `XYZ.XYZ_C` is a special notation required to specify the class for BP XYZ. 
 > Please note that your BP must be derived from CarPawn class. By default this is not the case but you can re-parent the BP using the "Class Settings" button in toolbar in UE editor after you open the BP and then choosing "Car Pawn" for Parent Class settings in Class Options. 
-
 > It's also a good idea to disable "Auto Possess Player" and "Auto Possess AI" as well as set AI Controller Class to None in BP details. Please make sure your asset is included for cooking in packaging options if you are creating binary.
 
-
-
-
-
-
+- Play the game (`Alt`+`p`) to see the default quadrotor model replaced by a hexacopter
 
 
 
