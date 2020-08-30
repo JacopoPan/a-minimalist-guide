@@ -229,7 +229,7 @@ $ ./build.sh
 
 One can package their UE4 environment (level), assets (e.g. the hexacopter), and AirSim's plugin in a precompiled set of binaries like [these](https://github.com/Microsoft/AirSim/releases)
 
-**Important**: if using Unreal Engine's version 4.24, first fix [this bug](https://github.com/EpicGames/UnrealEngine/commit/cb388710a7fbe43eaa82a6d8c43b1632f25f6386) by replacing `AnimCurveTypes.h` and `AnimCurveTypes.cpp` in `~/UnrealEngine/Engine/Source/Runtime/Engine/Public/Animation/` and `~/UnrealEngine/Engine/Source/Runtime/Engine/Private/Animation/` with the files provided [here](https://github.com/JacopoPan/a-minimalist-guide/tree/master/files/), then, ideally, [recompile the engine](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part3-Using-AirSim.md#build-ue4-and-ue4editor)
+> **Important**: if using Unreal Engine's version 4.24, first fix [this bug](https://github.com/EpicGames/UnrealEngine/commit/cb388710a7fbe43eaa82a6d8c43b1632f25f6386) by replacing `AnimCurveTypes.h` and `AnimCurveTypes.cpp` in `~/UnrealEngine/Engine/Source/Runtime/Engine/Public/Animation/` and `[..]/Private/Animation/` with the files provided [here](https://github.com/JacopoPan/a-minimalist-guide/tree/master/files/) and [recompile the engine](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part3-Using-AirSim.md#build-ue4-and-ue4editor)
 
 Packaging is detailed [here](https://docs.unrealengine.com/en-US/Engine/Basics/Projects/Packaging/index.html)
 - Make sure the "Game Default Map" is set in `Edit > Project Settings > Maps & Modes` (alreay the case in Blocks)
