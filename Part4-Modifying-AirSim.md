@@ -144,33 +144,29 @@ You can make `DemoMap1` the default "Editor Startup Map" and "Game Startup Map" 
 
 rememver the pgup, pgdn, keys and right click+mouse for panning
 
-download uassets provided here and move them to 
 
-BP_FlyingPawn.uasset
-`~/AirSim/Unreal/Environments/Blocks/Plugins/AirSim/Content/Blueprints`
+download uassets provided here
 
-and defaultMat.uasset, DJI_S900.uasset, DJI_MotorProp.uasset
-~/AirSim/Unreal/Environments/Blocks/Plugins/AirSim/Content/Models
+BP_FlyingPawn.uasset, defaultMat.uasset, DJI_S900.uasset, DJI_MotorProp.uasset
+
+and move them to 
+
+`~/AirSim/Unreal/Environments/Blocks/Content/Hexacopter`
 
 open the project iwith the unreal engine editor
 
 on the Content Browser at the bottom
 
-click the "View Options" at the bottom right to make sure that plugin content is displayed
-
-then click the icon on the left of "Filter" to show AirSim's content
-
-find FlyingPawnHex under "Blueprints", right click and select "Edit.."
+find FlyingPawnHex.uasset under "Hexacopter", right click and select "Edit.."
 
 if necessary, under "Components" on the left, select "BodyMesh"
 
 on the right, under "Static Mesh" open the dropdown menu and select "DJI_S900"
 
-similarly, you might need to re set the Static Mesh field of "Prop3" "Prop2" "Prop1" "Prop0" etc
+similarly, you might need to re set the Static Mesh field of "Prop3" "Prop2" "Prop1" "Prop0" 4, 5 etc
 to "DJI_MotorProp" (it should not be the case this might happen if the relative paths between assets have changed)
 
 if neessary use the "Viewport" for place the 6 propellers in the right positions on each arm
-
 change the "Position Grid Snap" value from 10 to 1 
 
 close and UE4
@@ -217,7 +213,7 @@ edit `settings.json` adding https://microsoft.github.io/AirSim/settings/#pawnpat
 
 ## Packaging custom UE4 environments and AirSim
 
-if using u4.24, fix this error
+first, if using u4.24, fix this error
 https://github.com/EpicGames/UnrealEngine/commit/cb388710a7fbe43eaa82a6d8c43b1632f25f6386
 
 replace 2 files with those provied
@@ -229,8 +225,11 @@ package for "Linux"
 
 you want to cook the custom hex pawn, to do so
  "File" -> "Package Project" -> "Packaging Settings.."
- under "Packaging" check "Cook Everything in the Project Content Directory"
+ under "Packaging" 
+ uncheck "Use Pak file"
  
+ "Additional Asset Directories to Cook" add "/Game/Hexacopter"
+  
 you will end up with folder of precompiled binaries
 
 move settings json
