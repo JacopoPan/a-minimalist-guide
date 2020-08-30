@@ -226,28 +226,27 @@ $ ./build.sh
 
 ## Packaging custom UE4 environments and AirSim
 
-first, if using u4.24, fix this error
-https://github.com/EpicGames/UnrealEngine/commit/cb388710a7fbe43eaa82a6d8c43b1632f25f6386
+One can package their UE4 environment (level), assets (e.g. the hexacopter), and AirSim's plugin in a precompiled set of binaries like [these](https://github.com/Microsoft/AirSim/releases)
 
-replace 2 files with those provied
+**Important**: if using Unreal Engine's version 4.24, first fix [this bug](https://github.com/EpicGames/UnrealEngine/commit/cb388710a7fbe43eaa82a6d8c43b1632f25f6386) by replacing `AnimCurveTypes.h` and `AnimCurveTypes.cpp` in `~/UnrealEngine/Engine/Source/Runtime/Engine/Public/Animation/` and `~/UnrealEngine/Engine/Source/Runtime/Engine/Private/Animation/` with the files provided [here](https://github.com/JacopoPan/a-minimalist-guide/tree/master/files/), then, ideally, [recompile the engine](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part3-Using-AirSim.md#build-ue4-and-ue4editor)
 
-ideally, recompile UE4
+Packaging is detailed [here](https://docs.unrealengine.com/en-US/Engine/Basics/Projects/Packaging/index.html)
+- Make sure the "Game Default Map" is set in `Edit > Project Settings > Maps & Modes` (alreay the case in Blocks)
+- Go to `File > Package Project > Packaging Settings..`
+- Under "Packaging", uncheck "Use Pak file"
+- Under "Additional Asset Directories to Cook" add `/Game/Hexacopter` (if you followed the steps above)
+- Add any other desired asset folder
+- Package for Ubuntu with `File > Package Project > Linux`
+- Specifiy a destination folder (e.g. `~/Desktop`) and proceed
 
-then see [these instructons](https://docs.unrealengine.com/en-US/Engine/Basics/Projects/Packaging/index.html)
-package for "Linux"
+The packaging process can be time consuming
 
-you want to cook the custom hex pawn, to do so
- "File" -> "Package Project" -> "Packaging Settings.."
- under "Packaging" 
- uncheck "Use Pak file"
- 
- "Additional Asset Directories to Cook" add "/Game/Hexacopter"
-  
-you will end up with folder of precompiled binaries
+The results is folder `~/Desktop/LinuxNoEditor` whose content can be launched with
+```
+$ ~/Desktop/LinuxNoEditor/Blocks.sh -ResX=640 -ResY=480 -windowed
+```
+To make it fully self-contained, move `settings.json` from `~/Documents/AirSim/` to `~/Desktop/LinuxNoEditor/Blocks/Binaries/Linux/`
 
-move settings json
-
-runs as `$ command`
 
 
 
