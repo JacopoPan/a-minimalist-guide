@@ -1,7 +1,7 @@
 {
     "FileVersion": 3,
     "EngineAssociation": "4.24",
-    "Category": "Samples",
+    "Category": "",
     "Description": "",
     "Modules": [
         {
@@ -12,10 +12,6 @@
                 "AirSim"
             ]
         }
-    ],
-    "TargetPlatforms": [
-        "MacNoEditor",
-        "WindowsNoEditor",
     ],
     "Plugins": [
         {
