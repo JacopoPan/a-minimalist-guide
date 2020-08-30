@@ -209,6 +209,7 @@ $ ./build.sh
 
 - If desired, use the "Viewport" tab to change the positions of 6 propellers w.r.t the drone's body
 > Tip: change the "Position Grid Snap"'s value from 10 to 1 
+
 > Tip: use arrows, `PgUp`, `PgDn`, and trackpad + right or left click to navigate the viewport
 
 - Add the [`PawnPaths`](https://microsoft.github.io/AirSim/settings/#pawnpaths) option to `~/Documents/AirSim/settings.json`
@@ -245,7 +246,7 @@ The results is folder `~/Desktop/LinuxNoEditor` whose content can be launched wi
 ```
 $ ~/Desktop/LinuxNoEditor/Blocks.sh -ResX=640 -ResY=480 -windowed
 ```
-To make it fully self-contained, move `settings.json` from `~/Documents/AirSim/` to `~/Desktop/LinuxNoEditor/Blocks/Binaries/Linux/`
+To make it self-contained, move `settings.json` from `~/Documents/AirSim/` to `~/Desktop/LinuxNoEditor/Blocks/Binaries/Linux/`
 
 
 
