@@ -217,9 +217,7 @@ $ ./build.sh
     "DefaultQuadrotor": {"PawnBP": "Class'/Game/FlyingPawnHex/BP_FlyingPawnHex.BP_FlyingPawnHex_C'"}
   },
 ```
-> Note: `/Game/XYZ.XYZ_C` refers to BP `Oxcart/Content/XYZ.uasset`, `XYZ.XYZ_C` is a special notation required to specify the class for BP XYZ. 
-> Please note that your BP must be derived from CarPawn class. By default this is not the case but you can re-parent the BP using the "Class Settings" button in toolbar in UE editor after you open the BP and then choosing "Car Pawn" for Parent Class settings in Class Options. 
-> It's also a good idea to disable "Auto Possess Player" and "Auto Possess AI" as well as set AI Controller Class to None in BP details. Please make sure your asset is included for cooking in packaging options if you are creating binary.
+> Note: `/Game/XYZ.XYZ_C` refers to BP `Oxcart/Content/XYZ.uasset`, `XYZ.XYZ_C` is notation required to specify the class for BP XYZ. 
 
 - Play the game (`Alt`+`p`) to see the default quadrotor model replaced by a hexacopter
 
