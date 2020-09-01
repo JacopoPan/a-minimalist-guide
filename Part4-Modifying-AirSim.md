@@ -103,7 +103,10 @@ To *add assets* to a project
 - On the top, select "Marketplace"
 - Find a free environment (e.g. "Infinity Blade: Hideout")
 - Click on "Add to project"
-- Use "Show all projects" to select "YourProjectName" (e.g. `Oxcart`);
+- Use "Show all projects" to select "YourProjectName" (e.g. `Oxcart`)
+
+> If you cannot find your project, simply create a new one on the Win/macOS computer and copy the assets from `~/Unreal\ Projects/NewProject/Content` to `~/Unreal\ Projects/Oxcart/Content`
+
 - Under "Select version:", choose "4.24" (UE4 version used by AirSim at the time of this writing)
 - Wait for the content to download, verify, and install
 - You can now copy back the entire project folder to an Ubuntu machine
