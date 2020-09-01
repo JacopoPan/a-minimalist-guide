@@ -399,3 +399,8 @@ $ sudo apt-get update
 ```
 These can then be found under Ubuntu's "*Software & Updates*" -> "*Additional Drivers*"
 
+
+
+-----
+
+University of Toronto's [Dynamic Systems Lab](https://github.com/utiasDSL) ——— [Vector Institute](https://github.com/VectorInstitute) ——— [Mitacs](https://www.mitacs.ca/en/projects/multi-agent-reinforcement-learning-decentralized-uavugv-cooperative-exploration)
