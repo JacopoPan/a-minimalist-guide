@@ -33,3 +33,7 @@ Open the "Software & Updates" application: **NVIDIA's proprietary driver** `nvid
 Select it, click apply, and reboot: this time around, the graphical interface will be running smoothly
 
 Open a terminal (`Ctrl`+`Alt`+`t`) and run command `$ nvidia-smi`: it will report the use of driver 440 and CUDA 10.2
+
+-------
+University of Toronto's [Dynamic Systems Lab](https://github.com/utiasDSL) ———————————————— [Vector Institute](https://github.com/VectorInstitute) ———————————————— [Mitacs](https://www.mitacs.ca/en/projects/multi-agent-reinforcement-learning-decentralized-uavugv-cooperative-exploration)
+
