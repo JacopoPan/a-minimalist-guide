@@ -13,7 +13,7 @@
 
 - [Appendix A: Ubuntu 18 and NVIDIA Drivers](https://github.com/JacopoPan/a-minimalist-guide/blob/master/AppendixA-Ubuntu18-and-NVIDIA-Drivers-on-P52.md)
 
-- [AirSim APIs](https://github.com/JacopoPan/a-minimalist-guide/tree/master/AirSim-APIs)
+- [List of AirSim APIs](https://github.com/JacopoPan/a-minimalist-guide/tree/master/AirSim-APIs)
 
 - [Scripts and Files](https://github.com/JacopoPan/a-minimalist-guide/tree/master/files)
 
