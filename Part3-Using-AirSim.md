@@ -7,6 +7,8 @@ The following instructions are for a fresh install of Ubuntu 18.04 LTS 64-bit on
 
 Everything after a `$` is entered on a terminal; everything after `>>>` is passed to a Python interpreter
 
+Refer to [Appendix A](https://github.com/JacopoPan/a-minimalist-guide/blob/master/AppendixA-Ubuntu18-and-NVIDIA-Drivers-on-P52.md) for installation instructions
+
 ## Using AirSim binaries on Ubuntu 18
 
 AirSim ([Documentation](https://microsoft.github.io/AirSim/), [GitHub](https://github.com/microsoft/AirSim)) is an open source, photorealistic simulator for drones and ground vehicles developed on top of Epic's [Unreal Engine 4](https://github.com/EpicGames/UnrealEngine) (UE4) by Microsoft Research ([arXiv paper](https://arxiv.org/abs/1705.05065))
