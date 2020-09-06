@@ -69,7 +69,7 @@ $ gedit ~/Documents/Unreal\ Projects/Oxcart/Oxcart.uproject
 - In the "World Outliner" level editor (top right by default or under the "Window" menu) search bar, type "Player Start"
 - Click on the "Player Start" result to open the "Details" tab
 - The origin position for AirSim's vehicles is the "Location" under "Transform"
-- If a "Player Start" does not exist, add it from "Modes" tab (on the top left)
+- If a "Player Start" does not exist, add it from the "Modes" tab (on the top left)
 - From the "Window" dropdown menu, click on "World Settings"
 - In the "GameMode Override" dropdown menu, select "AirSimGameMode"
 - Save the project (`Ctrl`+`s`)
@@ -147,7 +147,7 @@ You can make `DemoMap1` the default "Editor Startup Map" and "Game Startup Map" 
 
 Replacing a vehicle's mesh can be done within the Unreal Engine Editor an modifying `settings.json`
 
-Adding simple functionalities (e.g. the spin motion of additional propellers) requires to edit AirSim's plugin source and re-build an environment
+Adding functionalities (e.g. the spin of additional propellers) requires to edit AirSim's plugin source and re-build the environment
 
 The simplest way to do so is by using the Blocks environment located in `~/AirSim/Unreal/Environments/Blocks/`
 
