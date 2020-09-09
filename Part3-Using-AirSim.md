@@ -674,4 +674,5 @@ See [CPP_API.md](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Air
 See [ROS_Wrapper.md](https://github.com/JacopoPan/a-minimalist-guide/blob/master/AirSim-APIs/ROS_Wrapper.md)
 
 -------
-University of Toronto's [Dynamic Systems Lab](https://github.com/utiasDSL) ———————————————— [Vector Institute](https://github.com/VectorInstitute) ———————————————— [Mitacs](https://www.mitacs.ca/en/projects/multi-agent-reinforcement-learning-decentralized-uavugv-cooperative-exploration)
+> Work carried out @ University of Toronto's [Dynamic Systems Lab](https://github.com/utiasDSL) / [Vector Institute](https://github.com/VectorInstitute) / [Mitacs Elevate](https://www.mitacs.ca/en/projects/multi-agent-reinforcement-learning-decentralized-uavugv-cooperative-exploration)
+
