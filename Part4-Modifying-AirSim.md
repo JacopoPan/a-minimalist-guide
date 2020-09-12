@@ -64,6 +64,8 @@ $ gedit ~/Documents/Unreal\ Projects/Oxcart/Oxcart.uproject
 - Open `Oxcart.uproject` with the Unreal Engine Editor again
 - On menu "Select Unreal Engine Verion", confirm the location of your UE4's build (usually `~/UnrealEngine`), click "Ok"
 - If you are prompted for "Missing Modules" (AirSim in this case) and asked "Would you like to rebuild them now?", choose "Yes"
+> If the project fails to compile, create a new one or try run AirSim's [`clean.sh`](https://github.com/microsoft/AirSim/blob/master/Unreal/Environments/Blocks/clean.sh) within it
+
 - When the Editor launches, you'll see a prompt "New plugins are available" on the bottom right of the screen
 - Clicking on "Manage plugins" will open a menu showing that AirSim is *installed* and *enabled* (close this menu)
 - In the "World Outliner" level editor (top right by default or under the "Window" menu) search bar, type "Player Start"
