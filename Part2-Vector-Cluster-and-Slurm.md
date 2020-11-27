@@ -1,5 +1,5 @@
 > A minimalist guide to  a few frameworks⁠—on Ubuntu and Vector computing⁠—for the person who was born yesterday
->> Written by a novice for the novice
+>> By a novice for the novice
 
 # Part 2 - Port your `conda` Environment to Vector's Cluster
 
