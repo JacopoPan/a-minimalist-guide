@@ -272,6 +272,8 @@ $ srun --mem=4GB -c 2 --gres=gpu:1 -p interactive --pty /bin/bash
 ```
 (Note: you can only start an interactive session on a location with interactive partitions)
 
+Use `--qos=nopreemption` on the Vaughan cluster
+
 Use option `-w node-name` instead of `-p partition-name` to require a specific node
 
 Verify the presence of a GPU and the version of CUDA
