@@ -404,6 +404,14 @@ To change the desired target partition of job with id `491956` to `gpu`
 ```
 $ scontrol update jobid=491956 partition=gpu
 ```
+To see accounting data for all *your* jobs
+```
+$ sacct
+```
+On `m.` jobs can run without preemption, on `v.` all partitions (except `interactivd` and `cpu`) have preemption
+
+Jobs submitted through `sbatch` will be [preempted and requeued](https://support.vectorinstitute.ai/AboutVaughan2#Checkpoint.2FRestart) until completion or failure (see these [examples](https://support.vectorinstitute.ai/CheckpointExample))
+
 Also check these `slurm` [cheatsheet](https://slurm.schedmd.com/pdfs/summary.pdf), [tutorial](https://support.ceci-hpc.be/doc/_contents/QuickStart/SubmittingJobs/SlurmTutorial.html), and [Wiki page](https://support.vectorinstitute.ai/UsingSlurm)
 
 ### Exporting `conda`, your environment, and CUDA libraries at once
