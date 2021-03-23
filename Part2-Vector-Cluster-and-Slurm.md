@@ -262,7 +262,7 @@ $ squeue                              # use "$ squeue -u username" to only see j
 ```
 Start a `bash` shell with
 - 4GB of memory (`--mem=4GB`)
-- 2 CPUS (`-c 2`)
+- 2 cores (`-c 2`)
 - 1 GPU (`--gres=gpu:1`)—to test support
 - in an interactive session (`-p interactive`)—for up to 3 hours
 ```
