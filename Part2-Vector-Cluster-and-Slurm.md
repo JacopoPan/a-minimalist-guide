@@ -578,7 +578,7 @@ The second command installs `package-name` in your environment's folder, the thi
 
 - Visualization is supported through [`wandb`](https://www.wandb.com), ([link](https://support.vectorinstitute.ai/wandb)) or use `$ /usr/local/bin/usageStats.sh` for basic usage information
 
-- Vector's wiki has pages for [Jupyer Notebooks](https://jupyter.org/install) ([link](https://support.vectorinstitute.ai/jupyter_notebook)) and [MuJoCo](https://github.com/openai/mujoco-py/) ([link](https://support.vectorinstitute.ai/SoftwareVaughan)) or try [PyBullet](https://pybullet.org/wordpress/) instead (see [this](https://github.com/JacopoPan/gym-pybullet-drones) custom [Gym](https://gym.openai.com))
+- Vector's wiki has pages for [Jupyer Notebooks](https://jupyter.org/install) ([link](https://support.vectorinstitute.ai/Vaughan_SSL_VPN_and_JupyterHub)) and [MuJoCo](https://github.com/openai/mujoco-py/) ([link](https://support.vectorinstitute.ai/SoftwareVaughan)) or try [PyBullet](https://pybullet.org/wordpress/) instead (see [this](https://github.com/JacopoPan/gym-pybullet-drones) custom [Gym](https://gym.openai.com))
 
 
 -------
