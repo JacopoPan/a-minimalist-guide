@@ -18,7 +18,7 @@ mkdir .mujoco
 mv mujoco210 ~/.mujoco/
 rm mujoco210-macos-x86_64.tar.gz
 ```
-Run an simulation
+Run a simulation
 ```
 cd ~/.mujoco/mujoco210/bin/
 ./simulate ../model/cloth.xml
