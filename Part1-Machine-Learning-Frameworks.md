@@ -9,7 +9,7 @@ Everything after a `$` is entered on a terminal; everything after `>>>` is passe
  
 At startup, access the BIOS (on the P52, `Enter`, then `F1`) and, under "*Security*" -> "*Secure Boot*", disable "*Secure Boot*"
 
-**NOTE:** These instructions were tested on a machine with UEFI BIOS Version 1.37, if you have an older BIOS, **update it** [(link)](https://pcsupport.lenovo.com/hn/en/products/laptops-and-netbooks/thinkpad-p-series-laptops/thinkpad-p52-type-20m9-20ma/downloads/ds504024-bios-update-utility-bootable-cd-for-windows-10-64-bit-linux-thinkpad-p52-p72) before changing any of the settings or you might require a hardware repair
+**NOTE:** These instructions were tested on a machine with UEFI BIOS Version 1.37, if you have an older BIOS, **update it** [(link)](https://pcsupport.lenovo.com/hn/en/products/laptops-and-netbooks/thinkpad-p-series-laptops/thinkpad-p52-type-20m9-20ma/downloads/ds504024-bios-update-utility-bootable-cd-for-windows-10-64-bit-linux-thinkpad-p52-p72) before changing any of the settings: black screen problems have been fixed up to version 1.18 [(changelog)](https://download.lenovo.com/pccbbs/mobiles/n2cuj11w.txt)
 
 Verify the presence of an NVIDIA GPU
 ``` 
