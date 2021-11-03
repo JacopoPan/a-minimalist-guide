@@ -11,6 +11,9 @@
 
 - [Part 4: Modifying AirSim](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part4-Modifying-AirSim.md)
 
+- [Part 5: RL with MuJoCo 2.10](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part5-RL-with-MuJoCo210.md)
+
+
 ## Additional Resources
 
 - [Appendix A: Ubuntu 18 and NVIDIA Drivers](https://github.com/JacopoPan/a-minimalist-guide/blob/master/AppendixA-Ubuntu18-and-NVIDIA-Drivers-on-P52.md)
