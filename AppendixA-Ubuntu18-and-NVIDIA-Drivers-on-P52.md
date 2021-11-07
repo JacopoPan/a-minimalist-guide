@@ -24,7 +24,7 @@ And create a bootable USB stick—e.g., on Ubuntu, using [Startup Disk Creator](
 
 Install Ubuntu 18 (if possible, use Wi-Fi to "download updates and install 3rd party software" during the process)
 
-**NOTE 2 [2021 Update]:** If you are installing Ubuntu 20.04 instead, ignore the next 2 lines and ski to "Software & Updates" -> "Additional Drivers" to install the newest proprietary driver 
+> **[2021 Update] NOTE 2:** If you are installing Ubuntu 20.04 instead, ignore the next 2 lines and skip to "*Software & Updates*" -> "*Additional Drivers*" to install the newest proprietary driver 
 
 At the time of the **first login**, click the gear icon besides "Sign in"; choose "Ubuntu on [Wayland](https://wiki.ubuntu.com/Wayland)"
 
