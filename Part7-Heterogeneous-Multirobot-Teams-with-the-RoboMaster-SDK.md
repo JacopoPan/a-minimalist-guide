@@ -46,7 +46,7 @@ Follow these steps
 - Set the TT to "Station Mode" (i.e. the up position of the slider on the right side of the open-source controller/dot-matrix display)
 - Turn on the Tello Talent, it will connect to your WiFi
 - Launch `PacketSender`, again
-- Change "Address" to any address the TT took on your network (check your router, typically at 192.168.0.1)
+- Change "Address" to any address the TT took on your network (see the connected devices in your router configuration, typically at 192.168.0.1)
 - Write command `command` in the "ASCII" field and click "Send"
 - The Tello starts returning telemetry
 - Send the `takeoff` command
