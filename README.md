@@ -13,6 +13,9 @@
 
 - [Part 5: RL with MuJoCo 2.10](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part5-RL-with-MuJoCo210.md)
 
+- [Part 6: RL with Brax](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part5-RL-with-Brax.md)
+
+- [Part 7: Heterogeneous Multirobot Teams with the RoboMaster SDK](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part7-Heterogeneous-Multirobot-Teams-with-the-RoboMaster-SDK.md)
 
 ## Additional Resources
 
