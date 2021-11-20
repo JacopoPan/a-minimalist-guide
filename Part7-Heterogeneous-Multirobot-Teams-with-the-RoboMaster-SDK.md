@@ -12,13 +12,14 @@ Everything after a `$` is entered on a terminal; everything after `>>>` is passe
 ```
 conda create -n robomaster python=3.7
 conda activate robomaster
-pip3 install robomaster
-pip3 install myqr
-pip3 install netifaces
-pip3 install netaddr
+pip3 install myqr netifaces netaddr
+git clone https://github.com/dji-sdk/RoboMaster-SDK.git
+cd ./RoboMaster-SDK
+pip3 install -e .                         # Alternatively, `pip3 install robomaster`
+
 ```
 
-## S1 Connection
+## S1 Router Network Connection
 
 Download [`robomaster-s1-connect.py`](https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/robomaster-s1-connect.py), set WiFi name and password
 ```
@@ -28,7 +29,7 @@ Set the slider on the side of the intelligent controller to "Router Connection" 
 
 Display the generated QR code to the S1 camera
 
-## Tello UDP Control
+## Tello Talent (TT) Router Network UDP Control
 
 ```
 brew install packetsender
