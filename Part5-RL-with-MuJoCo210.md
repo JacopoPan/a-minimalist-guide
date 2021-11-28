@@ -24,7 +24,19 @@ cd ~/.mujoco/mujoco210/bin/
 ./simulate ../model/cloth.xml
 ```
 
-## TBD
+## Recompile executables
+
+...
+
+## Create a simple scene
+
+...
+
+## Wrap the simulation into a `gym` Python class
+
+...
+
+## Run a `stable_baseline3` agent in the custom MuJoCo `gym`
 
 ...
 
