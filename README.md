@@ -11,11 +11,11 @@
 
 - [Part 4: Modifying AirSim](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part4-Modifying-AirSim.md)
 
-- [Part 5: RL with MuJoCo 2.10](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part5-RL-with-MuJoCo210.md)
+- (WIP) [Part 5: RL with MuJoCo 2.10](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part5-RL-with-MuJoCo210.md)
 
-- [Part 6: RL with Brax](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part5-RL-with-Brax.md)
+- (WIP) [Part 6: RL with Brax](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part5-RL-with-Brax.md)
 
-- [Part 7: Heterogeneous Multirobot Teams with the RoboMaster SDK](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part7-Heterogeneous-Multirobot-Teams-with-the-RoboMaster-SDK.md)
+- (WIP) [Part 7: Heterogeneous Multirobot Teams with the RoboMaster SDK](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part7-Heterogeneous-Multirobot-Teams-with-the-RoboMaster-SDK.md)
 
 ## Additional Resources
 
