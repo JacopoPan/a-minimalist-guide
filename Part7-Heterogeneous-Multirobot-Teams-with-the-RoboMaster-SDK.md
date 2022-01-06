@@ -29,7 +29,17 @@ Set the slider on the side of the intelligent controller to "Router Connection" 
 
 Display the generated QR code to the S1 camera
 
+Once the S1 is connected to the same network of a laptop, it can be controlled using the [Python API](https://www.dji.com/ca/robomaster-s1/programming-guide) and running the code from within the [desktop app](https://www.dji.com/ca/robomaster-s1/downloads)
+
+### Using the RoboMaster SDK
+
+At the time of writing (January 2022), using the [RoboMaster SKD](https://github.com/dji-sdk/RoboMaster-SDK) with the S1 still requires a workaround ([forum thread](https://forum.dji.com/forum.php?mod=viewthread&tid=212767), [instructions](https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/s1_sdk_hack.zip))
+
+To be updated.
+
 ## Tello Talent (TT) Router Network UDP Control
+
+### Using PacketSender on macOS
 
 ```
 brew install packetsender
@@ -54,6 +64,37 @@ Follow these steps
 - Fly
 - Send the `land` command
 
+
+### Using Python
+
+#### Instruct the TT to connect to you local Wi-Fi network
+
+- Set the TT to "App Mode" (i.e. the down position of the slider on the right side of the open-source controller/dot-matrix display)
+- Turn on the TT (using the button on the side of the quadcopter)
+- From your latop, connect to **its own** Wi-Fi network and run the following on a terminal
+
+```
+$ ...
+```
+
+- Turn off the TT (using the button on the side of the quadcopter)
+- Set the TT to "Station Mode" (i.e. the up position of the slider on the right side of the open-source controller/dot-matrix display)
+- Turn on the TT (using the button on the side of the quadcopter)
+- From your latop, connect to Wi-Fi network you told the TT to connect to and run the following on a terminal
+
+```
+$ ...
+```
+
+#### Minimal flight example
+
+- Set the TT to "Station Mode" (i.e. the up position of the slider on the right side of the open-source controller/dot-matrix display)
+- Turn on the TT (using the button on the side of the quadcopter)
+- From your latop, connect to Wi-Fi network you told the TT to connect (see [here]())  to and run the following on a terminal
+
+```
+$ ...
+```
 
 -------
 > Work carried out @ University of Toronto's [Dynamic Systems Lab](https://github.com/utiasDSL) / [Vector Institute](https://github.com/VectorInstitute) / [Mitacs Elevate](https://www.mitacs.ca/en/projects/multi-agent-reinforcement-learning-decentralized-uavugv-cooperative-exploration)
