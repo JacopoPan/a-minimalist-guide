@@ -74,17 +74,13 @@ Follow these steps
 - From your latop, connect to **its own** Wi-Fi network and run the following on a terminal
 
 ```
-$ ...
+$ python3 tt_set_ap.py
 ```
 
 - Turn off the TT (using the button on the side of the quadcopter)
 - Set the TT to "Station Mode" (i.e. the up position of the slider on the right side of the open-source controller/dot-matrix display)
-- Turn on the TT (using the button on the side of the quadcopter)
-- From your latop, connect to Wi-Fi network you told the TT to connect to and run the following on a terminal
-
-```
-$ ...
-```
+- Turn on the TT (using the button on the side of the quadcopter), it will connect to your local network (it might take a few seconds, with the status LED blinking orange, once the connection is established the status LED will turn purple)
+- Connect your latop to the same network and try the next scripts
 
 #### Minimal autonomous flight example
 
@@ -93,7 +89,7 @@ $ ...
 - From your latop, connect to Wi-Fi network you told the TT to connect to (see [here](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part7-Heterogeneous-Multirobot-Teams-with-the-RoboMaster-SDK.md#instruct-the-tt-to-connect-to-you-local-wi-fi-network)) and run the following on a terminal
 
 ```
-$ ...
+$ python3 tt_flight.py
 ```
 
 #### Get telemetry and video
@@ -103,7 +99,11 @@ $ ...
 - From your latop, connect to Wi-Fi network you told the TT to connect to (see [here](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part7-Heterogeneous-Multirobot-Teams-with-the-RoboMaster-SDK.md#instruct-the-tt-to-connect-to-you-local-wi-fi-network)) and run the following on a terminal
 
 ```
-$ ...
+$ python3 tt_telemetry.py
+```
+
+```
+$ python3 tt_video.py
 ```
 
 -------
