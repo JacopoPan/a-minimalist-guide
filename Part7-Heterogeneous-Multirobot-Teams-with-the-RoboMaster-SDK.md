@@ -73,6 +73,7 @@ brew install packetsender
 - From your latop, connect to **its own** Wi-Fi network and run the following on a terminal
 
 ```
+$ wget https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/tt_set_ap.py
 $ python3 tt_set_ap.py
 ```
 
@@ -88,6 +89,7 @@ $ python3 tt_set_ap.py
 - From your latop, connect to Wi-Fi network you told the TT to connect to (see [here](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part7-Heterogeneous-Multirobot-Teams-with-the-RoboMaster-SDK.md#instruct-the-tt-to-connect-to-you-local-wi-fi-network)) and run the following on a terminal
 
 ```
+$ wget https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/tt_flight.py
 $ python3 tt_flight.py
 ```
 
@@ -98,10 +100,12 @@ $ python3 tt_flight.py
 - From your latop, connect to Wi-Fi network you told the TT to connect to (see [here](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part7-Heterogeneous-Multirobot-Teams-with-the-RoboMaster-SDK.md#instruct-the-tt-to-connect-to-you-local-wi-fi-network)) and run the following on a terminal
 
 ```
+$ wget https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/tt_telemetry.py
 $ python3 tt_telemetry.py
 ```
 
 ```
+$ wget https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/tt_video.py
 $ python3 tt_video.py
 ```
 
