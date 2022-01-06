@@ -86,11 +86,21 @@ $ ...
 $ ...
 ```
 
-#### Minimal flight example
+#### Minimal autonomous flight example
 
 - Set the TT to "Station Mode" (i.e. the up position of the slider on the right side of the open-source controller/dot-matrix display)
 - Turn on the TT (using the button on the side of the quadcopter)
-- From your latop, connect to Wi-Fi network you told the TT to connect (see [here]())  to and run the following on a terminal
+- From your latop, connect to Wi-Fi network you told the TT to connect to (see [here](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part7-Heterogeneous-Multirobot-Teams-with-the-RoboMaster-SDK.md#instruct-the-tt-to-connect-to-you-local-wi-fi-network)) and run the following on a terminal
+
+```
+$ ...
+```
+
+#### Get telemetry and video
+
+- Set the TT to "Station Mode" (i.e. the up position of the slider on the right side of the open-source controller/dot-matrix display)
+- Turn on the TT (using the button on the side of the quadcopter)
+- From your latop, connect to Wi-Fi network you told the TT to connect to (see [here](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part7-Heterogeneous-Multirobot-Teams-with-the-RoboMaster-SDK.md#instruct-the-tt-to-connect-to-you-local-wi-fi-network)) and run the following on a terminal
 
 ```
 $ ...
