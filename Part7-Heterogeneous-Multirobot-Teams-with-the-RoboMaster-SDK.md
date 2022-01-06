@@ -66,7 +66,7 @@ brew install packetsender
 
 ### Option 2: using Python 3
 
-#### Instruct the TT to connect to you local Wi-Fi network
+#### Instruct the TT to connect to you local Wi-Fi network ([script](https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/tt_set_ap.py))
 
 - Set the TT to "App Mode" (i.e. the down position of the slider on the right side of the open-source controller/dot-matrix display)
 - Turn on the TT (using the button on the side of the quadcopter)
@@ -82,7 +82,7 @@ $ python3 tt_set_ap.py
 - Turn on the TT (using the button on the side of the quadcopter), it will connect to your local network (it might take a few seconds, with the status LED blinking orange, once the connection is established the status LED will turn purple)
 - Connect your latop to the same network and try the next scripts
 
-#### Minimal autonomous flight example
+#### Minimal autonomous flight example ([script](https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/tt_flight.py))
 
 - Set the TT to "Station Mode" (i.e. the up position of the slider on the right side of the open-source controller/dot-matrix display)
 - Turn on the TT (using the button on the side of the quadcopter)
@@ -93,7 +93,7 @@ $ wget https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/tt_flig
 $ python3 tt_flight.py
 ```
 
-#### Get telemetry and video
+#### Get telemetry and video ([script](https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/tt_telemetry.py), [script](https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/tt_video.py))
 
 - Set the TT to "Station Mode" (i.e. the up position of the slider on the right side of the open-source controller/dot-matrix display)
 - Turn on the TT (using the button on the side of the quadcopter)
