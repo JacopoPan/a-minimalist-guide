@@ -39,13 +39,12 @@ To be updated.
 
 ## Tello Talent (TT) Router Network UDP Control
 
-### Using PacketSender on macOS
+### Option 1: using PacketSender on macOS
 
 ```
 brew install packetsender
 ```
 
-Follow these steps
 - Launch `PacketSender` 
 - Set "Address" to 192.168.10.1, "Port" to "8889"
 - Open "packetsender" -> "Preferences" -> "Network" -> "Basics"
@@ -65,7 +64,7 @@ Follow these steps
 - Send the `land` command
 
 
-### Using Python
+### Option 2: using Python
 
 #### Instruct the TT to connect to you local Wi-Fi network
 
