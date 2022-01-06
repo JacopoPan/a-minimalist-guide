@@ -64,7 +64,7 @@ brew install packetsender
 - Send the `land` command
 
 
-### Option 2: using Python
+### Option 2: using Python 3
 
 #### Instruct the TT to connect to you local Wi-Fi network
 
