@@ -93,7 +93,7 @@ $ wget https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/tt_flig
 $ python3 tt_flight.py
 ```
 
-#### Get telemetry and video ([script](https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/tt_telemetry.py), [script](https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/tt_video.py))
+#### Get telemetry ([script](https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/tt_telemetry.py)) and video ([script](https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/tt_video.py))
 
 - Set the TT to "Station Mode" (i.e. the up position of the slider on the right side of the open-source controller/dot-matrix display)
 - Turn on the TT (using the button on the side of the quadcopter)
