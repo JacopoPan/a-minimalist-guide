@@ -16,7 +16,6 @@ pip3 install myqr netifaces netaddr
 git clone https://github.com/dji-sdk/RoboMaster-SDK.git
 cd ./RoboMaster-SDK
 pip3 install -e .                         # Alternatively, `pip3 install robomaster`
-
 ```
 
 ## S1 Router Network Connection
