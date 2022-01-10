@@ -15,26 +15,69 @@ conda activate robomaster
 pip3 install myqr netifaces netaddr
 git clone https://github.com/dji-sdk/RoboMaster-SDK.git
 cd ./RoboMaster-SDK
-pip3 install -e .                         # Alternatively, `pip3 install robomaster`
+pip3 install -e .                         # Alternatively, `python3 setup_with_lib.py install`, or `pip3 install robomaster`
 ```
 
 ## S1 Router Network Connection
 
+<!--
 Download [`robomaster-s1-connect.py`](https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/robomaster-s1-connect.py), set WiFi name and password
 ```
 python3 robomaster-s1-connect.py  # Set
 ```
+-->
+
 Set the slider on the side of the intelligent controller to "Router Connection" and click the "Connect" button besides it
 
 Display the generated QR code to the S1 camera
 
+<!--
 Once the S1 is connected to the same network of a laptop, it can be controlled using the [Python API](https://www.dji.com/ca/robomaster-s1/programming-guide) and running the code from within the [desktop app](https://www.dji.com/ca/robomaster-s1/downloads)
+-->
 
 ### Using the RoboMaster SDK
 
-At the time of writing (January 2022), using the [RoboMaster SKD](https://github.com/dji-sdk/RoboMaster-SDK) with the S1 still requires a workaround ([forum thread](https://forum.dji.com/forum.php?mod=viewthread&tid=212767), [instructions](https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/s1_sdk_hack.zip))
+At the time of writing (January 2022), using the [RoboMaster SKD](https://github.com/dji-sdk/RoboMaster-SDK) with the S1 still requires a workaround ([forum thread](https://forum.dji.com/forum.php?mod=viewthread&tid=212767), [instructions](https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/s1_sdk_hack.zip), [alternative](https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/s1_sdk_hack_2.zip))
 
-To be updated.
+> WIP (credits to [Bruno Albuquerque](https://github.com/brunoga)).
+
+Install and run `adb` on macOS
+```
+$ brew install android-platform-tools
+```
+
+Connect to the RoboMaster Intelligent Controller (on top of the robot) microUSB port (besides the Wi-Fi/AP switch)
+
+Run the following Python snippet from within the RoboMaster desktop app Lab
+```
+def root_me(module):
+    __import__=rm_define.__dict__['__builtins__']['__import__']
+    return __import__(module,globals(),locals(),[],0)
+
+builtins=root_me('builtins')
+subprocess=root_me('subprocess')
+proc=subprocess.Popen('/system/bin/adb_en.sh',shell=True,executable='/system/bin/sh',stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+```
+**Do NOT close the S1 Application!**
+
+Check the connection with `adb`
+```
+$ adb devices
+$ adb shell
+```
+
+Upload the necessary files
+```
+$ wget https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/s1_sdk_hack.zip
+$ unzip s1_sdk_hack.zip
+$ cd s1_sdk_hack/
+$ ./upload.sh
+```
+
+Reboot the S1 (from now on, you will hear the start-up chime twice)
+
+To be continued..
+
 
 ## Tello Talent (TT) Router Network UDP Control
 
