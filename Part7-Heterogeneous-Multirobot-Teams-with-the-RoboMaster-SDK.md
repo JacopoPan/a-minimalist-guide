@@ -13,9 +13,7 @@ Everything after a `$` is entered on a terminal; everything after `>>>` is passe
 conda create -n robomaster python=3.7
 conda activate robomaster
 pip3 install myqr netifaces netaddr
-git clone https://github.com/dji-sdk/RoboMaster-SDK.git
-cd ./RoboMaster-SDK
-pip3 install -e .                         # Alternatively, `python3 setup_with_lib.py install`, or `pip3 install robomaster`
+pip3 install robomaster                   # Also see source at https://github.com/dji-sdk/RoboMaster-SDK.git 
 ```
 
 ## S1 Router Network Connection
