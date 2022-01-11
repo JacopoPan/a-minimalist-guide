@@ -15,7 +15,7 @@
 
 - (WIP) [Part 6: RL with Brax](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part5-RL-with-Brax.md)
 
-- [Part 7: Heterogeneous Multirobot Teams with the RoboMaster SDK](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part7-Heterogeneous-Multirobot-Teams-with-the-RoboMaster-SDK.md)
+- [Part 7: Heterogeneous (UAV/UGV) Multirobot Teams with the DJI's RoboMaster S1 and TT](https://github.com/JacopoPan/a-minimalist-guide/blob/master/Part7-Heterogeneous-Multirobot-Teams-with-the-RoboMaster-SDK.md)
 
 ## Additional Resources
 
