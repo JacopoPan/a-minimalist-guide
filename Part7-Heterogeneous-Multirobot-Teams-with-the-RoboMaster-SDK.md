@@ -7,7 +7,9 @@ The following instructions are for macOS Big Sur (11.6.1) on a 2020 Intel MacBoo
 
 Everything after a `$` is entered on a terminal; everything after `>>>` is passed to a Python interpreter
 
-## RoboMaster SDK Installation
+## RoboMaster SDK
+
+### Installation
 
 ```
 conda create -n robomaster python=3.7
@@ -16,37 +18,24 @@ pip3 install myqr netifaces netaddr
 pip3 install robomaster                   # Also see source at https://github.com/dji-sdk/RoboMaster-SDK.git 
 ```
 
-## S1 Router Network Connection
+### Using the RoboMaster SDK (with a small hack)
+
+At the time of writing (January 2022), using the [RoboMaster SKD](https://github.com/dji-sdk/RoboMaster-SDK) with the S1 still requires a workaround ([forum thread](https://forum.dji.com/forum.php?mod=viewthread&tid=212767), [instructions](https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/s1_sdk_hack.zip))
 
 <!--
-Download [`robomaster-s1-connect.py`](https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/robomaster-s1-connect.py), set WiFi name and password
-```
-python3 robomaster-s1-connect.py  # Set
-```
+[alternative](https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/s1_sdk_hack_2.zip)
 -->
 
-Set the slider on the side of the intelligent controller to "Router Connection" and click the "Connect" button besides it
-
-Display the generated QR code to the S1 camera
-
-<!--
-Once the S1 is connected to the same network of a laptop, it can be controlled using the [Python API](https://www.dji.com/ca/robomaster-s1/programming-guide) and running the code from within the [desktop app](https://www.dji.com/ca/robomaster-s1/downloads)
--->
-
-### Using the RoboMaster SDK
-
-At the time of writing (January 2022), using the [RoboMaster SKD](https://github.com/dji-sdk/RoboMaster-SDK) with the S1 still requires a workaround ([forum thread](https://forum.dji.com/forum.php?mod=viewthread&tid=212767), [instructions](https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/s1_sdk_hack.zip), [alternative](https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/s1_sdk_hack_2.zip))
-
-> WIP (credits to [Bruno Albuquerque](https://github.com/brunoga)).
+> All credit to [Bruno Albuquerque](https://github.com/brunoga)
 
 Install and run `adb` on macOS
 ```
 $ brew install android-platform-tools
 ```
 
-Connect to the RoboMaster Intelligent Controller (on top of the robot) microUSB port (besides the Wi-Fi/AP switch)
+Connect to the RoboMaster Intelligent Controller's (the one on top of the robot's turret) microUSB port (besides the Wi-Fi/AP switch)
 
-Run the following Python snippet from within the RoboMaster desktop app Lab
+Run the following Python snippet from within the [RoboMaster desktop app Lab -> DIY Programming -> Python](https://www.dji.com/ca/robomaster-s1/downloads)
 ```
 def root_me(module):
     __import__=rm_define.__dict__['__builtins__']['__import__']
@@ -64,7 +53,7 @@ $ adb devices
 $ adb shell
 ```
 
-Upload the necessary files
+Upload the necessary files from your laptop to the Intelligent Controller
 ```
 $ wget https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/s1_sdk_hack.zip
 $ unzip s1_sdk_hack.zip
@@ -74,7 +63,40 @@ $ ./upload.sh
 
 Reboot the S1 (from now on, you will hear the start-up chime twice)
 
-To be continued..
+### S1 Router Network Connection
+
+Download script [`s1_connect.py`](https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/s1_connect.py)
+
+Set the ssid and password arguments on line 13 to your local WiFi network name and password, then run
+```
+$ wget https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/s1_connect.py
+$ python3 s1_connect.py
+```
+
+Set the slider on the side of the intelligent controller to "Router Connection" and click the "Connect" button besides it
+
+Display the generated QR code to the S1 camera
+
+Once the S1 is connected to the same network of a laptop, it can be controlled using its [Python API](https://www.dji.com/ca/robomaster-s1/programming-guide) (or and running the code from within the Lab of the [desktop app](https://www.dji.com/ca/robomaster-s1/downloads))
+
+### S1 Simple Chassis Movement Script
+
+If you have followed the previous steps, your laptop and S1 are now connected to the same network
+
+Download script [`s1_movement.py`](https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/s1_movement.py)
+
+```
+$ wget https://github.com/JacopoPan/a-minimalist-guide/blob/master/files/s1_movement.py
+$ python3 s1_movement.py                  # Remember to activate the conda environment where you installed the SDK
+```
+
+The S1 will now move forward, backward, laterally (to its left and back), and turn in place
+
+
+
+
+
+
 
 
 ## Tello Talent (TT) Router Network UDP Control
