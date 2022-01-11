@@ -1,7 +1,7 @@
 > A minimalist guide to  a few frameworks⁠—on Ubuntu and Vector computing⁠—for the person who was born yesterday
 >> By a novice for the novice
 
-# Part 7 - Heterogeneous Multirobot Teams with the RoboMaster SDK
+# Part 7 - Heterogeneous (UAV/UGV) Multirobot Teams with DJI's RoboMaster S1 and TT
 
 The following instructions are for macOS Big Sur (11.6.1) on a 2020 Intel MacBook Pro
 
